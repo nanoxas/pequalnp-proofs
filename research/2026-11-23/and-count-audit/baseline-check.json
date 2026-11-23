@@ -1,0 +1,103 @@
+{
+  "status": true,
+  "seconds": 0.009793965000426397,
+  "and_gates": 7,
+  "options": {
+    "count": 7,
+    "conflicts": 1000,
+    "baseline": true,
+    "result": "and-count-audit/baseline-check.json",
+    "cnf": null
+  },
+  "statistics": {
+    "restarts": 0,
+    "conflicts": 0,
+    "decisions": 0,
+    "propagations": 2835
+  },
+  "scope": "Exploratory full-function AND-count model with free OR; not a report of exhaustion for assigned binary-circuit shard.",
+  "circuit": {
+    "gates": [
+      {
+        "left": [
+          0
+        ],
+        "right": [
+          9,
+          10
+        ]
+      },
+      {
+        "left": [
+          1
+        ],
+        "right": [
+          4,
+          8
+        ]
+      },
+      {
+        "left": [
+          3
+        ],
+        "right": [
+          6,
+          7
+        ]
+      },
+      {
+        "left": [
+          5
+        ],
+        "right": [
+          2,
+          8,
+          9
+        ]
+      },
+      {
+        "left": [
+          7
+        ],
+        "right": [
+          3,
+          6,
+          9
+        ]
+      },
+      {
+        "left": [
+          8
+        ],
+        "right": [
+          1,
+          4,
+          5,
+          9
+        ]
+      },
+      {
+        "left": [
+          10
+        ],
+        "right": [
+          0,
+          2,
+          4,
+          6
+        ]
+      }
+    ],
+    "output_gates": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "validated_all_2048_inputs": true,
+  "dirty_and_on_shard6": false
+}

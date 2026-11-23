@@ -1,0 +1,18 @@
+{
+  "source": "FirstDirtyWitness.lean",
+  "sha256": "1d31e54c3ef5ddb879d3afab4ced25d0d2b6ef9927f755ce3c0daa6129da1eaf",
+  "bytes": 16228,
+  "audit": "FirstDirtyInlineAudit.lean",
+  "audit_sha256": "1d0d423a4b1d625f75e1b6d87b59a006080ea9a6c236b860d9051049b710db90",
+  "source_is_exact_audit_prefix": true,
+  "lean_version": "4.36.0",
+  "exit_code": 0,
+  "warnings": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "elapsed_seconds": 126.68,
+  "note": "Actual PEqualNP.Defs.CircuitLowerBounds import; no abstract-model bridge. The separate inline audit appends only three #print axioms commands."
+}

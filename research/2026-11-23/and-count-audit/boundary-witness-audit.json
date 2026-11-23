@@ -1,0 +1,35 @@
+{
+  "source_lemma": "L-meta-1006",
+  "inputs_checked": 2048,
+  "maximal_independent_sets": 24,
+  "checked_boundary_condition_holds": true,
+  "full_function_false_positives": 0,
+  "full_function_false_negatives": 39,
+  "missed_edge_inputs": [
+    [
+      4,
+      10
+    ],
+    [
+      5,
+      9
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      6,
+      10
+    ],
+    [
+      7,
+      9
+    ],
+    [
+      8,
+      9
+    ]
+  ],
+  "interpretation": "This witness satisfies its boundary theorem and does not compute the full edge function."
+}

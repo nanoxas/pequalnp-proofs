@@ -1,0 +1,311 @@
+{
+  "method": "Explicit ripple-carry Boolean words; independent polynomial field multiplication; dual-rail conversion",
+  "primitive_gate_set": [
+    "AND fanin2",
+    "OR fanin2",
+    "NOT fanin1",
+    "constants"
+  ],
+  "gate_count_convention": "Constants are free in reported raw counts; add at most2 gates if constant0 and constant1 must be charged.",
+  "inverter_exhaustive_tests": [
+    {
+      "inputs": 0,
+      "padded_sorting_length": 1,
+      "NOT_gates": 0,
+      "comparators": 0,
+      "total_gates": 0,
+      "gate_counts": {},
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 1,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 1,
+      "padded_sorting_length": 2,
+      "NOT_gates": 1,
+      "comparators": 1,
+      "total_gates": 10,
+      "gate_counts": {
+        "and": 5,
+        "or": 4,
+        "not": 1
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 2,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 2,
+      "padded_sorting_length": 4,
+      "NOT_gates": 2,
+      "comparators": 6,
+      "total_gates": 48,
+      "gate_counts": {
+        "and": 24,
+        "or": 22,
+        "not": 2
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 4,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 3,
+      "padded_sorting_length": 4,
+      "NOT_gates": 2,
+      "comparators": 6,
+      "total_gates": 48,
+      "gate_counts": {
+        "and": 24,
+        "or": 22,
+        "not": 2
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 8,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 4,
+      "padded_sorting_length": 8,
+      "NOT_gates": 3,
+      "comparators": 24,
+      "total_gates": 172,
+      "gate_counts": {
+        "and": 86,
+        "or": 83,
+        "not": 3
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 16,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 5,
+      "padded_sorting_length": 8,
+      "NOT_gates": 3,
+      "comparators": 24,
+      "total_gates": 172,
+      "gate_counts": {
+        "and": 86,
+        "or": 83,
+        "not": 3
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 32,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 6,
+      "padded_sorting_length": 8,
+      "NOT_gates": 3,
+      "comparators": 24,
+      "total_gates": 172,
+      "gate_counts": {
+        "and": 86,
+        "or": 83,
+        "not": 3
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 64,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 7,
+      "padded_sorting_length": 8,
+      "NOT_gates": 3,
+      "comparators": 24,
+      "total_gates": 172,
+      "gate_counts": {
+        "and": 86,
+        "or": 83,
+        "not": 3
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 128,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 8,
+      "padded_sorting_length": 16,
+      "NOT_gates": 4,
+      "comparators": 80,
+      "total_gates": 540,
+      "gate_counts": {
+        "and": 270,
+        "or": 266,
+        "not": 4
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 256,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 9,
+      "padded_sorting_length": 16,
+      "NOT_gates": 4,
+      "comparators": 80,
+      "total_gates": 540,
+      "gate_counts": {
+        "and": 270,
+        "or": 266,
+        "not": 4
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 512,
+      "outputs_correct": true
+    },
+    {
+      "inputs": 10,
+      "padded_sorting_length": 16,
+      "NOT_gates": 4,
+      "comparators": 80,
+      "total_gates": 540,
+      "gate_counts": {
+        "and": 270,
+        "or": 266,
+        "not": 4
+      },
+      "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators",
+      "all_assignments_checked": 1024,
+      "outputs_correct": true
+    }
+  ],
+  "tests": [
+    {
+      "h": 1,
+      "q": 2,
+      "N": 7,
+      "word_bits": 5,
+      "assignments_checked": 16384,
+      "scope": "all point and line assignments",
+      "raw_gate_counts": {
+        "or": 350,
+        "and": 644,
+        "not": 265
+      },
+      "dual_rail_gate_counts_excluding_external_inverter": {
+        "or": 994,
+        "and": 994
+      },
+      "final_positive_line_selection_gates": 13,
+      "explicit_sorting_inverter": {
+        "inputs": 7,
+        "padded_sorting_length": 8,
+        "NOT_gates": 3,
+        "comparators": 24,
+        "total_gates": 172,
+        "gate_counts": {
+          "and": 86,
+          "or": 83,
+          "not": 3
+        },
+        "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators"
+      },
+      "complete_circuit_gate_counts": {
+        "and": 1087,
+        "or": 1083,
+        "not": 3
+      },
+      "complete_circuit_size": 2173,
+      "complete_size_if_two_constants_are_charged": 2175,
+      "complete_circuit_NOT_count": 3,
+      "all_line_sums_match": true,
+      "all_dual_rails_complementary": true,
+      "incidence_output_matches": true,
+      "formal_certificate": false,
+      "sorting_inverter_implemented": true,
+      "BNT_inverter_implemented": false
+    },
+    {
+      "h": 2,
+      "q": 4,
+      "N": 21,
+      "word_bits": 8,
+      "assignments_checked": 699,
+      "scope": "extreme and random full assignments; all singleton pairs also for q=4",
+      "raw_gate_counts": {
+        "or": 3114,
+        "and": 5934,
+        "not": 2480
+      },
+      "dual_rail_gate_counts_excluding_external_inverter": {
+        "or": 9048,
+        "and": 9048
+      },
+      "final_positive_line_selection_gates": 41,
+      "explicit_sorting_inverter": {
+        "inputs": 21,
+        "padded_sorting_length": 32,
+        "NOT_gates": 5,
+        "comparators": 240,
+        "total_gates": 1564,
+        "gate_counts": {
+          "and": 782,
+          "or": 777,
+          "not": 5
+        },
+        "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators"
+      },
+      "complete_circuit_gate_counts": {
+        "and": 9851,
+        "or": 9845,
+        "not": 5
+      },
+      "complete_circuit_size": 19701,
+      "complete_size_if_two_constants_are_charged": 19703,
+      "complete_circuit_NOT_count": 5,
+      "all_line_sums_match": true,
+      "all_dual_rails_complementary": true,
+      "incidence_output_matches": true,
+      "formal_certificate": false,
+      "sorting_inverter_implemented": true,
+      "BNT_inverter_implemented": false
+    },
+    {
+      "h": 3,
+      "q": 8,
+      "N": 73,
+      "word_bits": 11,
+      "assignments_checked": 258,
+      "scope": "extreme and random full assignments; all singleton pairs also for q=4",
+      "raw_gate_counts": {
+        "or": 22522,
+        "and": 43584,
+        "not": 18282
+      },
+      "dual_rail_gate_counts_excluding_external_inverter": {
+        "or": 66106,
+        "and": 66106
+      },
+      "final_positive_line_selection_gates": 145,
+      "explicit_sorting_inverter": {
+        "inputs": 73,
+        "padded_sorting_length": 128,
+        "NOT_gates": 7,
+        "comparators": 1792,
+        "total_gates": 11260,
+        "gate_counts": {
+          "and": 5630,
+          "or": 5623,
+          "not": 7
+        },
+        "method": "bitonic sorter, complemented dyadic thresholds, reversed comparators"
+      },
+      "complete_circuit_gate_counts": {
+        "and": 71809,
+        "or": 71801,
+        "not": 7
+      },
+      "complete_circuit_size": 143617,
+      "complete_size_if_two_constants_are_charged": 143619,
+      "complete_circuit_NOT_count": 7,
+      "all_line_sums_match": true,
+      "all_dual_rails_complementary": true,
+      "incidence_output_matches": true,
+      "formal_certificate": false,
+      "sorting_inverter_implemented": true,
+      "BNT_inverter_implemented": false
+    }
+  ],
+  "scope_warning": "Finite executable validation of the full compiler including an explicit sorting inverter; universal correctness follows the accompanying paper derivation. No Lean certificate. The O(n log n) BNT inverter is not implemented; our O(n log^2 n) inverter suffices for the same final asymptotic."
+}

@@ -1,0 +1,78 @@
+{
+  "method": "2D Walsh transform, binary-field transpose slices, 1D inverse Walsh transforms, infinity points",
+  "orders": [
+    {
+      "h": 1,
+      "q": 2,
+      "projective_points_and_lines": 7,
+      "basis_columns_checked": 7,
+      "total_inputs_checked": 147,
+      "matrix_identity_checked": true,
+      "transform_additions_and_subtractions": 14,
+      "conservative_signed_word_bits": 5,
+      "separate_line_or_formula_gate_count": 14,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    },
+    {
+      "h": 2,
+      "q": 4,
+      "projective_points_and_lines": 21,
+      "basis_columns_checked": 21,
+      "total_inputs_checked": 33,
+      "matrix_identity_checked": true,
+      "transform_additions_and_subtractions": 104,
+      "conservative_signed_word_bits": 8,
+      "separate_line_or_formula_gate_count": 84,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    },
+    {
+      "h": 3,
+      "q": 8,
+      "projective_points_and_lines": 73,
+      "basis_columns_checked": 73,
+      "total_inputs_checked": 85,
+      "matrix_identity_checked": true,
+      "transform_additions_and_subtractions": 600,
+      "conservative_signed_word_bits": 11,
+      "separate_line_or_formula_gate_count": 584,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    },
+    {
+      "h": 4,
+      "q": 16,
+      "projective_points_and_lines": 273,
+      "basis_columns_checked": 273,
+      "total_inputs_checked": 285,
+      "matrix_identity_checked": true,
+      "transform_additions_and_subtractions": 3136,
+      "conservative_signed_word_bits": 14,
+      "separate_line_or_formula_gate_count": 4368,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    },
+    {
+      "h": 5,
+      "q": 32,
+      "projective_points_and_lines": 1057,
+      "basis_columns_checked": 0,
+      "total_inputs_checked": 12,
+      "matrix_identity_checked": false,
+      "transform_additions_and_subtractions": 15520,
+      "conservative_signed_word_bits": 17,
+      "separate_line_or_formula_gate_count": 33824,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    },
+    {
+      "h": 6,
+      "q": 64,
+      "projective_points_and_lines": 4161,
+      "basis_columns_checked": 0,
+      "total_inputs_checked": 12,
+      "matrix_identity_checked": false,
+      "transform_additions_and_subtractions": 74112,
+      "conservative_signed_word_bits": 20,
+      "separate_line_or_formula_gate_count": 266304,
+      "scope": "Exact integer line sums; Boolean compilation and NOT compression not formalized here."
+    }
+  ],
+  "interpretation": "The construction uses subtraction and does not refute any monotone task."
+}

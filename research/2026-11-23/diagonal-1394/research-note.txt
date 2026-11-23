@@ -1,0 +1,227 @@
+L-meta-1394 structural investigation
+==================================
+Status: no counterexample found; no proof of the universal degree-four bound.
+Started sustained investigation at 2026-11-23 22:16:12 UTC.
+The task asks for the negation of a universal bound, so the results below are
+obstructions/reductions rather than a solution of the assigned statement.
+
+1. Exact target and harmless simplifications
+--------------------------------------------
+Write s=Ckt.size, J=Jn, and E for the set counted by the statement. Every member
+(p,l) is incident; at least one product A_j*B_j fires on the singleton pair;
+every firing product has both factors false on the point-only input. Every
+product is globally sound below the incidence function. Both factors have
+syntactic line degree at most2. The fr=false filter can only decrease E.
+A counterexample therefore needs |E| > 400(s+J)+16N, with J>=1 and E nonempty.
+We never infer that an individual factor is globally sound.
+
+2. Active-input lemma (paper proof)
+----------------------------------
+Fix a counted pair (p,l) and choose a firing product A_j*B_j. On the line-only
+input {l}, both factors cannot be true: global product soundness would require
+an active point, of which there is none. Choose one factor F that is false
+there. The diagonal premise says F is also false on the point-only input {p},
+whereas F is true on {p,l}. Thus F depends on BOTH input coordinates p and l.
+It cannot itself be an input wire: the point input would be true at {p}, the
+line input at {l}, and every other input is false at {p,l}. Nor can it be an
+invalid wire, whose value is false. Consequently both input coordinates must
+occur among input slots of gates in its cone, hence among input slots of Ckt.
+
+Let a and b be the numbers of point and line endpoints of E, and v=a+b.
+Every one of these v input coordinates occurs among at most2s gate input slots.
+Therefore v<=2s. Also a,b<=N, so v<=2N. This argument permits constants, unary
+gates, repeated inputs, unused gates, and missing-wire reads; it uses no degree
+bound and no normalization of the circuit.
+
+2a. Stronger shared-cone support lemma (paper proof; root independently audited)
+-------------------------------------------------------------------------------
+Retain the two factor ancestor cones of every product j that fires on at least
+one counted pair. On such a pair (p,l), each factor is false at point-only p
+and true at the pair. Thus each factor depends on the line coordinate l; the
+input vertex l belongs to BOTH cones. The two cones for one productive product
+are therefore connected when edge directions are forgotten. Taking their union
+over at most J products gives at most J connected components.
+
+All active point and line inputs belong to this union: the argument in section2
+puts both endpoints of each counted pair in the cones of a firing product.
+In particular, both endpoints of each counted pair lie in the SAME component.
+
+Let g be the number of gate vertices in the union, q its number of input
+vertices, and c its number of connected components. We include only actual
+earlier-wire dependencies; invalid forward reads are constant false and create
+no edges or input dependence. There are at most2g fanin edges. A graph with
+g+q vertices and c components has at leastg+q-c edges. Consequently
+  v <= q <= g+c <= s+J.
+The inequality remains valid with repeated fanins: counting them only increases
+the available upper bound2g. Constant and unary gates also cause no difficulty.
+
+If a component contains v_i active input vertices, the same connected-graph
+count gives g_i >= v_i-1 gates. This extra fact strengthens the gate threshold
+below beyond the consequence of v<=2s alone.
+
+3. Bipartite C4-free extremal inequality (paper proof)
+----------------------------------------------------
+The counted graph E is a bipartite subgraph of I and is C4-free. Put e=|E|.
+Counting ordered length-two paths centered at the a-side, each ordered pair
+of b-side vertices has at most one common neighbor:
+  sum_p d(p)(d(p)-1) <= b(b-1).
+Cauchy gives sum_p d(p)^2 >= e^2/a, so
+  e^2 <= a*e + ab(b-1).
+The symmetric calculation gives
+  e^2 <= b*e + ab(a-1).
+Add the two inequalities, and use ab<=v^2/4 (v>=2):
+  2e^2 <= v*e + ab(v-2) <= v*e + v^2(v-2)/4.
+Equivalently
+  8e^2 <= 4v*e + v^2(v-2),
+or
+  e <= v/4 * (1 + sqrt(2v-3)).
+This is the girth-six Moore bound, derived here directly for this setting.
+Primary background source: Alon, Hoory, Linial, The Moore bound for irregular
+graphs (2002), https://web.math.princeton.edu/~nalon/PDFS/ahl1.pdf .
+
+4. Exact necessary size threshold
+--------------------------------
+Since a violation is strict and J>=1,
+  e >= 400(s+J)+16N+1 >= 208v+401.
+Substitution in the preceding quadratic inequality yields
+  v^3 >= 345282*v^2 + 1332924*v + 1286408.
+If v<=345285, then
+  v^3-345282*v^2 <=3*v^2 <=1035855*v,
+contradicting the displayed lower bound. Hence
+  v>=345286, s>=172643, N>=172643.
+The latter two statements follow separately from v<=2s and v<=2N. There is
+NO claim that each active side a,b separately has172643 vertices.
+At the first numerical boundary s=N=172643,J=1, a violation requires at least
+71,819,889 counted edges. Passing this inequality is only a necessary condition.
+
+size_obstruction.py independently checks the exact integer inequality using
+ab<=floor(v^2/4), including the ceil(v/2) parity term. Its first non-excluded
+v is345286. This is an arithmetic audit, not graph/circuit enumeration.
+SizeObstruction.lean is an UNCHECKED DRAFT of only this numerical implication,
+assuming the support and extremal inequalities. Its queue invocation was
+interrupted without a result when the research task stopped. It is not a
+verified Lean proof. The structural lemmas above remain paper proofs.
+
+4a. Stronger threshold from shared cones and components
+-------------------------------------------------------
+Using v<=s+J instead gives, for every strict violation,
+  e >= 400(s+J)+16N+1 >=408v+1.
+Substitution in Moore's inequality yields
+  v^3 >=1330082*v^2+6524*v+8.
+For v<=1330082 this is impossible. Thus v>=1,330,083 total active vertices
+and declared N>=665,042. The parity-aware minimum edge count at v=1,330,083
+is400v+16ceil(v/2)+1=542,673,873. Passing Moore's inequality is only a
+necessary condition, and does not establish graph or circuit existence.
+
+There is also a stronger independent lower bound on s. Partition counted
+edges by the cone components; their endpoints lie in the same component by
+section2a. If every component had v_i<=1,330,082 active endpoints, Moore's
+inequality applied separately would give e_i<=408v_i. Indeed, any strict
+e_i>408v_i contradicts the same numerical threshold. Summing would give
+  e<=408v<=400(s+J)+16N,
+contradicting the violation. Thus ONE cone component has at least1,330,083
+active endpoints. Its connected graph count forces at least1,330,082 gates.
+
+The strongest resulting necessary conditions established here are therefore:
+  one cone component has >=1,330,083 active endpoints;
+  total active endpoints v>=1,330,083;
+  total circuit gates s>=1,330,082;
+  declared equal side size N>=665,042.
+No separate lower bound on each active side a or b is asserted.
+The Python audit preserves the earlier weaker threshold and records the new
+exact integer boundary. The structural claims remain paper proofs.
+
+5. Why the known class-N obstruction does not scale automatically
+----------------------------------------------------------------
+Checked L-meta-1386 gives a14-gate Fano example whose two degree-one factors
+are individually unsound off every possible pivot, while their product is
+sound and diagonal at(0,0). Therefore the inference
+  sound product => some factor is sound off a selected pivot
+is false, already for linear factors. Checked L-meta-1382 cannot be applied
+individually to these factors.
+
+The Fano graph has degree3. Disjoint unions and graph covering lifts preserve
+that degree and E/N=3, so the16N term alone rules out counterexamples from
+those constructions. The displayed1386 product has only one accepted
+singleton incident pair, even before considering its gate cost.
+
+Cloning a point of degree>=2 creates a rectangle with its twin and two common
+neighbors. Thus ordinary vertex blow-up violates C4-freeness. A direct tensor
+product also generally fails: points(p0,p1),(q0,p1) have
+  common_neighbors = common_neighbors_I0(p0,q0) * degree_I1(p1),
+which is at least2 whenever the first factor has a common neighbor and the
+second has degree>=2. Restricting tensor points so all coordinates differ
+restores C4-freeness but collapses the number of points and defeats the intended
+balanced-density amplification.
+
+A genuine counterexample would require a large structured family with a much
+better ratio of counted incidences to gates, products, and vertices. Small
+counterexamples to intermediate normal-form statements do not supply one.
+
+6. What the checked degree-three proof actually supplies
+-------------------------------------------------------
+L_meta_1020.lean contains a substantially stronger intermediate estimate:
+  E <=84*s+55*J+28
+for its degree2-times-degree1 diagonal problem. Its proof uses a common linear
+network and K triples, with the quantitative count
+  E <=18*P+28*T+27*K,
+then shared forward/reverse normalization bounds onP,T,K. The key interfaces
+are Pilot5bMeta1020LinearTripleBound.linear_triple_bound,
+Pilot5bMeta1020OriginalNormalization.jobs_cover / roots_cover_pair, and
+Pilot5bMeta1020FinalBudget.normalized_bound.
+
+In degree2-times-degree2, reversing through one factor leaves degree2 contexts
+rather than linear contexts. A split at a degree2 AND fork gives a job with
+factor degrees(1,1,2). Expanding the remaining degree2 context against the
+first factor may introduce pairs of forks, a potentially quadratic number.
+Repeating the same transpose merely moves the degree2 context to the other
+side; it does not lower its degree. No linear-size shared compression of these
+pairs has been proved in this investigation.
+
+7. A reusable extension of the marker near-star lemma (paper proof)
+-----------------------------------------------------------------
+This addresses only a linear-network counting subproblem, not the missing
+normalization above.
+
+Let pencils A_p have pairwise intersection at most1. For a line-query setQ,
+if Q is covered by at most3 pencils, define blockers(Q) to be its points p
+with |Q intersect A_p|>=4; otherwise define blockers(Q)=empty.
+If Q is covered by pencils of T, |T|<=3, a point outsideT meets each pencil
+in at most1 line, hence meetsQ in at most3. Thus blockers(Q) is contained
+inT, and has size at most3.
+If |Q|>=10 and p,q,r are all outside blockers(Q), then Q is not covered by
+A_p union A_q union A_r: any such cover would force one of the three
+intersections to have at least4 members. Thus Q contains a line outside all
+three pencils.
+
+Now suppose a fixed marker line l multiplies three monotone linear factors
+f1,f2,f3 and the resulting product is sound belowI. LetPi be each factor's
+retained point set outside l. Suppose each p inPi has a queryQi(p) of size
+at least10, p not in blockers(Qi(p)), and Qi(p) included in the singleton
+line-row of fi atp.
+For any triple(p1,p2,p3) inP1xP2xP3, some cross-blocking relation
+  pj in blockers(Qi(pi)), i!=j
+must hold. Otherwise select a query lineui outside all three pencils for each
+i. Monotonicity makes all fi true on points{p1,p2,p3}, lines{l,u1,u2,u3},
+while that input contains no incidence; contradiction.
+Each blocker set has size<=3. Union-counting the six directed cross-blocking
+relations gives
+  |P1||P2||P3| <=6(|P1||P2|+|P1||P3|+|P2||P3|).
+If all three sizes exceed18, divide by their product to obtain
+  1 <=6(1/|P1|+1/|P2|+1/|P3|) <1.
+Therefore at least onePi has size<=18.
+
+This is the three-factor analogue of the checked two-factor near-star bound4
+in1020, using query cutoff10 instead of5. It does not assert that400 is the
+resulting final circuit constant. A complete extension must account for all
+small-query charges, marker jobs, and shared normalization costs.
+
+8. Recommended precise obstruction report
+-----------------------------------------
+No asymptotic class-N construction with sufficient density/compression was
+found. The failed approach is to count the two factors as individually sound
+(or pivot-sound);1386 explicitly forbids that inference. The unresolved
+positive-route lemma is a sharing-sensitive bound/compression for simultaneous
+degree2 factor contexts, avoiding quadratic fork-pair enumeration. The
+arithmetical size threshold explains why finite brute force cannot directly
+settle1394, although small instances can still falsify intermediate lemmas.

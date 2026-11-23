@@ -1,0 +1,19 @@
+{
+  "status": null,
+  "seconds": 360.1955237790007,
+  "and_gates": 6,
+  "options": {
+    "count": 6,
+    "conflicts": 5000000,
+    "baseline": false,
+    "result": "/workspace/scratch/91448c28ebe7/and-count-audit/six-and-result.json",
+    "cnf": "/workspace/scratch/91448c28ebe7/and-count-audit/six-and.cnf"
+  },
+  "statistics": {
+    "restarts": 150885,
+    "conflicts": 5000001,
+    "decisions": 11580635,
+    "propagations": 427695752
+  },
+  "scope": "Exploratory full-function AND-count model with free OR; not a report of exhaustion for assigned binary-circuit shard."
+}

@@ -1,0 +1,264 @@
+Independent review of the binary-field Walsh / few-NOT upper-bound strategy
+==========================================================================
+
+Conclusion
+----------
+The proposed construction is mathematically sound for the Desarguesian
+projective plane PG(2,q), q=2^h, h>=1. In the usual circuit model with binary
+AND/OR, unary NOT, constants and unrestricted wire fanout, it gives the
+incidence Boolean function a circuit of size O(q^2 h^2) using at most2h+1
+NOT gates. Equivalently, with N=q^2+q+1 points and equally many lines, the
+size is O(N log^2 N) and the NOT budget is ceil(log2(N+1)).
+
+This is a paper construction with an explicit end-to-end Boolean compiler,
+including a sorting-based inverter of size O(N log^2 N). The latter was
+derived by root and independently audited and implemented here. The faster
+published O(N log N) inverter is an optional alternative. The local audits
+validate finite instances of the complete construction. There is no Lean
+certificate for this upper bound.
+
+1. Function and geometric model
+-------------------------------
+Let z_p be point-selection bits and y_L line-selection bits. The target is
+  F(z,y) = OR_L (y_L AND OR_{p incident L} z_p).
+Only the point-side preprocessing uses arithmetic and input complements.
+The line-selection variables enter the final positive AND/OR network.
+
+Affine points are (x,y) in GF(q)^2. The q slopes a have affine lines
+  L_(a,b) = {(x, a*x+b): x in GF(q)},
+and the vertical family is L_(infty,b)={(b,y):y in GF(q)}. Add one infinity
+point per direction, and the line containing all q+1 infinity points.
+This gives N=q^2+q+1 points and lines, each line having q+1 points.
+The field axioms give the projective-plane incidence properties directly.
+
+The code supplies irreducible-polynomial representations for h=1,...,6.
+The mathematical family for arbitrary h chooses any binary basis of GF(2^h).
+This statement concerns the Desarguesian family, not every projective plane
+of the same order or every C4-free bipartite incidence relation.
+
+2. Exact Walsh-slice identity in an arbitrary binary basis
+---------------------------------------------------------
+Identify the additive group of GF(q) with F_2^h. Let <u,x> be the ordinary
+binary coordinate dot product, and define
+  Zhat(u,v) = sum_(x,y) (-1)^(<u,x>+<v,y>) z_(x,y).
+The unnormalized length-q^2 Walsh transform in the code is exactly this
+two-dimensional transform: the index x*q+y concatenates the two h-bit blocks.
+
+For fixed a, multiplication x -> a*x is an F_2-linear map M_a. Let
+tau_a(v)=M_a^T v, characterized by <tau_a(v),x>=<v,a*x>.
+Then
+  Zhat(tau_a(v),v)
+    = sum_(x,y) (-1)^<v,a*x+y> z_(x,y).
+Applying an unnormalized one-dimensional Walsh transform in v gives
+  sum_v (-1)^<v,b> Zhat(tau_a(v),v)
+    = sum_(x,y) z_(x,y) sum_v (-1)^<v,a*x+y+b>
+    = q * sum_x z_(x,a*x+b).
+The last step is character orthogonality on F_2^h. The vertical slice
+Zhat(v,0) similarly yields q*sum_y z_(b,y).
+
+Thus the inverse slices divided by q are exact affine line sums. Adding
+the point at infinity for that direction gives projective line sums, and
+the final infinity line is the sum of the infinity-point inputs.
+
+The transpose in the code is necessary for a general chosen binary basis.
+Replacing it by ordinary a*v without a suitable self-dual pairing would
+not be justified. No field trace or special basis assumption is needed here.
+
+3. Fixed wiring and arithmetic work
+-----------------------------------
+The forward transform uses 2q^2*h additions/subtractions. The q+1 inverse
+transforms together use (q^2+q)*h. Hence the transform total is exactly
+  T=(3q^2+q)*h.
+The code's transform operation count omits the extra infinity-point
+additions, infinity-line sum and final Boolean tests; these contribute only
+O(q^2) word operations and O(N*h) Boolean gates.
+
+The field products and transposes compute WIRE INDICES from fixed parameters
+a,v,h. They never multiply two data-dependent point-input words. For a fixed
+circuit size, all those indices are fixed constants and become wires.
+Therefore no data-gate cost for field multiplication is hidden in the claim.
+This is a nonuniform Boolean circuit family; a chosen field representation
+also permits an effective generator, but no stronger uniformity claim is
+needed for the size result.
+
+4. Word size and division audit
+-------------------------------
+On Boolean inputs, each forward Walsh intermediate has absolute value at
+most q^2. Each inverse-slice intermediate is a signed sum of at most q such
+values, so its absolute value is at most q^3. This simple bound suffices.
+
+With B=3h+2, signed two's-complement words represent
+  [-2q^3, 2q^3-1],
+which includes all those values. Modulo2^B addition and subtraction therefore
+agree with the signed integer calculations throughout. After an inverse
+slice, the actual integer value is q times a line sum: it is nonnegative,
+at most q^2, and divisible by q=2^h. Removing the lowest h bits is consequently
+exact division. There is no rounding, general division circuit, or reliance
+on division in a ring where q would be invertible.
+
+The infinity-point additions and infinity-line sum are at most q+1 and also
+fit. B is conservative; minimizing it is unnecessary for the asymptotic
+claim. The independent compiler uses ordinary ripple-carry addition,
+two's-complement subtraction, and this fixed right shift.
+
+5. Boolean size and NOT compression
+-----------------------------------
+A B-bit addition/subtraction has a binary AND/OR/NOT circuit of O(B) gates.
+Nonzero tests are ORs of the output bits, so all line-hit bits can be computed
+by an unrestricted Boolean network of size
+  S=O(B*T+N*B)=O(q^2*h^2).
+
+For each internal signal w, dual-rail conversion maintains w and its
+complement. An AND becomes AND on positive rails and OR on negative rails;
+an OR uses the reverse pair; a NOT swaps rails. At most two monotone gates
+replace each original binary gate, and internal NOT gates need no gates.
+This network requires only z_p and not-z_p at its inputs.
+
+Beals--Nishino--Tanaka provide an N-input inverter of size O(N log N) using
+ceil(log2(N+1)) NOT gates. Supplying all point-input complements with that
+one shared inverter gives the claimed bound. The line inputs y_L remain
+positive; after the point-side network, N AND gates and N-1 OR gates compute
+F. Inverting all2N inputs would waste one NOT in this calculation.
+
+For q=2^h>=2,
+  q^2 < N+1=q^2+q+2 <=2q^2,
+so ceil(log2(N+1))=2h+1 exactly. The inverter overhead O(N log N) is absorbed
+by O(q^2*h^2).
+
+This is an UPPER bound on the NOT budget sufficient for this implementation.
+It is not a lower bound on the NOT count needed for near-linear size by
+other methods. The target function itself is monotone and has a larger
+zero-NOT circuit.
+
+5a. Explicit sorting inverter: no external implementation gap
+--------------------------------------------------------------
+The following construction independently supplies all point complements
+with the same exact NOT count, using O(n log^2 n) total gates. This is enough
+for the overall Walsh upper bound, and is now part of boolean_audit.py.
+
+Choose k=ceil(log2(n+1)) and M=2^k>n. Pad the n inputs with constant zeros
+to length M, and run a bitonic sorting network using monotone comparators
+  low=a AND b, high=a OR b.
+Retain all original comparator input wires a,b. If the input weight is w,
+the sorted outputs supply thresholds T_j=[w>=j] for1<=j<M. Set T_0=1,
+T_M=0; the latter is valid because w<=n<M. Initially their complements
+are known at the endpoints: Z_0=0 and Z_M=1.
+
+For r=k-1,k-2,...,0, consider every dyadic interval [lo,hi] of length
+2^(r+1), with mid=(lo+hi)/2. Complements at the endpoints were obtained
+at earlier levels. Form
+  bit_r = OR_intervals (T_mid AND Z_hi),
+and use one NOT gate to obtain z_r=not bit_r. Exactly one interval contains
+w; bit_r is true precisely when w lies in that interval's upper half,
+so it is exactly binary bit r of w. Define
+  Z_mid = Z_lo OR (z_r AND Z_hi).
+If w<lo, this is true; if w>=hi, it is false; inside the interval it equals
+z_r, which is true exactly when w<mid. Hence Z_mid=not T_mid. Induction
+over the levels gives complements of all sorted wires using exactly k NOTs.
+
+Reverse the sorting comparators in reverse execution order. If their
+outputs' complements are known, the identities
+  not a = not high OR (b AND not low),
+  not b = not high OR (a AND not low)
+recover the input complements using four monotone gates. The identities
+follow directly from low=a AND b and high=a OR b. All original positive
+wires remain available; all new gates are appended later, so no cycles
+are introduced. Reversing all comparators yields every original complement.
+
+For the standard bitonic network on M=2^k wires there are
+  C=M*k*(k+1)/4
+comparators. Sorting costs2C gates, reversal costs4C, and all threshold
+levels together cost4(M-1) gates including their k NOT gates. The total is
+therefore exactly6C+4(M-1), with k NOTs. Constants are free in this count;
+charging constant0 and constant1 adds at most2 gates, and no NOT gates.
+
+For n=N=q^2+q+1 and q=2^h, M=2q^2 and k=2h+1. The explicit inverter size is
+  q^2*(12h^2+18h+14)-4.
+Together with the unoptimized ripple-carry and dual-rail implementation,
+the full compiler produces exactly
+  q^2*(174h^2+168h+48) + q*(54h^2+144h+64) +60h+29
+gates, plus at most2 charged constants. This formula is checked against
+the generated q=2,4,8 circuits. The leading term is174q^2h^2, so the explicit
+construction has the claimed asymptotic even without the published faster
+inverter. No novelty claim is made for the sorting-inverter method.
+
+6. Relation to the exact arithmetic ladder
+------------------------------------------
+The local checked LadderSupport theorem proves, under the recurrence's
+posted base and step equations,
+  G(r,0,N)=0 iff q+1<2^r.
+For q=2^h, the recurrence is positive through r=h and identically zero from
+r=h+1 onward. This is a structural limitation of that exact recurrence;
+changing its arithmetic estimates cannot extend its support.
+
+The Walsh/inverter construction supplies a near-linear upper bound by
+r=2h+1. The interval between the recurrence's cutoff and that upper bound
+is therefore a natural place to examine new invariants or better circuits.
+No threshold optimality is established. In particular, any proposed bound
+Omega(q^(2+epsilon)) for a fixed epsilon>0, uniformly through r=2h+1, would
+contradict this upper bound on the binary-field Desarguesian family for all
+sufficiently large q. Polylogarithmic superlinear lower bounds remain
+compatible with O(q^2 log^2 q).
+
+7. What was checked locally
+---------------------------
+Root's radon_probe.py checks exact matrix columns for q=2,4,8,16. Because
+the transform and direct summation are linear, equality on all basis
+vectors certifies the complete rational/integer matrix identity at those
+fixed orders. It also checks all point assignments for q=2 and random
+inputs for q=32,64. These finite tests do not prove the arbitrary-h result;
+section2 gives the mathematical argument for that result.
+
+The independent boolean_audit.py in this directory builds actual binary
+gate networks, including B-bit arithmetic, dual-rail conversion, and the
+explicit sorting inverter. It uses independently written polynomial
+long-division field multiplication. The inverter was checked exhaustively
+for every n=0,...,10. Its complete-circuit checks are:
+  q=2: all16,384 assignments to the14 point+line variables;
+  q=4: all441 singleton point-line pairs, two extreme assignments,
+       and256 random full assignments (699 total);
+  q=8: two extreme assignments and256 random full assignments.
+Every exact line sum, every complementary rail, every line-hit output and
+the final selected-incidence output matched direct evaluation. The complete
+circuits have respectively2173,19701,143617 gates and3,5,7 NOTs, with constants
+free; add at most2 gates if constants are charged.
+
+The compiler intentionally uses a simple, unoptimized arithmetic network.
+Its concrete small-order gate counts do not claim an improvement on the
+small monotone circuits under current desk investigation. The published
+O(n log n) inverter is cited rather than implemented; the implemented
+O(n log^2 n) alternative suffices for the complete asymptotic construction.
+No Lean file for the Walsh construction, Boolean compilation, or inverter
+was checked here.
+
+8. Sources and attribution
+---------------------------
+[A] S. Chandra and I. Svalbe, Exact image representation via a number-theoretic
+Radon transform, IET Computer Vision8(4),338-346,2014.
+https://doi.org/10.1049/iet-cvi.2013.0101
+https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-cvi.2013.0101
+The paper establishes exact number-theoretic Fourier-slice algorithms.
+Its modular-grid treatment has q+q/p directions at prime-power sizes;
+it is background, not a direct proof of our q+1-direction GF(2^h) formula.
+The binary-field derivation above is our independent inference.
+
+[B] R. Beals, T. Nishino and K. Tanaka, On the Complexity of Negation-Limited
+Boolean Networks, SIAM Journal on Computing27(5),1334-1347,1998.
+https://doi.org/10.1137/S0097539794275136
+https://epubs.siam.org/doi/10.1137/S0097539794275136
+The publisher abstract directly confirms inverter size O(n log n), depth
+O(log n), and ceil(log2(n+1)) NOT gates. The full1998 PDF was not retrieved.
+
+[C] H. Morizumi and G. Suzuki, Negation-Limited Inverters of Linear Size,
+IEICE Transactions on Information and Systems E93-D(2),257-262,2010.
+https://doi.org/10.1587/transinf.E93.D.257
+https://www.jstage.jst.go.jp/article/transinf/E93.D/2/E93.D_2_257/_pdf
+The accessible full paper specifies binary AND/OR gates on p257, restates
+the BNT inverter as Proposition1, and gives the multioutput dual-rail
+corollary size_b(n)(f)<=2size(f)+O(n log n) on p260. Its own linear-size
+inverter uses a larger log^(1+o(1))n NOT budget; that result is not used here.
+
+The combined PG(2,2^h) upper bound and the comparison with the local ladder
+are deductions from the explicit construction. The published inverter
+theorem gives an optional faster component and corroborates the NOT budget.
+No claim is made that the sources state this project-specific conclusion.

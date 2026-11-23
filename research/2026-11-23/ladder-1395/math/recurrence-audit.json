@@ -1,0 +1,317 @@
+{
+  "scope": "Independent finite audit; no assigned shard exhaustion or new accepted proof.",
+  "source": "https://github.com/brilliant-hq/pequalnp-proofs/pull/2852",
+  "q_max_for_direct_comparison": 16,
+  "states_compared": 13502,
+  "algorithm_mismatches": [],
+  "positivity_threshold_mismatches": [],
+  "positivity_conjecture": "G(s,b,K)>0 iff 2**s<=K and b+2**s<=q+1, for q>=2",
+  "examples": [
+    {
+      "q": 2,
+      "s": 0,
+      "exact_g": 14,
+      "checked_bound": 4
+    },
+    {
+      "q": 2,
+      "s": 1,
+      "exact_g": 7,
+      "checked_bound": 0
+    },
+    {
+      "q": 2,
+      "s": 2,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 3,
+      "s": 0,
+      "exact_g": 39,
+      "checked_bound": 12
+    },
+    {
+      "q": 3,
+      "s": 1,
+      "exact_g": 18,
+      "checked_bound": 3
+    },
+    {
+      "q": 3,
+      "s": 2,
+      "exact_g": 6,
+      "checked_bound": 0
+    },
+    {
+      "q": 3,
+      "s": 3,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 4,
+      "s": 0,
+      "exact_g": 84,
+      "checked_bound": 32
+    },
+    {
+      "q": 4,
+      "s": 1,
+      "exact_g": 42,
+      "checked_bound": 12
+    },
+    {
+      "q": 4,
+      "s": 2,
+      "exact_g": 16,
+      "checked_bound": 0
+    },
+    {
+      "q": 4,
+      "s": 3,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 7,
+      "s": 0,
+      "exact_g": 399,
+      "checked_bound": 168
+    },
+    {
+      "q": 7,
+      "s": 1,
+      "exact_g": 196,
+      "checked_bound": 70
+    },
+    {
+      "q": 7,
+      "s": 2,
+      "exact_g": 57,
+      "checked_bound": 21
+    },
+    {
+      "q": 7,
+      "s": 3,
+      "exact_g": 14,
+      "checked_bound": 0
+    },
+    {
+      "q": 7,
+      "s": 4,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 8,
+      "s": 0,
+      "exact_g": 584,
+      "checked_bound": 256
+    },
+    {
+      "q": 8,
+      "s": 1,
+      "exact_g": 292,
+      "checked_bound": 112
+    },
+    {
+      "q": 8,
+      "s": 2,
+      "exact_g": 112,
+      "checked_bound": 40
+    },
+    {
+      "q": 8,
+      "s": 3,
+      "exact_g": 32,
+      "checked_bound": 0
+    },
+    {
+      "q": 8,
+      "s": 4,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 16,
+      "s": 0,
+      "exact_g": 4368,
+      "checked_bound": 2048
+    },
+    {
+      "q": 16,
+      "s": 1,
+      "exact_g": 2184,
+      "checked_bound": 960
+    },
+    {
+      "q": 16,
+      "s": 2,
+      "exact_g": 819,
+      "checked_bound": 416
+    },
+    {
+      "q": 16,
+      "s": 3,
+      "exact_g": 256,
+      "checked_bound": 144
+    },
+    {
+      "q": 16,
+      "s": 4,
+      "exact_g": 64,
+      "checked_bound": 0
+    },
+    {
+      "q": 16,
+      "s": 5,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 31,
+      "s": 0,
+      "exact_g": 30783,
+      "checked_bound": 14880
+    },
+    {
+      "q": 31,
+      "s": 1,
+      "exact_g": 15376,
+      "checked_bound": 7192
+    },
+    {
+      "q": 31,
+      "s": 2,
+      "exact_g": 5958,
+      "checked_bound": 3348
+    },
+    {
+      "q": 31,
+      "s": 3,
+      "exact_g": 2170,
+      "checked_bound": 1426
+    },
+    {
+      "q": 31,
+      "s": 4,
+      "exact_g": 868,
+      "checked_bound": 465
+    },
+    {
+      "q": 31,
+      "s": 5,
+      "exact_g": 62,
+      "checked_bound": 0
+    },
+    {
+      "q": 31,
+      "s": 6,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 64,
+      "s": 0,
+      "exact_g": 266304,
+      "checked_bound": 131072
+    },
+    {
+      "q": 64,
+      "s": 1,
+      "exact_g": 133152,
+      "checked_bound": 64512
+    },
+    {
+      "q": 64,
+      "s": 2,
+      "exact_g": 52992,
+      "checked_bound": 31232
+    },
+    {
+      "q": 64,
+      "s": 3,
+      "exact_g": 20736,
+      "checked_bound": 14592
+    },
+    {
+      "q": 64,
+      "s": 4,
+      "exact_g": 8064,
+      "checked_bound": 6272
+    },
+    {
+      "q": 64,
+      "s": 5,
+      "exact_g": 3520,
+      "checked_bound": 2112
+    },
+    {
+      "q": 64,
+      "s": 6,
+      "exact_g": 256,
+      "checked_bound": 0
+    },
+    {
+      "q": 64,
+      "s": 7,
+      "exact_g": 0,
+      "checked_bound": 0
+    },
+    {
+      "q": 127,
+      "s": 0,
+      "exact_g": 2064639,
+      "checked_bound": 1024128
+    },
+    {
+      "q": 127,
+      "s": 1,
+      "exact_g": 1032256,
+      "checked_bound": 508000
+    },
+    {
+      "q": 127,
+      "s": 2,
+      "exact_g": 405765,
+      "checked_bound": 249936
+    },
+    {
+      "q": 127,
+      "s": 3,
+      "exact_g": 162570,
+      "checked_bound": 120904
+    },
+    {
+      "q": 127,
+      "s": 4,
+      "exact_g": 68580,
+      "checked_bound": 56388
+    },
+    {
+      "q": 127,
+      "s": 5,
+      "exact_g": 30099,
+      "checked_bound": 24130
+    },
+    {
+      "q": 127,
+      "s": 6,
+      "exact_g": 13081,
+      "checked_bound": 8001
+    },
+    {
+      "q": 127,
+      "s": 7,
+      "exact_g": 254,
+      "checked_bound": 0
+    },
+    {
+      "q": 127,
+      "s": 8,
+      "exact_g": 0,
+      "checked_bound": 0
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "rows_checked_per_example": 16,
+  "clean_final_AND_path": "PASS",
+  "safe_clean_operand_bypass": "PASS",
+  "empty_singleton_without_global_cleanliness": {
+    "result": "COUNTEREXAMPLE",
+    "independent_input": [
+      0,
+      3
+    ]
+  }
+}

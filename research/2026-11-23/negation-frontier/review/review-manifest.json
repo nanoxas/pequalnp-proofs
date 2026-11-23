@@ -1,0 +1,35 @@
+{
+  "result": "End-to-end construction sound on paper; explicit finite Boolean checks passed, including sorting inverter",
+  "formal_Lean_certificate": false,
+  "sorting_inverter_local_implementation": true,
+  "BNT_inverter_local_implementation": false,
+  "files": [
+    {
+      "path": "negation-frontier/radon_probe.py",
+      "sha256": "5b3ac1f251768c5f5e1bd022ed30615359e5f6c15d3edbfcb179ed8f3d22077a"
+    },
+    {
+      "path": "negation-frontier/radon-audit.json",
+      "sha256": "0c0149b81d6fc691c476bc27bebb632ebfcd4d8055fdd7810b85032922fe5eaa"
+    },
+    {
+      "path": "negation-frontier/review/boolean_audit.py",
+      "sha256": "3a8b3f80b0c38f7e3d8f69d952b7f46ee305477b3ca8e2e296dca3f8c9b3f7b3"
+    },
+    {
+      "path": "negation-frontier/review/boolean-audit.json",
+      "sha256": "79d9d9492c2862d68520eb7873e7d54eb3396ef211faca8cf151c45511135c78"
+    },
+    {
+      "path": "negation-frontier/review/mathematical-review.txt",
+      "sha256": "2bf96202a873d5f09a05c53298b94c0660184ff80e7951a43995c89183759e9d"
+    }
+  ],
+  "main_bound": "size O(q^2 log^2 q), at most 2 log2(q)+1 NOT gates for q a power of2",
+  "explicit_gate_count_excluding_at_most_two_constant_gates": "q^2*(174*h^2+168*h+48)+q*(54*h^2+144*h+64)+60*h+29",
+  "source_urls": [
+    "https://epubs.siam.org/doi/10.1137/S0097539794275136",
+    "https://www.jstage.jst.go.jp/article/transinf/E93.D/2/E93.D_2_257/_pdf",
+    "https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-cvi.2013.0101"
+  ]
+}

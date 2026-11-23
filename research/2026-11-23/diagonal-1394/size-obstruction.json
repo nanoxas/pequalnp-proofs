@@ -1,0 +1,112 @@
+{
+  "task": "L-meta-1394",
+  "status": "Necessary obstruction only; no counterexample and no universal proof.",
+  "first_active_vertex_count_not_excluded": 1330083,
+  "necessary_gate_count_at_least": 1330082,
+  "necessary_N_at_least": 665042,
+  "necessary_one_component_active_vertices_at_least": 1330083,
+  "boundary_checks": [
+    {
+      "active_vertices": 1330079,
+      "minimum_s_plus_J": 1330079,
+      "minimum_N": 665040,
+      "required_edge_count": 542672241,
+      "extremal_inequality_slack": -1346357172003,
+      "not_excluded_by_this_inequality": false
+    },
+    {
+      "active_vertices": 1330080,
+      "minimum_s_plus_J": 1330080,
+      "minimum_N": 665040,
+      "required_edge_count": 542672641,
+      "extremal_inequality_slack": -886725763682,
+      "not_excluded_by_this_inequality": false
+    },
+    {
+      "active_vertices": 1330081,
+      "minimum_s_plus_J": 1330081,
+      "minimum_N": 665041,
+      "required_edge_count": 542673057,
+      "extremal_inequality_slack": -461803458321,
+      "not_excluded_by_this_inequality": false
+    },
+    {
+      "active_vertices": 1330082,
+      "minimum_s_plus_J": 1330082,
+      "minimum_N": 665041,
+      "required_edge_count": 542673457,
+      "extremal_inequality_slack": -2169363744,
+      "not_excluded_by_this_inequality": false
+    },
+    {
+      "active_vertices": 1330083,
+      "minimum_s_plus_J": 1330083,
+      "minimum_N": 665042,
+      "required_edge_count": 542673873,
+      "extremal_inequality_slack": 422755575683,
+      "not_excluded_by_this_inequality": true
+    },
+    {
+      "active_vertices": 1330084,
+      "minimum_s_plus_J": 1330084,
+      "minimum_N": 665042,
+      "required_edge_count": 542674273,
+      "extremal_inequality_slack": 882392356522,
+      "not_excluded_by_this_inequality": true
+    }
+  ],
+  "earlier_weaker_obstruction": {
+    "first_active_vertices": 345286,
+    "minimum_s_and_N": 172643,
+    "boundary_checks": [
+      {
+        "active_vertices": 345284,
+        "minimum_s": 172642,
+        "minimum_N": 172642,
+        "minimum_J": 1,
+        "required_edge_count": 71819473,
+        "extremal_inequality_slack": -55449133878,
+        "not_excluded_by_this_inequality": false
+      },
+      {
+        "active_vertices": 345285,
+        "minimum_s": 172643,
+        "minimum_N": 172643,
+        "minimum_J": 1,
+        "required_edge_count": 71819889,
+        "extremal_inequality_slack": -85326017179,
+        "not_excluded_by_this_inequality": false
+      },
+      {
+        "active_vertices": 345286,
+        "minimum_s": 172643,
+        "minimum_N": 172643,
+        "minimum_J": 1,
+        "required_edge_count": 71819889,
+        "extremal_inequality_slack": 4162101128,
+        "not_excluded_by_this_inequality": true
+      },
+      {
+        "active_vertices": 345287,
+        "minimum_s": 172644,
+        "minimum_N": 172644,
+        "minimum_J": 1,
+        "required_edge_count": 71820305,
+        "extremal_inequality_slack": -25714437295,
+        "not_excluded_by_this_inequality": false
+      }
+    ]
+  },
+  "mathematical_premises": [
+    "Every counted pair has one factor false on line-only and point-only but true on the pair.",
+    "That factor depends on both inputs; both occur among gate input slots.",
+    "Both factors of a productive product depend on the line coordinate, so their ancestor cones share that input vertex and their union is connected.",
+    "The cone union over productive products has at most J components. With g internal gates and q input vertices, q <= g+J <= s+J.",
+    "All active endpoints belong to that cone union, so v <= s+J, while v <= 2N.",
+    "The counted incidence graph is bipartite and C4-free.",
+    "Counting ordered two-paths on either side and applying Cauchy gives 2E^2 <= vE + ab(v-2).",
+    "If each wiring component has at most 1330082 active endpoints, Moore implies e_i <= 408*v_i. Summing contradicts the required bound.",
+    "Hence one connected wiring component has at least 1330083 active endpoints; its fanin count forces at least 1330082 internal gates.",
+    "The lower bound on N concerns the declared equal side size, not a separate lower bound on each active side."
+  ]
+}

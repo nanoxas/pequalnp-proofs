@@ -1,0 +1,2 @@
+'ThresholdInverterCore.thresholdInverter_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdInverterCore.comparator_recovery' does not depend on any axioms

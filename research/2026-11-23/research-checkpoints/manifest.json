@@ -1,0 +1,247 @@
+{
+  "created_at": "2026-11-23T23:01:29.732229+00:00",
+  "repository_commit": "bd0cd0aaa714e4c8cdf7d9d33d2b3e5f625ff89d",
+  "files": [
+    {
+      "path": "ladder-1395/formal/LadderSupport.lean",
+      "bytes": 5001,
+      "sha256": "26ebec0e33fff9c5e80a21293d4fba80bf6dcaab6c84687fbd450ee9826d225c"
+    },
+    {
+      "path": "ladder-1395/formal/LadderSupport.check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ladder-1395/formal/AxiomAudit.lean",
+      "bytes": 164,
+      "sha256": "e7dedc15c6b2b85227c91a1804fea946e0891575a14997cc19bfc1359203e839"
+    },
+    {
+      "path": "ladder-1395/formal/AxiomAudit.check.log",
+      "bytes": 283,
+      "sha256": "74e569af9c6d1cbcafba141db27e80d55af1df11d0982ec98a493b3a834d4a1e"
+    },
+    {
+      "path": "ladder-1395/math/recurrence_audit.py",
+      "bytes": 4006,
+      "sha256": "06d4340b01930c6e76ddf17556332c2d6a77f894af61384e61c9b0dbe528d8b2"
+    },
+    {
+      "path": "ladder-1395/math/recurrence-audit.json",
+      "bytes": 5028,
+      "sha256": "852e10f41c61f570573c5a6ae3801726c7bd962a6c453d23fc51e72aea19def0"
+    },
+    {
+      "path": "ladder-1395/math/target-audit.json",
+      "bytes": 164,
+      "sha256": "02df8553b4e8ab69191d1bf513466332e8413b18b7cc5afe5cbb0864436a5276"
+    },
+    {
+      "path": "heawood-math/clean-or/TypedPortCount.lean",
+      "bytes": 3794,
+      "sha256": "06ead9df90e31a2012e6da09bd9d1da404dfd824037aaeaf4ff0f53f9f9902b1"
+    },
+    {
+      "path": "heawood-math/clean-or/TypedPortCount.check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "heawood-math/clean-or/FirstDirtyWitness.lean",
+      "bytes": 16228,
+      "sha256": "1d31e54c3ef5ddb879d3afab4ced25d0d2b6ef9927f755ce3c0daa6129da1eaf"
+    },
+    {
+      "path": "heawood-math/clean-or/FirstDirtyInlineAudit.lean",
+      "bytes": 16396,
+      "sha256": "1d0d423a4b1d625f75e1b6d87b59a006080ea9a6c236b860d9051049b710db90"
+    },
+    {
+      "path": "heawood-math/clean-or/FirstDirtyInlineAudit.check.log",
+      "bytes": 308,
+      "sha256": "a7193f6752556be1c3eefcfa3d87e092cacd8a2303ed36193871f7d890b05a91"
+    },
+    {
+      "path": "heawood-math/clean-or/FirstDirtyWitness.verification.json",
+      "bytes": 629,
+      "sha256": "2bd3d342484baf3d68e3b4b464b99515854df08720cb5275fec966f725b0ca64"
+    },
+    {
+      "path": "heawood-math/clean-or/first-dirty-proof.md",
+      "bytes": 3497,
+      "sha256": "142e9758955e8ccccc278fe82efa8f9d95d8d38bb99ad505b2c90b7e1785e023"
+    },
+    {
+      "path": "heawood-math/clean-or/clean-or-proof.md",
+      "bytes": 9411,
+      "sha256": "294230a29ac683b628c7d9730a7c1dabc814a3e6eec1abac0be72f95b5e216ca"
+    },
+    {
+      "path": "heawood-math/clean-or/check_examples.py",
+      "bytes": 1477,
+      "sha256": "09ae1d22cce57e5a64e678da76cb07fedad6c8f90117798f1d8c0a985d7de914"
+    },
+    {
+      "path": "heawood-math/clean-or/example-checks.json",
+      "bytes": 247,
+      "sha256": "7f4a60c782cfd203de797e67edefffa31b897d673e150b4f0c2b77ef3f526178"
+    },
+    {
+      "path": "heawood-math/clean-or/small_or_search.py",
+      "bytes": 5422,
+      "sha256": "4f7f287a2dd0f5b2e4e9842f5adf531beeb3b6092f2503864cf1ff3d151df192"
+    },
+    {
+      "path": "heawood-math/clean-or/check_lean.py",
+      "bytes": 1414,
+      "sha256": "3119fc681feb1f51a8c41626054aefb8adab84d18c3a1e2410319e5171af88c5"
+    },
+    {
+      "path": "heawood-search/synth.py",
+      "bytes": 21398,
+      "sha256": "2ab5e277c02cfd87184253c834f7a200cf487ed850a96ffd7f31e8194c86c33d"
+    },
+    {
+      "path": "heawood-search/requirements.txt",
+      "bytes": 34,
+      "sha256": "f80cc6025c8284f4fa9b9c2500fdf895f3d18b09e9a0352c3d5dc6fb42be7ab6"
+    },
+    {
+      "path": "heawood-search/dirty_pair_fixtures.py",
+      "bytes": 2379,
+      "sha256": "0b67ff27d7bbcc9f364ac8b872a54556cbf7683a4f47b353b63e1482c7d5db24"
+    },
+    {
+      "path": "heawood-search/profile_circuits.py",
+      "bytes": 2657,
+      "sha256": "276bd8aee0631c22144e99f008c733d88d40299cb78af8469963e7dd94d49354"
+    },
+    {
+      "path": "heawood-search/SEARCH_NOTES.md",
+      "bytes": 12818,
+      "sha256": "80b7a7fd9ab0c0f20cbe6a966c4c7a5ba53443e34723f6f87d36d2bf4edd5bff"
+    },
+    {
+      "path": "heawood-search/dirty5-fixture.json",
+      "bytes": 1409,
+      "sha256": "691914dccaf2dcfa934b9868b026aff5efe6a6ae95168cadab0812629aa28244"
+    },
+    {
+      "path": "heawood-search/dirty7-fixture.json",
+      "bytes": 1366,
+      "sha256": "34a61ecb9e72a299a98da982ac388c319ea130845e36b2a004e57949eb66bca8"
+    },
+    {
+      "path": "heawood-search/circuit-profiles.json",
+      "bytes": 31830,
+      "sha256": "c4f56f61d6df493fbee005fb81327449414be90664717b46cf808db5b1d135f0"
+    },
+    {
+      "path": "heawood-search/mis-orbits.json",
+      "bytes": 943,
+      "sha256": "a459d229332375ef715b851c264baa47edfc11cce4ce494f32ea996f160a976f"
+    },
+    {
+      "path": "diagonal-1394/research-note.txt",
+      "bytes": 12669,
+      "sha256": "557b2751b1b0195bc5932c7847729ae3786fcb77011267210dbf899958c124cb"
+    },
+    {
+      "path": "diagonal-1394/size_obstruction.py",
+      "bytes": 3453,
+      "sha256": "c56759e0eb4c59625a79d1d4fcb3daf4e59be8caa9033a5ef2349054ca2eff69"
+    },
+    {
+      "path": "diagonal-1394/size-obstruction.json",
+      "bytes": 4169,
+      "sha256": "95517a160b2e13963cc906807cab2bdb78f3cae989782d1ae7c7fcbbc737f813"
+    },
+    {
+      "path": "negation-frontier/formal/ThresholdInverterCore.lean",
+      "bytes": 9856,
+      "sha256": "58b3ad98b143acb892d4ff9dfb66f3fcd8ed1f339fe9d32bd536a53df9074563"
+    },
+    {
+      "path": "negation-frontier/formal/ThresholdInverterCore.check.log",
+      "bytes": 183,
+      "sha256": "c08f40317dc2300bee84eef7056c9b8100b2b47e3a468398be76273dd9fccebf"
+    },
+    {
+      "path": "negation-frontier/formal/README.txt",
+      "bytes": 3367,
+      "sha256": "1c207a3ef5c5c74892681236adbe81cc59fccff58efc136bd4c73d766a303481"
+    },
+    {
+      "path": "negation-frontier/formal/manifest.json",
+      "bytes": 1621,
+      "sha256": "3d42f83d479b944eff83048f3efbb0cd684913dccd3951f395ba3bedf9bad453"
+    },
+    {
+      "path": "negation-frontier/radon_probe.py",
+      "bytes": 4337,
+      "sha256": "5b3ac1f251768c5f5e1bd022ed30615359e5f6c15d3edbfcb179ed8f3d22077a"
+    },
+    {
+      "path": "negation-frontier/radon-audit.json",
+      "bytes": 2865,
+      "sha256": "0c0149b81d6fc691c476bc27bebb632ebfcd4d8055fdd7810b85032922fe5eaa"
+    },
+    {
+      "path": "negation-frontier/review/boolean_audit.py",
+      "bytes": 13026,
+      "sha256": "3a8b3f80b0c38f7e3d8f69d952b7f46ee305477b3ca8e2e296dca3f8c9b3f7b3"
+    },
+    {
+      "path": "negation-frontier/review/boolean-audit.json",
+      "bytes": 8737,
+      "sha256": "79d9d9492c2862d68520eb7873e7d54eb3396ef211faca8cf151c45511135c78"
+    },
+    {
+      "path": "negation-frontier/review/mathematical-review.txt",
+      "bytes": 14195,
+      "sha256": "2bf96202a873d5f09a05c53298b94c0660184ff80e7951a43995c89183759e9d"
+    },
+    {
+      "path": "negation-frontier/review/review-manifest.json",
+      "bytes": 1486,
+      "sha256": "666fa2d1bb25f352cbdc8fcd79553621dc1ca57d35045a4320227a73e1b0a0ac"
+    },
+    {
+      "path": "and-count-audit/audit_boundary_witness.py",
+      "bytes": 2165,
+      "sha256": "7101b693c972ec2ee2cf7be079b7336b3c44dcb9d056c00bec89b7c7c63f16ef"
+    },
+    {
+      "path": "and-count-audit/boundary-witness-audit.json",
+      "bytes": 541,
+      "sha256": "fe2fb9fcc1493fbccc1d3edea59c5638216bb605e6cf93e353565057493d648d"
+    },
+    {
+      "path": "and-count-audit/search.py",
+      "bytes": 6891,
+      "sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5"
+    },
+    {
+      "path": "and-count-audit/baseline-check.json",
+      "bytes": 1527,
+      "sha256": "5a120157779dbdef21f4c032b68299d7170c3c0ea204f9e830c73a2f90692e26"
+    },
+    {
+      "path": "and-count-audit/six-and-result.json",
+      "bytes": 576,
+      "sha256": "5196c2fe7657e27e44b90c086ef9fc4af30b09ce20c58771f3a64c3e2afd98fb"
+    },
+    {
+      "path": "research-checkpoints/README.txt",
+      "bytes": 8470,
+      "sha256": "741c5dcd594928b7721cff1a6a6edb664b7eb4962472de8e9e0dfde464c65fef"
+    },
+    {
+      "path": "research-checkpoints/build_checkpoint.py",
+      "bytes": 12020,
+      "sha256": "d4f99121596126a82293db9dcfac12b94ff941f5296b10cbd43990dfcaf56548"
+    }
+  ],
+  "status": "ongoing; exact verification scope in README.txt"
+}

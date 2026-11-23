@@ -1,0 +1,47 @@
+{
+  "toolchain": "Lean 4.36.0",
+  "checked_at_utc": "2026-11-23T23:00:15Z",
+  "status": "checked",
+  "exit_code": 0,
+  "warnings": 0,
+  "command": ".pnp-tools/lean-4.36.0-linux/bin/lean -j 1 -o negation-frontier/formal/ThresholdInverterCore.olean negation-frontier/formal/ThresholdInverterCore.lean",
+  "imports": [
+    "Init.Data.List.Nat.Range",
+    "Lean.Elab.Tactic.Omega",
+    "Lean.Elab.Tactic.RCases",
+    "Lean.Meta.Tactic.AC.Main"
+  ],
+  "axioms": {
+    "ThresholdInverterCore.thresholdInverter_correct": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdInverterCore.comparator_recovery": []
+  },
+  "scope": "Universal semantic correctness of the complete dyadic threshold-refinement recursion and exact reverse-comparator Boolean identities.",
+  "bridge_remaining": [
+    "Bitonic sorting-network correctness",
+    "Compilation into root Circuit semantics and legal wire indices",
+    "Shared fanout and gate-count accounting",
+    "End-to-end Walsh circuit formalization"
+  ],
+  "files": {
+    "ThresholdInverterCore.lean": {
+      "bytes": 9856,
+      "sha256": "58b3ad98b143acb892d4ff9dfb66f3fcd8ed1f339fe9d32bd536a53df9074563"
+    },
+    "ThresholdInverterCore.olean": {
+      "bytes": 462464,
+      "sha256": "a0083dded3b51eb702498957b3fc6a7eee84e33c069d504c3dd4cd11bf11a882"
+    },
+    "ThresholdInverterCore.check.log": {
+      "bytes": 183,
+      "sha256": "c08f40317dc2300bee84eef7056c9b8100b2b47e3a468398be76273dd9fccebf"
+    },
+    "README.txt": {
+      "bytes": 3367,
+      "sha256": "1c207a3ef5c5c74892681236adbe81cc59fccff58efc136bd4c73d766a303481"
+    }
+  }
+}

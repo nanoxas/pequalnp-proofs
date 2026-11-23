@@ -1,0 +1,3 @@
+'FirstDirtyWitness.first_and_small_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FirstDirtyWitness.independent_small_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FirstDirtyWitness.clean_of_small_clean' depends on axioms: [propext, Classical.choice, Quot.sound]

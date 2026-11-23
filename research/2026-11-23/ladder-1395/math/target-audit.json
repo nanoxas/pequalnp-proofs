@@ -1,0 +1,6 @@
+{
+  "q_max": 2000,
+  "instances": 19963,
+  "failures": [],
+  "method": "Greedy consecutive partition decision for exact recurrence; exploratory computation only."
+}
