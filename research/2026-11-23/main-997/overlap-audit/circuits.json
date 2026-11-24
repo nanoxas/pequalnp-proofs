@@ -1,0 +1,505 @@
+[
+  {
+    "n": 7,
+    "sets": [
+      25,
+      104
+    ],
+    "y": 7,
+    "not_gate": 2,
+    "gates": [
+      {
+        "op": "and",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          7,
+          2
+        ]
+      },
+      {
+        "op": "not",
+        "inputs": [
+          8
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          4,
+          9
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          5,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          10
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          12,
+          11
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          13,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          5
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          15,
+          6
+        ]
+      }
+    ],
+    "outputs": [
+      14,
+      16
+    ],
+    "named_gates": {
+      "h": 1,
+      "z": 2,
+      "bz": 3,
+      "cy0": 4,
+      "ab": 5,
+      "g": 6,
+      "light_output": 7,
+      "ac": 8,
+      "heavy_output": 9
+    },
+    "duplicate_count": 0
+  },
+  {
+    "n": 7,
+    "sets": [
+      25,
+      104
+    ],
+    "y": 7,
+    "not_gate": 2,
+    "gates": [
+      {
+        "op": "and",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          7,
+          2
+        ]
+      },
+      {
+        "op": "not",
+        "inputs": [
+          8
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          4,
+          9
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          5,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          10
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          12,
+          11
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          13,
+          13
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          14,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          5
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          16,
+          6
+        ]
+      }
+    ],
+    "outputs": [
+      15,
+      17
+    ],
+    "named_gates": {
+      "h": 1,
+      "z": 2,
+      "bz": 3,
+      "cy0": 4,
+      "ab": 5,
+      "g": 6,
+      "light_output": 8,
+      "ac": 9,
+      "heavy_output": 10
+    },
+    "duplicate_count": 1
+  },
+  {
+    "n": 7,
+    "sets": [
+      25,
+      104
+    ],
+    "y": 7,
+    "not_gate": 2,
+    "gates": [
+      {
+        "op": "and",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          7,
+          2
+        ]
+      },
+      {
+        "op": "not",
+        "inputs": [
+          8
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          4,
+          9
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          5,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          10
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          12,
+          11
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          13,
+          13
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          14,
+          14
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          15,
+          15
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          16,
+          16
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          17,
+          17
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          18,
+          18
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          19,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          5
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          21,
+          6
+        ]
+      }
+    ],
+    "outputs": [
+      20,
+      22
+    ],
+    "named_gates": {
+      "h": 1,
+      "z": 2,
+      "bz": 3,
+      "cy0": 4,
+      "ab": 5,
+      "g": 6,
+      "light_output": 13,
+      "ac": 14,
+      "heavy_output": 15
+    },
+    "duplicate_count": 6
+  },
+  {
+    "n": 7,
+    "sets": [
+      25,
+      104
+    ],
+    "y": 7,
+    "not_gate": 2,
+    "gates": [
+      {
+        "op": "and",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          7,
+          2
+        ]
+      },
+      {
+        "op": "not",
+        "inputs": [
+          8
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          4,
+          9
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          5,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          10
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          12,
+          11
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          13,
+          13
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          14,
+          14
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          15,
+          15
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          16,
+          16
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          17,
+          17
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          18,
+          18
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          19,
+          19
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          20,
+          20
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          21,
+          21
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          22,
+          22
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          23,
+          0
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          3,
+          5
+        ]
+      },
+      {
+        "op": "or",
+        "inputs": [
+          25,
+          6
+        ]
+      }
+    ],
+    "outputs": [
+      24,
+      26
+    ],
+    "named_gates": {
+      "h": 1,
+      "z": 2,
+      "bz": 3,
+      "cy0": 4,
+      "ab": 5,
+      "g": 6,
+      "light_output": 17,
+      "ac": 18,
+      "heavy_output": 19
+    },
+    "duplicate_count": 10
+  }
+]

@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-11-24T02:53:49.811074+00:00",
+  "snapshot_utc": "2026-11-24T03:44:56.407243+00:00",
   "full_statement_proved": false,
   "upstream_submission_made": false,
   "formal_modules": {
@@ -368,17 +368,190 @@
           "Quot.sound"
         ]
       }
+    },
+    "BoundaryActivation": {
+      "status": "PASS",
+      "source_sha256": "4c8df5e51b5a6f5920075062b54841d581171d7a9757d0b327daedb106ca0f3a",
+      "log_sha256": "e85d70b0e9947a4c8f8607eb1c7de689af4f18ddc0048d481c0c593664bc59c7",
+      "elapsed_seconds": 11.258,
+      "record": "BoundaryActivation.verification.json",
+      "axioms": {
+        "PEqualNP.Research.BoundaryActivation.outside_activation_set": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.BoundaryActivation.private_count_of_activation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.BoundaryActivation.compensated_private_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "BoundaryRigidity": {
+      "status": "PASS",
+      "source_sha256": "a8601d9732d24c099c9c4c7b536ea1b822ba7a4a8d61cf9f8220526f07e1aae0",
+      "log_sha256": "07673add8ef67438e86815b44a4084a6b71ee224fd6d8f9da0110204063781d6",
+      "elapsed_seconds": 2.22,
+      "record": "BoundaryRigidity.verification.json",
+      "axioms": {
+        "PEqualNP.Research.BoundaryActivation.deficient_popular_points": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.BoundaryActivation.popular_point_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.BoundaryActivation.boundary_activation_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "TripleExcess": {
+      "status": "PASS",
+      "source_sha256": "6ce1ba4b1c26a10aeb9b9410cc7af9c08dbd76bf4d12458916e0087dd6eb3286",
+      "log_sha256": "05a31648e64965d141ce45a6a9374945f0648d804b483313323c3986ae65037d",
+      "elapsed_seconds": 1.972,
+      "record": "TripleExcess.verification.json",
+      "axioms": {
+        "PEqualNP.Research.TripleExcess.boundary_refund_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.TripleExcess.one_not_refund_bound_triple_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "OrCompensation": {
+      "status": "PASS",
+      "source_sha256": "b8e448db73494e74557b4ed667e3658b9c183a65414a4c9b74123b82ea6fdc9e",
+      "log_sha256": "de8c66b7c846bf65d42819a95b952175a5efa95ea63a2a382763b400779258d5",
+      "elapsed_seconds": 10.411,
+      "record": "OrCompensation.verification.json",
+      "axioms": {
+        "PEqualNP.Research.OrCompensation.compensated_or_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OrCompensation.compensated_deficit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "DeficientSeparation": {
+      "status": "PASS",
+      "source_sha256": "1389c692f6c86397fa8e733d51aa27a61db9bab5b02e36b659083c0905f13322",
+      "log_sha256": "ffa99a2e49422067b594ee8efbbdf0e013d9d8e0eeb11646f17f8a1589376598",
+      "elapsed_seconds": 2.171,
+      "record": "DeficientSeparation.verification.json",
+      "axioms": {
+        "PEqualNP.Research.DeficientSeparation.deficient_separated_points": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "DeficientPacking": {
+      "status": "PASS",
+      "source_sha256": "1c519f8ee3cb309731010c0f3838752334c5c395ec0ddecff4f1c378b8a98082",
+      "log_sha256": "3fee06bb413bbcecd820356084b4c9a6c8050be555f94dc0a7a6e88c03d5498b",
+      "elapsed_seconds": 2.474,
+      "record": "DeficientPacking.verification.json",
+      "axioms": {
+        "PEqualNP.Research.DeficientPacking.triple_directed_difference_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.DeficientPacking.deficient_count_le_two": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "CoupledCut": {
+      "status": "PASS",
+      "source_sha256": "aa1a62237e8981d59436f6b9fb65f22ef88c99451c64d6f7624f18877cd81c1a",
+      "log_sha256": "71dad9c1f639e3a8fe90a023fb82e0d3de9721e4e6e81993d0db925f4b902a0f",
+      "elapsed_seconds": 2.537,
+      "record": "CoupledCut.verification.json",
+      "axioms": {
+        "PEqualNP.Research.CoupledCut.coupled_cut": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "PrivateAnd": {
+      "status": "PASS",
+      "source_sha256": "80f7a72406fd4b5dce615c3d5e6a2bc0fa1adb6858f94e078f1d432d3e2fe643",
+      "log_sha256": "f254ce10fd2a5ec6dee9c59fe36d895a97365177fb3b96695ce406b98c049186",
+      "elapsed_seconds": 1.929,
+      "record": "PrivateAnd.verification.json",
+      "axioms": {
+        "PEqualNP.Research.PrivateAnd.deficient_and_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "QuadrupleExcess": {
+      "status": "PASS",
+      "source_sha256": "726df8316727152fdfd8153c2d48adcc3429f3e54846e00fc864b8dc741429f0",
+      "log_sha256": "5bc5a99646bfc23bd140ceea9384bc447a0df0dbdc902b053f13a163af815e96",
+      "elapsed_seconds": 2.477,
+      "record": "QuadrupleExcess.verification.json",
+      "axioms": {
+        "PEqualNP.Research.QuadrupleExcess.quadruple_refund_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.QuadrupleExcess.one_not_refund_bound_quadruple_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.QuadrupleExcess.quadruple_private_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
     }
   },
-  "formal_module_count": 17,
+  "formal_module_count": 26,
   "paper_saturation_status": "Q<=H+k+e+2 for arbitrary k>=2 independently reviewed; complete classification not kernel-checked.",
   "sat_status": "INTERRUPTED_UNKNOWN",
   "original_sat_child_cleanup": "reaping_unconfirmed",
   "refund_semantics": "Exact posted guarded biconditional; source encoder unchanged.",
   "helper_correction": "A failed helper dropped grouping; corrected RefundCount includes a checked equality to the verbatim posted expression.",
   "source_bytes_unchanged": [
-    "all seventeen current Lean modules",
-    "previous SAT encoder, geometry generator, and runner sources"
+    "all seventeen previously published Lean modules",
+    "all nine new Lean modules match their successful verification records",
+    "previous SAT encoder, geometry generator, and runner sources",
+    "all five frozen overlap-audit files"
   ],
   "public_transform": "Local workspace paths and operational process/session identifiers removed from records and logs; proof source bytes are unchanged.",
   "excluded": [
@@ -388,9 +561,12 @@
     "solver binaries",
     "unverified current Lean drafts"
   ],
-  "checked_followup": "Complementary heavy/minterm bound, triple packing, direct outsider activation, double-excess criterion, and exact997 for n<=4|Y|+1.",
+  "checked_followup": "Boundary activation, directed separation, deficient-class packing, OR compensation, coupled frontiers, private AND count, and exact997 under Eplus<=4|Y|-3 for |Y|>=3; SmallWindow covers |Y|<=2.",
   "original_eight_sources_unchanged": true,
   "original_twelve_sources_unchanged": true,
-  "exceptional_support_status": "The r<k direct-cut and Eplus<=2k criterion are checked; the r=k / 2k+1 extension is PAPER_REVIEWED only.",
-  "case13_status": "Python family/baseline/support audits plus independently reviewed paper exclusion; no SAT or target-specific Lean instance. The data also meet the checked DoubleExcess and FourWindow hypotheses."
+  "exceptional_support_status": "The direct-cut r<=3k-4 and Eplus<=4k-3 criterion are checked for k>=3. Supplementary normalization, transversal refinements, historical support classification, and the stronger global OR/AND dichotomy remain paper-level.",
+  "case13_status": "Python family/baseline/support audits plus independently reviewed paper exclusion; no SAT or target-specific Lean instance. The data also meet the checked DoubleExcess and FourWindow hypotheses.",
+  "original_seventeen_sources_unchanged": true,
+  "deficiency_budget_status": "All six component/assembly modules passed on current source with standard-only axioms; explanatory paper and independent review updated to the checked result.",
+  "overlap_audit_status": "Four seven-input circuits checked on all 128 rows each. Raw eligible overlap can exceed whole-target refunds; disjoint minimum-quota choices exist in these examples. Full L-meta-997 holds in each example."
 }

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "source": "QuadrupleExcess.lean",
+  "source_sha256": "726df8316727152fdfd8153c2d48adcc3429f3e54846e00fc864b8dc741429f0",
+  "source_bytes": 10187,
+  "object_sha256": "a2ea0adb362eed902000216963fcf2392b900009239c7208484bf608300c7716",
+  "started_utc": "2026-11-24T03:37:21.373206+00:00",
+  "completed_utc": "2026-11-24T03:37:23.850833+00:00",
+  "elapsed_seconds": 2.477,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.QuadrupleExcess.quadruple_refund_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.QuadrupleExcess.one_not_refund_bound_quadruple_excess": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.QuadrupleExcess.quadruple_private_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "QuadrupleExcess.check.log",
+  "log_sha256": "5bc5a99646bfc23bd140ceea9384bc447a0df0dbdc902b053f13a163af815e96",
+  "dependencies": [
+    {
+      "module": "TripleExcess",
+      "source_sha256": "6ce1ba4b1c26a10aeb9b9410cc7af9c08dbd76bf4d12458916e0087dd6eb3286",
+      "object_sha256": "990903a2183f878df973b4035e86c5ad447ae9b32e80eb45ed655b157ba96704"
+    },
+    {
+      "module": "DeficientPacking",
+      "source_sha256": "1c519f8ee3cb309731010c0f3838752334c5c395ec0ddecff4f1c378b8a98082",
+      "object_sha256": "60dc04f41fdb32366cffe69c3d68a647abed71a695e0cac317e8ef284c5b40a9"
+    },
+    {
+      "module": "PrivateAnd",
+      "source_sha256": "80f7a72406fd4b5dce615c3d5e6a2bc0fa1adb6858f94e078f1d432d3e2fe643",
+      "object_sha256": "cceae63fcc6a52196aa2b9b493c6880c1fa2ae22664448751923a3af92ec71a5"
+    }
+  ],
+  "scope": "For k>=3 and r<=3*k-4, proves sum_i(|S_i|-1)<=|private union|+r+k. Combined with the prefix minterm budget and exact same-index replacement semantics, proves the original L-meta-997 refund conclusion under Eplus<=4*|Y|-3. The unrestricted L-meta-997 statement remains open.",
+  "mathematical_audit": [
+    "DeficientPacking bounds the number of deficient private classes by two in the stated outside-count range.",
+    "PrivateAnd gives at least k-1 private AND gates in each deficient class; OrCompensation bounds its deficit by outside OR count minus private AND count.",
+    "The finite arithmetic lemma handles the case outside OR count<k by proving every class nondeficient; otherwise the total deficit is at most twice (outside OR count-k+1), bounded by r+k.",
+    "The weighted-sum/refund bridge reuses the checked DoubleExcess estimate and same-index NOT replacement; empty and singleton targets remain allowed."
+  ],
+  "recorded_utc": "2026-11-24T03:37:50.044969+00:00"
+}

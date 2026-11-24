@@ -1,0 +1,12 @@
+{
+  "status": "FROZEN_EXHAUSTIVE_DATA_AUDIT",
+  "files": {
+    "audit.py": "b28a68c98f46934ba4ccdf2a7df25f10d318c965325f7f3495cbe8bcd2c9f0de",
+    "circuits.json": "d2f0992dde1bafba414eb07721991ccdece641c338fa4406a035719675394c04",
+    "results.json": "babda23a16a643e24bdef3659b9336e487cc360964b446c9dc0705882b13b616",
+    "selection-obstruction.txt": "f528e4becd0c0c97721b9fbabdb4c7091d1359c2c8c575799d14c39e41d202a4"
+  },
+  "claim": "Counterexamples to partial-overlap refund and raw-eligible-class summation shortcuts; all examples satisfy the full997 conclusion.",
+  "no_sat": true,
+  "no_lean": true
+}

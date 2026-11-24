@@ -1,0 +1,1094 @@
+{
+  "status": "EXHAUSTIVE_DATA_AUDIT_PASS",
+  "solver_used": false,
+  "lean_checked": false,
+  "scope": "All original circuit/window/output and proposed per-set hypotheses are exhaustively checked. The examples refute overlap-implies-refund and raw-class cardinality shortcuts, while satisfying the exact 997 conclusion.",
+  "script_sha256": "b28a68c98f46934ba4ccdf2a7df25f10d318c965325f7f3495cbe8bcd2c9f0de",
+  "circuits_sha256": "d2f0992dde1bafba414eb07721991ccdece641c338fa4406a035719675394c04",
+  "variants": [
+    {
+      "duplicates": 0,
+      "n": 7,
+      "m": 2,
+      "k": 3,
+      "gate_count": 10,
+      "all_gates_live": true,
+      "truth_rows_checked": 128,
+      "output_values_checked": 256,
+      "low_weight_rows_checked": 29,
+      "all_posted_hypotheses_checked": true,
+      "per_set_counts": [
+        {
+          "target": 0,
+          "kind": "light",
+          "vertices": [
+            0,
+            3,
+            4
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            5,
+            6,
+            7
+          ],
+          "eligible_count": 3,
+          "posted_per_set_count_holds": true
+        },
+        {
+          "target": 1,
+          "kind": "heavy",
+          "vertices": [
+            3,
+            5,
+            6
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            6,
+            8,
+            9
+          ],
+          "eligible_count": 3,
+          "posted_per_set_count_holds": true
+        }
+      ],
+      "refund_gates": [
+        9
+      ],
+      "refund_count": 1,
+      "partial_overlap_gates": [
+        6
+      ],
+      "partial_overlap_count": 1,
+      "every_overlap_is_nonrefunded": true,
+      "overlap_count_le_refund_count": true,
+      "eligible_union_count": 5,
+      "total_eligible_memberships": 6,
+      "total_eligible_memberships_le_gates_plus_refunds": true,
+      "selected_light_gates": [
+        5,
+        7
+      ],
+      "selected_heavy_gates": [
+        8,
+        9
+      ],
+      "selected_quotas_have_zero_overlap": true,
+      "weighted_lhs": 6,
+      "exact_refund_rhs": 13,
+      "exact_997_holds": true,
+      "gate_supports": [
+        {
+          "gate": 0,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4c989d0c271e1e403d5f908f9adcd48d1cd17c96523b854ee558128a4fb20fc5"
+        },
+        {
+          "gate": 1,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4e972baaee2ad54f78153134ef6484cd1a8e383d21582a21a481d4d214161916"
+        },
+        {
+          "gate": 2,
+          "singleton": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "87dcde7fa6df23e15fa7ba9b2a1f31408eac832f4e615ea815ae92024e3d818b"
+        },
+        {
+          "gate": 3,
+          "singleton": [
+            4
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "7caeb4fcac29925530bd224a390145531603aaefb656d521ec7354e5b3352b8f"
+        },
+        {
+          "gate": 4,
+          "singleton": [],
+          "shifted_outside": [
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "669b1571eb63215a250410677ef9b787cc14425fa7c22c5cda6792cbde931d6d"
+        },
+        {
+          "gate": 5,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "9f161c09ef32ef43ea273d64964c663d40568d685326f43dbecdc843f68262cc"
+        },
+        {
+          "gate": 6,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 7,
+          "singleton": [
+            0,
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "abfe92511fd80ea9485b5cc519debb549fe5b2bde43f3d1c2a3e3698a8d24be2"
+        },
+        {
+          "gate": 8,
+          "singleton": [
+            3,
+            5
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "5845ea7cbb61f63e3bea5ca569ef10b524909e8cc9081946d08a1ebc3da9243c"
+        },
+        {
+          "gate": 9,
+          "singleton": [
+            3,
+            5,
+            6
+          ],
+          "shifted_outside": [
+            3,
+            5,
+            6
+          ],
+          "whole_refund": true,
+          "truth_vector_sha256": "23418886cc844cc08180469ce00409eba5d1b68b11d953385262f1b891e33efb"
+        }
+      ]
+    },
+    {
+      "duplicates": 1,
+      "n": 7,
+      "m": 2,
+      "k": 3,
+      "gate_count": 11,
+      "all_gates_live": true,
+      "truth_rows_checked": 128,
+      "output_values_checked": 256,
+      "low_weight_rows_checked": 29,
+      "all_posted_hypotheses_checked": true,
+      "per_set_counts": [
+        {
+          "target": 0,
+          "kind": "light",
+          "vertices": [
+            0,
+            3,
+            4
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "eligible_count": 4,
+          "posted_per_set_count_holds": true
+        },
+        {
+          "target": 1,
+          "kind": "heavy",
+          "vertices": [
+            3,
+            5,
+            6
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            6,
+            7,
+            9,
+            10
+          ],
+          "eligible_count": 4,
+          "posted_per_set_count_holds": true
+        }
+      ],
+      "refund_gates": [
+        10
+      ],
+      "refund_count": 1,
+      "partial_overlap_gates": [
+        6,
+        7
+      ],
+      "partial_overlap_count": 2,
+      "every_overlap_is_nonrefunded": true,
+      "overlap_count_le_refund_count": false,
+      "eligible_union_count": 6,
+      "total_eligible_memberships": 8,
+      "total_eligible_memberships_le_gates_plus_refunds": true,
+      "selected_light_gates": [
+        5,
+        8
+      ],
+      "selected_heavy_gates": [
+        9,
+        10
+      ],
+      "selected_quotas_have_zero_overlap": true,
+      "weighted_lhs": 6,
+      "exact_refund_rhs": 14,
+      "exact_997_holds": true,
+      "gate_supports": [
+        {
+          "gate": 0,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4c989d0c271e1e403d5f908f9adcd48d1cd17c96523b854ee558128a4fb20fc5"
+        },
+        {
+          "gate": 1,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4e972baaee2ad54f78153134ef6484cd1a8e383d21582a21a481d4d214161916"
+        },
+        {
+          "gate": 2,
+          "singleton": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "87dcde7fa6df23e15fa7ba9b2a1f31408eac832f4e615ea815ae92024e3d818b"
+        },
+        {
+          "gate": 3,
+          "singleton": [
+            4
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "7caeb4fcac29925530bd224a390145531603aaefb656d521ec7354e5b3352b8f"
+        },
+        {
+          "gate": 4,
+          "singleton": [],
+          "shifted_outside": [
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "669b1571eb63215a250410677ef9b787cc14425fa7c22c5cda6792cbde931d6d"
+        },
+        {
+          "gate": 5,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "9f161c09ef32ef43ea273d64964c663d40568d685326f43dbecdc843f68262cc"
+        },
+        {
+          "gate": 6,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 7,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 8,
+          "singleton": [
+            0,
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "abfe92511fd80ea9485b5cc519debb549fe5b2bde43f3d1c2a3e3698a8d24be2"
+        },
+        {
+          "gate": 9,
+          "singleton": [
+            3,
+            5
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "5845ea7cbb61f63e3bea5ca569ef10b524909e8cc9081946d08a1ebc3da9243c"
+        },
+        {
+          "gate": 10,
+          "singleton": [
+            3,
+            5,
+            6
+          ],
+          "shifted_outside": [
+            3,
+            5,
+            6
+          ],
+          "whole_refund": true,
+          "truth_vector_sha256": "23418886cc844cc08180469ce00409eba5d1b68b11d953385262f1b891e33efb"
+        }
+      ]
+    },
+    {
+      "duplicates": 6,
+      "n": 7,
+      "m": 2,
+      "k": 3,
+      "gate_count": 16,
+      "all_gates_live": true,
+      "truth_rows_checked": 128,
+      "output_values_checked": 256,
+      "low_weight_rows_checked": 29,
+      "all_posted_hypotheses_checked": true,
+      "per_set_counts": [
+        {
+          "target": 0,
+          "kind": "light",
+          "vertices": [
+            0,
+            3,
+            4
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "eligible_count": 9,
+          "posted_per_set_count_holds": true
+        },
+        {
+          "target": 1,
+          "kind": "heavy",
+          "vertices": [
+            3,
+            5,
+            6
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15
+          ],
+          "eligible_count": 9,
+          "posted_per_set_count_holds": true
+        }
+      ],
+      "refund_gates": [
+        15
+      ],
+      "refund_count": 1,
+      "partial_overlap_gates": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "partial_overlap_count": 7,
+      "every_overlap_is_nonrefunded": true,
+      "overlap_count_le_refund_count": false,
+      "eligible_union_count": 11,
+      "total_eligible_memberships": 18,
+      "total_eligible_memberships_le_gates_plus_refunds": false,
+      "selected_light_gates": [
+        5,
+        13
+      ],
+      "selected_heavy_gates": [
+        14,
+        15
+      ],
+      "selected_quotas_have_zero_overlap": true,
+      "weighted_lhs": 6,
+      "exact_refund_rhs": 19,
+      "exact_997_holds": true,
+      "gate_supports": [
+        {
+          "gate": 0,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4c989d0c271e1e403d5f908f9adcd48d1cd17c96523b854ee558128a4fb20fc5"
+        },
+        {
+          "gate": 1,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4e972baaee2ad54f78153134ef6484cd1a8e383d21582a21a481d4d214161916"
+        },
+        {
+          "gate": 2,
+          "singleton": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "87dcde7fa6df23e15fa7ba9b2a1f31408eac832f4e615ea815ae92024e3d818b"
+        },
+        {
+          "gate": 3,
+          "singleton": [
+            4
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "7caeb4fcac29925530bd224a390145531603aaefb656d521ec7354e5b3352b8f"
+        },
+        {
+          "gate": 4,
+          "singleton": [],
+          "shifted_outside": [
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "669b1571eb63215a250410677ef9b787cc14425fa7c22c5cda6792cbde931d6d"
+        },
+        {
+          "gate": 5,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "9f161c09ef32ef43ea273d64964c663d40568d685326f43dbecdc843f68262cc"
+        },
+        {
+          "gate": 6,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 7,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 8,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 9,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 10,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 11,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 12,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 13,
+          "singleton": [
+            0,
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "abfe92511fd80ea9485b5cc519debb549fe5b2bde43f3d1c2a3e3698a8d24be2"
+        },
+        {
+          "gate": 14,
+          "singleton": [
+            3,
+            5
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "5845ea7cbb61f63e3bea5ca569ef10b524909e8cc9081946d08a1ebc3da9243c"
+        },
+        {
+          "gate": 15,
+          "singleton": [
+            3,
+            5,
+            6
+          ],
+          "shifted_outside": [
+            3,
+            5,
+            6
+          ],
+          "whole_refund": true,
+          "truth_vector_sha256": "23418886cc844cc08180469ce00409eba5d1b68b11d953385262f1b891e33efb"
+        }
+      ]
+    },
+    {
+      "duplicates": 10,
+      "n": 7,
+      "m": 2,
+      "k": 3,
+      "gate_count": 20,
+      "all_gates_live": true,
+      "truth_rows_checked": 128,
+      "output_values_checked": 256,
+      "low_weight_rows_checked": 29,
+      "all_posted_hypotheses_checked": true,
+      "per_set_counts": [
+        {
+          "target": 0,
+          "kind": "light",
+          "vertices": [
+            0,
+            3,
+            4
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "eligible_count": 13,
+          "posted_per_set_count_holds": true
+        },
+        {
+          "target": 1,
+          "kind": "heavy",
+          "vertices": [
+            3,
+            5,
+            6
+          ],
+          "weighted_demand": 3,
+          "minimum_gate_quota": 2,
+          "all_eligible_gates": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            18,
+            19
+          ],
+          "eligible_count": 13,
+          "posted_per_set_count_holds": true
+        }
+      ],
+      "refund_gates": [
+        19
+      ],
+      "refund_count": 1,
+      "partial_overlap_gates": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "partial_overlap_count": 11,
+      "every_overlap_is_nonrefunded": true,
+      "overlap_count_le_refund_count": false,
+      "eligible_union_count": 15,
+      "total_eligible_memberships": 26,
+      "total_eligible_memberships_le_gates_plus_refunds": false,
+      "selected_light_gates": [
+        5,
+        17
+      ],
+      "selected_heavy_gates": [
+        18,
+        19
+      ],
+      "selected_quotas_have_zero_overlap": true,
+      "weighted_lhs": 6,
+      "exact_refund_rhs": 23,
+      "exact_997_holds": true,
+      "gate_supports": [
+        {
+          "gate": 0,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4c989d0c271e1e403d5f908f9adcd48d1cd17c96523b854ee558128a4fb20fc5"
+        },
+        {
+          "gate": 1,
+          "singleton": [],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "4e972baaee2ad54f78153134ef6484cd1a8e383d21582a21a481d4d214161916"
+        },
+        {
+          "gate": 2,
+          "singleton": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "87dcde7fa6df23e15fa7ba9b2a1f31408eac832f4e615ea815ae92024e3d818b"
+        },
+        {
+          "gate": 3,
+          "singleton": [
+            4
+          ],
+          "shifted_outside": [],
+          "whole_refund": false,
+          "truth_vector_sha256": "7caeb4fcac29925530bd224a390145531603aaefb656d521ec7354e5b3352b8f"
+        },
+        {
+          "gate": 4,
+          "singleton": [],
+          "shifted_outside": [
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "669b1571eb63215a250410677ef9b787cc14425fa7c22c5cda6792cbde931d6d"
+        },
+        {
+          "gate": 5,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "9f161c09ef32ef43ea273d64964c663d40568d685326f43dbecdc843f68262cc"
+        },
+        {
+          "gate": 6,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 7,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 8,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 9,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 10,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 11,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 12,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 13,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 14,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 15,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 16,
+          "singleton": [
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "0356e86bc07fa3c26ab8c4d52d613c3a5244499a9a75e88ac5e7d5e99ef5fcf4"
+        },
+        {
+          "gate": 17,
+          "singleton": [
+            0,
+            3,
+            4
+          ],
+          "shifted_outside": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "abfe92511fd80ea9485b5cc519debb549fe5b2bde43f3d1c2a3e3698a8d24be2"
+        },
+        {
+          "gate": 18,
+          "singleton": [
+            3,
+            5
+          ],
+          "shifted_outside": [
+            3,
+            5
+          ],
+          "whole_refund": false,
+          "truth_vector_sha256": "5845ea7cbb61f63e3bea5ca569ef10b524909e8cc9081946d08a1ebc3da9243c"
+        },
+        {
+          "gate": 19,
+          "singleton": [
+            3,
+            5,
+            6
+          ],
+          "shifted_outside": [
+            3,
+            5,
+            6
+          ],
+          "whole_refund": true,
+          "truth_vector_sha256": "23418886cc844cc08180469ce00409eba5d1b68b11d953385262f1b891e33efb"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+import took 1.52s
+'PEqualNP.Research.QuadrupleExcess.quadruple_refund_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.QuadrupleExcess.one_not_refund_bound_quadruple_excess' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.QuadrupleExcess.quadruple_private_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 47.3ms
+	attribute application 0.0356ms
+	blocked (unaccounted) 544ms
+	congr simp thm 2.08ms
+	declTypeLinter 2.87ms
+	elaboration 69.7ms
+	fix level params 0.331ms
+	import 1.52s
+	initialization 26.2ms
+	instantiate metavars 1.08ms
+	interpretation 203ms
+	let-to-have transformation 0.133ms
+	linting 16.2ms
+	module linting 0.0226ms
+	parsing 7.99ms
+	process pre-definitions 5.06ms
+	share common exprs 2.18ms
+	simp 36.9ms
+	tactic execution 149ms
+	tacticAnalysis 2.56ms
+	type checking 201ms
+	typeclass inference 78.3ms

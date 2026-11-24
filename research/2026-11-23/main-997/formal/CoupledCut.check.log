@@ -1,0 +1,29 @@
+import took 1.58s
+'PEqualNP.Research.CoupledCut.coupled_cut' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 43.9ms
+	attribute application 0.0594ms
+	blocked (unaccounted) 458ms
+	compilation (IR) 0.412ms
+	compilation (LCNF base) 2.6ms
+	compilation (LCNF impure) 0.651ms
+	compilation (LCNF mono) 1.65ms
+	congr simp thm 1.81ms
+	declTypeLinter 3.84ms
+	elaboration 35.8ms
+	fix level params 0.416ms
+	import 1.58s
+	initialization 30.8ms
+	instantiate metavars 2.69ms
+	interpretation 223ms
+	let-to-have transformation 0.0957ms
+	linting 35.7ms
+	module linting 0.0262ms
+	parsing 6.48ms
+	process pre-definitions 5.84ms
+	share common exprs 3.26ms
+	simp 31.3ms
+	tactic execution 181ms
+	tacticAnalysis 3.32ms
+	type checking 128ms
+	typeclass inference 41.3ms

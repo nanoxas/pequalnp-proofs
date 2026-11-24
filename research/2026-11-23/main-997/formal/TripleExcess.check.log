@@ -1,0 +1,28 @@
+import took 1.36s
+'PEqualNP.Research.TripleExcess.boundary_refund_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.TripleExcess.one_not_refund_bound_triple_excess' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 12.7ms
+	attribute application 0.0204ms
+	blocked (unaccounted) 255ms
+	congr simp thm 1.59ms
+	declTypeLinter 1.76ms
+	elaboration 37.6ms
+	fix level params 0.191ms
+	import 1.36s
+	initialization 34.3ms
+	instantiate metavars 1.2ms
+	interpretation 171ms
+	let-to-have transformation 0.0815ms
+	linting 8.5ms
+	module linting 0.0241ms
+	parsing 4.42ms
+	process pre-definitions 2.32ms
+	share common exprs 1.63ms
+	simp 16.8ms
+	tactic execution 75.1ms
+	tacticAnalysis 1.57ms
+	type checking 94.3ms
+	typeclass inference 33.7ms

@@ -1,0 +1,27 @@
+import took 1.34s
+'PEqualNP.Research.DeficientSeparation.deficient_separated_points' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 10.5ms
+	attribute application 0.0118ms
+	blocked (unaccounted) 422ms
+	congr simp thm 0.974ms
+	declTypeLinter 1.64ms
+	elaboration 18.9ms
+	fix level params 0.22ms
+	import 1.34s
+	initialization 31.1ms
+	instantiate metavars 1.62ms
+	interpretation 187ms
+	let-to-have transformation 0.0299ms
+	linting 13ms
+	module linting 0.0239ms
+	parsing 4.77ms
+	process pre-definitions 10.2ms
+	share common exprs 1.49ms
+	simp 4.09ms
+	tactic execution 226ms
+	tacticAnalysis 2.25ms
+	type checking 117ms
+	typeclass inference 47ms

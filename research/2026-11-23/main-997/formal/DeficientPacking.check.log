@@ -1,0 +1,28 @@
+import took 1.68s
+'PEqualNP.Research.DeficientPacking.triple_directed_difference_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.DeficientPacking.deficient_count_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 16.3ms
+	attribute application 0.0371ms
+	blocked (unaccounted) 391ms
+	congr simp thm 1.35ms
+	declTypeLinter 4.91ms
+	elaboration 29.2ms
+	fix level params 0.616ms
+	import 1.68s
+	initialization 29.8ms
+	instantiate metavars 1.76ms
+	interpretation 218ms
+	let-to-have transformation 0.0785ms
+	linting 12.7ms
+	module linting 0.0282ms
+	parsing 4.3ms
+	process pre-definitions 3.92ms
+	share common exprs 2.38ms
+	simp 65.8ms
+	tactic execution 135ms
+	tacticAnalysis 1.9ms
+	type checking 89.4ms
+	typeclass inference 53.6ms

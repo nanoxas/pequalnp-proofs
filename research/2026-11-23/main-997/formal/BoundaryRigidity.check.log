@@ -1,0 +1,31 @@
+import took 1.34s
+'PEqualNP.Research.BoundaryActivation.deficient_popular_points' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.BoundaryActivation.popular_point_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.BoundaryActivation.boundary_activation_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 14.1ms
+	attribute application 0.0404ms
+	blocked (unaccounted) 519ms
+	congr simp thm 1.59ms
+	declTypeLinter 2.96ms
+	elaboration 45.3ms
+	fix level params 0.423ms
+	import 1.34s
+	initialization 31.1ms
+	instantiate metavars 1.63ms
+	interpretation 200ms
+	let-to-have transformation 0.113ms
+	linting 20.9ms
+	module linting 0.0286ms
+	parsing 8.76ms
+	process pre-definitions 5.42ms
+	share common exprs 2.79ms
+	simp 23.5ms
+	tactic execution 179ms
+	tacticAnalysis 2.76ms
+	type checking 106ms
+	typeclass inference 125ms

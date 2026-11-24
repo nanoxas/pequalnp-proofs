@@ -1,0 +1,30 @@
+import took 9.64s
+'PEqualNP.Research.OrCompensation.compensated_or_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OrCompensation.compensated_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 8.24ms
+	attribute application 0.0816ms
+	blocked (unaccounted) 271ms
+	compilation (IR) 0.365ms
+	compilation (LCNF base) 3.96ms
+	compilation (LCNF impure) 1.27ms
+	compilation (LCNF mono) 1.43ms
+	congr simp thm 0.928ms
+	declTypeLinter 3.1ms
+	elaboration 35.2ms
+	fix level params 0.291ms
+	import 9.64s
+	initialization 138ms
+	instantiate metavars 0.931ms
+	interpretation 188ms
+	let-to-have transformation 0.122ms
+	linting 15.1ms
+	module linting 0.06ms
+	parsing 5.79ms
+	process pre-definitions 4.22ms
+	share common exprs 1.58ms
+	simp 9.22ms
+	tactic execution 97.3ms
+	tacticAnalysis 2.36ms
+	type checking 56.5ms
+	typeclass inference 44.2ms

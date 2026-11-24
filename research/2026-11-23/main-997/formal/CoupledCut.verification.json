@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "source": "CoupledCut.lean",
+  "source_sha256": "aa1a62237e8981d59436f6b9fb65f22ef88c99451c64d6f7624f18877cd81c1a",
+  "source_bytes": 9175,
+  "object_sha256": "226dae8a13fea99ac6bcc78a3336c54ef061e55d3b4203dac0edd9e410267051",
+  "started_utc": "2026-11-24T03:36:57.724573+00:00",
+  "completed_utc": "2026-11-24T03:37:00.261657+00:00",
+  "elapsed_seconds": 2.537,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.CoupledCut.coupled_cut": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "CoupledCut.check.log",
+  "log_sha256": "71dad9c1f639e3a8fe90a023fb82e0d3de9721e4e6e81993d0db925f4b902a0f",
+  "dependencies": [
+    {
+      "module": "MintermSlack",
+      "source_sha256": "344ac9855efd9f5958cf47d553632e102c9f71fb4a3cdae5391d445c7a7b7aa3",
+      "object_sha256": "ce74297b187e3397004f6e80aa10cf97647d14fb04fb92e499c5c4416498cb94"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "Canonical full cut and all positive-subset certificates share one fixed terminal boundary; AND gates alone pay branching of positive certificates. Handles constants, sharing, unary gates and invalid references.",
+  "recorded_utc": "2026-11-24T03:37:45.240631+00:00"
+}

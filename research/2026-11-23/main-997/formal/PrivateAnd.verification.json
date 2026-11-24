@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "source": "PrivateAnd.lean",
+  "source_sha256": "80f7a72406fd4b5dce615c3d5e6a2bc0fa1adb6858f94e078f1d432d3e2fe643",
+  "source_bytes": 3532,
+  "object_sha256": "cceae63fcc6a52196aa2b9b493c6880c1fa2ae22664448751923a3af92ec71a5",
+  "started_utc": "2026-11-24T03:37:03.842584+00:00",
+  "completed_utc": "2026-11-24T03:37:05.772394+00:00",
+  "elapsed_seconds": 1.929,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.PrivateAnd.deficient_and_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "PrivateAnd.check.log",
+  "log_sha256": "f254ce10fd2a5ec6dee9c59fe36d895a97365177fb3b96695ce406b98c049186",
+  "dependencies": [
+    {
+      "module": "CoupledCut",
+      "source_sha256": "aa1a62237e8981d59436f6b9fb65f22ef88c99451c64d6f7624f18877cd81c1a",
+      "object_sha256": "226dae8a13fea99ac6bcc78a3336c54ef061e55d3b4203dac0edd9e410267051"
+    },
+    {
+      "module": "OrCompensation",
+      "source_sha256": "b8e448db73494e74557b4ed667e3658b9c183a65414a4c9b74123b82ea6fdc9e",
+      "object_sha256": "7f269e81d10cbb92ea9958923debe0e47acc556c9730fa701b2f93559211e660"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "Any deficient private singleton-support class for a linear target family and a correct low-weight window contains at least k-1 AND gates. No global cleanliness, well-formedness or minimum-size premise.",
+  "recorded_utc": "2026-11-24T03:37:45.241991+00:00"
+}

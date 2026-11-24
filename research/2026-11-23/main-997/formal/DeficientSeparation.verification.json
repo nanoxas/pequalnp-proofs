@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "source": "DeficientSeparation.lean",
+  "source_sha256": "1389c692f6c86397fa8e733d51aa27a61db9bab5b02e36b659083c0905f13322",
+  "source_bytes": 6672,
+  "object_sha256": "7794258b0246c7f3919e4410ab8b0bc830eeb3909ff7856208b358972a6c2d2a",
+  "started_utc": "2026-11-24T03:33:18.992838+00:00",
+  "completed_utc": "2026-11-24T03:33:21.164131+00:00",
+  "elapsed_seconds": 2.171,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.DeficientSeparation.deficient_separated_points": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "DeficientSeparation.check.log",
+  "log_sha256": "ffa99a2e49422067b594ee8efbbdf0e013d9d8e0eeb11646f17f8a1589376598",
+  "dependencies": [
+    {
+      "module": "BoundaryRigidity",
+      "source_sha256": "a8601d9732d24c099c9c4c7b536ea1b822ba7a4a8d61cf9f8220526f07e1aae0",
+      "object_sha256": "aec7884797af5cc43c4ac026dd236b5372c47c5a86664ad5003233b649257341"
+    }
+  ],
+  "scope": "For a deficient private class, a set of at least k+1 points each has at least k active outsiders and its active outsider set differs from every outside-target singleton active set in at least k-1 gates. Supporting lemma; full997 remains open."
+}

@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "source": "BoundaryActivation.lean",
+  "source_sha256": "4c8df5e51b5a6f5920075062b54841d581171d7a9757d0b327daedb106ca0f3a",
+  "source_bytes": 9343,
+  "object_sha256": "5762221f2a24195a024be61207109531e09dff934c6a5d45923a6dc20a4c7e0c",
+  "started_utc": "2026-11-24T03:09:35.393635+00:00",
+  "completed_utc": "2026-11-24T03:09:46.651507+00:00",
+  "elapsed_seconds": 11.258,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.BoundaryActivation.outside_activation_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.BoundaryActivation.private_count_of_activation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.BoundaryActivation.compensated_private_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "BoundaryActivation.check.log",
+  "log_sha256": "e85d70b0e9947a4c8f8607eb1c7de689af4f18ddc0048d481c0c593664bc59c7",
+  "dependencies": [
+    {
+      "module": "OutsideActivation",
+      "source_sha256": "8a637646fe6fd2246deff795014b993c462aa5d1e23e482ef1c9e5ff2fd6f52c",
+      "object_sha256": "024f7c3d8056fd03090b0c147c1305494a422d01c329ab0a11ac93fc60d36313"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "Reusable semantic cut lemmas: selected outsider sets admit target-avoiding activation inputs of size at most their cardinality; one negative input activating all outsiders gives the full private count; paying for all outsiders gives the compensated count for any target.",
+  "recorded_utc": "2026-11-24T03:13:25.005265+00:00"
+}

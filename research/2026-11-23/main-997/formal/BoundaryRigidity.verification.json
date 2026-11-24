@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "source": "BoundaryRigidity.lean",
+  "source_sha256": "a8601d9732d24c099c9c4c7b536ea1b822ba7a4a8d61cf9f8220526f07e1aae0",
+  "source_bytes": 11765,
+  "object_sha256": "aec7884797af5cc43c4ac026dd236b5372c47c5a86664ad5003233b649257341",
+  "started_utc": "2026-11-24T03:12:08.956782+00:00",
+  "completed_utc": "2026-11-24T03:12:11.177596+00:00",
+  "elapsed_seconds": 2.22,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.BoundaryActivation.deficient_popular_points": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.BoundaryActivation.popular_point_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.BoundaryActivation.boundary_activation_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "BoundaryRigidity.check.log",
+  "log_sha256": "07673add8ef67438e86815b44a4084a6b71ee224fd6d8f9da0110204063781d6",
+  "dependencies": [
+    {
+      "module": "BoundaryActivation",
+      "source_sha256": "4c8df5e51b5a6f5920075062b54841d581171d7a9757d0b327daedb106ca0f3a",
+      "object_sha256": "5762221f2a24195a024be61207109531e09dff934c6a5d45923a6dc20a4c7e0c"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "A deficient private class contains at least k+1 singleton points each activating at least k global outsiders. For r<=2*k-2, every other private class is full and the single deficit is paid by the r outsiders. Proves sum_i(|S_i|-1)<=|private union|+r without normalizing circuit gates.",
+  "recorded_utc": "2026-11-24T03:13:25.006903+00:00",
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "a7a6ed209119255ce68403f2e5841732efe24c4e5f2e14edc11e740d52bef1f3",
+    "exit_code": 1,
+    "elapsed_seconds": 2.174,
+    "log_sha256": "d6e88f5f64eef8fd50f6fa46e5c3ea56dc1ac17c2abff39b093661022a133e77",
+    "cause": "A local alias W needed an explicit outsideWide type for simplification; a deprecated tactic was replaced. No theorem statement or mathematical argument changed."
+  }
+}

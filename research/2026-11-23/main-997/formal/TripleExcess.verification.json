@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "source": "TripleExcess.lean",
+  "source_sha256": "6ce1ba4b1c26a10aeb9b9410cc7af9c08dbd76bf4d12458916e0087dd6eb3286",
+  "source_bytes": 6114,
+  "object_sha256": "990903a2183f878df973b4035e86c5ad447ae9b32e80eb45ed655b157ba96704",
+  "started_utc": "2026-11-24T03:12:49.488550+00:00",
+  "completed_utc": "2026-11-24T03:12:51.460859+00:00",
+  "elapsed_seconds": 1.972,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.TripleExcess.boundary_refund_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.TripleExcess.one_not_refund_bound_triple_excess": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "TripleExcess.check.log",
+  "log_sha256": "05a31648e64965d141ce45a6a9374945f0648d804b483313323c3986ae65037d",
+  "dependencies": [
+    {
+      "module": "BoundaryRigidity",
+      "source_sha256": "a8601d9732d24c099c9c4c7b536ea1b822ba7a4a8d61cf9f8220526f07e1aae0",
+      "object_sha256": "aec7884797af5cc43c4ac026dd236b5372c47c5a86664ad5003233b649257341"
+    },
+    {
+      "module": "DoubleExcess",
+      "source_sha256": "93fb17c3f1a30ff493cf519ae0d784b64538a2dfd44dacb9264555bef86bfe0d",
+      "object_sha256": "3e4a91d01841ead0102c61a452287d39d163073c96dfbbd6cfc16eef94336c1d"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "Proves the exact original L-meta-997 refund inequality under the additional sufficient condition total heavy excess<=3*|Y|-1 and |Y|>=2. The unrestricted L-meta-997 statement remains open.",
+  "recorded_utc": "2026-11-24T03:13:25.008940+00:00"
+}

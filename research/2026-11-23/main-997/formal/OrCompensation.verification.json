@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "source": "OrCompensation.lean",
+  "source_sha256": "b8e448db73494e74557b4ed667e3658b9c183a65414a4c9b74123b82ea6fdc9e",
+  "source_bytes": 7503,
+  "object_sha256": "7f269e81d10cbb92ea9958923debe0e47acc556c9730fa701b2f93559211e660",
+  "started_utc": "2026-11-24T03:32:34.662163+00:00",
+  "completed_utc": "2026-11-24T03:32:45.072953+00:00",
+  "elapsed_seconds": 10.411,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.OrCompensation.compensated_or_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OrCompensation.compensated_deficit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "OrCompensation.check.log",
+  "log_sha256": "de8c66b7c846bf65d42819a95b952175a5efa95ea63a2a382763b400779258d5",
+  "dependencies": [
+    {
+      "module": "BoundaryActivation",
+      "source_sha256": "4c8df5e51b5a6f5920075062b54841d581171d7a9757d0b327daedb106ca0f3a",
+      "object_sha256": "5762221f2a24195a024be61207109531e09dff934c6a5d45923a6dc20a4c7e0c"
+    },
+    {
+      "module": "OrPrivateCount",
+      "source_sha256": "47c1c76875c7ba77d0a02916728a0dd7eaee53f24d710b2de266ee9d2c6febb3",
+      "object_sha256": "5976f748de21b85e452774d02ad31741566f016e5f199108b059a4a556c6eee3"
+    }
+  ],
+  "scope": "OR-only private compensation: target singleton positives and a false zero output force at least |S_i|-1 OR gates in the private class or the global outside class. The deficit is at most outside OR count minus private AND count. Uses actual Circuit semantics, only linearity of target sets, and a distinguished wire true at zero. It does not prove unrestricted L-meta-997.",
+  "mathematical_audit": [
+    "Target-restricted singleton samples have one-source raw supports.",
+    "For each charged OR false at zero, sample support is exactly its global singleton support intersected with the target.",
+    "Width at least two excludes all foreign private target classes by linearity; the distinguished wire is excluded because it is true at zero.",
+    "The private AND/OR partition is proved for valid gates under the monotone gate hypothesis; natural-subtraction arithmetic gives the deficit corollary."
+  ],
+  "recorded_utc": "2026-11-24T03:33:27.297205+00:00"
+}

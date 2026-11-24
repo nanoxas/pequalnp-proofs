@@ -1,13 +1,15 @@
 PRIVATE SUPPORT CLASSES AND EXCEPTIONAL WIDE GATES
 
-Status: checked core with supplementary paper analysis. The direct-cut r<k
-extension in Section3a is now Lean kernel checked in OutsideActivation.lean;
-the Eplus<=2k consequence in Section4 is checked in DoubleExcess.lean. Their
-recorded audits use only propext, Classical.choice, and Quot.sound. Prepare
-supplied the direct-cut proof; root and this worker independently audited it.
-The underlying light and minterm counts are also kernel checked. The
-normalization route, transversal refinement, and r=k boundary in Section6
-remain paper arguments; no SAT certificate is asserted.
+Status: checked core with supplementary paper analysis. The checkpoint now
+contains 26 checked modules. Sections3a, 4 and7 record the checked direct-cut
+and boundary results through r<=2k-2 and Eplus<=3k-1. Section8 records the
+new checked deficiency argument through r<=3k-4 and Eplus<=4k-3 for k>=3.
+The adjacent verification records audit only propext, Classical.choice,
+and Quot.sound. Independent mathematical reviews accompany the checked
+sources. The normalization route, transversal refinements, historical
+classification in Section6, and stronger global OR/AND dichotomy remain
+paper arguments. Later checked results cover Section6's numerical range.
+The unrestricted L-meta-997 statement remains open in this checkpoint.
 
 
 1. SETUP
@@ -216,11 +218,12 @@ not itself prove an additional gate charge. The low-weight negative witness
 is the step that rules out a cheap private entry.
 
 
-6. FIRST BOUNDARY r=k: RIGIDITY AND A PROPOSED COMPENSATING COUNT
+6. HISTORICAL r=k ROUTE: OUTSIDER CLASSIFICATION AND PROJECTED SUPPORT
 
-Status: PAPER_REVIEWED by this worker and the parent on a first pass; not a
-Lean proof. The cut-rigidity and compensating projected-support DAG count
-remain unformalized research mathematics.
+Status: PAPER_REVIEWED, retained as research history. The specific outsider
+classification and projected-support DAG extraction below were not
+formalized. They are no longer needed: the direct-cut proof in Section7 is
+checked and covers the larger range r<=2k-2, including r=k for k>=2.
 
 Assume r=k>=2. If every |Gi|>=|S_i|-1, the full count is already proved.
 Otherwise choose a deficient class i and apply the cut in Section3a. Choose
@@ -291,7 +294,135 @@ by the k exceptional gates outside all private classes:
 
   N >= sum_j|Gj| + k + k >= sum_j(|S_j|-1) + k.
 
-This would settle997 whenever r<=k. In the numerical criterion, a violation
+This paper route settles997 whenever r<=k. In the numerical criterion, a violation
 under Eplus<=2k+1+e forces r<=k by(1),(3); hence the convenient sufficient
-condition would strengthen from Eplus<=2k to Eplus<=2k+1. The projected-DAG
-extraction and arithmetic are still paper-level at this checkpoint.
+condition strengthens from Eplus<=2k to Eplus<=2k+1. The projected-DAG
+extraction remains paper-level; the weaker no-e conclusion is now included
+in the checked stronger result below.
+
+
+7. CHECKED DIRECT-CUT EXTENSION: r<=2k-2 AND Eplus<=3k-1
+
+Status: LEAN_KERNEL_CHECKED in BoundaryActivation.lean, BoundaryRigidity.lean,
+and TripleExcess.lean. The source, object, dependency and log hashes are
+recorded in their adjacent .verification.json files. All checks exited0
+without warnings and all audited theorems use only the standard three axioms.
+This worker independently reviewed the statements and semantic bridges.
+
+First, a cut through Gi together with all exceptional gates gives
+
+  |S_i|-1 <= |Gi|+r.                              (6)
+
+The remaining frontier has no exceptional wire. Every non-z frontier wire
+has at most one singleton positive inside S_i, by the same clean-label
+argument as Section3a. If the frontier were smaller than S_i, a missed
+singleton would transfer to the zero input: z is already true, and no other
+frontier wire accepts the missed singleton. This contradicts output_i(0)=0.
+No outsider operation classification or circuit normalization is involved.
+
+Now suppose Gi is deficient, meaning |Gi|<|S_i|-1. Use its fixed cut frontier
+F with |F|<=|Gi|+1. Let Q be the union of its clean labels, and M=S_i minus Q.
+For every p in M, define D_p to be the exceptional frontier wires true on
+singleton p. If |D_p|<k, one outside-S_i witness per member of D_p would
+activate every frontier wire true on p at an S_i-avoiding input of weight<k.
+The cut would make output_i true on that negative input. Hence |D_p|>=k.
+
+Pick one p0 in M. Its at least k outsider wires have empty clean labels, so
+the clean-label union can use only F minus D_p0. Consequently
+
+  |Q| <= |F|-|D_p0| <= |Gi|+1-k,
+  |M| >= |S_i|-|Gi|-1+k >= k+1.                  (7)
+
+Thus a deficient target contains at least k+1 points, each activating at
+least k global exceptional gates.
+
+Assume r<=2k-2. For another target S_j, linearity supplies a p in M outside
+S_j: otherwise at least k+1 points would lie in S_i intersect S_j. This
+singleton activates at least k outsiders. For each still inactive outsider,
+choose one additional singleton positive outside S_j. Their union with p
+avoids S_j, activates every outsider, and has size at most
+
+  1+(r-k) <= k-1.
+
+The output is negative on this input by low-weight correctness. The direct
+activation cut therefore proves |Gj|>=|S_j|-1. Every class other than i is
+full; (6) pays the one possible deficit by r. Summing gives the checked bound
+
+  sum_i(|S_i|-1) <= sum_i|Gi|+r.                 (8)
+
+Together with the original k-1 empty-prefix ANDs and z, (8) gives
+N>=sum_i(|S_i|-1)+k. This implies the requested refund inequality because
+its weighted left side is at most sum_i(|S_i|-1)+m.
+
+Finally, a putative violation with Eplus<=3k-1 combines(1),(3) to force
+r<=2k-2. The previous paragraph contradicts it. TripleExcess's final theorem
+therefore proves the exact original997 conclusion under the sole additional
+numerical condition Eplus<=3k-1 (and k>=2, with the smaller k cases already
+checked separately). It uses the original guarded refund predicate and
+does not change the public statement. The full unrestricted997 task remains
+open. An extra +e refinement follows on paper from(3), but is not claimed as
+the exact statement of the checked TripleExcess theorem.
+
+
+8. CHECKED DEFICIENCY BUDGET: r<=3k-4 AND Eplus<=4k-3
+
+Status: LEAN_KERNEL_CHECKED for k>=3. The new chain consists of
+OrCompensation, DeficientSeparation, DeficientPacking, CoupledCut, PrivateAnd,
+and QuadrupleExcess. All current sources passed with no warnings and only
+the standard three axioms in their recorded audits. The accompanying
+deficiency-budget-paper.txt and deficiency-budget-independent.txt explain
+the proof and its independently reviewed arithmetic.
+
+For a deficient class Gi, DeficientSeparation retains a missed-point set
+Mi of cardinality at least k+1. For p in Mi and q outside Si, write Ap for
+the exceptional gates true at singleton p. A target-avoiding activation
+argument gives
+
+  |Ap minus Aq| >= k-1.                            (9)
+
+If three classes are deficient, choose one missed point from each outside
+the other two targets. Linearity permits these choices. Applying (9) in
+both directions gives three pairwise symmetric differences of size at
+least 2(k-1). Each exceptional gate contributes zero or two to their sum,
+so 6(k-1)<=2r. Hence r<=3k-4 permits at most two deficient classes. This is
+the checked DeficientPacking conclusion.
+
+Let W_OR be the exceptional OR gates and Gi_AND the AND gates in Gi.
+OrCompensation proves
+
+  |Si|-1 <= |Gi_OR|+|W_OR|,
+  delta_i := |Si|-1-|Gi| <= |W_OR|-|Gi_AND|.        (10)
+
+CoupledCut constructs a full frontier and its positive subfrontier together.
+The positive frontier stays inside the full one and has cardinality at
+most one plus the number of private AND gates. A missed singleton point
+activates only z and exceptional terminals on this frontier. If fewer than
+k-1 private AND gates existed, outside singleton witnesses would activate
+the frontier on fewer than k points avoiding Si. This contradicts the
+negative window. PrivateAnd therefore proves
+
+  |Gi_AND| >= k-1                                  (11)
+
+for every deficient class. The simultaneous frontier construction resolves
+the boundary-inclusion obligation from the earlier paper draft.
+
+If there is no deficient class, summing the full private counts finishes
+immediately. Otherwise a positive deficit in (10)-(11) implies |W_OR|>=k.
+With at most two deficient classes their total deficit is bounded by
+
+  2(|W_OR|-k+1) <= 2r-2k+2 <= r+k-2 <= r+k.
+
+Thus the checked private/minterm budget yields
+
+  sum_i (|Si|-1) <= sum_i |Gi|+r+k <= N.          (12)
+
+Natural subtraction handles empty and singleton targets. The weighted
+left side of the posted statement is at most sum_i(|Si|-1)+m, so (12)
+implies the exact refund inequality.
+
+Finally, a violation under Eplus<=4k-3 would combine (1) and (3) to force
+r<=Eplus-k-1<=3k-4. QuadrupleExcess checks this original-circuit assembly
+with the exact guarded refund predicate. SmallWindow already covers k<=2.
+The additional +e refinement and the stronger global OR/AND dichotomy are
+retained as paper observations; neither is asserted as a new checked
+theorem by this section. No unrestricted L-meta-997 proof is claimed.

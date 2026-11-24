@@ -1,0 +1,144 @@
+PARTIAL CHARGE OVERLAP DOES NOT IMPLY A WHOLE-SET REFUND
+
+Status: EXHAUSTIVE_DATA_AUDIT_PASS for the explicit seven-input circuits.
+All128 truth rows, the exact guarded refund predicate, and every circuit
+and per-set hypothesis in the proposed L-meta-1596 row are checked by
+audit.py. No SAT solver or Lean compiler was used for these examples.
+This refutes particular overlap-count shortcuts. It does not refute1596
+or997: every example satisfies their stated conclusion.
+
+1. THE CIRCUIT
+
+Use inputs y0=0,y1=1,y2=2,a=3,b=4,c=5,d=6. Put Y={0,1,2},
+light target S={0,3,4}, and heavy target T={3,5,6}. Their intersection is{3}.
+There are two targets, both of size3, and k=|Y|=3.
+
+The base circuit, with zero-based gate indices, is:
+
+  gate0 = y0 AND y1
+  gate1 = gate0 AND y2                 (h)
+  gate2 = NOT gate1                    (z)
+  gate3 = b AND z
+  gate4 = c AND y0
+  gate5 = a OR gate3
+  gate6 = gate5 OR gate4               (g)
+  gate7 = g OR y0                      (light output)
+  gate8 = a OR c
+  gate9 = gate8 OR d                   (heavy output)
+
+Thus g=a OR(b AND z)OR(c AND y0). If y0 is true, the light output is
+true. If y0 is false, h is false and z is true, so the light output is a OR b.
+Consequently the light output is exactly OR(S) on every assignment. The
+heavy output is exactly OR(T) by construction.
+
+The NOT is true on all29 assignments of weight less than3 and false at Y.
+Every gate has at most two inputs and gate2 is the sole NOT. All gates are
+structurally live in the union of the two output cones.
+
+2. EXACT SUPPORTS AND REFUNDS
+
+Write U(w) for the original circuit's singleton-positive support, and
+V(w) for the set of points p outside Y for which w is true at Y union{p}.
+The exact proposed per-set classes are
+
+  L_S={gate w : U(w) subset S and |U(w)|>=2},
+  H_T={gate w : V(w) subset T and |V(w)|>=2}.
+
+The base circuit has
+
+  L_S={5,6,7}, H_T={6,8,9}, L_S intersect H_T={6}.
+
+For g=gate6, U(g)={a,b} and V(g)={a,c}. Both are proper two-point subsets
+of their respective three-point targets. The gate is not a refund: the
+posted refund requires its entire singleton support to equal some target,
+and its entire shifted outside support to equal a heavy target. Neither
+condition is supplied by membership in these partial classes.
+
+The only refunded gate is gate9, the exact heavy output. Gate7 has singleton
+support S, but its shifted outside support is all{a,b,c,d}, which is not T.
+Gate8 has both supports{a,c}, which is not a whole target. The AND prefix
+gates and the NOT do not supply additional refunds.
+
+This remains an obstruction even if one additionally asks the common gate
+to be false at Y: g(Y)=false. It also has the expected normalized soundness:
+after z is replaced by true it is globally below OR(S); after z is replaced
+by false it is globally below OR(T). Thus those soundness conditions do not
+turn a partial overlap into the exact whole-set refund.
+
+3. ARBITRARILY MANY LIVE PARTIAL OVERLAPS
+
+Insert r aliases after gate6, each of the form OR(previous,previous), and
+let the light output read the last alias. The heavy OR chain remains
+independent. Every alias is structurally live and has the same two supports
+as g. All hypotheses still hold. The exact counts are
+
+  circuit gates N=10+r,
+  |L_S|=|H_T|=3+r,
+  |L_S intersect H_T|=1+r,
+  |L_S union H_T|=5+r,
+  refund count R=1.
+
+Already r=1 disproves |L_S intersect H_T|<=R. With r=6, the total number
+of eligible memberships is18, while N+R=17. Thus the global shortcut
+sum_i|all eligible gates for i|<=N+R is false as well. The exhaustive audit
+checks r=0,1,6,10; the formulas describe every natural r.
+
+The weighted left side in the exact theorem stays6. Its right side is
+N+R+m=13+r, so the actual theorem remains satisfied with increasing slack.
+Dead-cone pruning alone does not remove this example: all aliases are live.
+They are functionally redundant, which illustrates why counting every
+eligible gate loses control over surplus.
+
+4. THE MINIMUM QUOTAS CAN BE SELECTED DISJOINTLY HERE
+
+Each target only needs two selected gates: its weighted demand3 minus1.
+For every r the explicit selections
+
+  A_S={5,7+r}, B_T={8+r,9+r}
+
+are subsets of L_S and H_T, respectively, have cardinality2, and are
+disjoint. They avoid every problematic overlap. The selected circuit charges
+total4, which is all that is needed before adding the two per-target units.
+
+5. PRECISE GAP A SELECTION LEMMA MUST FILL
+
+Let c_i=max(min(k,|S_i|)-1,0) for light targets and
+c_i=max(|S_i|-1,0) for heavy targets. Linearity makes the eligible classes
+pairwise disjoint within the light family and within the heavy family:
+two positives cannot lie in an intersection of size at most1. It does not
+make classes from different families disjoint.
+
+One sufficient, presently unproved selection statement is: choose exactly
+c_i eligible gates for each target so that every doubly selected gate is
+an exact refund. This would give total selected charges<=N+R. The example
+shows that the statement must concern chosen quota witnesses, not every
+gate satisfying the partial-support predicate. It does not establish that
+this particular strong selection theorem always holds.
+
+A weaker sufficient target permits unused gates to pay for unrefunded
+overlap. Let A be the union of selected light witnesses, B the union of
+selected heavy witnesses, W=A union B, and O=A intersect B. Because each
+family is internally disjoint, the total selected charge is exactly
+
+  |W|+|O|.
+
+The needed global inequality is therefore
+
+  |O| <= R + (N-|W|).
+
+For example, an injection of the unrefunded double charges into unused
+gates, with refunded overlaps paid by their existing refunds, would suffice.
+More generally one can formulate a capacitated charge matching with one
+ordinary credit per gate and one additional credit per exact refund.
+
+The posted per-set count inequalities by themselves assert only that each
+eligible pool is large enough. They provide no such simultaneous selection
+or matching. Any proof of1596 that sums those pool sizes must obtain this
+missing global constraint from the circuit's causal structure or its
+low-weight negative rows. Whole-support equality cannot be inferred from
+the two subset predicates.
+
+Artifacts: circuits.json contains all four explicit lists and output wires;
+results.json contains every gate's two supports, exact refund membership,
+per-set counts, truth-vector hashes, and the disjoint minimum selections.
+The generator/evaluator is audit.py and uses no external package.

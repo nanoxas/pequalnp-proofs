@@ -1,0 +1,25 @@
+import took 1.37s
+'PEqualNP.Research.PrivateAnd.deficient_and_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 8.16ms
+	attribute application 0.0112ms
+	blocked (unaccounted) 172ms
+	congr simp thm 1.01ms
+	declTypeLinter 1.78ms
+	elaboration 16.9ms
+	fix level params 0.13ms
+	import 1.37s
+	initialization 29ms
+	instantiate metavars 0.555ms
+	interpretation 260ms
+	let-to-have transformation 0.0255ms
+	linting 6.71ms
+	module linting 0.0215ms
+	parsing 3.16ms
+	process pre-definitions 1.74ms
+	share common exprs 0.761ms
+	simp 3.36ms
+	tactic execution 90.9ms
+	tacticAnalysis 1.23ms
+	type checking 44.6ms
+	typeclass inference 17.9ms

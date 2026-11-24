@@ -1,0 +1,158 @@
+INDEPENDENT REVIEW OF THE CHECKED DEFICIENCY BUDGET
+
+Status: independent mathematical review, updated after the component proofs
+and final assembly passed Lean. QuadrupleExcess now proves the exact refund
+inequality under Eplus<=4k-3 for k>=3. Its dependencies include the checked
+OR compensation, directed separation, deficient packing, coupled cut and
+private-AND bound. Their adjacent verification records give the actual
+kernel and axiom-audit verdicts. The unrestricted L-meta-997 remains open.
+
+During the review, DeficientSeparation.lean was reported checked and frozen
+at SHA2561389c692f6c86397fa8e733d51aa27a61db9bab5b02e36b659083c0905f13322.
+That module exposes the strengthened witness needed below. The argument
+uses its directed-separation conclusion explicitly; the earlier
+deficient_popular_points cardinality-only interface is insufficient alone.
+
+1. DIRECTED SEPARATION
+
+Fix a deficient private class G_i and the full cut used to produce its
+missed-point set M_i. For p in M_i, let D_p consist of the cut's outsider
+terminals true at singleton p. The cut property says that every boundary
+wire true at singleton p is either the constant-true z or a member of D_p.
+
+Let X avoid S_i and have s<k points. Let A(X) be all outsiders true at X.
+Suppose |D_p minus A(X)|<k-s. Every remaining outsider w has a singleton
+positive outside S_i: otherwise its full singleton support would lie in
+S_i, placing it in G_i instead of W. Choose one such outside point per
+remaining outsider, and adjoin these points to X.
+
+The resulting input V avoids S_i and has cardinality at most
+
+  s+|D_p minus A(X)|<k.
+
+Every terminal in D_p is true on V, by monotonicity: it was already true
+on X or is activated by its chosen singleton witness. z remains true.
+Therefore all cut terminals that were true at singleton p are true on V.
+Cut transfer makes the output true on V, contradicting its negative-window
+specification. It follows that
+
+  |D_p minus A(X)|>=k-s.
+
+For X={q} with q outside S_i, write A_p={w in W:p in support(w)}.
+Since D_p is a subset of A_p, the result gives
+
+  |A_p minus A_q|>=k-1.
+
+Repeated chosen singleton witnesses only lower the input weight. No
+distinctness, global normalization, proper-target condition, or gate-shape
+assumption is needed in this argument. Constant-true outsiders are already
+active and cause no exception.
+
+DeficientSeparation meets the formalization requirement by exporting the
+same witness M_i with this singleton separation conclusion. The earlier
+statement that each p in M_i merely activates at least k outsiders does
+not logically imply the directed-difference inequality by itself. The
+general X formulation above remains explanatory; the checked assembly
+needs only the singleton case.
+
+2. THREE DEFICIENT CLASSES FORCE r>=3k-3
+
+Assume three distinct deficient classes i,j,l. For each one choose a point
+of its M-set outside the other two targets. Each other target removes at
+most one point, since M_i is contained in S_i and the target family is
+linear. The bound |M_i|>=k+1 supplies a surviving point for k>=2, and in
+particular for the paper's k>=3 range.
+
+These three points are pairwise distinct and each lies outside the other
+two targets. Directed separation therefore applies in both directions to
+each pair of their active-outsider sets A_1,A_2,A_3. Thus
+
+  |A_i symmetric_difference A_j|>=2(k-1)
+
+for all three pairs. Each outsider contributes either0 or2 to the sum of
+the three symmetric-difference cardinalities. Consequently
+
+  6(k-1)<=sum_{i<j}|A_i symmetric_difference A_j|<=2r,
+
+so r>=3k-3. Therefore r<=3k-4 permits at most two deficient classes.
+
+The threshold is sharp for this set-distance argument. Partition W into
+three disjoint blocks B12,B13,B23, each of size k-1, and define
+
+  A1=B12 union B13,
+  A2=B12 union B23,
+  A3=B13 union B23.
+
+Then r=3k-3, every directed difference has cardinality k-1, and every
+|A_i|=2k-2>=k for k>=2. Thus even the popular-point lower bounds coexist
+with equality at this boundary. This is a sharpness example for the
+abstract set inequalities; it is not asserted to come from a circuit.
+Excluding three classes at r=3k-3 needs additional circuit information.
+
+3. CHECKED DEFICIT ARITHMETIC
+
+Let D=sum_i max(|S_i|-1,0), G=union_i G_i, and let delta_i be the positive
+private deficit of class i. Internal disjointness of the G_i gives
+
+  D<=|G|+sum_deficient_i delta_i.
+
+The checked OrCompensation and PrivateAnd bounds give, for each deficient
+class,
+
+  delta_i<=|W_OR|-|G_i_AND|<=|W_OR|-k+1.
+
+Handle the case of no deficient classes first: D<=|G| already suffices.
+Otherwise delta_i>=1 forces |W_OR|>=k, so the displayed integer expression
+is nonnegative. With at most two deficient classes,
+
+  total deficit<=2(|W_OR|-k+1)
+               <=2r-2k+2
+               <=r+k-2
+               <=r+k,
+
+where the third inequality uses r<=3k-4. The checked private/minterm budget
+|G|+r+k<=N then gives D<=N. The weighted target sum F is at most D+m,
+including empty and singleton targets, so F<=N+m<=N+R+m.
+
+This calculation has two units of slack at r=3k-4. It does not by itself
+increase the allowed r, because the separate no-three-class argument stops
+at that boundary.
+
+4. FAILURE UNDER Eplus<=4k-3
+
+Write B=sum_i max(min(k,|S_i|)-1,0), H for the number of nontrivial heavy
+targets, and R for the exact refund count. The existing weighted comparison
+and forced-refund theorem give
+
+  F<=B+H+Eplus+m<=B+R+Eplus+m.
+
+A strict failure F>N+R+m therefore implies N<=B+Eplus-1. The private
+classes satisfy |G|>=B, while |G|+r+k<=N. Combining these inequalities gives
+
+  r<=Eplus-k-1.
+
+Under Eplus<=4k-3, this is r<=3k-4, precisely the range in Section2.
+This yields the sufficient criterion proved in QuadrupleExcess. The
+assembly uses the exact refund predicate and permits empty targets.
+
+5. REVIEW RESULT AND COMPLETED FORMALIZATION
+
+No mathematical gap was found in directed separation, the three-class
+distance argument, or the final arithmetic. The arithmetic
+qualification is the explicit no-deficient-class branch above, avoiding a
+negative expression 2(|W_OR|-k+1) when no deficit exists.
+
+The earlier review identified a common full/positive frontier as an extra
+proof obligation. CoupledCut now constructs those frontiers together and
+proves the required boundary inclusion and AND-only branching count.
+PrivateAnd uses this construction to prove the missing k-1 private-AND
+bound. An arbitrary frontier from the old existential cut API would still
+be insufficient by itself; the new coupled construction supplies the
+needed invariant.
+
+The exact current sources of all six modules in this chain have successful
+checks with no warnings and only the standard Lean axioms propext,
+Classical.choice, and Quot.sound in the recorded audits. The abstract
+sharpness example in Section2 remains a set-distance observation. The
+stronger global OR/AND dichotomy and unrestricted quota selection remain
+paper-level work, and this note makes no full L-meta-997 proof claim.

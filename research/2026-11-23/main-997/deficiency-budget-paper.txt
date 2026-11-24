@@ -1,0 +1,135 @@
+DEFICIENCY BUDGET: CHECKED FOLLOW-UP TO THE BOUNDARY ARGUMENT
+
+Status: the principal lemmas and their original-circuit assembly are now
+Lean kernel checked. QuadrupleExcess proves the exact L-meta-997 inequality
+under Eplus <= 4k-3 for k>=3. SmallWindow covers k<=2. The six new supporting
+modules are named below, with source hashes, successful checks and standard-
+axiom audits in their adjacent verification records. This note explains
+the checked argument. The full L-meta-997 statement remains open here.
+
+Setup
+-----
+Use the constant-true replacement D, z its constant-true wire, and k>=3.
+The target family S_i is linear: distinct sets intersect in at most one point.
+The output for S_i agrees with OR(S_i) on every input of weight less than k.
+G_i consists of valid non-z gates whose singleton support has size at least
+two and is contained in S_i. These classes are pairwise disjoint.
+W consists of valid non-z gates with singleton support of size at least two
+that is contained in no target. Let r=|W|, G=union_i G_i.
+Call i deficient when |G_i|<|S_i|-1 and put delta_i=|S_i|-1-|G_i|>0.
+The existing checked private/minterm budget is |G|+r+k <= size(D).
+
+1. Directed separation from a deficient cut
+-------------------------------------------
+The checked deficient_popular_points proof constructs a full G_i-cut B_i,
+a set M_i contained in S_i of at least k+1 missed points, and for each
+p in M_i a set D_p of outsider terminals in B_i true at singleton p.
+Every terminal of B_i that is true at p is either z or a member of D_p.
+
+Let X avoid S_i and have s<k true input points. Let A(X) be all outsiders
+already true at X. If |D_p minus A(X)|<k-s, choose one singleton witness
+outside S_i for each remaining outsider. Their union with X has weight
+less than k, avoids S_i, activates every member of D_p, and leaves z true.
+Monotone cut transfer would make the output true, contradicting the
+negative-window hypothesis. Consequently
+
+    |D_p minus A(X)| >= k-s.
+
+For a singleton q outside S_i, write A_p={w in W : p belongs to U(w)}.
+Since D_p is a subset of A_p, the consequence is
+
+    |A_p minus A_q| >= k-1.                         (separation)
+
+DeficientSeparation now exports the missed-point witness together with its
+popular-point and singleton directed-separation properties. The general
+X formulation above remains an explanatory strengthening; the assembly
+uses the checked singleton case.
+
+2. At most two deficient classes when r <= 3k-4
+-----------------------------------------------
+If three distinct classes were deficient, choose p_i in M_i outside the
+other two target sets. Such a choice exists: |M_i|>=k+1>=4, whereas each
+other target removes at most one point. Apply (separation) in both
+directions to every pair of these representatives. Each symmetric
+difference has at least 2(k-1) elements.
+
+For any three subsets A_1,A_2,A_3 of W, each element of W belongs to either
+zero or two of the three pairwise symmetric differences. Therefore
+
+    6(k-1) <= sum_{i<j}|A_i symmetric_difference A_j| <= 2r.
+
+This implies r>=3(k-1), incompatible with r<=3k-4. Thus there are at most
+two deficient classes in that range. DeficientPacking checks the finite-set
+distance estimate and this consequence using directed separation.
+
+3. OR-only compensation
+-----------------------
+Partition each G_i and W by AND/OR gate operation. At the zero input the
+output for a nonempty target is false. Apply the checked sample_or_count
+to positive samples consisting only of the singleton points in S_i.
+It gives at least |S_i|-1 OR gates that are false at zero and contain at
+least two of these sample points in their singleton support.
+
+Every such gate lies in G_i_OR or W_OR. Indeed, a support owned by a
+different target intersects S_i in at most one point; raw and invalid
+wires cannot contain two singleton samples; z is true at zero. Hence
+
+    |S_i|-1 <= |G_i_OR|+|W_OR|.
+
+In particular, for a deficient class,
+
+    delta_i <= |W_OR|-|G_i_AND|.
+
+OrCompensation checks both inequalities using the negative-input OR frontier
+for the actual circuit semantics.
+
+4. Checked private-AND lower bound
+----------------------------------
+PrivateAnd proves that a deficient class has |G_i_AND|>=k-1.
+
+Choose a missed point p from the full cut B_i in Section 1. Trace the
+singleton-p positive computation backwards through G_i. At an OR gate
+choose one child true at p. At an AND gate keep every child, all of which
+must be true at p. Stop at the boundary of G_i. The resulting positive
+frontier B'_i satisfies:
+
+    B'_i subset B_i;
+    every member of B'_i is true at singleton p;
+    |B'_i| <= 1+|G_i_AND|;
+    making B'_i true forces the target output true.
+
+Every frontier member other than z is then an outsider, with a singleton
+witness outside S_i. If |G_i_AND|<=k-2, choosing one such witness per
+terminal produces an accepting input of weight below k avoiding S_i,
+which is impossible.
+
+CoupledCut constructs both frontiers together and proves the simultaneous
+full-cut/positive-cut boundary inclusion. This resolves the extra invariant
+identified in the independent paper review. PrivateAnd applies that common
+frontier to the negative-window argument above. Both modules have successful
+current-source checks and standard-only axiom audits.
+
+5. Checked strengthened sufficient range
+----------------------------------------
+The preceding checked lemmas leave at most two deficient classes when
+r<=3k-4. With no deficient class, the private counts already suffice.
+Otherwise a positive deficit and Sections3-4 force |W_OR|>=k. Their total
+deficit is therefore at most
+
+    2(|W_OR|-k+1) <= 2r-2k+2 <= r+k-2 <= r+k.
+
+Together with the private/minterm budget this yields
+
+    sum_i (|S_i|-1) <= |G|+r+k <= size(D).
+
+The standard weighted-sum comparison then proves the original refund
+conclusion. Its failure under Eplus<=4k-3 would force r<=3k-4 by the same
+budget algebra used in TripleExcess. QuadrupleExcess checks this complete
+assembly and the sufficient criterion Eplus<=4k-3 for k>=3, including
+empty and singleton targets and the exact guarded refund predicate.
+The k<=2 cases are already covered by SmallWindow.
+
+The adjacent verification records provide the proof-checker verdicts.
+The stronger global OR/AND dichotomy and an unrestricted quota-selection
+argument remain paper-level research. This checkpoint proves sufficient
+cases and leaves the full L-meta-997 statement open.

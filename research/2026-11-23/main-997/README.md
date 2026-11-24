@@ -15,7 +15,7 @@ truncated to |Y|, and permits a precisely defined refund for certain gates.
 
 ## Kernel-checked components
 
-There are seventeen checked modules. Each has a sibling `.verification.json`
+There are twenty-six checked modules. Each has a sibling `.verification.json`
 and `.check.log`.
 The records give the exact source hash, successful exit code, and inline
 axiom audit. Audited declarations use only the standard Lean axioms
@@ -40,6 +40,15 @@ axiom audit. Audited declarations use only the standard Lean axioms
 | [OutsideActivation](formal/OutsideActivation.lean) | Recovers full private counts when fewer than k exceptional wide gates remain, using a direct cut and a small negative input. |
 | [DoubleExcess](formal/DoubleExcess.lean) | Proves the exact refund inequality when the total heavy excess after the forced-heavy refund is at most 2k. |
 | [FourWindow](formal/FourWindow.lean) | Combines the packing and activation results to prove the exact posted inequality whenever n≤4|Y|+1. |
+| [BoundaryActivation](formal/BoundaryActivation.lean) | Builds target-avoiding activation inputs, proves a full private count when such an input is negative, and bounds a private deficit by the exceptional gates. |
+| [BoundaryRigidity](formal/BoundaryRigidity.lean) | Finds at least k+1 popular points in a deficient class and pays all private deficits when there are at most 2k−2 exceptional gates. |
+| [TripleExcess](formal/TripleExcess.lean) | Proves the exact refund inequality when the heavy excess is at most 3k−1, for k≥2. |
+| [OrCompensation](formal/OrCompensation.lean) | Pays each private deficit using exceptional OR gates after subtracting the class's private AND gates. |
+| [DeficientSeparation](formal/DeficientSeparation.lean) | Produces missed points whose active exceptional-gate sets have directed difference at least k−1 against every point outside the target. |
+| [DeficientPacking](formal/DeficientPacking.lean) | Shows that at most two private classes are deficient when k≥3 and there are at most 3k−4 exceptional gates. |
+| [CoupledCut](formal/CoupledCut.lean) | Constructs a full cut and a positive subfrontier together, with the required containment and an AND-only branching count. |
+| [PrivateAnd](formal/PrivateAnd.lean) | Proves that every deficient private class contains at least k−1 AND gates. |
+| [QuadrupleExcess](formal/QuadrupleExcess.lean) | Combines the deficiency bounds and proves the exact refund inequality when the heavy excess is at most 4k−3, for k≥3. |
 
 The files are research modules with local imports. They are not an exact
 standalone submission for the unrestricted posted statement. Earlier
@@ -56,14 +65,14 @@ where k=|Y|≥2 and N is the gate count. The exact refund inequality follows
 when
 
 \[
-\sum_{i:S_i\cap Y=\varnothing}\max(|S_i|-k-1,0)\le 2k.
+E_{+}:=\sum_{i:S_i\cap Y=\varnothing}\max(|S_i|-k-1,0)\le 4k-3
 \]
 
-This is the checked `DoubleExcess` criterion; the earlier `RefundCount`
-criterion with right side k remains a direct consequence. The all-light
-case and the case in which every heavy set has size at most
-k+1 are consequences. Empty and singleton targets are allowed in the checked
-statements. `SmallWindow` also covers k=0 and k=1.
+for k≥3. This is the checked `QuadrupleExcess` criterion. `SmallWindow`
+handles every instance with k≤2. The earlier `DoubleExcess` and
+`TripleExcess` bounds remain available as intermediate results. The all-light
+case and the case in which every heavy set has size at most k+1 are
+consequences. Empty and singleton targets are allowed throughout.
 
 The [strengthened clause argument](crossing-pair-independent-audit.txt) now
 has checked components in `ClauseMinterm`, `OutsideIncidence`, and `PairClause`.
@@ -77,6 +86,15 @@ k inputs outside any chosen target. The cut lemma would then transfer a
 positive target output to a negative input unless its private class already
 has the full |S_i|−1 gates. `OutsideActivation` proves this argument directly,
 including empty and singleton targets, constants, and unavailable wires.
+
+The latest proof extends this approach to r≤3k−4. Directed separation of
+active exceptional-gate sets permits at most two deficient private classes.
+Each deficient class has at least k−1 private AND gates, while its missing
+count is bounded by the exceptional OR gates minus those private AND gates.
+The combined budget pays both deficits. The
+[deficiency-budget explanation](deficiency-budget-paper.txt) and
+[independent review](deficiency-budget-independent.txt) record this argument
+and the precise scope of its checked components.
 
 ## The thirteen-input audit
 
@@ -112,18 +130,34 @@ e counts empty targets, and Q is the sum of max(min(k,|S_i|)−2,0) over light
 targets, it proves the sufficient criterion Q≤H+k+e+2 on paper. Its complete
 gate classification has not been checked as a Lean theorem.
 
-The [exceptional-support note](exceptional-support-paper.txt) distinguishes
-the newly checked r<k cut argument and 2k excess criterion from the remaining
-paper arguments. Section 6 develops the boundary r=k and a proposed 2k+1
-criterion using a projected-support count. That boundary classification is
-marked **PAPER_REVIEWED** and has not been kernel-checked. Its supplementary
-normalization and transversal refinements are also paper-level.
+The [exceptional-support note](exceptional-support-paper.txt) records the
+checked sequence through r≤3k−4 and Eplus≤4k−3 in Section 8. The historical
+projected-support classification in Section 6 remains **PAPER_REVIEWED**;
+its numerical range is covered by the later checked results. Supplementary
+normalization, transversal refinements, and the stronger global OR/AND
+dichotomy remain paper arguments.
 
 The unresolved general step controls overlap between light and heavy gate
 charges when the small-input activation argument has too many independent
 outside supports. The checked crossing-pair theorem and the reviewed
 small-surplus classification settle additional cases, but the current
 results do not charge every remaining overlap to the exact refund predicate.
+
+## Why raw overlap charging fails
+
+The [overlap audit](overlap-audit/selection-obstruction.txt) gives a seven-input
+circuit whose partial light and heavy charge classes share gates that do not
+satisfy a whole-target refund. Repeated live aliases make the raw overlap
+larger than the refund count. The [reproducer](overlap-audit/audit.py) checks
+all 128 inputs of each of four circuits, the exact guarded refund predicate,
+and every per-set count. The original L-meta-997 inequality holds in all four.
+
+These examples admit disjoint selections of the minimum required quotas.
+They show why a proof must control selected charges or account for unused
+gate capacity. They do not refute a suitable minimum-quota selection lemma.
+The [results](overlap-audit/results.json) and [manifest](overlap-audit/manifest.json)
+preserve the exact data and hashes; this is an exhaustive finite audit, with
+no SAT or Lean claim for these particular circuits.
 
 ## Exact statement and parsing check
 

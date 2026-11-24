@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "source": "DeficientPacking.lean",
+  "source_sha256": "1c519f8ee3cb309731010c0f3838752334c5c395ec0ddecff4f1c378b8a98082",
+  "source_bytes": 5701,
+  "object_sha256": "60dc04f41fdb32366cffe69c3d68a647abed71a695e0cac317e8ef284c5b40a9",
+  "started_utc": "2026-11-24T03:35:37.516748+00:00",
+  "completed_utc": "2026-11-24T03:35:39.990929+00:00",
+  "elapsed_seconds": 2.474,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.DeficientPacking.triple_directed_difference_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.DeficientPacking.deficient_count_le_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "DeficientPacking.check.log",
+  "log_sha256": "3fee06bb413bbcecd820356084b4c9a6c8050be555f94dc0a7a6e88c03d5498b",
+  "dependencies": [
+    {
+      "module": "DeficientSeparation",
+      "source_sha256": "1389c692f6c86397fa8e733d51aa27a61db9bab5b02e36b659083c0905f13322",
+      "object_sha256": "7794258b0246c7f3919e4410ab8b0bc830eeb3909ff7856208b358972a6c2d2a"
+    }
+  ],
+  "scope": "At most two private support classes are deficient when k>=3 and outsideWide.card<=3*k-4. Supporting lemma; full997 remains open."
+}
