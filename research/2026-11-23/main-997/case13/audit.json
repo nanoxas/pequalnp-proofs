@@ -1,0 +1,408 @@
+{
+  "status": "PASS",
+  "n": 13,
+  "m": 10,
+  "k": 3,
+  "target_vertices": [
+    [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    [
+      0,
+      3,
+      11
+    ],
+    [
+      1,
+      4,
+      11
+    ],
+    [
+      2,
+      5,
+      11
+    ],
+    [
+      0,
+      6,
+      12
+    ],
+    [
+      1,
+      7,
+      12
+    ],
+    [
+      2,
+      8,
+      12
+    ],
+    [
+      0,
+      1,
+      9
+    ],
+    [
+      0,
+      2,
+      10
+    ],
+    [
+      1,
+      2,
+      3
+    ]
+  ],
+  "Y": [
+    0,
+    1,
+    2
+  ],
+  "all_pair_intersections": [
+    {
+      "i": 0,
+      "j": 1,
+      "intersection": [
+        3
+      ]
+    },
+    {
+      "i": 0,
+      "j": 2,
+      "intersection": [
+        4
+      ]
+    },
+    {
+      "i": 0,
+      "j": 3,
+      "intersection": [
+        5
+      ]
+    },
+    {
+      "i": 0,
+      "j": 4,
+      "intersection": [
+        6
+      ]
+    },
+    {
+      "i": 0,
+      "j": 5,
+      "intersection": [
+        7
+      ]
+    },
+    {
+      "i": 0,
+      "j": 6,
+      "intersection": [
+        8
+      ]
+    },
+    {
+      "i": 0,
+      "j": 7,
+      "intersection": [
+        9
+      ]
+    },
+    {
+      "i": 0,
+      "j": 8,
+      "intersection": [
+        10
+      ]
+    },
+    {
+      "i": 0,
+      "j": 9,
+      "intersection": [
+        3
+      ]
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "intersection": [
+        11
+      ]
+    },
+    {
+      "i": 1,
+      "j": 3,
+      "intersection": [
+        11
+      ]
+    },
+    {
+      "i": 1,
+      "j": 4,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 1,
+      "j": 5,
+      "intersection": []
+    },
+    {
+      "i": 1,
+      "j": 6,
+      "intersection": []
+    },
+    {
+      "i": 1,
+      "j": 7,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 1,
+      "j": 8,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 1,
+      "j": 9,
+      "intersection": [
+        3
+      ]
+    },
+    {
+      "i": 2,
+      "j": 3,
+      "intersection": [
+        11
+      ]
+    },
+    {
+      "i": 2,
+      "j": 4,
+      "intersection": []
+    },
+    {
+      "i": 2,
+      "j": 5,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 2,
+      "j": 6,
+      "intersection": []
+    },
+    {
+      "i": 2,
+      "j": 7,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 2,
+      "j": 8,
+      "intersection": []
+    },
+    {
+      "i": 2,
+      "j": 9,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 3,
+      "j": 4,
+      "intersection": []
+    },
+    {
+      "i": 3,
+      "j": 5,
+      "intersection": []
+    },
+    {
+      "i": 3,
+      "j": 6,
+      "intersection": [
+        2
+      ]
+    },
+    {
+      "i": 3,
+      "j": 7,
+      "intersection": []
+    },
+    {
+      "i": 3,
+      "j": 8,
+      "intersection": [
+        2
+      ]
+    },
+    {
+      "i": 3,
+      "j": 9,
+      "intersection": [
+        2
+      ]
+    },
+    {
+      "i": 4,
+      "j": 5,
+      "intersection": [
+        12
+      ]
+    },
+    {
+      "i": 4,
+      "j": 6,
+      "intersection": [
+        12
+      ]
+    },
+    {
+      "i": 4,
+      "j": 7,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 4,
+      "j": 8,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 4,
+      "j": 9,
+      "intersection": []
+    },
+    {
+      "i": 5,
+      "j": 6,
+      "intersection": [
+        12
+      ]
+    },
+    {
+      "i": 5,
+      "j": 7,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 5,
+      "j": 8,
+      "intersection": []
+    },
+    {
+      "i": 5,
+      "j": 9,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 6,
+      "j": 7,
+      "intersection": []
+    },
+    {
+      "i": 6,
+      "j": 8,
+      "intersection": [
+        2
+      ]
+    },
+    {
+      "i": 6,
+      "j": 9,
+      "intersection": [
+        2
+      ]
+    },
+    {
+      "i": 7,
+      "j": 8,
+      "intersection": [
+        0
+      ]
+    },
+    {
+      "i": 7,
+      "j": 9,
+      "intersection": [
+        1
+      ]
+    },
+    {
+      "i": 8,
+      "j": 9,
+      "intersection": [
+        2
+      ]
+    }
+  ],
+  "all_input_rows": 8192,
+  "output_values_checked": 81920,
+  "target_true_row_counts": [
+    8160,
+    7168,
+    7168,
+    7168,
+    7168,
+    7168,
+    7168,
+    7168,
+    7168,
+    7168
+  ],
+  "target_vector_sha256": [
+    "a3d8f2f965d18d68f904039682715a5a79379ab12e0c540213e71a4ff59b67c5",
+    "a85e39a4d8f85918ee6326039e59ee2748f9f183d67439adb72723a5adb34fb5",
+    "3b37b232f63c39ddcab979aeda6d99df7158b72c8f3605588fc70660229eacdd",
+    "b03cb198e8e0a76c2b36c1063097e0fa9b638c129a0631dcea74d5a1f73e1ae2",
+    "5d59baa618a8001ca1ecb0b971a946e223f2237e77eea46a2a8e5f453fb91851",
+    "8a56483a312b4ae7faffd19767e385254cf3b621f2f8c093dce130bd7b0c0185",
+    "ef77ddda92f2fe6b60952364c501ded406077a4791066ac3d63d162084ebc1a4",
+    "4e4426da25a9896d4782b6fb99bd506430f8153b6dddeadc9ab7392628fafa66",
+    "77dbc0fbc622fa7ce93895dd35a2b754c60b039b511230cdbdf6a06be76f1f86",
+    "3795906a0bbfea375d262cb2b65b2bf484af45e602f810249a2fcf5fabca8ea1"
+  ],
+  "low_weight_rows_checked": 92,
+  "F": 35,
+  "B": 20,
+  "H": 1,
+  "light_minterm_lower_bound": 23,
+  "forced_refund_lower_bound": 1,
+  "necessary_violation_gate_count": 23,
+  "necessary_violation_refund_count": 1,
+  "heavy_excess_after_forced_refund": 4,
+  "heavy_minterm_baseline": 19,
+  "surplus_if_23_gates": 4,
+  "baseline_size": 28,
+  "baseline_refunded_gates": [
+    9
+  ],
+  "baseline_rhs": 39,
+  "existing_search_scalar_and_vectors_agree": true,
+  "solver_started": false,
+  "scope": "Full family/baseline data audit; the equality-partition exclusion is a separate paper proof."
+}

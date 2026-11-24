@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "source": "HeavyMinterm.lean",
+  "source_sha256": "abe6ad8a1b9660dae73ea717ffc4f7d697918ea8e5227b8a6d8f2ab69abc5ead",
+  "source_bytes": 16061,
+  "object_sha256": "343c89142c33768b241fab447271d12683fc2ef1dd8ffd7ffbba2cb89e975309",
+  "started_utc": "2026-11-24T02:21:23.861014+00:00",
+  "completed_utc": "2026-11-24T02:21:26.734209+00:00",
+  "elapsed_seconds": 2.873,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.HeavyMinterm.heavy_light_minterm_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyMinterm.one_not_heavy_minterm_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyMinterm.weighted_sum_decomposition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyMinterm.one_not_refund_bound_of_light_excess": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "HeavyMinterm.check.log",
+  "log_sha256": "212866d0067c9f7c16c608e77634805312d23d6da8bdbe79333241566e63ad8a",
+  "dependencies": [
+    {
+      "module": "SmallWindow",
+      "source_sha256": "8f354a48080a33b18f233d75b2b30c1547f801ed73612c2a0118f7217e810075",
+      "object_sha256": "b3c59dd02c007b5d3296a7c7da1a252c54b403320919940db5ff697853d9613b"
+    }
+  ],
+  "scope": "Original-circuit complementary count: sum over heavy i of (|S_i|-1) + number of light targets of size>=2 + |Y| <= C.size, under |Y|>=2. The exact weighted sum decomposes as B_heavy+L_nontrivial+Q_light+P, yielding the 997 sufficient criterion Q_light<=R+|Y|+(m-P). The unrestricted 997 inequality remains open.",
+  "math_audit": [
+    "Heavy OR charges are pairwise disjoint and false on Y in the constant-false NOT replacement.",
+    "Large light output gates are distinct valid gates and true on Y, so they avoid every heavy charge.",
+    "Minterm branches are empty-singleton-support ANDs true on Y at or before the valid NOT input u, and u lies before the NOT gate z.",
+    "A large light output cannot be a prefix branch: if it were before z, same-index prefix preservation would identify its replacement singleton support with the original target of size at least two.",
+    "The replacement z has empty sample support, so no heavy charge uses it. In the original circuit z is true at zero, so no target OR output uses it. Prefix branches avoid it by order.",
+    "The minterm count therefore adds |Y|-1 branches and the unused NOT gate to the heavy/light union.",
+    "The finite sum decomposition and m-P slack preserve arbitrary empty and singleton targets, including repeated singleton targets.",
+    "The exact same refundGates definition is used, with the checked equality to the posted predicate inherited from RefundCount."
+  ],
+  "recorded_utc": "2026-11-24T02:22:39.654105+00:00",
+  "reused_source": {
+    "module": "SmallWindow",
+    "attribution": "The heavy union and light output counting proof is adapted from the checked SmallWindow module; its OR-count and replacement dependencies trace to attributed accepted986 helpers."
+  },
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "b6f73ea7e76eb62d922122be60e10027adaec9c23d848f923738bc859c579d2c",
+    "exit_code": 1,
+    "elapsed_seconds": 10.307,
+    "log_sha256": "038245b9f753e618e7b028a366d0e3c1b99bc24d13d8d63fc73b2a156c68a2b5",
+    "cause": "Implicit Finset subset arguments and Finset.sum_congr binder names; corrected before final verification."
+  }
+}

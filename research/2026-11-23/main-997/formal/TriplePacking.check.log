@@ -1,0 +1,27 @@
+import took 1.35s
+'PEqualNP.Research.TriplePacking.triple_card_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.TriplePacking.linear_excess_bound_twice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.TriplePacking.heavy_excess_bound_twice' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 11.4ms
+	attribute application 0.0247ms
+	blocked (unaccounted) 306ms
+	congr simp thm 1.3ms
+	declTypeLinter 2.46ms
+	elaboration 22.3ms
+	fix level params 0.347ms
+	import 1.35s
+	initialization 40.5ms
+	instantiate metavars 0.766ms
+	interpretation 172ms
+	let-to-have transformation 0.0484ms
+	linting 8.22ms
+	module linting 0.0224ms
+	parsing 3.67ms
+	process pre-definitions 3.03ms
+	share common exprs 1.05ms
+	simp 47.7ms
+	tactic execution 80.8ms
+	tacticAnalysis 2.01ms
+	type checking 97.1ms
+	typeclass inference 55.6ms

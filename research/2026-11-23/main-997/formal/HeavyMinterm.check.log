@@ -1,0 +1,31 @@
+import took 1.36s
+tactic execution of Lean.Parser.Tactic.contradiction took 106ms
+'PEqualNP.Research.HeavyMinterm.heavy_light_minterm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyMinterm.one_not_heavy_minterm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyMinterm.weighted_sum_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyMinterm.one_not_refund_bound_of_light_excess' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 20.8ms
+	attribute application 0.0512ms
+	blocked (unaccounted) 1.03s
+	congr simp thm 4.36ms
+	declTypeLinter 3.87ms
+	elaboration 69.6ms
+	fix level params 0.563ms
+	import 1.36s
+	initialization 31.8ms
+	instantiate metavars 2.31ms
+	interpretation 229ms
+	let-to-have transformation 0.192ms
+	linting 35.1ms
+	module linting 0.0284ms
+	parsing 11.9ms
+	process pre-definitions 7.01ms
+	share common exprs 3.82ms
+	simp 174ms
+	tactic execution 389ms
+	tacticAnalysis 3.68ms
+	type checking 129ms
+	typeclass inference 210ms

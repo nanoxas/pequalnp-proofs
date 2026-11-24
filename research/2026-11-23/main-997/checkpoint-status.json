@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-11-24T02:22:37.744427+00:00",
+  "snapshot_utc": "2026-11-24T02:53:49.811074+00:00",
   "full_statement_proved": false,
   "upstream_submission_made": false,
   "formal_modules": {
@@ -258,16 +258,126 @@
           "Quot.sound"
         ]
       }
+    },
+    "HeavyMinterm": {
+      "status": "PASS",
+      "source_sha256": "abe6ad8a1b9660dae73ea717ffc4f7d697918ea8e5227b8a6d8f2ab69abc5ead",
+      "log_sha256": "212866d0067c9f7c16c608e77634805312d23d6da8bdbe79333241566e63ad8a",
+      "elapsed_seconds": 2.873,
+      "record": "HeavyMinterm.verification.json",
+      "axioms": {
+        "PEqualNP.Research.HeavyMinterm.heavy_light_minterm_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyMinterm.one_not_heavy_minterm_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyMinterm.weighted_sum_decomposition": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyMinterm.one_not_refund_bound_of_light_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "TriplePacking": {
+      "status": "PASS",
+      "source_sha256": "070587fe00b7b24c673436a7ab27bc071d172f01b2dc7a6ad2bdd7377b4f82e7",
+      "log_sha256": "36c4a106fc06bc561d8158ba44bba23d2468ab29b28745e794ca8f0879d72faa",
+      "elapsed_seconds": 2.02,
+      "record": "TriplePacking.verification.json",
+      "axioms": {
+        "PEqualNP.Research.TriplePacking.triple_card_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.TriplePacking.linear_excess_bound_twice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.TriplePacking.heavy_excess_bound_twice": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "OutsideActivation": {
+      "status": "PASS",
+      "source_sha256": "8a637646fe6fd2246deff795014b993c462aa5d1e23e482ef1c9e5ff2fd6f52c",
+      "log_sha256": "0b95c93aeb296c77c4fd12e1dfd6b41dd57e81e8d380d88b0e2b64f59e34aaf0",
+      "elapsed_seconds": 2.321,
+      "record": "OutsideActivation.verification.json",
+      "axioms": {
+        "PEqualNP.Research.OutsideActivation.outside_activation_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OutsideActivation.outside_activation_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OutsideActivation.private_outside_minterm_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "DoubleExcess": {
+      "status": "PASS",
+      "source_sha256": "93fb17c3f1a30ff493cf519ae0d784b64538a2dfd44dacb9264555bef86bfe0d",
+      "log_sha256": "405761fa2a4633c054964773ad11cdd17f20579412cc4f12c59cf8ce991fc31e",
+      "elapsed_seconds": 2.121,
+      "record": "DoubleExcess.verification.json",
+      "axioms": {
+        "PEqualNP.Research.DoubleExcess.activation_refund_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.DoubleExcess.one_not_refund_bound_double_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "FourWindow": {
+      "status": "PASS",
+      "source_sha256": "94bbedc6c1b7630df68c38f8082a35292e2f5da51437dd32216b822c2577c8b9",
+      "log_sha256": "95502f25f0ae567d64e9e1d4b7b3d7a47232580a2d8ce0fa8b98ba413ddfe5ac",
+      "elapsed_seconds": 1.671,
+      "record": "FourWindow.verification.json",
+      "axioms": {
+        "PEqualNP.Research.FourWindow.one_not_refund_bound_four_window": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
     }
   },
-  "formal_module_count": 12,
+  "formal_module_count": 17,
   "paper_saturation_status": "Q<=H+k+e+2 for arbitrary k>=2 independently reviewed; complete classification not kernel-checked.",
   "sat_status": "INTERRUPTED_UNKNOWN",
   "original_sat_child_cleanup": "reaping_unconfirmed",
   "refund_semantics": "Exact posted guarded biconditional; source encoder unchanged.",
   "helper_correction": "A failed helper dropped grouping; corrected RefundCount includes a checked equality to the verbatim posted expression.",
   "source_bytes_unchanged": [
-    "all twelve current Lean modules",
+    "all seventeen current Lean modules",
     "previous SAT encoder, geometry generator, and runner sources"
   ],
   "public_transform": "Local workspace paths and operational process/session identifiers removed from records and logs; proof source bytes are unchanged.",
@@ -278,6 +388,9 @@
     "solver binaries",
     "unverified current Lean drafts"
   ],
-  "checked_followup": "Strengthened filtered mandatory-clause count, outside incidence, crossing-pair full count, and n<=3|Y|+1 heavy packing.",
-  "original_eight_sources_unchanged": true
+  "checked_followup": "Complementary heavy/minterm bound, triple packing, direct outsider activation, double-excess criterion, and exact997 for n<=4|Y|+1.",
+  "original_eight_sources_unchanged": true,
+  "original_twelve_sources_unchanged": true,
+  "exceptional_support_status": "The r<k direct-cut and Eplus<=2k criterion are checked; the r=k / 2k+1 extension is PAPER_REVIEWED only.",
+  "case13_status": "Python family/baseline/support audits plus independently reviewed paper exclusion; no SAT or target-specific Lean instance. The data also meet the checked DoubleExcess and FourWindow hypotheses."
 }

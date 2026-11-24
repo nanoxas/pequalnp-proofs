@@ -15,7 +15,7 @@ truncated to |Y|, and permits a precisely defined refund for certain gates.
 
 ## Kernel-checked components
 
-There are twelve checked modules. Each has a sibling `.verification.json`
+There are seventeen checked modules. Each has a sibling `.verification.json`
 and `.check.log`.
 The records give the exact source hash, successful exit code, and inline
 axiom audit. Audited declarations use only the standard Lean axioms
@@ -35,6 +35,11 @@ axiom audit. Audited declarations use only the standard Lean axioms
 | [OutsideIncidence](formal/OutsideIncidence.lean) | Bounds the nontrivial target incidence of a point outside Y by the exact refund count plus |Y|. |
 | [PairClause](formal/PairClause.lean) | Proves the stronger unweighted target-size inequality when the NOT input has a mandatory pair clause with one point in Y and one outside. |
 | [HeavyPacking](formal/HeavyPacking.lean) | Uses ordered-pair packing to prove the exact posted inequality whenever n≤3|Y|+1, including empty and singleton targets. |
+| [HeavyMinterm](formal/HeavyMinterm.lean) | Combines heavy OR charges, nontrivial light output gates, and the minterm budget; derives a complementary sufficient criterion using the exact refund count. |
+| [TriplePacking](formal/TriplePacking.lean) | Bounds heavy excess by 2k when the outside universe has size at most 3k+1, using a finite linear-family packing argument. |
+| [OutsideActivation](formal/OutsideActivation.lean) | Recovers full private counts when fewer than k exceptional wide gates remain, using a direct cut and a small negative input. |
+| [DoubleExcess](formal/DoubleExcess.lean) | Proves the exact refund inequality when the total heavy excess after the forced-heavy refund is at most 2k. |
+| [FourWindow](formal/FourWindow.lean) | Combines the packing and activation results to prove the exact posted inequality whenever n≤4|Y|+1. |
 
 The files are research modules with local imports. They are not an exact
 standalone submission for the unrestricted posted statement. Earlier
@@ -51,10 +56,12 @@ where k=|Y|≥2 and N is the gate count. The exact refund inequality follows
 when
 
 \[
-\sum_{i:S_i\cap Y=\varnothing}\max(|S_i|-k-1,0)\le k.
+\sum_{i:S_i\cap Y=\varnothing}\max(|S_i|-k-1,0)\le 2k.
 \]
 
-The all-light case and the case in which every heavy set has size at most
+This is the checked `DoubleExcess` criterion; the earlier `RefundCount`
+criterion with right side k remains a direct consequence. The all-light
+case and the case in which every heavy set has size at most
 k+1 are consequences. Empty and singleton targets are allowed in the checked
 statements. `SmallWindow` also covers k=0 and k=1.
 
@@ -62,7 +69,31 @@ The [strengthened clause argument](crossing-pair-independent-audit.txt) now
 has checked components in `ClauseMinterm`, `OutsideIncidence`, and `PairClause`.
 Its pair clause is a semantic condition on the NOT input; the pair does not
 have to be a target. A separate checked packing argument proves the original
-inequality for every instance with **n≤3|Y|+1**.
+inequality for every instance with **n≤4|Y|+1** through `FourWindow`.
+
+The new activation argument counts wide gates outside every private target
+class. If their number r is less than k, one can activate them on fewer than
+k inputs outside any chosen target. The cut lemma would then transfer a
+positive target output to a negative input unless its private class already
+has the full |S_i|−1 gates. `OutsideActivation` proves this argument directly,
+including empty and singleton targets, constants, and unavailable wires.
+
+## The thirteen-input audit
+
+The [case data](case13/case.json) have one heavy eight-point target, nine
+light triples, and Y={0,1,2}. The [data and baseline audit](case13/audit.json)
+checks all 45 target-pair intersections and all 8,192 input rows of a
+28-gate baseline. Its exact weighted total is 35; the earlier checked bounds
+leave only the potential violation size 23 with refund count 1.
+
+An [independent support audit](case13/independent-audit.json) verifies the
+family arithmetic and a finite superset of the possible support transitions.
+The accompanying [exclusion proof](case13/exclusion-independent.txt) shows
+that equality in the light/minterm bound cannot build the eight-point output
+from its two private gates. This is a reviewed paper exclusion with a Python
+data audit; no target SAT query or target-specific Lean instantiation was run.
+The case now also falls within both checked general sufficient ranges:
+its heavy excess is 4≤2k=6 and n=13≤4k+1=13.
 
 ## Paper arguments and the remaining step
 
@@ -81,13 +112,18 @@ e counts empty targets, and Q is the sum of max(min(k,|S_i|)−2,0) over light
 targets, it proves the sufficient criterion Q≤H+k+e+2 on paper. Its complete
 gate classification has not been checked as a Lean theorem.
 
+The [exceptional-support note](exceptional-support-paper.txt) distinguishes
+the newly checked r<k cut argument and 2k excess criterion from the remaining
+paper arguments. Section 6 develops the boundary r=k and a proposed 2k+1
+criterion using a projected-support count. That boundary classification is
+marked **PAPER_REVIEWED** and has not been kernel-checked. Its supplementary
+normalization and transversal refinements are also paper-level.
+
 The unresolved general step controls overlap between light and heavy gate
-charges after the NOT. The checked crossing-pair theorem handles the earlier
-pair-output obstruction to a mandatory singleton. The reviewed classification
-also handles one extra gate globally, retaining false-at-Y OR alternatives.
-Larger surplus can support genuine alternative terms whose mandatory clauses
-have more than two variables; the current arguments do not bound all such
-clause costs or charge all overlap to the exact refund predicate.
+charges when the small-input activation argument has too many independent
+outside supports. The checked crossing-pair theorem and the reviewed
+small-surplus classification settle additional cases, but the current
+results do not charge every remaining overlap to the exact refund predicate.
 
 ## Exact statement and parsing check
 

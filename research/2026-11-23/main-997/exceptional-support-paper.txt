@@ -1,0 +1,297 @@
+PRIVATE SUPPORT CLASSES AND EXCEPTIONAL WIDE GATES
+
+Status: checked core with supplementary paper analysis. The direct-cut r<k
+extension in Section3a is now Lean kernel checked in OutsideActivation.lean;
+the Eplus<=2k consequence in Section4 is checked in DoubleExcess.lean. Their
+recorded audits use only propext, Classical.choice, and Quot.sound. Prepare
+supplied the direct-cut proof; root and this worker independently audited it.
+The underlying light and minterm counts are also kernel checked. The
+normalization route, transversal refinement, and r=k boundary in Section6
+remain paper arguments; no SAT certificate is asserted.
+
+
+1. SETUP
+
+Assume the original997 hypotheses and k=|Y|>=2. Let C1 replace the unique NOT
+wire z by constant true. It is monotone, has the same gate count N, and every
+output computes OR(S_i) on every input of weight less than k. Let U(w) denote
+its singleton support. The output supports are exactly S_i.
+
+The elementary support-parent argument in Section2 assumes every target is
+proper. This holds automatically in any remaining
+case with an oversized heavy target: that target is disjoint from nonempty Y
+and has at least3 points; a universal target would intersect it in more than1.
+The preferred cut proof in Section3a avoids properness entirely.
+
+Put c_i=min(k,|S_i|)-1, B=sum_i c_i, D=sum_i(|S_i|-1), all with natural
+subtraction. Define the disjoint private classes
+
+  Gi={gate w!=z : |U(w)|>=2 and U(w) subset S_i}.
+
+An exceptional wide gate is a gate w!=z of support size at least2 that belongs
+to none of the Gi. Denote their number by r. A selected set A of k-1 prefix
+ANDs has empty singleton support, so is disjoint from every Gi, the r
+exceptional gates, and z. Therefore
+
+  N >= sum_i|Gi| + r + k >= B+r+k.                 (1)
+
+
+2. THE ONE-OUTSIDER SUPPORT LEMMA
+
+If r<=1, every wide AND in Gi has an earlier Gi child. All effective input
+supports must contain the AND's at least two output positives. A private
+child from Gj therefore forces j=i by linearity. A raw or empty-support
+child is impossible. If no child is private, the only wide possibilities
+are z and the unique outsider b. Their intersection is either universal
+or U(b). Universality is incompatible with proper S_i; U(b) subset S_i
+would classify b into Gi. This is a contradiction.
+
+At an OR in Gi, every wide child is automatically Gi, since its support is
+contained in the parent's proper S_i support. Selecting a same-class child
+at each AND and both children at each OR yields a unary/binary support-cover
+DAG whose singleton stops cover S_i. It needs at least |S_i|-1 OR nodes.
+Hence |Gi|>=|S_i|-1, and summing with A and z gives
+
+  N>=D+k.                                         (2)
+
+This settles997 outright because its left side is at most D+P, where P is
+the number of nonempty targets and P<=m.
+
+
+3. SUPPLEMENTARY NORMALIZATION ARGUMENT: r<k SUFFICES
+
+The pure set claim in Section2 can fail with two outsiders: their intersection
+may become a private wide support. The actual low-weight negative rows give
+an additional constraint that is absent from that set abstraction.
+
+First normalize every gate with singleton support of size zero or one.
+Replace an empty-support gate by constant false; replace a singleton-support
+gate with support{p} by raw input x_p. Such replacements decrease its complete
+monotone function and preserve its values on every singleton input. Perform
+the replacements in topological order. The singleton values of every later
+wire are therefore unchanged, so all support classes and outsider supports
+are unchanged on retained gates.
+
+Every output remains correct on inputs of weight<k: an originally negative
+input stays negative because all functions decrease, and a positive input
+contains some target singleton whose output remains true. Monotonicity then
+preserves that positive input. The replacement is only a proof construction;
+no gate-count increase is needed, since constants and aliases can be wired
+away. z is constant true in C1 and is treated as the constant1 source.
+
+Fix a proper target S_i of size at least2. After normalization, each Gi gate
+can use only these types of effective inputs:
+
+  - earlier Gi gates;
+  - raw singleton inputs in S_i or constant0;
+  - z=1;
+  - exceptional wide gates.
+
+Indeed a foreign private Gj input is impossible at an AND because all output
+positives would lie in S_i intersect S_j, and impossible at an OR because
+the foreign wide child support would be contained in S_i. An OR cannot read
+an outsider or z, since its own proper S_i support would contain that child's
+wide support. An AND cannot read a narrow input while retaining width>=2.
+
+For each exceptional wide gate b choose p_b outside S_i with p_b in U(b).
+Such a point exists: otherwise U(b) subset S_i would put b in Gi. Let
+
+  X_i={p_b : b exceptional}.
+
+Then X_i avoids S_i and has size at most r. In the normalized monotone circuit,
+every exceptional b is true on X_i, because it remains true on singleton p_b.
+If r<k, low-weight correctness forces the i-th output to be false on X_i.
+
+Now keep only the Gi gates and their dependencies within Gi; replace every
+exceptional input, and z, by constant1. Keep raw S_i inputs and constant0.
+This is a monotone subcircuit with at most |Gi| gates. On raw S_i=0 it exactly
+reproduces the normalized circuit's Gi values on X_i, because all exceptional
+inputs there are1. Thus its output is false at zero. On every singleton
+p in S_i, forcing exceptional inputs to1 can only increase the original
+normalized output, which was already true. The subcircuit is therefore
+exactly OR(S_i) on every assignment: monotonicity gives every nonzero input,
+and the zero input is false.
+
+A binary-gate circuit computing OR of d distinct essential variables needs
+at least d-1 gates, even allowing constants, repeated ports, unary gates,
+and sharing. For example, its live source/gate DAG has d distinct input
+sources and one output; counting ports gives d<=number_of_gates+1.
+Consequently |Gi|>=|S_i|-1. Empty and singleton targets contribute zero and
+need no argument. Summing proves (2) whenever r<k.
+
+The construction is performed separately for each target. It does not claim
+that one simultaneous circuit can force every outsider globally to1 while
+preserving all outputs. Separate per-class witnesses are enough for the
+cardinality bounds, because the Gi are disjoint.
+
+
+3a. PREFERRED DIRECT-CUT PROOF, WITHOUT NORMALIZATION OR PROPERNESS
+
+Fix target S_i. If its size is at most1 the desired bound is trivial. Assume
+for contradiction |Gi|<|S_i|-1. Apply the existing cut lemma from LightCount
+to Gi at output o_i. It gives a frontier F disjoint from Gi, of size at most
+|Gi|+1, with the usual truth-transfer property.
+
+For each frontier wire w set its clean label to empty if w=z or w is an
+exceptional wide gate; otherwise set it to U(w) intersect S_i. Every clean
+label has size at most1. To prove this, suppose the intersection had at least
+two points. The support_gate helper makes w a valid gate wire. Since it is
+not z or exceptional, some target S_j contains U(w). If j=i, w belongs to Gi,
+contradicting frontier disjointness. Otherwise the two clean positives belong
+to S_i intersect S_j, contradicting linearity. Raw inputs and invalid wires
+are automatically covered by support_gate's contrapositive.
+
+The union of clean labels has size at most |F|<|S_i|, so choose p in S_i
+outside that union. For every exceptional gate b, choose one singleton
+positive p_b outside S_i; this is possible directly from its definition.
+Let X be their union. Its size is at most r<k, it avoids S_i, and monotonicity
+makes every exceptional gate true on X. z is true there by hypothesis.
+
+Every frontier wire true on singleton p is true on X. The z and exceptional
+cases transfer as just explained; in every other case, truth on singleton p
+would put p in the missed clean label, a contradiction. The cut transfers
+the true output on singleton p to X. Low-weight correctness says the output
+on X is false because X avoids S_i, contradiction.
+
+This establishes |Gi|>=|S_i|-1. It needs no rewriting, AND/OR parent case
+split, or properness assumption. In particular if S_i is universal, the
+exceptional set must be empty and X is empty; the same proof applies.
+Other constant-true gates are handled automatically by their support class
+or exceptional membership. No special zero-true case is missing.
+
+
+4. CONSEQUENCE FOR THE EXCESS CRITERION
+
+Let H be the number of nontrivial heavy targets, e=m-P, and
+
+  E=sum_heavy max(|S_i|-k,0),
+  Eplus=sum_heavy max(|S_i|-k-1,0).
+
+The exact forced refunds give R>=H and E<=H+Eplus. A violating circuit would
+satisfy
+
+  N <= B+P+E-R-m-1 <= B+Eplus-e-1.                (3)
+
+If Eplus<=2k+e, combine(1) and(3) to get r<=k-1. Section3a then gives
+N>=D+k, contradicting violation. The simpler condition Eplus<=2k therefore
+suffices without mentioning empty targets.
+
+If there is no oversized heavy target, E=0 and the already checked light
+bound settles997 directly. Otherwise properness holds as explained above.
+The k<=1 branches are already handled separately by SmallWindow.
+
+OutsideActivation.lean now checks the r<k argument, and DoubleExcess.lean
+checks the original997 conclusion under Eplus<=2k. Thus a remaining
+counterexample needs at least k exceptional wide gates and Eplus>2k. The
+slightly stronger empty-target adjustment Eplus>2k+e is retained here as an
+independently reviewed paper consequence; it is not the statement of the
+checked DoubleExcess theorem.
+
+
+5. A TRANSVERSAL CONDITION STRONGER THAN r<k
+
+For a fixed target S_i, Section3a only needs an S_i-avoiding input X of weight
+less than k on which every exceptional wire is true. A sufficient condition
+is that the family of sets
+
+  {U(b) minus S_i : b exceptional}
+
+has a hitting set of size less than k. Thus the number r can be replaced,
+per target, by the transversal number of these outside singleton supports.
+One singleton can activate many exceptional gates, and support inclusions
+can make some outsiders irrelevant to this hitting-set count. In particular
+only inclusion-minimal outside supports need to be hit.
+
+If this transversal condition holds for every target, all full private
+bounds |Gi|>=|S_i|-1 hold and the full count(2) follows. If it holds only for
+some targets, the full bound can be used on those classes and the original
+min(k,|S_i|)-1 bound on the rest. The classes remain disjoint, so these
+individual improvements sum directly.
+
+This formulation captures the useful dependency/forest idea semantically:
+an OR outsider with an outsider child is activated whenever that child's
+singleton witness is activated, while intersecting outsiders may create a
+new inclusion-minimal support. A pure set count of such intersections does
+not itself prove an additional gate charge. The low-weight negative witness
+is the step that rules out a cheap private entry.
+
+
+6. FIRST BOUNDARY r=k: RIGIDITY AND A PROPOSED COMPENSATING COUNT
+
+Status: PAPER_REVIEWED by this worker and the parent on a first pass; not a
+Lean proof. The cut-rigidity and compensating projected-support DAG count
+remain unformalized research mathematics.
+
+Assume r=k>=2. If every |Gi|>=|S_i|-1, the full count is already proved.
+Otherwise choose a deficient class i and apply the cut in Section3a. Choose
+p in S_i missed by its clean-label union. Let D be the exceptional frontier
+wires true on singleton p. If |D|<k, activating only D by outside-singleton
+witnesses gives the same contradiction as Section3a. Hence D is the entire
+exceptional set E: all k outsiders lie on this frontier and all accept p.
+
+Write A_b=U(b) minus S_i. These nonempty sets are pairwise disjoint. A shared
+outside point for two distinct outsiders, together with one witness for each
+of the other k-2 outsiders, would activate the entire exceptional frontier
+on an S_i-avoiding input of weight at most k-1, contradiction.
+
+Every choice of one point from each A_b is consequently a size-k set X that
+avoids S_i and activates every outsider. The cut makes C1's output_i true
+on X, whereas the original circuit's exact OR output is false. If the
+original NOT wire were true on X, replacing it by true would preserve every
+wire, contradiction. Therefore the NOT input h is true on every such X.
+The global minimum positive weight k of h makes each transversal a minterm.
+Every missed p belongs to all outsider supports, so the common inside support
+contains the whole set of points missed by the cut's clean labels.
+
+Now exploit disjointness of the outside supports. Every outsider is an OR:
+
+  - A narrow AND operand would make the outsider's support narrow.
+  - A private operand would put the outsider support inside a target,
+    contradicting exceptional membership.
+  - An outsider operand at an AND would make A_b a nonempty subset of that
+    other outsider's A, contradicting pairwise disjointness.
+  - If only z operands remain, or the AND is nullary, its support is universal.
+    Its outside part contains every other nonempty A, again a contradiction.
+
+An outsider OR cannot read another outsider, since it would contain that
+other outsider's outside support. It cannot read z for the same reason.
+The existence of any outsider also ensures all target sets are proper:
+a universal target would contain every wide support and leave no outsiders.
+
+For any j different from i, every wide AND in Gj has a Gj child. The only
+remaining way to avoid a private same-class child would be two outsiders
+(possibly with z). Distinct outsiders intersect only inside S_i, so their
+intersection cannot have at least two points inside S_j. Repeated outsiders,
+z with an outsider, or only z yield an exceptional or universal support,
+not a proper Gj support. Thus the usual private support DAG gives
+
+  |Gj| >= |S_j|-1  for every j!=i.                 (4)
+
+For class i, build a support-cover DAG allowing both Gi gates and outsiders,
+and label each wire by U(w) intersect S_i. At a Gi AND with a Gi child, follow
+that child. If there is no such child, the gate uses two distinct outsiders;
+follow either one, whose projected support contains the AND's support.
+At a Gi OR retain its children. An outsider is an OR, so retain its children
+as well. Stop at projected supports of size at most1.
+
+Every expanded node belongs to Gi or E. A foreign private class projects to
+at most one point by linearity; raw and narrow wires do as well. z is never
+selected: Gi ANDs choose a same-class or outsider child, and neither Gi ORs
+nor outsider ORs can read z. Acyclicity is inherited from circuit order.
+
+The singleton-sized stop labels cover S_i. There are at most |Gi|+k expanded
+nodes, with unary continuations at selected ANDs and at most two children at
+ORs. The binary-source port count therefore gives
+
+  |S_i| <= |Gi|+k+1.                              (5)
+
+Combine(4),(5), the k outsiders, the original k-1 empty-prefix AND charge,
+and z. The possible private deficit in class i is at most k, paid exactly
+by the k exceptional gates outside all private classes:
+
+  N >= sum_j|Gj| + k + k >= sum_j(|S_j|-1) + k.
+
+This would settle997 whenever r<=k. In the numerical criterion, a violation
+under Eplus<=2k+1+e forces r<=k by(1),(3); hence the convenient sufficient
+condition would strengthen from Eplus<=2k to Eplus<=2k+1. The projected-DAG
+extraction and arithmetic are still paper-level at this checkpoint.

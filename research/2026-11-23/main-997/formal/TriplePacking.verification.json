@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "source": "TriplePacking.lean",
+  "source_sha256": "070587fe00b7b24c673436a7ab27bc071d172f01b2dc7a6ad2bdd7377b4f82e7",
+  "source_bytes": 4655,
+  "object_sha256": "ad964de1fb8eade4aecf46698bb3aad36fd9194d04825d37ce4d6d7455e5f8d5",
+  "started_utc": "2026-11-24T02:38:44.527251+00:00",
+  "completed_utc": "2026-11-24T02:38:46.547956+00:00",
+  "elapsed_seconds": 2.02,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.TriplePacking.triple_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.TriplePacking.linear_excess_bound_twice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.TriplePacking.heavy_excess_bound_twice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "TriplePacking.check.log",
+  "log_sha256": "36c4a106fc06bc561d8158ba44bba23d2468ab29b28745e794ca8f0879d72faa",
+  "scope": "Finite linear-set-family packing: universe size <=3*k+1 implies total sum of max(|S_i|-k-1,0) <=2*k. The exact997 corollary requires the separate DoubleExcess module.",
+  "dependencies": [
+    {
+      "module": "HeavyPacking",
+      "source_sha256": "7e541947631c41f8c7492838e0926bbf3d6a8084db5521b8f2d0e78d6e916ca5"
+    }
+  ],
+  "recorded_utc": "2026-11-24T02:41:57.806058+00:00",
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "cause": "Misspelled Finset distributivity lemma; corrected before final verification.",
+    "elapsed_seconds": 2.028
+  }
+}

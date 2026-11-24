@@ -1,0 +1,75 @@
+CASE13: DATA AUDIT AND EQUALITY-PARTITION EXCLUSION
+
+Status: the numerical/family/baseline data are independently checked on all
+8192 inputs. The exclusion below is a paper proof independently reviewed by
+the bounds worker. It is not a Lean theorem or a SAT exhaustion result. No
+solver was started for this case.
+
+The exact search-compatible input is case.json. The target sets are
+
+  S0={3,4,5,6,7,8,9,10},
+  S1={0,3,11}, S2={1,4,11}, S3={2,5,11},
+  S4={0,6,12}, S5={1,7,12}, S6={2,8,12},
+  S7={0,1,9}, S8={0,2,10}, S9={1,2,3},
+  Y={0,1,2}.
+
+All45 target intersections have size at most1. There is one heavy target,
+S0, and nine light triples. Thus n=13,m=10,k=3,F=35,H=1. The checked light
+private count plus minterm budget gives B+k=20+3=23<=N; the exact posted
+refund includes at least the heavy output, so R>=1. A violating circuit must
+therefore satisfy N=23 and R=1. The complementary heavy baseline is19 and
+would leave four extra gates, but the light partition is exact and stronger.
+
+Let C1 be the monotone circuit obtained by replacing the unique NOT gate z
+with constant true. Its outputs agree with the original exact set-ORs on
+every input of weight below3. In particular their singleton supports are
+exactly the corresponding S_i. For each i define
+
+  Gi={gate wires w other than z: 2<=|U(w)| and U(w) subset S_i},
+
+where U(w) is the singleton support in C1. The Gi are pairwise disjoint by
+linearity. The checked light theorem gives |Gi|>=2 for every i. The checked
+minterm theorem gives two prefix AND gates with empty singleton support;
+they are outside every Gi and outside z. With N=23, these are all the gates:
+each Gi has exactly two members, there are exactly two empty-support gates
+outside their union, and z has singleton support equal to all13 inputs.
+Every target is a proper subset of those13 inputs.
+
+Consider the first gate in Gi. An AND with singleton support of size at
+least2 must have every effective operand support of size at least2. A raw
+input, invalid reference, or empty-support gate is therefore impossible.
+An operand in Gj for j!=i is impossible because its support would contain
+the output's at least two points inside S_i intersect S_j. If every operand
+were z, the output support would be universal, not contained in proper S_i.
+Thus a wide AND must have an earlier Gi operand, contradicting firstness.
+
+The first Gi gate is consequently an OR. A wide child must be in Gi: a
+foreign wide support or universal z cannot be contained in its S_i support.
+There is no earlier Gi gate, so its two effective operands must be distinct
+raw singleton inputs. Its singleton support therefore has size exactly2.
+
+Now consider the second Gi gate. At an AND it has a Gi child, as above, so
+its support is contained in the first gate's two-point support. At an OR,
+the only possible wide child is the first Gi gate; the other operand adds
+at most one raw singleton. If both children are narrow, the support has size
+at most2. Thus every gate in Gi has singleton support of size at most3.
+
+The actual output for S0 is neither a raw input, an invalid wire, nor z.
+Its C1 singleton support is S0 of size8, so it lies in G0. This contradicts
+the preceding bound3. Therefore no23-gate violation exists, and the original
+L-meta-997 inequality holds for this fixed family and Y on paper.
+
+The generic version uses a support-cover DAG: choose an earlier same-class
+child at each wide AND and retain both children at each OR. All nontrivial
+internal supports stay in Gi, and raw singleton stops cover S_i. A binary
+union network then requires at least |S_i|-1 Gi OR gates. This proves that
+equality N=B+k is impossible whenever all targets are proper and one target
+has size greater than k. An oversized heavy target automatically forces all
+targets proper under the original linearity hypothesis.
+
+Baseline audit: baseline.json has25 OR gates computing all ten outputs,
+plus two ANDs and the NOT computing NOT(x0 AND x1 AND x2), for28 total gates.
+Its only refund is the heavy output (gate index9). All81,920 output values,
+all92 inputs of weight below3, and the value atY were checked independently;
+the existing search.py scalar and bitvector evaluators agree exactly. This
+baseline is an upper-bound fixture, not a violating circuit.

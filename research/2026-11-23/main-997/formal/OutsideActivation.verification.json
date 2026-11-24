@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "source": "OutsideActivation.lean",
+  "source_sha256": "8a637646fe6fd2246deff795014b993c462aa5d1e23e482ef1c9e5ff2fd6f52c",
+  "source_bytes": 10435,
+  "object_sha256": "024f7c3d8056fd03090b0c147c1305494a422d01c329ab0a11ac93fc60d36313",
+  "started_utc": "2026-11-24T02:39:12.544233+00:00",
+  "completed_utc": "2026-11-24T02:39:14.865848+00:00",
+  "elapsed_seconds": 2.321,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.OutsideActivation.outside_activation_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OutsideActivation.outside_activation_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OutsideActivation.private_outside_minterm_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "OutsideActivation.check.log",
+  "log_sha256": "0b95c93aeb296c77c4fd12e1dfd6b41dd57e81e8d380d88b0e2b64f59e34aaf0",
+  "dependencies": [
+    {
+      "module": "RefundCount",
+      "source_sha256": "08cedd1ed8c084add41882ffd7bc64922cd54f4c8733a533886824a6756cb508",
+      "object_sha256": "6b6b241be431f92b445a4dae4310e075b600939baf73b44085d69ac541b0c087"
+    }
+  ],
+  "scope": "The direct cut proof recovers the full private count sum(|S_i|-1) when fewer than k global wide outsiders remain. Also proves |private union|+k+|outsiders|<=size from the prefix minterm budget. Requires no proper-target condition or circuit normalization.",
+  "math_audit": [
+    "Every cut-frontier wire outside the selected private class, outside the global outsider set, and different from z has at most one singleton positive in the selected target.",
+    "One singleton witness outside the target activates each global outsider by monotonicity. The union has size at most the number of outsiders and stays disjoint from the target.",
+    "If the private count were too small, a target singleton missed by all remaining frontier labels would transfer through the cut to that low-weight negative input.",
+    "Private gates, outside wide gates, empty-support prefix branches, and z are disjoint. This yields the strengthened gate budget.",
+    "Universal targets, arbitrary empty/singleton targets, constant gates, and malformed circuit references are covered by the semantic definitions."
+  ],
+  "recorded_utc": "2026-11-24T02:40:50.858673+00:00",
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "af8b41e21967212a795d1137e5d12abf0cb30d2789f995181f3b224d8a1e681a",
+    "exit_code": 1,
+    "elapsed_seconds": 11.211,
+    "log_sha256": "6129ed268a2af1ef51a6411e052141e1ee9946561dc8d16f71d1af33aa3dfd4c",
+    "cause": "The main cut theorem and budget passed; the summed corollary needed an explicit singleton-filter cardinality equality."
+  },
+  "superseded_draft": "drafts/OneSpareSupport.status.json"
+}

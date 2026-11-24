@@ -1,0 +1,31 @@
+import took 1.38s
+'PEqualNP.Research.OutsideActivation.outside_activation_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.OutsideActivation.outside_activation_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OutsideActivation.private_outside_minterm_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 8.81ms
+	attribute application 0.0329ms
+	blocked (unaccounted) 558ms
+	congr simp thm 2.58ms
+	declTypeLinter 2.43ms
+	elaboration 30.7ms
+	fix level params 0.366ms
+	import 1.38s
+	initialization 34.5ms
+	instantiate metavars 1.45ms
+	interpretation 202ms
+	let-to-have transformation 0.102ms
+	linting 20.8ms
+	module linting 0.0283ms
+	parsing 8.17ms
+	process pre-definitions 5.29ms
+	share common exprs 2.41ms
+	simp 86.3ms
+	tactic execution 164ms
+	tacticAnalysis 2.46ms
+	type checking 53ms
+	typeclass inference 180ms

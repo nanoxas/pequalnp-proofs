@@ -1,0 +1,90 @@
+INDEPENDENT EXCLUSION OF THE THIRTEEN-INPUT CANDIDATE
+
+Status: paper proof, independently reviewed from the exact support equations.
+The family arithmetic and support-transition superset have a reproducible
+finite audit in independent_audit.py / independent-audit.json. No SAT solver
+or Lean compiler was run. No SAT-UNSAT or kernel-certified exclusion is claimed.
+
+The case has n=13, m=10, Y={0,1,2}, one heavy eight-point target
+S0={3,4,5,6,7,8,9,10}, and nine light triples listed in case.json. All45 pairs
+of targets meet in at most one point, and every target is a proper nontrivial
+subset of the13 inputs.
+
+Its exact counts are k=3, F=35, H=1, and
+
+  B=sum_i(min(3,|S_i|)-1)=20.
+
+The checked light/minterm bound gives N>=B+k=23, while forced refunds give
+R>=1. A violation would require N+R+10<35. Therefore its only numerical
+possibility is N=23 and R=1.
+
+Replace the unique NOT by constant true, obtaining the monotone circuit D.
+It has the same23 gates and agrees with the original circuit on all inputs
+of weight below3, including every singleton. For a wire w let U(w) be its
+singleton support in D. Let z be the replaced NOT wire, with U(z)=all13.
+Define the same light-assigned sets as in the checked LightCount helper:
+
+  G_i={gate wires w != z : U(w) subset S_i and |U(w)|>=2}.
+
+Each G_i has at least2 gates. The G_i are mutually disjoint by linearity.
+The checked minterm argument also supplies at least2 prefix AND gates with
+empty singleton support; they are disjoint from all G_i and z. These counts
+already exhaust23 gates. Therefore every G_i has exactly2 members, exactly2
+other gates have empty support, and the only remaining gate is z.
+
+Thus every gate's singleton support is one of:
+
+  - empty;
+  - all13 (only z);
+  - a subset of some S_i of cardinality at least2.
+
+Raw inputs have singleton support. An unavailable or future reference is
+the constant-false effective operand, with empty support. At an OR gate,
+the support is the union of its effective operand supports. At an AND,
+it is their intersection, with nullary intersection equal to all13.
+
+Consider the two gates in G0 in increasing order.
+
+FIRST G0 GATE.
+An OR yielding a subset of S0 cannot read z or a foreign G_j gate: z has
+support outside S0, and a foreign support has at least2 points but intersects
+S0 in at most1. With no earlier G0 gate, it must combine raw singleton or
+empty operands. To have at least2 support points it is an OR of two distinct
+raw variables, so its support has size exactly2.
+
+An AND cannot be the first G0 gate. A raw operand limits its output support
+to one point; an empty operand makes it empty; any foreign G_j operand limits
+an output contained in S0 to at most one point. Only all13 operands remain,
+which yield all13, not a subset of the proper target S0. This covers nullary
+and unary gates as well as binary gates.
+
+SECOND G0 GATE.
+An OR can read only raw singleton/empty supports and the first G0 support.
+It has at most two ports, so its support size is at most3. An AND cannot
+use a foreign wide or raw operand and still have a support of size at least2
+inside S0. Any remaining effective combination uses the first G0 support
+and possibly all13, so its output has size at most2. Aliases and repeated
+fan-ins cannot increase either bound.
+
+The actual output for S0 has singleton support exactly S0, of size8, because
+D agrees with the exact original output on all singleton inputs. It must be
+a valid gate wire; it is neither z nor an empty-support gate. It therefore
+belongs to G0. Both G0 gates have support at most3, a contradiction.
+
+The sole possible violation size23 is thus excluded on paper. The candidate
+does escape the earlier numerical criteria (n>3k+1, heavy excess4>k3, and
+Q_light9>H+k+2=6), but it is settled by equality in a different checked count.
+No target synthesis run is warranted for this case.
+
+GENERALIZATION SUGGESTED BY THE SAME ARGUMENT
+
+For a linear family of proper targets, equality N=B+k leaves only the
+light-assigned classes, empty-support minterm gates, and the universe-support
+replacement wire. Within a class G_i, an OR uses raw inputs or earlier
+same-class supports. An AND yielding a wide support in S_i must have an
+earlier same-class operand; choose it as a support-covering continuation.
+The resulting ancestor DAG has singleton leaves and branches only at
+same-class OR gates, so |S_i|<=|G_i|+1. Equality also gives
+|G_i|=min(k,|S_i|)-1. Therefore equality is impossible if any |S_i|>k.
+This general strict-slack statement is a paper extension; the specific
+two-gate case above does not rely on its formalization.

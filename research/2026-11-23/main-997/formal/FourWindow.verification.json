@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "source": "FourWindow.lean",
+  "source_sha256": "94bbedc6c1b7630df68c38f8082a35292e2f5da51437dd32216b822c2577c8b9",
+  "source_bytes": 1877,
+  "object_sha256": "56e3bb6e622de745f3e9e4ff19f8cb06daaebf740d0af92b688652a6582e2a46",
+  "started_utc": "2026-11-24T02:44:10.693983+00:00",
+  "completed_utc": "2026-11-24T02:44:12.365324+00:00",
+  "elapsed_seconds": 1.671,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.FourWindow.one_not_refund_bound_four_window": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "FourWindow.check.log",
+  "log_sha256": "95502f25f0ae567d64e9e1d4b7b3d7a47232580a2d8ce0fa8b98ba413ddfe5ac",
+  "scope": "Exact L-meta-997 inequality under n<=4*|Y|+1, combining triple packing and the double-excess criterion.",
+  "dependencies": [
+    {
+      "module": "TriplePacking",
+      "source_sha256": "070587fe00b7b24c673436a7ab27bc071d172f01b2dc7a6ad2bdd7377b4f82e7"
+    },
+    {
+      "module": "DoubleExcess",
+      "source_sha256": "93fb17c3f1a30ff493cf519ae0d784b64538a2dfd44dacb9264555bef86bfe0d"
+    }
+  ],
+  "recorded_utc": "2026-11-24T02:44:43.444281+00:00"
+}

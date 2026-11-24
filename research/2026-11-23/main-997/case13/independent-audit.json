@@ -1,0 +1,36 @@
+{
+  "status": "DATA_AND_SUPPORT_ALGEBRA_PASS",
+  "n": 13,
+  "m": 10,
+  "k": 3,
+  "pair_intersections_checked": 45,
+  "all_targets_nontrivial_and_proper": true,
+  "F": 35,
+  "B": 20,
+  "A": 7,
+  "Q_light": 9,
+  "H": 1,
+  "heavy_excess_beyond_k_plus_one": 4,
+  "light_minterm_lower_bound": 23,
+  "heavy_minterm_lower_bound": 19,
+  "necessary_violation_size_refund_pairs": [
+    [
+      23,
+      1
+    ]
+  ],
+  "escapes_n_le_3k_plus_one": true,
+  "escapes_excess_criterion": true,
+  "escapes_heavy_small_surplus_criterion": true,
+  "foreign_support_superset_size": 51,
+  "possible_first_heavy_class_supports": 28,
+  "second_heavy_class_gate_cases_checked": 2212,
+  "maximum_second_heavy_class_support_size": 3,
+  "required_heavy_output_support_size": 8,
+  "paper_exclusion": "At the only possible size23, the equality partition gives exactly two gates in every light-assigned class. The heavy class cannot reach support8 with two gates.",
+  "whole_exclusion_kernel_checked": false,
+  "sat_runs": 0,
+  "scope": "Exact family arithmetic and finite support-transition audit; complete exclusion is a separate paper argument, not a solver certificate.",
+  "case_sha256": "1cd910fbe0b212b75e797a3a7cc0b518479b0ae4ab1a286db8a3053c996373ee",
+  "script_sha256": "2714379cf26466662b5f4c3db6952f481f9cc413eebb202158821404319ac741"
+}

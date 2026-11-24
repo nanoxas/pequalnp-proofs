@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "source": "DoubleExcess.lean",
+  "source_sha256": "93fb17c3f1a30ff493cf519ae0d784b64538a2dfd44dacb9264555bef86bfe0d",
+  "source_bytes": 8038,
+  "object_sha256": "3e4a91d01841ead0102c61a452287d39d163073c96dfbbd6cfc16eef94336c1d",
+  "started_utc": "2026-11-24T02:40:03.496802+00:00",
+  "completed_utc": "2026-11-24T02:40:05.618629+00:00",
+  "elapsed_seconds": 2.121,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.DoubleExcess.activation_refund_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.DoubleExcess.one_not_refund_bound_double_excess": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "DoubleExcess.check.log",
+  "log_sha256": "405761fa2a4633c054964773ad11cdd17f20579412cc4f12c59cf8ce991fc31e",
+  "dependencies": [
+    {
+      "module": "OutsideActivation",
+      "source_sha256": "8a637646fe6fd2246deff795014b993c462aa5d1e23e482ef1c9e5ff2fd6f52c",
+      "object_sha256": "024f7c3d8056fd03090b0c147c1305494a422d01c329ab0a11ac93fc60d36313"
+    },
+    {
+      "module": "HeavyReplacement",
+      "source_sha256": "1ac8cd33c096192355bf8bd299f796c277157b5b8f087b21fa2b4890ef489b2e",
+      "object_sha256": "998049d1824ae7f6afc5454168675813fc48cff9a2bafcf1c863d92cb941e151"
+    }
+  ],
+  "scope": "Exact 997 sufficient criterion: for |Y|>=2, total heavy excess sum_heavy max(|S_i|-|Y|-1,0)<=2*|Y| implies the exact posted weighted/refund inequality. The unrestricted 997 theorem remains open.",
+  "math_audit": [
+    "A counterexample under the excess condition would leave fewer than k global outsiders after paying the baseline private count, k minterm units, and the forced refunds.",
+    "OutsideActivation then forces the full private count, contradicting the weighted-sum failure.",
+    "The original-circuit bridge uses the checked same-index constant-true NOT replacement, preserving every earlier value and deriving its minterm hypothesis from the original threshold window.",
+    "The refund is the exact checked refundGates predicate, definitionally equal to the verbatim posted expression.",
+    "The only additional hypothesis beyond the original task and |Y|>=2 is the stated sufficient heavy-excess bound. No target properness or normalization is assumed."
+  ],
+  "recorded_utc": "2026-11-24T02:40:50.860985+00:00",
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "b8adf5ed91dedfdb41e3a1e5313503fc7bf7ac55b5840ad01f69cf9e070120de",
+    "exit_code": 1,
+    "elapsed_seconds": 2.072,
+    "log_sha256": "91296e13365f44c58c64d85eda41359fa0addeb829a2764d31106fb0e53deff0",
+    "cause": "The generic bound passed; the final bridge needed explicit same-size replacement simplification."
+  }
+}

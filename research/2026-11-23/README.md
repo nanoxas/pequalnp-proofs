@@ -118,18 +118,22 @@ None is claimed to resolve P versus NP.
 
 ## One-NOT refund research: L-meta-997
 
-The [research checkpoint](main-997/README.md) now contains twelve kernel-checked
-modules with standard-axiom audits. Four additional modules strengthen the
-mandatory-clause count, bound incidence outside Y, prove the crossing-pair
-case, and establish the exact inequality whenever n≤3|Y|+1. The original
-eight checked source files are unchanged. They include the case in which
-every target has size at most four and the no-refund case |Y|≤2.
-The unrestricted L-meta-997 statement remains unproved here.
+The [research checkpoint](main-997/README.md) now contains seventeen kernel-checked
+modules with standard-axiom audits. Five additional modules establish the
+complementary heavy/minterm bound, triple packing, direct outsider activation,
+the double-excess criterion, and the exact inequality whenever n≤4|Y|+1.
+All twelve previously published Lean source files remain unchanged. The
+unrestricted L-meta-997 statement remains unproved here.
 
 The [reviewed small-surplus argument](main-997/saturation-small-surplus-audit.txt)
 extends the paper sufficient criterion to Q≤H+k+e+2 for every k=|Y|≥2,
 including pair outputs. Its complete gate classification is not yet a Lean
-theorem. The earlier PG(2,4) audit remains preserved. The
+theorem. The earlier PG(2,4) audit remains preserved.
+
+The thirteen-input family has a complete Python baseline/data audit and a
+reviewed support-based exclusion; it also meets the new checked sufficient
+criteria. The exceptional-support note distinguishes the checked r<k cut
+argument from the PAPER_REVIEWED r=k boundary and proposed 2k+1 extension. The
 sole 49-gate finite solver query remains INTERRUPTED_UNKNOWN; no candidate
 or UNSAT result was observed, and its original child cleanup is unconfirmed.
 Corrected runner cleanup passed five dummy-only lifecycle checks.
