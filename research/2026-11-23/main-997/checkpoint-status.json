@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-11-24T02:01:13.174925+00:00",
+  "snapshot_utc": "2026-11-24T02:22:37.744427+00:00",
   "full_statement_proved": false,
   "upstream_submission_made": false,
   "formal_modules": {
@@ -177,19 +177,98 @@
           "Quot.sound"
         ]
       }
+    },
+    "ClauseMinterm": {
+      "status": "PASS",
+      "source_sha256": "84a89159456bac270b1d9bc3e3620a0674ea60d6a47fb6485030e04215052964",
+      "log_sha256": "9f7550df684a993a30af05c054b96bc3f00cbaa55f4b77e09bb194e88aeacfd5",
+      "elapsed_seconds": 2.922,
+      "record": "ClauseMinterm.verification.json",
+      "axioms": {
+        "PEqualNP.Research.ClauseMinterm.clause_minterm_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.ClauseMinterm.one_not_clause_window_bound_explicit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "OutsideIncidence": {
+      "status": "PASS",
+      "source_sha256": "233554ea8ce9ac7c002f85dd33da2d2e37611c6a678e8691edb91309b79db4c8",
+      "log_sha256": "6e7b6137c0aba4b6be7f6769821c5c23dd58f63a7fbdbeb24aeea9415b3de324",
+      "elapsed_seconds": 1.92,
+      "record": "OutsideIncidence.verification.json",
+      "axioms": {
+        "PEqualNP.Research.OutsideIncidence.outside_light_incidence_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OutsideIncidence.outside_large_incidence_refund": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "PairClause": {
+      "status": "PASS",
+      "source_sha256": "1a867bcf25ea420363c1ca64679b6ef1db5d82e7b3a55c66b147698d814f6519",
+      "log_sha256": "4230e89d8a27c96281cf26e8c7daa5a8bc3caed3500fb91943a567b452cdf8e2",
+      "elapsed_seconds": 1.719,
+      "record": "PairClause.verification.json",
+      "axioms": {
+        "PEqualNP.Research.PairClause.crossing_pair_full_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.PairClause.one_not_refund_bound_crossing_pair": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "HeavyPacking": {
+      "status": "PASS",
+      "source_sha256": "7e541947631c41f8c7492838e0926bbf3d6a8084db5521b8f2d0e78d6e916ca5",
+      "log_sha256": "8d4900302e1840bc00805ffd085a227689db14e1908b7f6292493acea81c890e",
+      "elapsed_seconds": 6.058,
+      "record": "HeavyPacking.verification.json",
+      "axioms": {
+        "PEqualNP.Research.HeavyPacking.linear_pair_packing": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyPacking.excess_pair_cost": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyPacking.one_not_refund_bound_three_window": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
     }
   },
-  "formal_module_count": 8,
-  "paper_saturation_status": "INDEPENDENTLY_REVIEWED_NOT_KERNEL_CHECKED",
+  "formal_module_count": 12,
+  "paper_saturation_status": "Q<=H+k+e+2 for arbitrary k>=2 independently reviewed; complete classification not kernel-checked.",
   "sat_status": "INTERRUPTED_UNKNOWN",
   "original_sat_child_cleanup": "reaping_unconfirmed",
   "refund_semantics": "Exact posted guarded biconditional; source encoder unchanged.",
   "helper_correction": "A failed helper dropped grouping; corrected RefundCount includes a checked equality to the verbatim posted expression.",
   "source_bytes_unchanged": [
-    "all eight Lean modules",
-    "SAT encoder",
-    "geometry generator",
-    "runner and lifecycle test"
+    "all twelve current Lean modules",
+    "previous SAT encoder, geometry generator, and runner sources"
   ],
   "public_transform": "Local workspace paths and operational process/session identifiers removed from records and logs; proof source bytes are unchanged.",
   "excluded": [
@@ -198,5 +277,7 @@
     "compiled Lean objects and binary caches",
     "solver binaries",
     "unverified current Lean drafts"
-  ]
+  ],
+  "checked_followup": "Strengthened filtered mandatory-clause count, outside incidence, crossing-pair full count, and n<=3|Y|+1 heavy packing.",
+  "original_eight_sources_unchanged": true
 }

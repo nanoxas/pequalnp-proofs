@@ -1,0 +1,28 @@
+import took 1.24s
+'PEqualNP.Research.PairClause.crossing_pair_full_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.PairClause.one_not_refund_bound_crossing_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 5.62ms
+	attribute application 0.0175ms
+	blocked (unaccounted) 136ms
+	congr simp thm 2.36ms
+	declTypeLinter 1.3ms
+	elaboration 27.5ms
+	fix level params 0.17ms
+	import 1.24s
+	initialization 29ms
+	instantiate metavars 0.504ms
+	interpretation 152ms
+	let-to-have transformation 0.0647ms
+	linting 6.77ms
+	module linting 0.0245ms
+	parsing 3.89ms
+	process pre-definitions 1.59ms
+	share common exprs 1.11ms
+	simp 25.4ms
+	tactic execution 45.6ms
+	tacticAnalysis 1.29ms
+	type checking 31.2ms
+	typeclass inference 23ms

@@ -1,0 +1,280 @@
+ARBITRARY-WINDOW SATURATION WITH ZERO OR ONE EXTRA GATE
+
+Status: paper proof, independently reviewed by the bounds and inspection
+workers. The complete residual-prefix classification below has not been
+formalized in Lean. The constituent minterm, private-count, replacement,
+and strengthened-clause lemmas have separate checking records. No new SAT
+query or compiler run was made for this audit. Published checkpoint files
+and staging directories remain unchanged.
+
+RESULT
+
+Assume the exact L-meta-997 circuit/output/window hypotheses and k=|Y|>=2.
+Let d_i=|S_i|, and let
+
+  H = #{i : S_i disjoint Y and d_i>=2},
+  e = #{i : d_i=0},
+  Q = sum over i with S_i meeting Y of max(min(k,d_i)-2,0).
+
+Then the following is sufficient for the posted inequality:
+
+  Q <= H+k+e+2.                                             (S)
+
+The +1 version uses the zero-surplus case. The +2 version also uses the
+one-extra-gate argument. No lower bound on nontrivial light target sizes
+is imposed; pair outputs are explicitly allowed. The mandatory-pair clause
+need not be one of the targets. The result is conditional on the full exact
+output/window hypotheses; it is not a general assertion about arbitrary
+monotone circuits or a proof of unrestricted997.
+
+
+1. THE GATE PARTITION AND EXACT SURPLUS ARITHMETIC
+
+Call a target heavy if it is disjoint from Y, light otherwise. Put
+
+  A = sum over heavy targets of (d_i-1),
+  L = #{i : S_i meets Y and d_i>=2},
+  P = #{i : d_i>0}, so m=P+e.
+
+All subtractions displayed as counts are truncated natural subtraction.
+The posted left side F satisfies the exact identity
+
+  F=P+A+L+Q.                                               (1)
+
+For a heavy target, d=(d-1)+1 if d>0, and both terms are zero if d=0.
+For a light target, min(k,d)=1+1_{d>=2}+max(min(k,d)-2,0).
+Light targets are automatically nonempty.
+
+Let N be the circuit size, z the actual NOT output, and h its valid earlier
+operand. The window hypotheses give h(Y)=true and h(X)=false for |X|<k.
+Choose the following disjoint sets of actual gate indices:
+
+  H0: exactly A private heavy OR gates, false at Y in C0;
+  L0: the L distinct actual outputs of nontrivial light targets, true at Y;
+  B0: exactly k-1 prefix AND gates, true at Y with empty singleton support;
+  {z}: the unique NOT gate.
+
+C0 is the false replacement of the NOT. Before z, its values agree globally
+with the original circuit. On Y, it agrees with the entire original circuit.
+The heavy OR gates are globally sound for their assigned heavy targets in C0.
+The private heavy family count supplies H0. The minterm count supplies B0.
+The four classes are disjoint by value at Y, singleton support, or operation.
+No least-circuit or liveness hypothesis is being used.
+
+Their total size is
+
+  A+L+(k-1)+1=A+L+k <= N.
+
+Write N=A+L+k+delta. Let R be the exact posted refund count. Every nontrivial
+heavy output is a distinct refund, so R>=H. If the posted inequality failed,
+integrality and (1) would imply
+
+  N+R+m <= F-1,
+  delta <= Q-R-e-k-1 <= Q-H-e-k-1.                         (2)
+
+Thus Q<=H+k+e+1 forces delta=0, while (S) forces delta<=1. It remains to show
+that either surplus case gives a mandatory singleton or crossing pair for h.
+
+
+2. PRIVATE COST OF A PREFIX LIGHT OUTPUT
+
+Suppose an actual nontrivial light output lies before z and computes OR(S_i).
+Its monotone prefix contains at least d_i-1 OR gates globally sound for S_i,
+each with at least two singleton positives. These gates lie in its ancestor
+network. They are disjoint from H0: before z, the original circuit and C0
+agree, and a shared gate's two singleton positives would lie in the
+intersection of S_i with a distinct heavy target. They are also disjoint
+from B0, z, and every other nontrivial light output. At most the output for
+S_i itself is already in L0.
+
+These private sets are pairwise disjoint across distinct prefix light
+outputs, again by singleton support and linearity. Therefore
+
+  sum over prefix nontrivial light outputs of (d_i-2) <= delta.     (3)
+
+When delta=0, every such output is a pair. When delta=1, they are pairs with
+at most one triple. Any triple consumes the entire extra private-OR budget.
+This claim does not require every pair output itself to be an OR gate: a
+pair output implemented by an alias can consume the spare gate instead.
+
+For the prefix analysis below, an actual light output may be substituted
+globally by its exact raw-input OR function. This is a functional identity
+on every assignment. It removes dependence on its internal implementation,
+even if that implementation contains an empty-support AND or the extra gate.
+It is not an approximation obtained from an accepting trace at Y.
+
+
+3. CONJUNCTIONS OF PAIR ATOMS
+
+We use the following elementary semantic fact. Suppose a function f is
+globally a conjunction of raw variables and ORs of two-element sets, is true
+at Y, and has no positive input of weight below k=|Y|>=2.
+
+A raw factor gives a mandatory singleton. A pair factor containing exactly
+one Y point gives a mandatory crossing pair. If neither occurs, every factor
+is a pair contained entirely in Y. Removing any one point from Y preserves
+every such pair OR, contradicting the minimum weight k. Thus f has a
+mandatory singleton or crossing pair.
+
+An empty conjunction is constant true and violates the minimum weight.
+Repeated endpoints are raw factors. False factors cannot occur when f(Y)
+is true. Constant-one factors can be dropped. These observations cover
+nullary gates and aliases in the applications.
+
+The strengthened clause bound plus the outside-incidence count proves the
+full unweighted target-sum inequality whenever h has either clause type.
+For a crossing pair {a,b}, choose a in Y and b outside Y. After excluding
+singleton/empty incidences, degree(b)<=H+k; the k term in the strengthened
+clause bound cancels this k, while H<=R. See
+crossing-pair-independent-audit.txt and the checked ClauseMinterm interface.
+
+
+4. ZERO SURPLUS
+
+Before z, every gate is in H0, L0, or B0. Equation (3) allows only pair
+outputs in L0 before z. The H0 gates are ORs false at Y, the B0 gates are
+ANDs true at Y, and all prefix L0 outputs are globally exact pair ORs true
+at Y.
+
+After substituting the pair outputs, traverse the true-at-Y cone of h.
+Every internal non-atom gate is an AND. Such an AND cannot read a false-at-Y
+wire, so no H0 gate can be an operand in this cone. Consequently h is
+globally a conjunction of raw/pair atoms. Section3 supplies the clause,
+and the posted inequality follows. This proves the +1 criterion for every
+k>=2, including arbitrary numbers of pair outputs.
+
+
+5. ONE EXTRA GATE WITH A PREFIX TRIPLE
+
+Assume delta=1 and a prefix triple output for a target S exists. It is the
+only prefix output of size at least3. The two private ORs required for S
+must be the output itself and the sole extra gate q. Therefore q is an OR,
+precedes that output, is globally sound for S, and has at least two singleton
+positives. All other prefix nontrivial light outputs are pairs.
+
+Before q, every selected heavy OR is a pure OR of raw variables outside Y:
+it is false at Y and cannot read a selected AND or light output true at Y.
+There is no other extra gate. A true-at-Y selected AND before q is a
+conjunction of raw/pair atoms and has empty singleton support.
+
+Every operand of the sound OR q is itself globally sound for S. A raw input
+contributes at most one singleton positive. A heavy OR operand is a pure
+linear OR sound for both S and its heavy target; by linearity, its support
+has at most one point. Another light pair output cannot be a nonzero wide
+sound operand for S, because its two-point support intersects S in at most
+one point. A selected empty-support AND contributes no singleton positives.
+
+Since q has at most two ports but at least two singleton positives, its two
+effective operands must be distinct singleton aliases. Thus q is exactly
+OR(S') for a two-point subset S' of S.
+
+No later selected heavy OR can read q, even if q is false at Y. The first
+such OR would contain both singleton positives of q, contradicting its
+heavy target's intersection-at-most-one with S. Heavy ORs also cannot read
+the true light outputs or selected ANDs. They remain pure outside-Y ORs.
+
+After substituting the exact light outputs and q, h is globally a conjunction
+of raw factors, pair ORs (including possibly OR(S')), and at most one triple
+OR(S). If a raw or crossing-pair factor occurs, the clause argument applies.
+Otherwise every pair factor lies inside Y. Such factors survive deletion
+of any Y point. The single triple factor can fail under deletion of at most
+one Y point: only when its intersection with Y is a singleton. Because
+k>=2, choose a different point to delete. Every factor stays true, giving
+a forbidden positive input of weight k-1.
+
+Thus the prefix-triple case also has the required singleton/crossing pair.
+The argument works for all k>=2 and does not discard a false-at-Y q branch.
+
+
+6. ONE EXTRA GATE WITHOUT A PREFIX TRIPLE
+
+All prefix L0 outputs are pairs. Substitute them globally by pair-OR atoms.
+Call the sole possible extra gate q. If q is absent from the prefix, irrelevant
+after substitution, an AND, or false at Y, the true-at-Y cone of h consists
+only of ANDs and raw/pair atoms. False-at-Y wires cannot enter this AND cone.
+Even if a false q affects an actual pair-output implementation, that output
+has already been replaced by its exact global pair function. Section3 applies.
+
+The only remaining case is an OR gate q true at Y which actually occurs in
+the contracted cone of h. Every selected heavy OR is then a pure outside-Y
+OR, because it cannot read q, a selected AND, or a light output, all true at Y.
+There are exactly k-1 selected AND gates available outside the contracted
+light outputs, and no other extra gate.
+
+Since q is the only non-atom OR, h has the global form
+
+  h=q AND M,
+
+where M is a conjunction of raw/pair atoms. This representation comes from
+the contracted AND cone; any repetitions are harmless. If M has a raw or
+crossing-pair factor, that factor is a mandatory clause of h. Suppose it has
+neither. Then all factors of M are pairs contained in Y. Hence
+
+  M(Y\{p})=true for every p in Y.
+
+The minimum positive weight of h therefore forces
+
+  q(Y\{p})=false for every p in Y.                        (4)
+
+Choose an effective operand u of q which is true at Y. Such an operand exists
+because q is a true OR, and it is a valid earlier wire. Equation (4) implies
+
+  u(Y\{p})=false for every p in Y.                        (5)
+
+Before q, the true-at-Y cone of u consists of selected ANDs and raw/pair atoms.
+Stop at each raw/pair atom. Each stop is true at Y and can become false on
+Y\{p} for at most one p: raw variables have one possible critical point;
+a pair has one if it meets Y once, and none if it lies inside Y.
+
+Every p in Y must have a stop that becomes false, by (5) and AND semantics.
+There are therefore at least k distinct stop wires. A connected acyclic
+network of binary-or-unary AND gates with b internal gate nodes has at most
+b+1 distinct stops. Thus this cone contains at least k-1 selected AND gates.
+It uses ALL of the available k-1 such gates. In particular u is the last
+selected AND, and every other selected AND is a strict ancestor of u.
+
+No selected AND remains after q. In the contracted representation, h cannot
+be a raw/pair atom (minimum positive weight at most one), a heavy OR (false
+at Y), or a later selected AND (none remains). Because q occurs in its cone,
+we conclude h=q.
+
+Now consider any other effective operand v of q. All false-at-Y alternatives
+are retained here. If v is nonzero and is a raw input, pair output, or heavy
+OR, it has a positive singleton witness. Since h=q, that witness makes h
+true, contradicting k>=2. If v is a selected AND different from u, it lies
+before u and its contracted AND cone has at most k-2 selected AND nodes.
+It has at most k-1 raw/pair stops. Choosing one singleton witness for each
+stop and taking their union yields a positive input of weight at most k-1
+for v and hence for h=q, again a contradiction.
+
+Thus every other operand is either identically zero or the same u. A repeated
+operand or absent false-default port changes nothing: q=u. Finally u is a
+conjunction of raw/pair atoms with minimum positive weight k. Section3 supplies
+a mandatory singleton or crossing pair. This closes the extra-OR case.
+
+The gate-count exhaustion is essential. Without it, a second disjoint
+degree-k term could survive as a genuine OR alternative. We do not assert
+that a small positive witness exists for an arbitrary false-at-Y branch.
+Here every such alternative is explicitly a linear base atom or an earlier
+selected AND with the bounded contracted cone described above.
+
+
+7. CONSEQUENCE AND REMAINING LIMIT
+
+Every assumed violation under (S) forces delta<=1 by (2), and every such
+prefix has a mandatory singleton or crossing pair by Sections4--6. The
+strengthened clause/forced-refund bound then contradicts the violation.
+This establishes the stated paper sufficient criterion.
+
+The result improves the complementary heavy criterion Q<=H+k+e by two.
+It includes the earlier three-point PG(2,4) saturation slice and removes
+the earlier restriction that all nontrivial light targets have size at least3.
+It does not resolve arbitrary larger surplus, where several extra OR/AND
+gates or multiple larger prefix light outputs can create genuine alternative
+terms. That structural case remains open in this analysis.
+
+Independent-review note: the inspection worker separately checked the
+deletion-critical atom count, exhaustion of the k-1 selected AND gates,
+the small-witness bound for every other OR operand, and the prefix-triple
+private-OR argument. No flaw was found. This review is mathematical evidence;
+it is not a substitute for a future Lean proof of the whole classification.

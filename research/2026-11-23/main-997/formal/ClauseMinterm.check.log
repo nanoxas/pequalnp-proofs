@@ -1,0 +1,32 @@
+import took 1.25s
+'PEqualNP.Research.ClauseMinterm.clause_minterm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.ClauseMinterm.one_not_clause_window_bound_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 20.7ms
+	attribute application 0.121ms
+	blocked (unaccounted) 1.28s
+	compilation (IR) 0.355ms
+	compilation (LCNF base) 3.52ms
+	compilation (LCNF impure) 1.07ms
+	compilation (LCNF mono) 1.86ms
+	congr simp thm 6.8ms
+	declTypeLinter 4.35ms
+	elaboration 67.3ms
+	fix level params 0.754ms
+	import 1.25s
+	initialization 25.7ms
+	instantiate metavars 3.43ms
+	interpretation 241ms
+	let-to-have transformation 0.19ms
+	linting 31ms
+	module linting 0.0258ms
+	parsing 13ms
+	process pre-definitions 9.15ms
+	share common exprs 5ms
+	simp 354ms
+	tactic execution 285ms
+	tacticAnalysis 4.44ms
+	type checking 146ms
+	typeclass inference 330ms

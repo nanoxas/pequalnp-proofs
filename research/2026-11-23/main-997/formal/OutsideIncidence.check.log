@@ -1,0 +1,30 @@
+import took 1.42s
+'PEqualNP.Research.OutsideIncidence.outside_light_incidence_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.OutsideIncidence.outside_large_incidence_refund' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 4.06ms
+	attribute application 0.0313ms
+	blocked (unaccounted) 197ms
+	congr simp thm 0.332ms
+	declTypeLinter 1.61ms
+	elaboration 14ms
+	fix level params 0.201ms
+	import 1.42s
+	initialization 32ms
+	instantiate metavars 0.556ms
+	interpretation 163ms
+	let-to-have transformation 0.0569ms
+	linting 7.51ms
+	module linting 0.0212ms
+	parsing 3.07ms
+	process pre-definitions 2.33ms
+	share common exprs 1.02ms
+	simp 2.96ms
+	tactic execution 46.2ms
+	tacticAnalysis 1.4ms
+	type checking 20.3ms
+	typeclass inference 99.1ms

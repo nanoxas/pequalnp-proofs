@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "source": "PairClause.lean",
+  "source_sha256": "1a867bcf25ea420363c1ca64679b6ef1db5d82e7b3a55c66b147698d814f6519",
+  "source_bytes": 4940,
+  "object_sha256": "b7c3ec1bd7254fe2ad8a39ed26bfaf45d6f2580974401b717f39b8e2f0af9722",
+  "exit_code": 0,
+  "elapsed_seconds": 1.719,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.PairClause.crossing_pair_full_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.PairClause.one_not_refund_bound_crossing_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "PairClause.check.log",
+  "log_sha256": "4230e89d8a27c96281cf26e8c7daa5a8bc3caed3500fb91943a567b452cdf8e2",
+  "dependencies": {
+    "OutsideIncidence": {
+      "source_sha256": "233554ea8ce9ac7c002f85dd33da2d2e37611c6a678e8691edb91309b79db4c8",
+      "object_sha256": "7021b2df712d4562f377418409014468ed3f75913912c27b68b5b44e30787087"
+    },
+    "ClauseMinterm": {
+      "source_sha256": "84a89159456bac270b1d9bc3e3620a0674ea60d6a47fb6485030e04215052964",
+      "object_sha256": "5e609f3eaec4c999ba4ad43c2b9c450711956ae342a1e22f61e3c21edc7bd619"
+    },
+    "HeavyReplacement": {
+      "source_sha256": "1ac8cd33c096192355bf8bd299f796c277157b5b8f087b21fa2b4890ef489b2e",
+      "object_sha256": "998049d1824ae7f6afc5454168675813fc48cff9a2bafcf1c863d92cb941e151"
+    }
+  },
+  "scope": "Original997 assumptions plus a mandatory pair clause crossingY. Proves the stronger unweighted sum of target sizes≤N+R+m, hence exact997. Does not establish existence of such a clause for arbitrary circuits.",
+  "recorded_utc": "2026-11-24T02:14:00.758586+00:00",
+  "prior_attempts": [
+    {
+      "label": "PairClause1",
+      "status": "PASS_WITH_ONE_LINTER_WARNING",
+      "scope": "Same theorem; an unused simp argument was removed."
+    }
+  ]
+}

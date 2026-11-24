@@ -1,0 +1,176 @@
+INDEPENDENT AUDIT: STRENGTHENED CLAUSE COUNT AND CROSSING PAIRS
+
+Status: independent mathematical audit. The strengthened count and its
+crossing-pair application have since passed Lean in ClauseMinterm,
+OutsideIncidence, and PairClause, with standard-only axiom audits. Their
+source hashes and exact scope are recorded in the corresponding verification
+JSON files. This reviewer ran no additional compiler or target SAT query.
+
+Conclusion: the strengthening and its crossing-pair application are
+sound under the stated one-NOT window hypotheses. The restriction sets used
+in986 do not compromise the extra gate count. Empty and singleton targets
+must be excluded from the incidence degree used in the pair application,
+or removed by an equivalent filtered-degree arithmetic lemma.
+
+1. SETUP AND EXACT CLAIM
+
+Let the target family be linear: distinct target sets intersect in at most
+one point. The original circuit has fan-in at most two and AND/OR/NOT gates,
+with every NOT at the distinguished index t. Let k=|Y|>=2, and suppose the
+distinguished wire is true on all assignments of weight below k and false
+on Y. The checked NotWindow machinery derives an actual NOT with a valid
+earlier first operand h. Its monotone prefix satisfies
+
+  h(Y)=true, and h(X)=false for |X|<k.
+
+For a finite input set T, assume h is false whenever every input in T is
+false. Equivalently h implies OR(T); this is the mandatory-clause premise.
+Choose t0 in T. No hypothesis that T is itself a target is required.
+
+The proposed strengthened inequality is
+
+  k + sum_i(|S_i|-1) <= N + sum_{u in T\{t0}} degree(u),
+
+where natural subtraction is used and N is the original gate count. It is
+obtained by modifying986's gate-union count, not by merely adding k-1 to
+the conclusion of the accepted public theorem.
+
+2. WHY THE EXTRA PREFIX GATES ARE DISJOINT FROM986'S OWNED SETS
+
+The986 proof uses the constant-true replacement D of the unique NOT. For
+each target define
+
+  P_i = inputs\(T\{t0})  if t0 belongs to S_i,
+        inputs\T         otherwise.
+
+Its owned gate set G_i excludes the replaced NOT wire z and requires
+
+  support_D(w) intersect P_i subset S_i,
+  |support_D(w) intersect P_i| >= 2.
+
+The restriction enters by intersecting the GLOBAL singleton support with
+P_i. It is not an independently modified circuit that could create new
+singleton positives. Hence a gate with empty global singleton support is
+excluded from every G_i, for every choice of P_i.
+
+Apply the checked minterm bound in D to h. Prefix preservation gives h's
+original positive value and minimum positive weight in D. Let A be the
+set of empty-singleton-support AND gates true at Y at or before h. Then
+
+  k <= |A|+1.
+
+Every member of A precedes z. Therefore A is disjoint from z and all G_i.
+The G_i are mutually disjoint by986's original argument: the P_i have only
+two possible nested values, and a shared gate would provide at least two
+points in an intersection of two distinct target sets.
+
+The same original per-target count gives
+
+  |S_i\(T\{t0})|-1 <= |G_i|.
+
+Counting the union of A, all G_i, and {z} yields
+
+  k + sum_i(|S_i\(T\{t0})|-1) <= N.
+
+The unchanged finite-set deletion inequality from986 then gives the claimed
+strengthening. No assumption that the prefix AND gates are live in a chosen
+target output is needed: they are distinct gates in the counted circuit.
+Invalid references, nullary gates, aliases, and sharing are already handled
+by the checked minterm and prefix-preservation lemmas.
+
+The final maximal-degree premise of accepted986 is unused by its proof body.
+A rebuilt strengthened lemma may therefore accept ANY t0 in T. If the exact
+public interface is retained, one can instead choose a maximum-degree member
+of T as originally proposed; the crossing-pair bound below works either way.
+One must not invoke the accepted interface with an arbitrary t0 while omitting
+its stated premise merely because the implementation did not use it.
+
+3. CROSSING-PAIR INCIDENCE BOUND
+
+Restrict to the index subfamily I={i:|S_i|>=2}. Linearity and exact output
+correctness persist. Empty and singleton targets will be restored afterward.
+Write degree_I(u)=#{i in I:u in S_i} and H=#{i in I:S_i disjoint Y}.
+
+Suppose T={a,b}, where a belongs to Y and b does not, and T is a mandatory
+clause of h. The points a,b are distinct. With t0=a the clause cost is
+degree_I(b). With a maximal-degree t0 it is the minimum of degree_I(a) and
+degree_I(b), which is no larger than degree_I(b).
+
+Partition the targets in I containing b into heavy and light targets.
+There are at most H heavy targets. For each light target containing b,
+its intersection with Y is nonempty. These intersections are pairwise
+disjoint: if two shared p in Y, the original target intersection would
+contain both p and b, which are distinct. Choosing one Y point from each
+such target is therefore injective. Thus
+
+  degree_I,light(b) <= |Y| = k,
+  degree_I(b) <= H+k.
+
+This argument does not assume that {a,b} is a target, nor that two light
+targets intersect elsewhere. It uses b outside Y essentially.
+
+Combining it with the strengthened clause count gives
+
+  k + sum_{i in I}(|S_i|-1) <= N+H+k,
+  sum_{i in I}(|S_i|-1) <= N+H <= N+R,
+
+where R is the exact posted refund count. The last inequality is the checked
+forced-refund bound: every nontrivial heavy output supplies a distinct refund.
+
+For the full family, terms |S_i|-1 are zero outside I. If P counts nonempty
+targets, then sum_i |S_i| = P + sum_i(|S_i|-1), and P<=m. Consequently
+
+  sum_i |S_i| <= N+R+m.
+
+Each weighted term in997 is at most |S_i|. Thus the complete posted997
+inequality follows in the crossing-pair clause case. This conclusion is
+stronger than the required weighted inequality for that case.
+
+Filtering is significant: repeated singleton targets are allowed by the
+intersection hypothesis and can make degree(b) arbitrarily large. They
+contribute zero to the predecessor sum and should not be charged in the
+clause-deletion cost used for this application. Filtering to I avoids this
+pitfall exactly. Empty targets contribute nothing and only increase m.
+
+4. CONJUNCTIONS OF PAIR-OR ATOMS
+
+Assume, as a GLOBAL functional identity, that h is a conjunction of raw
+variables and OR atoms of size at most two. This assumption cannot be
+replaced by agreement on Y or by one accepting trace.
+
+A raw factor is a mandatory singleton clause and already gives the desired
+bound through986 (or the strengthened version with zero clause cost).
+Repeated endpoints in a pair are raw factors. Constant-one factors may be
+deleted; a false factor is impossible because h(Y)=true.
+
+Suppose there is no raw factor. Every remaining clause consists of two
+distinct inputs, and every clause meets Y because h(Y)=true. If no clause
+is a crossing pair, every clause has both endpoints in Y. Removing any one
+point from the nonempty set Y leaves every two-point clause satisfied.
+Then h is true on an input of weight k-1, contradicting the global minimum
+positive weight k. Therefore a crossing-pair clause exists.
+
+Thus a conjunction of pair-OR atoms is fully covered, including the former
+three-disjoint-pair obstruction to a mandatory singleton. The proof does
+not require the pair atoms to be members of the target family.
+
+5. LIMITS AND NEXT STRUCTURAL OBLIGATION
+
+This does not show that an arbitrary pre-NOT monotone function h has a
+mandatory crossing pair. For example,
+
+  h=(x0 AND x1 AND x2) OR (x3 AND x4 AND x5) OR (x6 AND x7 AND x8)
+
+has minimum positive weight three. Every mandatory clause must hit each of
+the three disjoint monomials and therefore has at least three variables.
+Such a prefix has no mandatory singleton or crossing pair.
+This is a limitation of the reduction, not a counterexample to997.
+
+The strengthened clause inequality offers a more general sufficient condition:
+if an arbitrary mandatory clause T and choice t0 in T have deletion cost at
+most R+k, the full unweighted target-sum bound follows. A weighted version
+can additionally absorb the light truncation slack and the empty-target
+allowance. The remaining task is to produce a clause with a controlled
+incidence cost, or to count the gates needed by prefixes whose mandatory
+clauses are all expensive. The new bound resolves pair atoms but does not
+yet supply that general structural step.

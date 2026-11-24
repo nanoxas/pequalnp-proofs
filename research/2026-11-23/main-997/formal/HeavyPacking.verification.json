@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "source": "HeavyPacking.lean",
+  "source_sha256": "7e541947631c41f8c7492838e0926bbf3d6a8084db5521b8f2d0e78d6e916ca5",
+  "source_bytes": 7401,
+  "object_sha256": "dfa174477511e94a3388b3523da6ae30077ac9ad39747c0e9d0b546ca03d316b",
+  "started_utc": "2026-11-24T02:14:27.550225+00:00",
+  "completed_utc": "2026-11-24T02:14:33.608832+00:00",
+  "elapsed_seconds": 6.058,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.HeavyPacking.linear_pair_packing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyPacking.excess_pair_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyPacking.one_not_refund_bound_three_window": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "HeavyPacking.check.log",
+  "log_sha256": "8d4900302e1840bc00805ffd085a227689db14e1908b7f6292493acea81c890e",
+  "dependencies": [
+    {
+      "module": "SmallWindow",
+      "source_sha256": "8f354a48080a33b18f233d75b2b30c1547f801ed73612c2a0118f7217e810075",
+      "object_sha256": "b3c59dd02c007b5d3296a7c7da1a252c54b403320919940db5ff697853d9613b"
+    },
+    {
+      "module": "Mathlib.Data.Finset.Prod"
+    },
+    {
+      "module": "Mathlib.Tactic.Linarith"
+    }
+  ],
+  "scope": "Finite ordered-pair packing and arithmetic imply total heavy excess <=k whenever the complement of Y has at most 2k+1 points. The final theorem proves the exact 997 inequality under n<=3*|Y|+1, including Y of size0 or1 via checked SmallWindow. The unrestricted 997 inequality remains open.",
+  "math_audit": [
+    "Distinct targets with intersection size at most one have disjoint sets of ordered pairs of distinct points.",
+    "For heavy targets, all ordered pairs lie in the complement of Y, giving sum d_i(d_i-1)<=q(q-1).",
+    "For every natural d,k, d(d-1)>=(4k+2)*max(d-k-1,0). Above the truncation point the difference factors as (d-2k-1)(d-2k-2), nonnegative for integral d.",
+    "q<=2k+1 yields q(q-1)<=(4k+2)k; positive-factor cancellation bounds the total excess by k.",
+    "The final statement adds only n<=3*Y.card+1 to the posted hypotheses; the same checked refundGates predicate is used and is definitionally equal to the posted predicate.",
+    "No lower bound on target sizes, no distinctness assumption beyond pairwise intersection at most one, and no validity assumption on circuit references was added."
+  ],
+  "recorded_utc": "2026-11-24T02:15:39.478282+00:00"
+}

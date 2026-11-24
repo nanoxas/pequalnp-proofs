@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "source": "ClauseMinterm.lean",
+  "source_sha256": "84a89159456bac270b1d9bc3e3620a0674ea60d6a47fb6485030e04215052964",
+  "source_bytes": 17038,
+  "object_sha256": "5e609f3eaec4c999ba4ad43c2b9c450711956ae342a1e22f61e3c21edc7bd619",
+  "started_utc": "2026-11-24T02:06:30.379767+00:00",
+  "completed_utc": "2026-11-24T02:06:33.301712+00:00",
+  "elapsed_seconds": 2.922,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.ClauseMinterm.clause_minterm_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.ClauseMinterm.one_not_clause_window_bound_explicit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "ClauseMinterm.check.log",
+  "log_sha256": "9f7550df684a993a30af05c054b96bc3f00cbaa55f4b77e09bb194e88aeacfd5",
+  "dependencies": [
+    {
+      "module": "NotWindow",
+      "source_sha256": "a7eaecef609f5f722e0b4b7a827a67cba6dd60a1c7cb7f2a9f766ef340bee6c7",
+      "object_sha256": "10602989cb0db153801426348aa51b230b14165d85f33a685dbe186764a40d87"
+    }
+  ],
+  "scope": "Strengthened mandatory-clause bound: k + sum_i(|S_i|-1) <= circuit.size + sum_{p in T.erase t0} #{i : p in S_i and |S_i|>=2}. Includes a monotone replacement interface and an actual-circuit unique-NOT/head/window/mandatory-clause bridge. The unrestricted 997 inequality is not claimed.",
+  "math_audit": [
+    "Accepted986 owned gates have at least two singleton positives in support intersect the mask. They are disjoint from every empty-singleton-support prefix branch, even after mask restriction.",
+    "The selected branches lie at or before the NOT input u, so u<z excludes the exceptional constant-true replacement gate. Owned gates exclude z by definition.",
+    "Pairwise target intersection at most one and the nested two-mask family make the owned sets disjoint.",
+    "The checked minterm bound supplies k-1 empty-support branches. Adding them and z to the owned count supplies the k term.",
+    "The deletion-incidence arithmetic charges only targets of size at least two. Empty and singleton targets contribute zero to both predecessor-cardinality sums and need no payment.",
+    "The actual bridge preserves all pre-NOT values at the same indices, including malformed references evaluated by getD false. It derives the monotone hmin from the original threshold window.",
+    "No maximal-degree choice of t0, target-size lower bound, or target membership of the mandatory clause was assumed. Only t0 in T is required by the actual-circuit bridge."
+  ],
+  "recorded_utc": "2026-11-24T02:07:51.260794+00:00",
+  "reused_source": {
+    "path": "PEqualNP/Outside/L_meta_986.lean",
+    "sha256": "9f75bc7757c0d871cefb572b24575ce97ec5f0d1abc005406cd3c66d82139920",
+    "attribution": "Accepted mandatory-clause owned/countOne, mask, monotone replacement, and incidence helpers; Apache-2.0."
+  },
+  "prior_attempts": [
+    {
+      "label": "ClauseMinterm1",
+      "status": "PASS_WEAKER_UNFILTERED_COST",
+      "source_sha256": "e000bce1d746ba0eb5a0a7e0d8b9c5861997421da45bc7d17de5d878384ff60b",
+      "exit_code": 0,
+      "elapsed_seconds": 8.729,
+      "log_sha256": "be3136902ca0025449c0aa1d4ec88eb81099d080dcae376761fb8f03f82a4f22",
+      "cause": "Initial version counted all target incidences; one deprecated simp name warning. Replaced by the stronger filtered-cost result."
+    },
+    {
+      "label": "ClauseMinterm2",
+      "status": "ELABORATION_FAILED",
+      "source_sha256": "c62aa42b89039826da1247dd1626d5b61e9d7281734fa23f8c9d931516eff407",
+      "exit_code": 1,
+      "elapsed_seconds": 2.972,
+      "log_sha256": "566f6311574934b2b56860de00266fbaf49aad912c5d5ffd9f423492d8b74619",
+      "cause": "Filtered-incidence arithmetic needed an explicit if-True simplification; corrected before the final pass."
+    }
+  ]
+}

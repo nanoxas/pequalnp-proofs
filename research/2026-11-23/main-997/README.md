@@ -15,7 +15,8 @@ truncated to |Y|, and permits a precisely defined refund for certain gates.
 
 ## Kernel-checked components
 
-Each included module has a sibling `.verification.json` and `.check.log`.
+There are twelve checked modules. Each has a sibling `.verification.json`
+and `.check.log`.
 The records give the exact source hash, successful exit code, and inline
 axiom audit. Audited declarations use only the standard Lean axioms
 `propext`, `Classical.choice`, and `Quot.sound`, or a subset of them.
@@ -30,6 +31,10 @@ axiom audit. Audited declarations use only the standard Lean axioms
 | [HeavyReplacement](formal/HeavyReplacement.lean) | Replaces the NOT by false; proves global domination, agreement above Y, and the original-circuit heavy count. |
 | [RefundCount](formal/RefundCount.lean) | Matches the exact posted predicate, proves forced refunds for nontrivial heavy outputs, and derives sufficient cases from the light/minterm count. |
 | [SmallWindow](formal/SmallWindow.lean) | Proves the inequality without refunds when |Y|≤2, and proves the exact refund inequality whenever every target has size at most four. |
+| [ClauseMinterm](formal/ClauseMinterm.lean) | Strengthens the accepted mandatory-clause count by adding the k−1 empty-support prefix AND gates; deletion cost counts only targets of size at least two. |
+| [OutsideIncidence](formal/OutsideIncidence.lean) | Bounds the nontrivial target incidence of a point outside Y by the exact refund count plus |Y|. |
+| [PairClause](formal/PairClause.lean) | Proves the stronger unweighted target-size inequality when the NOT input has a mandatory pair clause with one point in Y and one outside. |
+| [HeavyPacking](formal/HeavyPacking.lean) | Uses ordered-pair packing to prove the exact posted inequality whenever n≤3|Y|+1, including empty and singleton targets. |
 
 The files are research modules with local imports. They are not an exact
 standalone submission for the unrestricted posted statement. Earlier
@@ -53,6 +58,12 @@ The all-light case and the case in which every heavy set has size at most
 k+1 are consequences. Empty and singleton targets are allowed in the checked
 statements. `SmallWindow` also covers k=0 and k=1.
 
+The [strengthened clause argument](crossing-pair-independent-audit.txt) now
+has checked components in `ClauseMinterm`, `OutsideIncidence`, and `PairClause`.
+Its pair clause is a semantic condition on the NOT input; the pair does not
+have to be a target. A separate checked packing argument proves the original
+inequality for every instance with **n≤3|Y|+1**.
+
 ## Paper arguments and the remaining step
 
 The [PG(2,4) paper argument](pg4-exclusion-paper.txt) excludes a violation for
@@ -63,14 +74,20 @@ a classification of the small remaining prefix. The
 three-point saturation criterion that permits light triples. The
 [independent audit](saturation-independent-audit.txt) checks the residual
 classification, including sharing, constants, unary gates, and unavailable
-wire references. These complete saturation arguments have not been checked
-as Lean theorems.
+wire references. The newer
+[small-surplus proof](saturation-small-surplus-audit.txt) allows arbitrary
+light target sizes and every k=|Y|≥2. If H counts nontrivial heavy targets,
+e counts empty targets, and Q is the sum of max(min(k,|S_i|)−2,0) over light
+targets, it proves the sufficient criterion Q≤H+k+e+2 on paper. Its complete
+gate classification has not been checked as a Lean theorem.
 
 The unresolved general step controls overlap between light and heavy gate
-charges after the NOT. Light pair outputs can already occur in a tight
-prefix and eliminate every mandatory singleton variable; the audit gives
-an explicit example. Larger gate surplus creates further overlap that the
-separate private counts do not yet charge to the exact refund predicate.
+charges after the NOT. The checked crossing-pair theorem handles the earlier
+pair-output obstruction to a mandatory singleton. The reviewed classification
+also handles one extra gate globally, retaining false-at-Y OR alternatives.
+Larger surplus can support genuine alternative terms whose mandatory clauses
+have more than two variables; the current arguments do not bound all such
+clause costs or charge all overlap to the exact refund predicate.
 
 ## Exact statement and parsing check
 

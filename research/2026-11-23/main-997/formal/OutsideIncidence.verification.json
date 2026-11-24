@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "source": "OutsideIncidence.lean",
+  "source_sha256": "233554ea8ce9ac7c002f85dd33da2d2e37611c6a678e8691edb91309b79db4c8",
+  "source_bytes": 4245,
+  "object_sha256": "7021b2df712d4562f377418409014468ed3f75913912c27b68b5b44e30787087",
+  "exit_code": 0,
+  "elapsed_seconds": 1.92,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.OutsideIncidence.outside_light_incidence_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OutsideIncidence.outside_large_incidence_refund": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "OutsideIncidence.check.log",
+  "log_sha256": "6e7b6137c0aba4b6be7f6769821c5c23dd58f63a7fbdbeb24aeea9415b3de324",
+  "dependencies": {
+    "RefundCount": {
+      "source_sha256": "08cedd1ed8c084add41882ffd7bc64922cd54f4c8733a533886824a6756cb508",
+      "object_sha256": "6b6b241be431f92b445a4dae4310e075b600939baf73b44085d69ac541b0c087"
+    }
+  },
+  "scope": "For a point outsideY, light incidence≤|Y|; nontrivial total incidence≤exact refunds+|Y|. Arbitrary empty/singleton targets allowed.",
+  "recorded_utc": "2026-11-24T02:14:00.753846+00:00"
+}
