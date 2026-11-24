@@ -1,30 +1,108 @@
 # P vs NP research checkpoint
 
-This branch preserves completed research from the ongoing collaboration. The detailed report is in [README.txt](research-checkpoints/README.txt); the [manifest](research-checkpoints/manifest.json) records exact source hashes and verification scope.
+This branch preserves supporting research, reproducible computations, and local
+Lean checks from the collaboration. Official theorem acceptance is recorded by
+the [upstream proof repository](https://github.com/brilliant-hq/pequalnp-proofs)
+through its proof pull requests and checker verdicts. No accepted upstream
+theorem is attributed to this checkpoint.
 
-## Completed five-input search: L-meta-1418
+The [update manifest](research-checkpoints/public-update-manifest.json) records
+exact published file hashes. Earlier work remains documented in the
+[historical report](research-checkpoints/README.txt).
 
-All ten assigned truth tables have a verified monotone circuit of size M and a definitive UNSAT result for the complete 32-row model with at most one NOT gate and at most M-1 gates. In posted order, the minima are **8, 7, 5, 8, 6, 4, 6, 4, 8, 9**.
+## Verification status
 
-The independent audit checked all 320 witness rows, legal references, gate types, and final bounds. The model includes free constants and handles the project's empty, unary, duplicate-input, invalid-reference, and unused-gate conventions. The symmetry restriction has an explicit completeness argument.
+| Work | Result | Scope |
+|---|---|---|
+| L-meta-1422 | All ten tables exhausted in the audited circuit model | Solver evidence and full witness evaluation; no formal UNSAT certificate |
+| L-meta-1031 | 19 solver cases and two explicit witness audits completed | Restricted small-graph models; the general theorem remains unproved here |
+| Five-input certificate pipeline | Complete synthetic AND-of-five theorem passed Lean | Whole generated source checked; separate axiom audit timed out during imports |
+| GenericCore and GenericSmoke | Explicit drafts | Core import timed out; generic smoke was not run |
+| Our L-meta-1421 assembly | Stopped, unverified, and superseded | Another contributor's upstream PR2958 was accepted and merged |
 
-- [Search implementation](main-1418/search.py)
-- [Final results and witnesses](main-1418/results-ordered.json)
-- [Completeness argument](main-1418/completeness-notes.txt)
-- [Exhaustion manifest](main-1418/exhaustion-manifest.json)
-- [Independent audit](main-1418/root-audit.json)
-- [Desk response](main-1418/desk-report.json)
+Task-specific work stopped when the corresponding assignments became inactive.
+Those stop events alone do not identify a public settlement or its cause.
+Operational assignment identifiers and private service links are excluded.
 
-This is computational exhaustion with an audited encoding, not a Lean theorem or a DRAT/LRAT certificate. The desk accepted `statement_seems_false`; it rejected `exhausted` because the lease had no server-defined shard range. The negative posted existence claim therefore has computational evidence against it, rather than a proof of that claim.
+## Completed five-input search: L-meta-1422
 
-## Checked reusable proof components
+Each of the ten tables has a monotone circuit of size M and a definitive UNSAT
+result for the full 32-row model with at most one NOT and at most M-1 gates.
+In posted order, the sizes are **8, 6, 8, 9, 8, 7, 7, 4, 7, 6**. All 320 witness
+rows were independently evaluated. The encoding covers free constants, equal
+fanins, unused gates, and the documented complete ordering symmetry.
 
-The archive contains Lean-checked exact ladder support, the first-dirty-AND small-witness lemma in actual circuit semantics, the dyadic inverter semantic core, and six checked actual-circuit clean-count components in `main-1407/`.
+- [Results and witnesses](main-1422/results-ordered.json)
+- [Encoder](main-1422/search.py) and [completeness argument](main-1422/completeness-notes.txt)
+- [Exhaustion manifest and independent audit](main-1422/exhaustion-manifest.json)
 
-The full L-meta-1407 assembly was not completed. Another contributor's proof had already been [accepted upstream](https://github.com/brilliant-hq/pequalnp-proofs/pull/2889) before this assembly started. The duplicate [fork draft](https://github.com/nanoxas/pequalnp-proofs/pull/1) was closed without merging. It triggered no Actions run and was not an official swarm submission. The unverified assembled draft is omitted from this checkpoint.
+These computational results support the no-saving conclusion and provide
+evidence against the posted negative search claim. Their UNSAT answers do not
+carry a Lean or DRAT/LRAT replay. Timestamped status files preserve observations
+from the search and make no claim about a current assignment.
 
-## Review priorities
+## Reusable finite-circuit certificate pipeline
 
-The strongest next validation improvement is a trusted certificate for the finite circuit UNSAT results. The existing search model and symmetry argument are fully exposed for review. Other recorded results include the explicit few-NOT incidence compiler, the degree-four counting obstruction, and corrected semantics for the L-meta-1006 boundary witness. Their exact assumptions, checked instances, and unproved bridges are documented in the detailed report.
+The [package](finite-circuit-certificates/README.md) combines monotone witness
+generation, two independently checked Python evaluators, and a generator that
+preserves an explicitly supplied public theorem statement.
 
-This branch contains supporting research. The project's official checker accepts exact posted Lean theorem submissions through upstream proof pull requests. No accepted upstream theorem is attributed to this session.
+Its complete synthetic five-input AND theorem, with a four-gate witness and
+rejection bound three, passed Lean 4.36.0 with exit 0 in 161.956 seconds. Imports
+accounted for 155 seconds. The separate axiom audit stopped at its 180-second
+limit before producing an axiom list. Exact hashes and logs are in the
+[verification record](finite-circuit-certificates/smoke/lean-verification.json).
+Every newly generated target file still requires its own completed Lean check.
+
+The [generic extension](finite-circuit-certificates/GENERIC.md) parameterizes
+input count and NOT budget. It remains a draft: the core check ended during
+imports, and the generic XOR smoke was not compiled. Its status is independent
+of the successful five-input example.
+
+The five-input engine preserves the accepted L-meta-1445 proof body, which
+credits L-meta-1007. The package retains its Apache-2.0 license, attribution,
+notices, and exact source hashes.
+
+## Ownership diagnostics: L-meta-1031
+
+The [stopped-research report](main-1031/STOP_REPORT.md) records all 19 completed
+solver cases and two direct witness audits. Its model restrictions are
+explicit. A four-gate path example shows that an edge may be critical for a
+gate without being owned by it. The missing general step is a size-preserving
+exchange controlling empty or nonstar ownership in minimum circuits.
+
+The later compact public snapshot still listed the problem as open. That
+observation does not establish why the assignment ended. No task proof was
+submitted from this research.
+
+## Upstream acceptance and local drafts
+
+Our L-meta-1421 candidate never completed its Lean check. The independent
+[upstream PR2958](https://github.com/brilliant-hq/pequalnp-proofs/pull/2958),
+by Vkuparin, was accepted and merged on 24 November 2026 at 00:17:59 UTC. The
+[acceptance comment](https://github.com/brilliant-hq/pequalnp-proofs/pull/2958#issuecomment-7117912128)
+and merged PR establish the settlement. Our [local status](main-1421/STATUS.json)
+remains superseded and unverified.
+
+Earlier L-meta-1407 work yielded six checked reusable components. Its full
+assembly remained unfinished. Another contributor's
+[upstream PR2889](https://github.com/brilliant-hq/pequalnp-proofs/pull/2889)
+had already been accepted. Our closed
+[fork draft](https://github.com/nanoxas/pequalnp-proofs/pull/1)
+did not trigger the official checker or an Actions run.
+
+## Import bottleneck
+
+The [import note](infra-lean/IMPORT_BOTTLENECK.md) and
+[run evidence](infra-lean/import-evidence.json) distinguish module loading from
+proof work. Reduced imports completed quickly in several generic tests; later
+complete checks spent most or all of their limits loading mapped files. The
+evidence does not establish a precise historical memory-limit cause.
+
+## Earlier preserved work
+
+The historical checkpoint also records the completed L-meta-1418 computational
+search; Lean-checked ladder support, first-dirty-AND witnesses, dyadic inverter
+semantics, and clean-count components; and finite audits of several structural
+constructions. Their assumptions and formalization boundaries remain explicit.
+None is claimed to resolve P versus NP.

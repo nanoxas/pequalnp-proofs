@@ -1,0 +1,16 @@
+import took 1.37s
+Nat.add_comm (n m : Nat) : n + m = m + n
+cumulative profiling times:
+	attribute application 0.0222ms
+	elaboration 5.54ms
+	fix level params 0.031ms
+	import 1.37s
+	initialization 145ms
+	instantiate metavars 0.00695ms
+	interpretation 3.97ms
+	linting 1.04ms
+	parsing 0.293ms
+	process pre-definitions 0.468ms
+	share common exprs 0.0408ms
+	type checking 0.301ms
+	typeclass inference 2.5ms

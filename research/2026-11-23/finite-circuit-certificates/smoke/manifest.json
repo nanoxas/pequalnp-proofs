@@ -1,0 +1,20 @@
+{
+  "kind": "synthetic_smoke",
+  "synthetic": true,
+  "desk_task": null,
+  "namespace": "PEqualNP.Outside.FiniteCertificateSmoke",
+  "aux_namespace": "PEqualNP.Outside.FiniteCertificateSmoke_aux",
+  "truth_table": "0x80000000",
+  "upper_gates": 4,
+  "lower_s": 3,
+  "source": "Smoke.lean",
+  "source_sha256": "d130924042bd643ddc3f302ceefc2be87903ddc8b1a0bd3d46f51699bdb0b11e",
+  "source_bytes": 46055,
+  "status": "CHECKED_AXIOM_AUDIT_INCOMPLETE",
+  "kernel_check_status": "PASS",
+  "minimal_header_status": "The complete synthetic proof passed Lean4.36.0 with this six-import header; the separate axiom audit reached its deadline.",
+  "engine_body_sha256": "19a0ec27e0a5f2a6010436f261f4b74e7db8a4e454af7e6a253e5a691c5fd527",
+  "reproduce": "python3 finite-circuit-certificates/make_smoke.py",
+  "axiom_audit_status": "INCOMPLETE_DEADLINE",
+  "verification": "lean-verification.json"
+}

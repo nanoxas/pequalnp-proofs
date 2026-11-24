@@ -1,0 +1,15 @@
+{
+  "local_candidate_status": "SUPERSEDED_UNVERIFIED",
+  "kernel_check_status": "interrupted_unverified",
+  "local_source_sha256": "087f63332ec5ace17b45460748b54a592a203d94bd2cf6487574de6dfd63a0a1",
+  "upstream_proof_submitted_from_local_candidate": false,
+  "upstream": {
+    "pr": 2958,
+    "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/2958",
+    "merged": true,
+    "merged_at": "2026-11-24T00:17:59Z",
+    "contributor": "Vkuparin",
+    "acceptance_comment": "https://github.com/brilliant-hq/pequalnp-proofs/pull/2958#issuecomment-7117912128"
+  },
+  "interpretation": "The local draft remained unverified. The independent upstream proof superseded it; no acceptance credit is claimed here."
+}

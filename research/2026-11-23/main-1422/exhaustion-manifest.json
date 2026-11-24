@@ -1,0 +1,114 @@
+{
+  "task": "L-meta-1422",
+  "status": "complete computational exhaustion",
+  "all10_tables_exhausted": true,
+  "formal_Lean_or_DRAT_certificate": false,
+  "source_sha256": "b79f8c9ce69ca5843fb1b8a1305faeb9933a5416c49051745025c4bb66a33b01",
+  "model": "Full32-row, at most1NOT, free constants, equal fanins, valid earlier sources; complete source and topological renaming symmetries only.",
+  "independent_post_audit": [
+    {
+      "table": "0xaaa8a880",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe888a888",
+      "monotone_upper": 6,
+      "one_not_unsat_bound": 5,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe888e880",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe8a8a880",
+      "monotone_upper": 9,
+      "one_not_unsat_bound": 8,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe8a8c880",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe8a8e800",
+      "monotone_upper": 7,
+      "one_not_unsat_bound": 6,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xeaa8c080",
+      "monotone_upper": 7,
+      "one_not_unsat_bound": 6,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xeaaac000",
+      "monotone_upper": 4,
+      "one_not_unsat_bound": 3,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xeac8e000",
+      "monotone_upper": 7,
+      "one_not_unsat_bound": 6,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xaaa8a888",
+      "monotone_upper": 6,
+      "one_not_unsat_bound": 5,
+      "all32_witness_rows_passed": true
+    }
+  ],
+  "files": {
+    "search.py": {
+      "bytes": 13965,
+      "sha256": "b79f8c9ce69ca5843fb1b8a1305faeb9933a5416c49051745025c4bb66a33b01"
+    },
+    "results-ordered.json": {
+      "bytes": 13456,
+      "sha256": "333fc37d0413981644b5104e4819b566f28465e26563dedf311156ab569de251"
+    },
+    "completeness-notes.txt": {
+      "bytes": 4472,
+      "sha256": "26481a5aa905aaa8c18abd17968b339b49a7a58ed40480e0bcd07e44314651fa"
+    },
+    "encoding-sanity-ordered.json": {
+      "bytes": 4600,
+      "sha256": "b5a4b7394d4afc4d32d231b9c596f82ed2679a00c0d4a4bb00e4e417968b4d53"
+    },
+    "public-task.json": {
+      "bytes": 2221,
+      "sha256": "fdd561cfface9ccfacd14ed922fea476ffb7bb5ee36b713c42ce180b858e6927"
+    },
+    "formula_upper.py": {
+      "bytes": 2488,
+      "sha256": "6cc2f2bd1862cf49ce296992926214953810de785a15b77cf1bd7c5bad8064dc"
+    },
+    "formula-uppers.json": {
+      "bytes": 6519,
+      "sha256": "52085b48007e471a76bba3d6d02e10d376b77ff8fdba444975a3ca55752e41ce"
+    },
+    "status-start.json": {
+      "bytes": 105,
+      "sha256": "844028f1421a9a3f5177761860230059df70e93624ae68fd55c74c317a526c61"
+    },
+    "status-finish.json": {
+      "bytes": 105,
+      "sha256": "9383bc18f133cd1f0452d437294e0138c5e79929b6dba5eeb768bbacee65e5f3"
+    }
+  },
+  "public_status_after_search": {
+    "updated_at": "2026-11-23T23:56:07.554Z",
+    "open": true,
+    "checked": false,
+    "withdrawn": false
+  }
+}

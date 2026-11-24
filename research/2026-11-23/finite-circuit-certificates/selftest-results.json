@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "Synthetic Python tests only; no Lean or real desk assignment was used.",
+  "random_evaluator_comparisons": 480,
+  "coverage_formula_frontiers": 240,
+  "known_semantic_cases": 10,
+  "synthetic_target_rejections": 4,
+  "formula_witness_tables": 19,
+  "expected_failures": [
+    "NONESSENTIAL_VARIABLES",
+    "BAD_SAMPLE_LABEL",
+    "UNKNOWN_SEARCH_STATUS",
+    "WRONG_WITNESS_TABLE",
+    "SEARCH_RETURNED_TRUE",
+    "UNKNOWN_SEARCH_STATUS",
+    "UNKNOWN_SEARCH_STATUS",
+    "CLOSED_ROW",
+    "UNSUPPORTED_STATEMENT",
+    "BAD_TABLE_INDEX"
+  ],
+  "exact_engine_body_sha256": "19a0ec27e0a5f2a6010436f261f4b74e7db8a4e454af7e6a253e5a691c5fd527",
+  "minimal_header_status": "not Lean-checked",
+  "kernel_check_status": "not_run"
+}

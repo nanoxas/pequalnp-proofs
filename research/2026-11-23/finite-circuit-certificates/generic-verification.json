@@ -1,0 +1,20 @@
+{
+  "status": "INCOMPLETE_IMPORT_TIMEOUT",
+  "kernel_check_status": "not_completed",
+  "axiom_audit_status": "not_reached",
+  "source": "GenericCore.lean",
+  "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+  "source_unchanged": true,
+  "object_produced": false,
+  "elapsed_seconds": 180.453,
+  "bound_seconds": 180.0,
+  "exit_code": -15,
+  "child_reaped": true,
+  "log_bytes": 0,
+  "last_user_cpu_seconds": 3.09,
+  "last_physical_read_bytes": 77224882176,
+  "smoke_source": "GenericSmoke.lean",
+  "smoke_sha256": "23dd7a207fcace523417e57ddfad9476e3468a8ce179ebc21e7de77412dabc26",
+  "smoke_status": "NOT_RUN",
+  "scope": "Target-neutral arbitrary-input/arbitrary-NOT-budget prototype. The checked five-input generator is unchanged."
+}

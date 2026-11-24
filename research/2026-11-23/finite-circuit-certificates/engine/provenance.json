@@ -1,0 +1,13 @@
+{
+  "origin": "Accepted L-meta-1445 generic body through cost; source comments credit L-meta-1007, Apache-2.0.",
+  "accepted_source_sha256": "569aaa0aa1b5027191460a8f81feba9f78f40a583083328dfd4032fb86e257c6",
+  "generic_body_sha256": "19a0ec27e0a5f2a6010436f261f4b74e7db8a4e454af7e6a253e5a691c5fd527",
+  "body_extraction": "Bytes after namespace PEqualNP.Outside.L_meta_1445_aux newline, ending before the open PEqualNP.CircuitLowerBounds / def r0 section.",
+  "body_modified": false,
+  "minimal_header_status": "Lean-checked successfully in the complete synthetic AND-of-five proof; separate axiom audit incomplete at its deadline.",
+  "imports_sha256": "5ea79e56d7f0e0e2940df2fd85f71dbea7ae35539cb420969113112983b5ba69",
+  "python_origin_sha256": "06b0c34df821b5d27301baf22f32603b3cd9565d2efb3b53946aebbddedecfbd",
+  "python_modifications": "Target-specific commands and fixtures removed; resource limits are added in this package. Search semantics retained.",
+  "smoke_verification": "../smoke/lean-verification.json",
+  "smoke_source_sha256": "d130924042bd643ddc3f302ceefc2be87903ddc8b1a0bd3d46f51699bdb0b11e"
+}

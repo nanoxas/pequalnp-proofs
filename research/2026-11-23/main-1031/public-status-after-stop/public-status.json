@@ -1,0 +1,16 @@
+{
+  "gaps": [
+    {
+      "id": "L-meta-1031",
+      "pr_open": 0,
+      "pr_numbers": []
+    }
+  ],
+  "checked": [],
+  "withdrawn": {},
+  "paused": [],
+  "catalog_updated_at": "2026-11-24T00:37:48.648Z",
+  "retrieved_at": "2026-11-24T00:39:34.753714+00:00",
+  "github_search_total": 0,
+  "interpretation": "Still posted in the public catalog; no checked, withdrawn, or paused marker found, and exact-ID GitHub PR search returned zero. The cause of the lease HTTP 410 is unknown."
+}

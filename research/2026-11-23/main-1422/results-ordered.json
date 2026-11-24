@@ -1,0 +1,734 @@
+{
+  "task": "L-meta-1422",
+  "tables": [
+    {
+      "table": "0xaaa8a880",
+      "monotone_upper": {
+        "gates": [
+          [
+            "or",
+            1,
+            2
+          ],
+          [
+            "or",
+            3,
+            5
+          ],
+          [
+            "and",
+            0,
+            6
+          ],
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "or",
+            3,
+            8
+          ],
+          [
+            "and",
+            5,
+            9
+          ],
+          [
+            "or",
+            4,
+            10
+          ],
+          [
+            "and",
+            7,
+            11
+          ]
+        ],
+        "output": 12
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 4.880422928999906,
+          "variables": 979,
+          "clauses": 8735,
+          "stats": {
+            "restarts": 9657,
+            "conflicts": 176157,
+            "decisions": 318174,
+            "propagations": 18913894
+          },
+          "gates_bound": 7,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 8
+    },
+    {
+      "table": "0xe888a888",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            1,
+            4
+          ],
+          [
+            "or",
+            0,
+            5
+          ],
+          [
+            "and",
+            2,
+            6
+          ],
+          [
+            "and",
+            3,
+            7
+          ],
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "or",
+            8,
+            9
+          ]
+        ],
+        "output": 10
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 0.11027585700139753,
+          "variables": 679,
+          "clauses": 5473,
+          "stats": {
+            "restarts": 428,
+            "conflicts": 7359,
+            "decisions": 13191,
+            "propagations": 591038
+          },
+          "gates_bound": 5,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 6
+    },
+    {
+      "table": "0xe888e880",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            0,
+            1
+          ],
+          [
+            "or",
+            2,
+            5
+          ],
+          [
+            "or",
+            0,
+            1
+          ],
+          [
+            "and",
+            6,
+            7
+          ],
+          [
+            "or",
+            2,
+            4
+          ],
+          [
+            "and",
+            5,
+            9
+          ],
+          [
+            "or",
+            3,
+            10
+          ],
+          [
+            "and",
+            8,
+            11
+          ]
+        ],
+        "output": 12
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 5.462493013999847,
+          "variables": 979,
+          "clauses": 8735,
+          "stats": {
+            "restarts": 9932,
+            "conflicts": 189910,
+            "decisions": 354223,
+            "propagations": 18110672
+          },
+          "gates_bound": 7,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 8
+    },
+    {
+      "table": "0xe8a8a880",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "and",
+            3,
+            5
+          ],
+          [
+            "or",
+            0,
+            6
+          ],
+          [
+            "or",
+            1,
+            2
+          ],
+          [
+            "and",
+            7,
+            8
+          ],
+          [
+            "or",
+            3,
+            5
+          ],
+          [
+            "and",
+            0,
+            10
+          ],
+          [
+            "or",
+            4,
+            11
+          ],
+          [
+            "and",
+            9,
+            12
+          ]
+        ],
+        "output": 13
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 45.728159578000486,
+          "variables": 1135,
+          "clauses": 10605,
+          "stats": {
+            "restarts": 48258,
+            "conflicts": 1212983,
+            "decisions": 1999099,
+            "propagations": 107568754
+          },
+          "gates_bound": 8,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 9
+    },
+    {
+      "table": "0xe8a8c880",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            1,
+            3
+          ],
+          [
+            "and",
+            0,
+            4
+          ],
+          [
+            "or",
+            5,
+            6
+          ],
+          [
+            "or",
+            2,
+            7
+          ],
+          [
+            "and",
+            2,
+            7
+          ],
+          [
+            "and",
+            0,
+            8
+          ],
+          [
+            "and",
+            1,
+            10
+          ],
+          [
+            "or",
+            9,
+            11
+          ]
+        ],
+        "output": 12
+      },
+      "queries": [
+        {
+          "status": "SAT",
+          "seconds": 9.382940208000946,
+          "variables": 1135,
+          "clauses": 10605,
+          "stats": {
+            "restarts": 15497,
+            "conflicts": 287528,
+            "decisions": 630965,
+            "propagations": 33246538
+          },
+          "circuit": {
+            "gates": [
+              [
+                "and",
+                1,
+                3
+              ],
+              [
+                "and",
+                0,
+                4
+              ],
+              [
+                "or",
+                5,
+                6
+              ],
+              [
+                "or",
+                2,
+                7
+              ],
+              [
+                "and",
+                2,
+                7
+              ],
+              [
+                "and",
+                0,
+                8
+              ],
+              [
+                "and",
+                1,
+                10
+              ],
+              [
+                "or",
+                9,
+                11
+              ]
+            ],
+            "output": 12
+          },
+          "gates_bound": 8,
+          "not_budget": 1
+        },
+        {
+          "status": "UNSAT",
+          "seconds": 5.594258282999363,
+          "variables": 979,
+          "clauses": 8735,
+          "stats": {
+            "restarts": 10383,
+            "conflicts": 197652,
+            "decisions": 379754,
+            "propagations": 18622439
+          },
+          "gates_bound": 7,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 8
+    },
+    {
+      "table": "0xe8a8e800",
+      "monotone_upper": {
+        "gates": [
+          [
+            "or",
+            1,
+            2
+          ],
+          [
+            "or",
+            3,
+            4
+          ],
+          [
+            "and",
+            5,
+            6
+          ],
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "and",
+            3,
+            8
+          ],
+          [
+            "or",
+            0,
+            9
+          ],
+          [
+            "and",
+            7,
+            10
+          ]
+        ],
+        "output": 11
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 0.8804340560000128,
+          "variables": 827,
+          "clauses": 7025,
+          "stats": {
+            "restarts": 2151,
+            "conflicts": 40470,
+            "decisions": 76554,
+            "propagations": 3640571
+          },
+          "gates_bound": 6,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 7
+    },
+    {
+      "table": "0xeaa8c080",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "or",
+            1,
+            2
+          ],
+          [
+            "and",
+            0,
+            4
+          ],
+          [
+            "and",
+            0,
+            6
+          ],
+          [
+            "or",
+            5,
+            7
+          ],
+          [
+            "or",
+            3,
+            8
+          ],
+          [
+            "and",
+            9,
+            10
+          ]
+        ],
+        "output": 11
+      },
+      "queries": [
+        {
+          "status": "SAT",
+          "seconds": 3.6632578850003483,
+          "variables": 979,
+          "clauses": 8735,
+          "stats": {
+            "restarts": 7556,
+            "conflicts": 130504,
+            "decisions": 264327,
+            "propagations": 14206966
+          },
+          "circuit": {
+            "gates": [
+              [
+                "and",
+                1,
+                2
+              ],
+              [
+                "or",
+                1,
+                2
+              ],
+              [
+                "and",
+                0,
+                4
+              ],
+              [
+                "and",
+                0,
+                6
+              ],
+              [
+                "or",
+                5,
+                7
+              ],
+              [
+                "or",
+                3,
+                8
+              ],
+              [
+                "and",
+                9,
+                10
+              ]
+            ],
+            "output": 11
+          },
+          "gates_bound": 7,
+          "not_budget": 1
+        },
+        {
+          "status": "UNSAT",
+          "seconds": 0.6177331389990286,
+          "variables": 827,
+          "clauses": 7025,
+          "stats": {
+            "restarts": 1917,
+            "conflicts": 33304,
+            "decisions": 60656,
+            "propagations": 3000884
+          },
+          "gates_bound": 6,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 7
+    },
+    {
+      "table": "0xeaaac000",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            1,
+            2
+          ],
+          [
+            "and",
+            3,
+            5
+          ],
+          [
+            "and",
+            0,
+            4
+          ],
+          [
+            "or",
+            6,
+            7
+          ]
+        ],
+        "output": 8
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 0.0073393879993091105,
+          "variables": 395,
+          "clauses": 2835,
+          "stats": {
+            "restarts": 2,
+            "conflicts": 375,
+            "decisions": 544,
+            "propagations": 24624
+          },
+          "gates_bound": 3,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 4
+    },
+    {
+      "table": "0xeac8e000",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            0,
+            4
+          ],
+          [
+            "or",
+            2,
+            5
+          ],
+          [
+            "or",
+            3,
+            4
+          ],
+          [
+            "and",
+            6,
+            7
+          ],
+          [
+            "and",
+            0,
+            3
+          ],
+          [
+            "or",
+            1,
+            9
+          ],
+          [
+            "and",
+            8,
+            10
+          ]
+        ],
+        "output": 11
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 0.6692623199996888,
+          "variables": 827,
+          "clauses": 7025,
+          "stats": {
+            "restarts": 1994,
+            "conflicts": 32893,
+            "decisions": 64298,
+            "propagations": 3181741
+          },
+          "gates_bound": 6,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 7
+    },
+    {
+      "table": "0xaaa8a888",
+      "monotone_upper": {
+        "gates": [
+          [
+            "and",
+            2,
+            3
+          ],
+          [
+            "or",
+            4,
+            5
+          ],
+          [
+            "or",
+            2,
+            3
+          ],
+          [
+            "and",
+            6,
+            7
+          ],
+          [
+            "or",
+            1,
+            8
+          ],
+          [
+            "and",
+            0,
+            9
+          ]
+        ],
+        "output": 10
+      },
+      "queries": [
+        {
+          "status": "UNSAT",
+          "seconds": 0.1320790979989397,
+          "variables": 679,
+          "clauses": 5473,
+          "stats": {
+            "restarts": 410,
+            "conflicts": 8288,
+            "decisions": 15195,
+            "propagations": 738607
+          },
+          "gates_bound": 5,
+          "not_budget": 1
+        }
+      ],
+      "status": "EXHAUSTED",
+      "minimum_size": 6
+    }
+  ],
+  "all_exhausted": true,
+  "code_sha256": "b79f8c9ce69ca5843fb1b8a1305faeb9933a5416c49051745025c4bb66a33b01",
+  "budget": 10000000,
+  "fanin_order": true,
+  "gate_order": true,
+  "scope": "Complete bounded model, full32-row semantics; independent normalized SAT witness evaluation."
+}

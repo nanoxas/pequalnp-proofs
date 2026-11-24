@@ -1,0 +1,43 @@
+{
+  "n": 5,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      0,
+      4
+    ]
+  ],
+  "size": 7,
+  "property": "empty",
+  "status": "UNSAT",
+  "seconds": 1.2407123029988725,
+  "solver_stats": {
+    "restarts": 1232,
+    "conflicts": 27176,
+    "decisions": 43941,
+    "propagations": 3272900
+  },
+  "variables": 1114,
+  "clauses": 10191,
+  "restrictions": [
+    "binary distinct valid predecessors",
+    "last gate output",
+    "all gates live",
+    "nondecreasing largest predecessor"
+  ]
+}

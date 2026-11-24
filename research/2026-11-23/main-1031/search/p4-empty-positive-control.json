@@ -1,0 +1,152 @@
+{
+  "n": 4,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "size": 5,
+  "property": "empty",
+  "status": "SAT",
+  "seconds": 0.01832882099915878,
+  "solver_stats": {
+    "restarts": 0,
+    "conflicts": 68,
+    "decisions": 291,
+    "propagations": 4983
+  },
+  "variables": 436,
+  "clauses": 3044,
+  "restrictions": [
+    "binary distinct valid predecessors",
+    "last gate output",
+    "all gates live",
+    "nondecreasing largest predecessor"
+  ],
+  "gates": [
+    [
+      "or",
+      0,
+      2
+    ],
+    [
+      "and",
+      2,
+      3
+    ],
+    [
+      "or",
+      1,
+      5
+    ],
+    [
+      "and",
+      4,
+      6
+    ],
+    [
+      "and",
+      6,
+      7
+    ]
+  ],
+  "audit": {
+    "rows_checked": 16,
+    "wrong_rows": [],
+    "ownership": [
+      {
+        "gate": 1,
+        "wire": 5,
+        "owned_edges": [
+          [
+            2,
+            3
+          ]
+        ],
+        "centers": [
+          2,
+          3
+        ]
+      },
+      {
+        "gate": 3,
+        "wire": 7,
+        "owned_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "centers": [
+          1
+        ]
+      },
+      {
+        "gate": 4,
+        "wire": 8,
+        "owned_edges": [],
+        "centers": []
+      }
+    ],
+    "criticality": [
+      {
+        "gate": 1,
+        "critical_edges": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "gate": 3,
+        "critical_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "gate": 4,
+        "critical_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      }
+    ],
+    "has_empty_owner": true,
+    "has_nonstar_owner": false
+  }
+}

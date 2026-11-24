@@ -1,0 +1,18 @@
+import took 6.75s
+Nat.add_comm (n m : ℕ) : n + m = m + n
+cumulative profiling times:
+	attribute application 0.00753ms
+	declTypeLinter 1.3ms
+	elaboration 32.2ms
+	fix level params 0.0942ms
+	import 6.75s
+	initialization 31.1ms
+	instantiate metavars 0.00627ms
+	interpretation 97.9ms
+	linting 1.33ms
+	module linting 0.114ms
+	parsing 0.414ms
+	process pre-definitions 0.181ms
+	share common exprs 0.0462ms
+	tacticAnalysis 0.329ms
+	type checking 0.0455ms

@@ -1,0 +1,76 @@
+[
+  {
+    "index": 0,
+    "truth_table": "0x80000000",
+    "lower_s": 3,
+    "raw": [
+      [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xaa55555554aaaaaaa955555552aaaaaaa55555554aaaaaaa955555552aaaaaaa"
+      ],
+      [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xcc999999993333333266666664ccccccc999999993333333266666664ccccccc"
+      ],
+      [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xf0e1e1e1e1c3c3c3c3878787870f0f0f0e1e1e1e1c3c3c3c3878787870f0f0f0"
+      ],
+      [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xfe01fe01fc03fc03f807f807f00ff00fe01fe01fc03fc03f807f807f00ff00"
+      ],
+      [
+        "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "0xfffe0001fffc0003fff80007fff0000fffe0001fffc0003fff80007fff0000"
+      ]
+    ],
+    "gates": [
+      {
+        "op": "and",
+        "inputs": [
+          0,
+          1
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          5,
+          2
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          6,
+          3
+        ]
+      },
+      {
+        "op": "and",
+        "inputs": [
+          7,
+          4
+        ]
+      }
+    ],
+    "output": 8,
+    "input_audit": {
+      "length": 5,
+      "nodup": true,
+      "samples_correct": true,
+      "essential_inputs": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "separates_all": true,
+      "distinct_positive_rows": 1,
+      "distinct_negative_rows": 31
+    },
+    "witness_verified_rows": 32
+  }
+]

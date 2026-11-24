@@ -1,0 +1,29 @@
+import took 2.45s
+Nat.add_comm (n m : ℕ) : n + m = m + n
+'generic_bitvec_absorption' depends on axioms: [propext, Quot.sound]
+'generic_finset_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'generic_arithmetic' depends on axioms: [propext, Quot.sound]
+'generic_membership' depends on axioms: [propext]
+cumulative profiling times:
+	aesop 13.9ms
+	attribute application 0.0289ms
+	blocked (unaccounted) 79.3ms
+	congr simp thm 0.996ms
+	declTypeLinter 1.55ms
+	elaboration 8.12ms
+	fix level params 0.0582ms
+	import 2.45s
+	initialization 32ms
+	instantiate metavars 0.142ms
+	interpretation 164ms
+	let-to-have transformation 0.0913ms
+	linting 2.82ms
+	module linting 0.0267ms
+	parsing 1.05ms
+	process pre-definitions 0.819ms
+	share common exprs 0.295ms
+	simp 11.1ms
+	tactic execution 9.54ms
+	tacticAnalysis 0.957ms
+	type checking 8.06ms
+	typeclass inference 20.9ms

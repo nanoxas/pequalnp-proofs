@@ -1,0 +1,84 @@
+L-meta-1422: complete bounded search model and result scope
+========================================================
+
+Target tables
+-------------
+The ten truth tables are copied from the public statement. Bit m is the
+answer on assignment x_i = bit i of m, for i=0,...,4. Every query constrains
+all 32 assignments. No boundary-only or monotonicity sampling is used.
+
+Model completeness before symmetry
+----------------------------------
+The model supplies five inputs and free Boolean constants 0 and 1. Every
+gate has two valid earlier source ports and is binary AND, binary OR, or
+unary NOT (the latter ignores its second port). Equal ports and unused
+gates are allowed. A cardinality constraint permits at most one NOT.
+
+Every circuit list in the posted statement translates to this model with
+at most the same number of gates. A future or out-of-range gate reference
+is false in the project evaluator, so replace that reference by free 0.
+An empty AND is free 1, an empty OR is free 0, and an empty NOT is NOT(0).
+A unary AND/OR can use the same earlier source twice. A NOT with two listed
+inputs depends only on the first. The project output can be any wire;
+after retaining its ancestor cone, pad the output by AND(output,output)
+until there are exactly k gates. For the nonconstant shard functions the
+output is then the last gate. At k=0 the model directly checks inputs and
+constants. Hence UNSAT at k covers every posted circuit of size at most k.
+
+Using free constants makes the lower-bound model a superset. SAT witnesses
+are simplified by Boolean identities, hash-consed, and pruned to their
+output cones. Every reported upper-bound witness is a legal constant-free
+list on the original five inputs. All 32 rows are then evaluated by a
+separate plain Boolean interpreter, independently of the CNF value wires.
+
+Complete symmetry reductions
+----------------------------
+First sort the two source ports of AND and OR. For NOT choose the unused
+second port equal to its first, so each gate's second port is its maximum
+source index.
+
+Next choose a topological schedule greedily: among all currently ready
+gates, emit one whose maximum already-numbered source is smallest. At each
+step, every previously ready gate still has maximum source at least the
+one just chosen. Every newly ready gate reads the output just emitted;
+this output index is greater than every source index of the emitted gate.
+Thus the resulting sequence of maximum fanin indices is nondecreasing.
+
+Pruning to the output cone ensures the designated output is last in every
+topological schedule. Alias padding forms a chain above that output, with
+strictly increasing maximum fanins. Therefore the two symmetry rules
+preserve at least one model of every size-at-most-k posted circuit. They
+impose no condition on semantic gate usefulness, intermediate values,
+function symmetries, or minimal circuit structure.
+
+How one table is resolved
+-------------------------
+Maintain an explicitly evaluated monotone circuit of size M. Ask for an
+AND/OR/at-most-one-NOT circuit with at most M-1 gates.
+
+* UNSAT resolves the table: every one-NOT circuit has size at least M, and
+  the stored monotone circuit dominates it in size.
+* A monotone SAT witness improves M and restarts the query below that M.
+* A nonmonotone SAT witness is compared with a monotone SAT query at its
+  verified size. UNSAT for that monotone query would give a counterexample;
+  SAT supplies a new monotone upper bound; UNKNOWN leaves the table open.
+* A conflict-budget limit is recorded as UNKNOWN, never as exhaustion.
+
+The script reports all_exhausted only when all ten distinct target tables
+are present and individually EXHAUSTED. That is a computational search
+result backed by the complete encoding and independent upper witnesses.
+It is not a Lean theorem or a checked DRAT certificate.
+
+Reproduction
+------------
+python3 main-1422/search.py --budget 10000000 \
+  --output main-1422/results-ordered.json
+
+Optional seed files only supply candidate monotone upper bounds. Each seed
+is evaluated on all 32 rows before any query. All lower-bound queries are
+rebuilt and solved. Each result records the exact source SHA256, table,
+size bound, NOT budget, solver status, elapsed time and solver statistics.
+
+Nine operator and known-size sanity checks are saved separately. They
+cover AND, OR, NOT, a three-way conjunction, and a one-NOT XOR circuit,
+including satisfiable known minima and unsatisfiable bounds one gate below.

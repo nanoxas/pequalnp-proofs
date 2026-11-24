@@ -1,0 +1,189 @@
+{
+  "n": 6,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      0,
+      5
+    ]
+  ],
+  "size": 8,
+  "property": "good",
+  "status": "SAT",
+  "seconds": 1.047571348000929,
+  "solver_stats": {
+    "restarts": 1385,
+    "conflicts": 21709,
+    "decisions": 44822,
+    "propagations": 5917343
+  },
+  "variables": 2217,
+  "clauses": 25354,
+  "restrictions": [
+    "binary distinct valid predecessors",
+    "last gate output",
+    "all gates live",
+    "nondecreasing largest predecessor"
+  ],
+  "gates": [
+    [
+      "or",
+      1,
+      3
+    ],
+    [
+      "or",
+      3,
+      5
+    ],
+    [
+      "or",
+      1,
+      5
+    ],
+    [
+      "and",
+      2,
+      6
+    ],
+    [
+      "and",
+      4,
+      7
+    ],
+    [
+      "and",
+      0,
+      8
+    ],
+    [
+      "or",
+      9,
+      10
+    ],
+    [
+      "or",
+      11,
+      12
+    ]
+  ],
+  "audit": {
+    "rows_checked": 64,
+    "wrong_rows": [],
+    "ownership": [
+      {
+        "gate": 3,
+        "wire": 9,
+        "owned_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "centers": [
+          2
+        ]
+      },
+      {
+        "gate": 4,
+        "wire": 10,
+        "owned_edges": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "centers": [
+          4
+        ]
+      },
+      {
+        "gate": 5,
+        "wire": 11,
+        "owned_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "centers": [
+          0
+        ]
+      }
+    ],
+    "criticality": [
+      {
+        "gate": 3,
+        "critical_edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "gate": 4,
+        "critical_edges": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      {
+        "gate": 5,
+        "critical_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      }
+    ],
+    "has_empty_owner": false,
+    "has_nonstar_owner": false
+  }
+}

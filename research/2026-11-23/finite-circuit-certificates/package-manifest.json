@@ -1,0 +1,117 @@
+{
+  "package": "finite-circuit-certificates",
+  "version": 1,
+  "target_neutral": true,
+  "python_syntax": "PASS",
+  "python_selftest": "PASS",
+  "kernel_check_status": "synthetic_smoke_PASS",
+  "minimal_header_status": "Validated by the complete synthetic proof; source and logs pinned in smoke/lean-verification.json.",
+  "runtime_dependencies": "Python standard library only",
+  "engine_body_sha256": "19a0ec27e0a5f2a6010436f261f4b74e7db8a4e454af7e6a253e5a691c5fd527",
+  "files": {
+    "LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "NOTICE.md": {
+      "bytes": 1159,
+      "sha256": "b09d9f27c965be3ccc1490f9a942e3568a8b77f3f4cd00334caea27fc775c362"
+    },
+    "README.md": {
+      "bytes": 9646,
+      "sha256": "563e6c0a8175b2a8ee485afa50bec933bbdfd45227307485da57ab58ef57a508"
+    },
+    "GENERIC.md": {
+      "bytes": 3317,
+      "sha256": "1a4c701249f777f4d4ca2ec5c1972ea6e935afc6e2cccb85e8d2dec7864fa85f"
+    },
+    "GenericCore.lean": {
+      "bytes": 44044,
+      "sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7"
+    },
+    "GenericSmoke.lean": {
+      "bytes": 1955,
+      "sha256": "23dd7a207fcace523417e57ddfad9476e3468a8ce179ebc21e7de77412dabc26"
+    },
+    "generic-verification.json": {
+      "bytes": 772,
+      "sha256": "cac2e1976a8d6a385552004067fca85543c8a529d5635bb1f37e1c4e0e7bbe82"
+    },
+    "GenericCore.check.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "engine/GenericBody.lean.inc": {
+      "bytes": 41480,
+      "sha256": "19a0ec27e0a5f2a6010436f261f4b74e7db8a4e454af7e6a253e5a691c5fd527"
+    },
+    "engine/imports.txt": {
+      "bytes": 174,
+      "sha256": "5ea79e56d7f0e0e2940df2fd85f71dbea7ae35539cb420969113112983b5ba69"
+    },
+    "engine/provenance.json": {
+      "bytes": 1116,
+      "sha256": "f8df575a9e8a2015ff34e5ac7d1c908a5b08e35bf2610ad6be5968d45ee236c2"
+    },
+    "formula_upper.py": {
+      "bytes": 6527,
+      "sha256": "d0bbef9b211940654b8b3b4401d6e1f8e28636a83b021467faf4db15e2c2813a"
+    },
+    "live_checker.py": {
+      "bytes": 6652,
+      "sha256": "de890b0cbe7fd9c76d9b282ffeb00dce834ed7a04ab4da49564121530c6453be"
+    },
+    "pipeline.py": {
+      "bytes": 19839,
+      "sha256": "4f88d5dbe6a09429c37cd7e17de478c9be3fb4613cc5dbefe978740687e1a3a9"
+    },
+    "selftest.py": {
+      "bytes": 7159,
+      "sha256": "8f52b0625d50afe18c67998aa29d0e482dae817dd70d5859b6023b30ebbe2a80"
+    },
+    "selftest-results.json": {
+      "bytes": 758,
+      "sha256": "7b61ab32083cb75fef8ccf1cc5ad29ba15142e84c2db490468314545047799de"
+    },
+    "make_smoke.py": {
+      "bytes": 2189,
+      "sha256": "bb2f017bcc7612d8715b1c5fadfd500b6fc91023f00f0605b3524a536c37e825"
+    },
+    "smoke/Smoke.lean": {
+      "bytes": 46055,
+      "sha256": "d130924042bd643ddc3f302ceefc2be87903ddc8b1a0bd3d46f51699bdb0b11e"
+    },
+    "smoke/AxiomAudit.lean": {
+      "bytes": 205,
+      "sha256": "066706076dc8921b4a9684d76c7ad040ea21da56742f7ff7c204a29413bc9c0a"
+    },
+    "smoke/inputs.json": {
+      "bytes": 1700,
+      "sha256": "1b2f5f024f0083dd04785a53f937393c3dcdc6878d1aa124b15d2973842f3c15"
+    },
+    "smoke/python-audit.json": {
+      "bytes": 1879,
+      "sha256": "ff82233ab565d65dd30dc76ef0a55c6d7068a39cea4ac00b96fedd82188a2353"
+    },
+    "smoke/manifest.json": {
+      "bytes": 886,
+      "sha256": "7b371ee3d28479c26d0d845c7863bc3224530c3d033e2d2573ab6625f5c985bf"
+    },
+    "smoke/lean-verification.json": {
+      "bytes": 2809,
+      "sha256": "07d4f7e0f6de54c29d51f12649162d344e967c6b26ea622d3af6135825205c6d"
+    },
+    "smoke/lean-check.log": {
+      "bytes": 6751,
+      "sha256": "015b15cc46cdd8f29de15930f74961ca3b5742cc97cd2f619374895c17acc60c"
+    },
+    "smoke/axiom-audit.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "axiom_audit_status": "synthetic_smoke_INCOMPLETE_DEADLINE",
+  "smoke_verification": "smoke/lean-verification.json",
+  "original_package_manifest_sha256": "1fab676810935faabd8c423abab7cc0a3a0c9b7e85c0c536c0c8958ab67adb66",
+  "public_copy_note": "Absolute workspace prefixes in logs are replaced; original log hashes are retained in the verification record. Sources are unchanged."
+}

@@ -1,0 +1,95 @@
+{
+  "scope": "Generic infrastructure and synthetic examples; no official desk proof.",
+  "runs": [
+    {
+      "status": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 1.622,
+      "child_reaped": true,
+      "source_sha256": "e17ea820950e8951426675b4783ab87e9ee0ffd392351e91e462f9d340132808",
+      "bound_seconds": 30.0,
+      "label": "SmokeInit",
+      "import_profile": "1.37s",
+      "maximum_sampled_rss_kib": 92,
+      "last_physical_read_bytes": 0
+    },
+    {
+      "status": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 7.073,
+      "child_reaped": true,
+      "source_sha256": "519d6327fe1a3ef6da740c95fe8739f32f9bf34cf008341434523e540165e3e6",
+      "bound_seconds": 45.0,
+      "label": "SmokeFinset",
+      "import_profile": "6.75s",
+      "maximum_sampled_rss_kib": 495176,
+      "last_physical_read_bytes": 2912993280
+    },
+    {
+      "status": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 6.403,
+      "child_reaped": true,
+      "source_sha256": "c93acfbd884d1d0c51f9912f4ff2011e902032c48f60f9705b6770371e42d3ae",
+      "bound_seconds": 60.0,
+      "label": "SmokeDefs",
+      "import_profile": "6.01s",
+      "maximum_sampled_rss_kib": 2520280,
+      "last_physical_read_bytes": 1899520000
+    },
+    {
+      "status": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 2.931,
+      "child_reaped": true,
+      "source_sha256": "b82feb905219bc298722d9ef23f06a237557e5af584da4e92fcbabe11b682c22",
+      "bound_seconds": 60.0,
+      "label": "SmokeTactics",
+      "import_profile": "2.45s",
+      "maximum_sampled_rss_kib": 96,
+      "last_physical_read_bytes": 0
+    },
+    {
+      "status": "exited",
+      "exit_code": 0,
+      "elapsed_seconds": 161.956,
+      "child_reaped": true,
+      "source_sha256": "d130924042bd643ddc3f302ceefc2be87903ddc8b1a0bd3d46f51699bdb0b11e",
+      "bound_seconds": 180.0,
+      "label": "SyntheticFull",
+      "import_profile": "155s",
+      "maximum_sampled_rss_kib": 2927892,
+      "last_physical_read_bytes": 53566328832
+    },
+    {
+      "status": "deadline_terminated",
+      "exit_code": -15,
+      "elapsed_seconds": 180.453,
+      "child_reaped": true,
+      "source_sha256": "066706076dc8921b4a9684d76c7ad040ea21da56742f7ff7c204a29413bc9c0a",
+      "bound_seconds": 180.0,
+      "label": "SyntheticAxioms",
+      "import_profile": null,
+      "maximum_sampled_rss_kib": 484756,
+      "last_physical_read_bytes": 74576433152
+    },
+    {
+      "status": "deadline_terminated",
+      "exit_code": -15,
+      "elapsed_seconds": 180.453,
+      "child_reaped": true,
+      "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "bound_seconds": 180.0,
+      "label": "GenericCore",
+      "import_profile": null,
+      "maximum_sampled_rss_kib": 426608,
+      "last_physical_read_bytes": 77224882176
+    }
+  ],
+  "limits": "Observed RSS/address-space process limits were unlimited; cgroup controls were not mounted and could not be inspected.",
+  "causal_limit": "The precise historical cause of cache pressure is unestablished. Host MemAvailable is not evidence of a per-process limit.",
+  "loader_sources": [
+    "https://github.com/leanprover/lean4/blob/611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9/src/library/module.cpp",
+    "https://github.com/leanprover/lean4/blob/611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9/src/runtime/compact.cpp"
+  ]
+}

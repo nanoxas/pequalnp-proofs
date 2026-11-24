@@ -1,0 +1,136 @@
+import took 155s
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:172:183: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:172:183: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:182:204: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:182:204: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:188:177: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:188:177: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:196:81: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:196:81: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:215:108: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:215:112: warning: Unused tactic linter: `aesop` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:215:112: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:237:4: warning: Unused tactic linter: `change x ∈ v ↔ _` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:312:99: warning: This simp argument is unused:
+  BitVec.and_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [bin, one, zero, top, reduceCtorEq, ite_true, ite_false, BitVec.and_allOnes, BitVec.or_allOnes,
+    BitVec.or_zero, BitVec.and_self, BitVec.or_self, Prod.mk.injEq, and_self]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:312:115: warning: This simp argument is unused:
+  BitVec.or_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [bin, one, zero, top, reduceCtorEq, ite_true, ite_false, BitVec.and_allOnes, BitVec.or_allOnes,
+    BitVec.and_zero, BitVec.and_self, BitVec.or_self, Prod.mk.injEq, and_self]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:312:185: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:312:185: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:442:36: warning: This simp argument is unused:
+  List.countP_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hf] at hcnt ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:658:60: warning: This simp argument is unused:
+  BitVec.getLsbD_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [sep, bin, ite_false, ite_true, takeTwo, top, BitVec.getLsbD_allOnes, BitVec.getLsbD_and,
+    BitVec.getLsbD_or, BitVec.getLsbD_not, reduceCtorEq, hi, decide_true, Bool.true_and] at hh ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:667:59: warning: This simp argument is unused:
+  decide_false
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [slowBinary, tryGate, Nat.sub_zero, hlen, ite_true, Bool.or_eq_true, Bool.and_eq_true,
+    beq_iff_eq] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:785:16: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:841:12: warning: This simp argument is unused:
+  List.countP_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hf, z]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:848:22: warning: Variable name `len` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _len
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+type checking took 183ms
+type checking took 577ms
+<workspace>/finite-circuit-certificates/smoke/Smoke.lean:924:13: warning: This simp argument is unused:
+  Finset.mem_insert
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Finset.mem_singleton] at hT
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+cumulative profiling times:
+	.olean serialization 77.9ms
+	attribute application 0.706ms
+	blocked (unaccounted) 5.3s
+	compilation (IR) 2.2ms
+	compilation (LCNF base) 40.5ms
+	compilation (LCNF impure) 10.1ms
+	compilation (LCNF mono) 17.6ms
+	congr simp thm 29.1ms
+	declTypeLinter 50.9ms
+	dsimp 0.719ms
+	elaboration 258ms
+	fix level params 4.09ms
+	import 155s
+	initialization 157ms
+	instantiate metavars 27.3ms
+	interpretation 684ms
+	let-to-have transformation 1.74ms
+	linting 159ms
+	module linting 0.0869ms
+	parsing 42.9ms
+	process pre-definitions 59.3ms
+	share common exprs 38.1ms
+	simp 2.29s
+	tactic execution 1.04s
+	tacticAnalysis 31.2ms
+	type checking 1.05s
+	typeclass inference 536ms

@@ -1,0 +1,233 @@
+{
+  "source_sha256": "b79f8c9ce69ca5843fb1b8a1305faeb9933a5416c49051745025c4bb66a33b01",
+  "all_passed": true,
+  "cases": [
+    {
+      "name": "and",
+      "size": 0,
+      "not_budget": 1,
+      "expected": "UNSAT",
+      "result": {
+        "status": "UNSAT",
+        "seconds": 0,
+        "variables": 0,
+        "clauses": 0,
+        "stats": {}
+      }
+    },
+    {
+      "name": "and",
+      "size": 1,
+      "not_budget": 0,
+      "expected": "SAT",
+      "result": {
+        "status": "SAT",
+        "seconds": 0.0007174219990702113,
+        "variables": 127,
+        "clauses": 807,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 0,
+          "decisions": 0,
+          "propagations": 33
+        },
+        "circuit": {
+          "gates": [
+            [
+              "and",
+              0,
+              1
+            ]
+          ],
+          "output": 5
+        }
+      }
+    },
+    {
+      "name": "or",
+      "size": 1,
+      "not_budget": 0,
+      "expected": "SAT",
+      "result": {
+        "status": "SAT",
+        "seconds": 0.00039216200093505904,
+        "variables": 127,
+        "clauses": 807,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 0,
+          "decisions": 0,
+          "propagations": 33
+        },
+        "circuit": {
+          "gates": [
+            [
+              "or",
+              0,
+              1
+            ]
+          ],
+          "output": 5
+        }
+      }
+    },
+    {
+      "name": "not",
+      "size": 1,
+      "not_budget": 1,
+      "expected": "SAT",
+      "result": {
+        "status": "SAT",
+        "seconds": 0.00038033400051062927,
+        "variables": 127,
+        "clauses": 806,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 0,
+          "decisions": 0,
+          "propagations": 32
+        },
+        "circuit": {
+          "gates": [
+            [
+              "not",
+              0,
+              0
+            ]
+          ],
+          "output": 5
+        }
+      }
+    },
+    {
+      "name": "not",
+      "size": 1,
+      "not_budget": 0,
+      "expected": "UNSAT",
+      "result": {
+        "status": "UNSAT",
+        "seconds": 0.0003794820004259236,
+        "variables": 127,
+        "clauses": 807,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 0,
+          "decisions": 0,
+          "propagations": 33
+        }
+      }
+    },
+    {
+      "name": "and3",
+      "size": 1,
+      "not_budget": 1,
+      "expected": "UNSAT",
+      "result": {
+        "status": "UNSAT",
+        "seconds": 0.0014884749998600455,
+        "variables": 127,
+        "clauses": 806,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 0,
+          "decisions": 0,
+          "propagations": 805
+        }
+      }
+    },
+    {
+      "name": "and3",
+      "size": 2,
+      "not_budget": 0,
+      "expected": "SAT",
+      "result": {
+        "status": "SAT",
+        "seconds": 0.00444960999993782,
+        "variables": 258,
+        "clauses": 1745,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 13,
+          "decisions": 72,
+          "propagations": 2321
+        },
+        "circuit": {
+          "gates": [
+            [
+              "and",
+              1,
+              2
+            ],
+            [
+              "and",
+              0,
+              5
+            ]
+          ],
+          "output": 6
+        }
+      }
+    },
+    {
+      "name": "xor",
+      "size": 3,
+      "not_budget": 1,
+      "expected": "UNSAT",
+      "result": {
+        "status": "UNSAT",
+        "seconds": 0.005467433999001514,
+        "variables": 395,
+        "clauses": 2835,
+        "stats": {
+          "restarts": 0,
+          "conflicts": 169,
+          "decisions": 277,
+          "propagations": 10137
+        }
+      }
+    },
+    {
+      "name": "xor",
+      "size": 4,
+      "not_budget": 1,
+      "expected": "SAT",
+      "result": {
+        "status": "SAT",
+        "seconds": 0.007651416999578942,
+        "variables": 535,
+        "clauses": 4077,
+        "stats": {
+          "restarts": 1,
+          "conflicts": 288,
+          "decisions": 649,
+          "propagations": 18849
+        },
+        "circuit": {
+          "gates": [
+            [
+              "or",
+              0,
+              1
+            ],
+            [
+              "and",
+              0,
+              1
+            ],
+            [
+              "not",
+              6,
+              6
+            ],
+            [
+              "and",
+              5,
+              7
+            ]
+          ],
+          "output": 8
+        }
+      }
+    }
+  ]
+}

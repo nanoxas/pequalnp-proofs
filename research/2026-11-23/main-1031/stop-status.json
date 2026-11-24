@@ -1,0 +1,175 @@
+{
+  "task": "L-meta-1031",
+  "status": "STOPPED_LEASE_410",
+  "lease_end_reported_utc": "2026-11-24T00:23:41.548Z",
+  "target_searches_running": false,
+  "lean_check": "not_run",
+  "submitted": false,
+  "unknown_cases": [],
+  "complete_results": [
+    {
+      "file": "c5-empty7.json",
+      "status": "UNSAT",
+      "size": 7,
+      "property": "empty",
+      "sha256": "733da1fe2bf8f47a93747e29a1593a2709165e3b9b33c7928fd2c2b7e988b38f"
+    },
+    {
+      "file": "c5-good-7.json",
+      "status": "SAT",
+      "size": 7,
+      "property": "good",
+      "sha256": "d7536e86a2c7bd35e1f4708ac77ba8b2e743853c5cdd11051812a7a7f877c5cf"
+    },
+    {
+      "file": "c5-lower4.json",
+      "status": "UNSAT",
+      "size": 4,
+      "property": "any",
+      "sha256": "d153ebe0b718e60f9049cb2f180854f78baa382c14a62aa8dc2d4aef21117c0e"
+    },
+    {
+      "file": "c5-lower5.json",
+      "status": "UNSAT",
+      "size": 5,
+      "property": "any",
+      "sha256": "b60ec35ab7a0847fa479ea394c2c3baf06c3748a385d2ecb690f54d5dd4242f3"
+    },
+    {
+      "file": "c5-lower6.json",
+      "status": "UNSAT",
+      "size": 6,
+      "property": "any",
+      "sha256": "86ea79f336f05c79efd0bdd19ceefc00a1f19916d445f6a896433e9ef3f02e71"
+    },
+    {
+      "file": "c5-nonstar7.json",
+      "status": "UNSAT",
+      "size": 7,
+      "property": "nonstar",
+      "sha256": "83197b36b4d1f6e7994d9c2b9ea59b36316ab648a7d5c444763d0be28ef93dd9"
+    },
+    {
+      "file": "c5leaf-any-7.json",
+      "status": "UNSAT",
+      "size": 7,
+      "property": "any",
+      "sha256": "0378a8210f606c17010d12ce3705645da850a581ba402be3fe855d120bb612aa"
+    },
+    {
+      "file": "c5leaf-empty-8.json",
+      "status": "UNSAT",
+      "size": 8,
+      "property": "empty",
+      "sha256": "0230ba7d85efb22cd25f75356651ef16d0dd4a4623af9d5a3a9151ea8f37dbaa"
+    },
+    {
+      "file": "c5leaf-good-8.json",
+      "status": "SAT",
+      "size": 8,
+      "property": "good",
+      "sha256": "7eb050fe4dd8feb48cdb0e04dd4465610c03083fc9a2f6301049bbf206701ca3"
+    },
+    {
+      "file": "c5leaf-nonstar-8.json",
+      "status": "UNSAT",
+      "size": 8,
+      "property": "nonstar",
+      "sha256": "a9a0674caeae3e315db454daa6889cb66eee77e23443b8eaea6f4209c905aa90"
+    },
+    {
+      "file": "c6-any-7.json",
+      "status": "UNSAT",
+      "size": 7,
+      "property": "any",
+      "sha256": "b0eee0ee393d6c6c2803881b3a87743ec49f6ee733328c3f90f8529993c90472"
+    },
+    {
+      "file": "c6-empty-8.json",
+      "status": "UNSAT",
+      "size": 8,
+      "property": "empty",
+      "sha256": "aaae3b398b939850ce340a84606f72a23960973c4ca09d77d630cc474fb20762"
+    },
+    {
+      "file": "c6-good-8.json",
+      "status": "SAT",
+      "size": 8,
+      "property": "good",
+      "sha256": "e00f871215e2b095b5a100653f259058ec241cedf87af87ebe342d49209af7b8"
+    },
+    {
+      "file": "c6-nonstar-8.json",
+      "status": "UNSAT",
+      "size": 8,
+      "property": "nonstar",
+      "sha256": "5e915782ffe12ad7094c3ee9670cb59874806fe631675e5cb9de8b5ea1a018e6"
+    },
+    {
+      "file": "matching2-empty.json",
+      "status": "UNSAT",
+      "size": 3,
+      "property": "empty",
+      "sha256": "716bbd60af7aa0c057243eaa656ed0594095938c0cacdc47a9cbe3edde306250"
+    },
+    {
+      "file": "p4-empty-4.json",
+      "status": "UNSAT",
+      "size": 4,
+      "property": "empty",
+      "sha256": "394fc89763908360b864116fe2c3c668a1b27dbe7f49a37fe0bac8624b135fe0"
+    },
+    {
+      "file": "p4-empty-positive-control.json",
+      "status": "SAT",
+      "size": 5,
+      "property": "empty",
+      "sha256": "1dd1112fea7078f2eb26ce9a172f012ad1cdc65204e4b5aec13286542fd1228b"
+    },
+    {
+      "file": "p4-lower.json",
+      "status": "UNSAT",
+      "size": 3,
+      "property": "any",
+      "sha256": "5a9453bb75271244de2a051d84a62edfa41159c792fbb40fa931a95c93bd3d62"
+    },
+    {
+      "file": "p4-nonstar.json",
+      "status": "UNSAT",
+      "size": 4,
+      "property": "nonstar",
+      "sha256": "29dd1bc7d4ec105732f5a0cd44c27d577cbf6f9d64c1e92c23c2c65d8134040a"
+    },
+    {
+      "file": "p4_dirty_nonminimal.json",
+      "status": "EXPLICIT_WITNESS_AUDIT",
+      "size": 5,
+      "property": null,
+      "sha256": "6520e1a41c3dc6fa2f62fdeb777c1eb94bb7a2c238dda92ed0c3634f6fb401c3"
+    },
+    {
+      "file": "p4_optimal.json",
+      "status": "EXPLICIT_WITNESS_AUDIT",
+      "size": 4,
+      "property": null,
+      "sha256": "601231fcdb74a9f3ff324c9df04738a6bf8cd35c52621a6a85def51d0b5da9b1"
+    }
+  ],
+  "public_status": {
+    "gaps": [
+      {
+        "id": "L-meta-1031",
+        "pr_open": 0,
+        "pr_numbers": []
+      }
+    ],
+    "checked": [],
+    "withdrawn": {},
+    "paused": [],
+    "catalog_updated_at": "2026-11-24T00:37:48.648Z",
+    "retrieved_at": "2026-11-24T00:39:34.753714+00:00",
+    "github_search_total": 0,
+    "interpretation": "Still posted in the public catalog; no checked, withdrawn, or paused marker found, and exact-ID GitHub PR search returned zero. The cause of the lease HTTP 410 is unknown."
+  },
+  "saved_at": "2026-11-24T00:40:32.842448+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "searches": [
+    {
+      "index": 0,
+      "truth_table": "0x80000000",
+      "lower_s": 3,
+      "searches": [
+        {
+          "not_count": 0,
+          "optimized": {
+            "status": "COMPLETE",
+            "result": false,
+            "unrolled_search_calls": 1,
+            "seconds": 6.674100222880952e-05,
+            "computed_states": 1,
+            "cache": {
+              "hits": 0,
+              "misses": 1,
+              "maxsize": 100000,
+              "currsize": 1
+            },
+            "reference": false
+          },
+          "reference": {
+            "status": "COMPLETE",
+            "result": false,
+            "unrolled_search_calls": 1,
+            "seconds": 9.89500040304847e-06,
+            "computed_states": 1,
+            "cache": {
+              "hits": 0,
+              "misses": 1,
+              "maxsize": 100000,
+              "currsize": 1
+            },
+            "reference": true
+          }
+        },
+        {
+          "not_count": 1,
+          "optimized": {
+            "status": "COMPLETE",
+            "result": false,
+            "unrolled_search_calls": 1,
+            "seconds": 7.822000043233857e-06,
+            "computed_states": 1,
+            "cache": {
+              "hits": 0,
+              "misses": 1,
+              "maxsize": 100000,
+              "currsize": 1
+            },
+            "reference": false
+          },
+          "reference": {
+            "status": "COMPLETE",
+            "result": false,
+            "unrolled_search_calls": 1,
+            "seconds": 5.9589983720798045e-06,
+            "computed_states": 1,
+            "cache": {
+              "hits": 0,
+              "misses": 1,
+              "maxsize": 100000,
+              "currsize": 1
+            },
+            "reference": true
+          }
+        }
+      ]
+    }
+  ]
+}
