@@ -1,0 +1,148 @@
+ALL-NEGATIVE-INPUT ACTIVATION INVARIANT FOR THE ONE-NOT REFUND PROBLEM
+
+Status: independently derived paper lemma using the checked CutEvaluation
+and PrivateDichotomy interfaces. This file has no new Lean check or SAT
+claim. It leaves unrestricted L-meta-997 and the remaining cross-window
+charge accounting open. The current research checkpoint has 29 checked
+modules; this explanatory extension is recorded separately as paper work.
+
+Public sketch availability
+-------------------------
+The exact cited upstream path
+https://raw.githubusercontent.com/brilliant-hq/pequalnp-proofs/main/notes/cut/l997/CUTS.md
+returned HTTP 404 on the current read-only check. No contents were obtained.
+
+1. Exact semantic information beyond the small-weight window
+-----------------------------------------------------------
+Work in the k>=2 branch; SmallWindow already settles the smaller values.
+Write h for the monotone predecessor of the unique NOT, z=not h. Let C1 and
+C0 replace z by true and false, respectively. The same-index replacement
+lemmas give equality with the original circuit at every wire on h=0 and
+h=1, respectively. All three circuits have the same gate indices and count.
+
+For every target S and every input X avoiding S,
+
+  h(X)=0 implies C1_output_S(X)=0.                 (1)
+
+This holds at arbitrary input weights. The familiar negative window is the
+consequence of (1) and the minimum positive weight k of h. Moreover C0's
+output is globally bounded above by OR(S), because C0 is pointwise below
+the original circuit. For a heavy target, C0 agrees with OR(S) at every
+input containing Y, and Y avoids S.
+
+The actual output function of C1 satisfies
+
+  OR(S) <= C1_output_S <= OR(S) OR h.
+
+The left inequality follows from singleton correctness and monotonicity;
+the right inequality is (1). This identity of domains is stronger than
+agreement only below weight k. It does not assert equality of internal
+wire functions under replacement outside their respective domains.
+
+2. A bounded frontier that forces h
+----------------------------------
+Use the current private class G_i, consisting of valid non-z gates whose
+C1 singleton support has size at least two and is contained in S_i. Let W
+be the exceptional wide gates outside every private class. Linearity makes
+the private classes disjoint. Define the boundary valuation
+
+  base(w)=1 exactly when w=z or w belongs to W,
+
+and evaluate only the gates of G_i using cutValue.
+
+If this cut output is false, the checked false-frontier argument in
+PrivateDichotomy supplies the full private OR quota |S_i|-1. Thus when
+the private OR count is strictly smaller, the cut output is true.
+
+Apply the checked positive admissible frontier to that true cut output.
+It gives a frontier F disjoint from G_i, all of whose base values are true,
+with
+
+  |F| <= privateAND_i+1.
+
+Hence F is contained in {z} union W. Put B_i=F minus {z}. For every actual
+input X avoiding S_i, if all C1 wires in B_i are true at X, then z is also
+true in C1 and the admissible truth-transfer theorem makes its target
+output true. By (1), h(X) must be true. Therefore
+
+  X disjoint S_i and every b in B_i true in C1 at X
+      imply h(X)=1,                               (2)
+  B_i subset W,  |B_i|<=privateAND_i+1.
+
+The input X need not have weight below k. The same fixed frontier B_i
+works simultaneously for every X in (2). This fixed-witness quantifier is
+important for any later charging argument.
+
+Every b in B_i has a singleton positive outside S_i: otherwise its support
+would place it inside G_i. Choosing one outside singleton per b constructs
+an activating input. Thus (2) supplies a nonempty h-positive input avoiding
+S_i. In particular, B_i cannot be empty, because h(0)=0.
+
+3. Consequence for every clause of h
+-----------------------------------
+Let T be any input set with h(complement T)=0; equivalently, the monotone
+clause OR(T) is implied by h. Put X=complement(T union S_i). Monotonicity
+gives h(X)=0, and X avoids S_i. By (2), some b in B_i is false at X.
+
+Write U(b) for its C1 singleton support. A point p in U(b) outside both T
+and S_i would make b true at singleton p and hence at X, a contradiction.
+Consequently
+
+  for every clause T of h, there exists b in B_i with
+       empty != U(b) minus S_i subset T.           (3)
+
+Nonemptiness uses b in W. Equation (3) is a necessary refinement condition
+against every clause of h. It is stronger than merely requiring |B_i|>=k.
+It does not say that each U(b) minus S_i is itself a clause of h: the
+existential b may depend on T. Reversing that implication would be unsound.
+
+4. Target-specific avoidance threshold
+--------------------------------------
+If h has a positive input avoiding S_i, let lambda_i be the minimum weight
+of such an input. Choosing one outside singleton witness per b in B_i and
+using (2) gives
+
+  lambda_i <= |B_i| <= privateAND_i+1.
+
+Thus every target satisfies the stronger semantic alternative
+
+  privateOR_i >= |S_i|-1,
+  or privateAND_i >= lambda_i-1.                 (4)
+
+If there is no h-positive input avoiding S_i, the first alternative is
+forced. Equivalently S_i is a clause of h, and (1) makes the C1 output
+globally equal to OR(S_i).
+
+For a heavy target, Y is a positive h-input avoiding it, and the global
+minimum weight is k. Hence lambda_i=k exactly. For light targets lambda_i
+can be k, larger than k, or absent. The full negative-input information
+therefore strengthens the light-side AND credit while preserving the
+known k-1 heavy-side credit.
+
+If z itself belongs to the chosen full frontier F, removal gives the
+slightly stronger |B_i|<=privateAND_i. This is a conditional observation
+about that frontier; no claim is made that z always belongs to it.
+
+5. Relevance and remaining obstruction
+--------------------------------------
+The checked C0 heavy OR count and C1 private credits give two independent
+resource families. The finite quota audits show that overlap cannot in
+general be paid by the exact refund count or by refunds plus direct NOT
+readers alone. Even selecting only residual quotas can require unused
+gates outside those two resource families.
+
+Equations (2)-(3) retain the common h-domain information that a support-only
+owner graph discards. A possible global proof would charge the necessary
+context contributions or private-frontier requirements while respecting
+shared prefix gates. Neither a per-frontier activation threshold nor (3)
+alone supplies such a disjoint accounting. In particular, the same h and
+the same exceptional wire may participate in many target frontiers.
+
+The finite switched-circuit examples use h=AND(Y). They already satisfy a
+stronger checked mandatory-singleton-clause bound. They refute proposed
+selection shortcuts, and leave the full inequality safe with ample unused
+gate capacity. The checked OneHeavyDeficit theorem also settles all examples
+with only one deficient heavy class, including the residual and all-operation
+pool obstructions. A useful unrestricted invariant must measure shared
+capacity or context contributions when at least two heavy classes remain
+deficient.

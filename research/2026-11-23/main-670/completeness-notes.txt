@@ -1,0 +1,113 @@
+L-meta-670, assigned shard 7: complete finite-model search
+
+Scope and status
+----------------
+This search fixes the first gate to AND(x4,x6), on the exact nine-input,
+twelve-edge function in task.json. It covers that assigned shard only.
+The other thirteen first-gate cases and the completeness of the public
+fourteen-orbit partition are outside this run. A timeout, stop, memory
+limit, or incomplete certificate is recorded explicitly. No global L670
+theorem or Lean acceptance follows from a SAT solver result alone.
+
+Public-source audit
+-------------------
+The current project HasCircuitSize definition permits any number of NOTs,
+gate input lists of length zero, one or two, repeated inputs, arbitrary
+natural-number references, and arbitrary output references. A read of an
+input or earlier gate gets that value; every other read is false. NOT
+uses only its first input and defaults that input to false when empty.
+
+The exact routes/lgp/own/filing/petersen/SKETCH.md and S670-shards.txt paths
+named in the task context are absent from this public checkout and returned
+HTTP404 at their exact public GitHub paths. The task response itself gives
+the shard's first gate. No public certificate upload/replay path was found
+in join.txt, CONTRIBUTING.md, or tools/pnp.sh. No endpoint is inferred.
+
+The public join instructions document reporting a completely exhausted
+assigned search range with the program SHA256 and reason exhausted. Root
+owns any such report and all lease actions. This worker makes no remote
+writes. The program checks the local inactive flag throughout the run.
+
+Prior PR2954 is closed and unmerged. Its final maintainer comment says its
+public-runner check exhausted memory, about12.6GB plus swap, and explicitly
+does not give a mathematical verdict. Earlier comments report a compile
+rejection and checker exits124/3. The submitted source uses direct kernel
+enumeration of all reachable truth-table sets at depth15; this run instead
+uses a SAT encoding. Public metadata/comments/source are saved in public/.
+
+Exact finite gate model
+----------------------
+There are nine input wires, one false sentinel, and exactly fifteen slots.
+Each slot is AND(a,b), OR(a,b), or NOT(a), where a,b are inputs, the false
+sentinel, or earlier slots. NOT's unused second selected port is duplicated.
+The NOT count is unrestricted. The first slot is AND(4,6), and the final
+slot is the output. Both equal fanins and unused gates are permitted.
+All512 Boolean assignments are constrained. Monotone boundary-only tests
+would be unsound here because arbitrary NOT gates are allowed.
+
+No free-true value is present. The sentinel is itself exactly representable
+in the project by one permanently unavailable index, n+15. It consumes no
+gate, just as unavailable references in the actual definitions do.
+
+Completeness map from every project circuit in this shard
+---------------------------------------------------------
+For each original gate, map a raw input to itself and an earlier gate wire
+to the corresponding shifted finite-model wire. Determine validity using
+the ORIGINAL gate index: an out-of-range or future original read maps to
+the false sentinel. Then normalize without adding slots:
+
+* Empty AND becomes NOT(false); empty OR becomes OR(false,false).
+* Unary AND/OR duplicates its argument.
+* Binary AND/OR keeps both arguments, sorted because each is commutative.
+* NOT uses the first mapped argument, or false if empty, and ignores its
+  original second argument.
+
+The prescribed first AND(4,6) remains exactly unchanged. If the output is
+an original gate, retain the prefix through that gate and discard the
+later suffix. If the output is raw, retain the first gate and choose that
+raw output. If the original output is unavailable, retain the first gate
+and choose the false sentinel. Append OR(output,output) aliases until
+there are fifteen slots. Each append becomes the new output. Thus every
+original circuit of size at most15 in the assigned shard has a matching
+fifteen-slot finite model with final output and unchanged first gate.
+
+Conversely, any finite model is translated literally to a project circuit
+of fifteen gates: shift each finite gate wire down by one and replace the
+false sentinel by index n+15, which remains unavailable at every gate.
+NOT is represented by a one-element input list; AND/OR by two-element lists.
+This gives an exact gate-cost correspondence for any decoded SAT witness.
+
+Encoding and reductions
+-----------------------
+Each gate operation and each selected operand use one-hot choices. For
+each of512 rows, guarded mux clauses equate a selected port with its source
+value. Guarded truth-table clauses define the gate output. Unit clauses
+fix the target output on every row and the assigned first gate.
+
+The only reduction sorts commutative fanins; NOT's unused port is duplicated.
+There is no gate reordering, semantic pruning, liveness requirement,
+monotonicity restriction, upper bound on the number of NOTs, unique-signature
+condition, or borrowed first-gate symmetry beyond the assigned shard.
+
+Concrete checks
+---------------
+The script compares160 seeded randomly generated project circuits with
+their finite normalizations on all512 assignments, including empty gates,
+unary gates, repeated references, future/unavailable reads and outputs.
+It independently evaluates the accepted16-gate L_meta_1001 upper witness,
+then prepends the assigned first gate to obtain a17-slot positive fixture.
+The CNF is SAT when fixed to this fixture and UNSAT when its target table
+has one bit flipped. A separate fixed circuit exercises NOT and the false
+sentinel. Exact results and the tested program hash are in selftest.json.
+
+Bound and certificate handling
+------------------------------
+The initial run is limited to1800seconds, one solver worker, and3.5GiB of
+address space. A parent process checks lease inactivity and an explicit
+STOP file every2seconds, terminates its own worker when necessary, and
+reaps the child. Conflict chunks provide progress records. A4GiB proof
+trace limit and2GiB free-disk reserve stop with UNKNOWN rather than drop
+evidence. Any final UNSAT trace is streamed as binary DRAT and hashed.
+The trace is not declared verified until an independent checker accepts
+it, and no Lean bridge is asserted. The exact CNF and program hashes,
+solver statistics, elapsed time and final status are retained.

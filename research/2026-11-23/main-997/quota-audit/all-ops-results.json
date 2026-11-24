@@ -1,0 +1,98 @@
+{
+  "scope": "Refutes residual matching in C1-private union all C0-sound wide gates plus refunds. The exact997 inequality holds; general unused credits remain available.",
+  "lean_checked": false,
+  "solver_used": false,
+  "script_sha256": "cbe8b7a9882d3b793f49f1859880581029d5a10e84e4f2a6cf768137633ddcba",
+  "evaluator_sha256": "08995d84c370af23d1ccd14e0b278e7f719e9383f97098bc041d97dd2ad789b9",
+  "source_builder_sha256": "b58829e478054038cc95f4eee63893b8c534b85fe27641c8a9064fcea60fbd4a",
+  "circuit_sha256": "9b032740d0feb4498f8db6449e79847c041ba3baeeda85e544aa4a6e4023d2ca",
+  "result": {
+    "status": "EXACT_REQUIRED_ROWS_AND_GENERIC_IDENTITY_AUDIT_PASS",
+    "n": 23,
+    "gate_count": 104,
+    "target_count": 8,
+    "original_sample_rows_checked": 56,
+    "full_original_truth_rows_checked": 0,
+    "abstract_identity_rows_checked": 131072,
+    "all_gates_live": true,
+    "G": [
+      [
+        13,
+        14
+      ],
+      [
+        19,
+        20
+      ],
+      [
+        25,
+        26
+      ],
+      [
+        31,
+        32
+      ],
+      [
+        37,
+        38
+      ],
+      [
+        43,
+        44
+      ],
+      [
+        49,
+        50
+      ],
+      [
+        99,
+        100,
+        101,
+        103
+      ]
+    ],
+    "H_or": [
+      13,
+      19,
+      25,
+      31,
+      37,
+      43,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      103
+    ],
+    "H_all": [
+      13,
+      19,
+      25,
+      31,
+      37,
+      43,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      102,
+      103
+    ],
+    "refund_gates": [
+      103
+    ],
+    "eligible_union_count": 25,
+    "total_quota": 27,
+    "refund_count": 1,
+    "unpaid_after_refunds": 1,
+    "unused_gates": 79,
+    "weighted_lhs": 35,
+    "exact_997_rhs": 113
+  }
+}

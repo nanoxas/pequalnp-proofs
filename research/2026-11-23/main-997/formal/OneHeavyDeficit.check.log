@@ -1,0 +1,29 @@
+import took 10.6s
+'PEqualNP.Research.OneHeavyDeficit.one_heavy_private_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OneHeavyDeficit.one_not_one_heavy_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OneHeavyDeficit.one_not_failure_has_two_heavy_deficits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	.olean serialization 8.49ms
+	attribute application 0.0849ms
+	blocked (unaccounted) 379ms
+	congr simp thm 2.47ms
+	declTypeLinter 2.77ms
+	elaboration 68.9ms
+	fix level params 0.35ms
+	import 10.6s
+	initialization 152ms
+	instantiate metavars 1.21ms
+	interpretation 265ms
+	let-to-have transformation 0.204ms
+	linting 15.1ms
+	module linting 0.0583ms
+	parsing 15.4ms
+	process pre-definitions 5.12ms
+	share common exprs 2.13ms
+	simp 45.8ms
+	tactic execution 102ms
+	tacticAnalysis 2.29ms
+	type checking 56.4ms
+	typeclass inference 104ms

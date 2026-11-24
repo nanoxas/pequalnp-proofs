@@ -1,0 +1,25 @@
+import took 2.8s
+'PEqualNP.Research.PrivateDichotomy.private_or_and' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 7.69ms
+	attribute application 0.0118ms
+	blocked (unaccounted) 211ms
+	congr simp thm 1.43ms
+	declTypeLinter 1.95ms
+	elaboration 20ms
+	fix level params 0.194ms
+	import 2.8s
+	initialization 70.9ms
+	instantiate metavars 1.03ms
+	interpretation 174ms
+	let-to-have transformation 0.0253ms
+	linting 9.04ms
+	module linting 0.0228ms
+	parsing 4.16ms
+	process pre-definitions 2.37ms
+	share common exprs 1.27ms
+	simp 16.7ms
+	tactic execution 115ms
+	tacticAnalysis 1.52ms
+	type checking 34.3ms
+	typeclass inference 25.6ms

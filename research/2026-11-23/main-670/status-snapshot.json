@@ -1,0 +1,23 @@
+{
+  "status": "RUNNING_UNRESOLVED",
+  "snapshot_utc": "2026-11-24T04:09:56.107175+00:00",
+  "task": "L-meta-670",
+  "shard": 7,
+  "shards": 14,
+  "scope": "all AND/OR/NOT circuits of size at most15 whose first gate is AND(x4,x6)",
+  "program_sha256": "147a5b7368bad8678574c23aa1905cca561d9a82ddf4247f68db3eaffd5f5a1d",
+  "cnf_sha256": "5ad117443d7e182f714197c660eaf866d31e43d00a7b7c5a28b1c2e52f619880",
+  "variables": 24105,
+  "clauses": 434560,
+  "elapsed_seconds": 556.047,
+  "solver_statistics": {
+    "restarts": 122818,
+    "conflicts": 2433413,
+    "decisions": 10788447,
+    "propagations": 2712467124
+  },
+  "exhausted": false,
+  "lean_theorem_proved": false,
+  "proof_certificate_verified": false,
+  "private_state_included": false
+}

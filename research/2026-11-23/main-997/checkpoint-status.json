@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-11-24T03:44:56.407243+00:00",
+  "snapshot_utc": "2026-11-24T04:13:23.284292+00:00",
   "full_statement_proved": false,
   "upstream_submission_made": false,
   "formal_modules": {
@@ -539,19 +539,81 @@
           "Quot.sound"
         ]
       }
+    },
+    "CutEvaluation": {
+      "status": "PASS",
+      "source_sha256": "5d1bb53b51a8084779a02701816e59aa7e2f62402e36118f04895dbe6178055f",
+      "log_sha256": "f5a875b000acdd37088727e79297e29072aaa33e52399766728d1d33f4de8aed",
+      "elapsed_seconds": 2.171,
+      "record": "CutEvaluation.verification.json",
+      "axioms": {
+        "PEqualNP.Research.CutEvaluation.cutValue_admissible": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.CutEvaluation.admissible_mono": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.CutEvaluation.admissible_frontier": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "PrivateDichotomy": {
+      "status": "PASS",
+      "source_sha256": "4b588ed5b871755155224910ebd9e769c057df07644fc2af79b9d98ef56d800b",
+      "log_sha256": "388a699e834d12b65c63d2fda3e36eb7151028329393717f80cc7647bfb13c49",
+      "elapsed_seconds": 3.391,
+      "record": "PrivateDichotomy.verification.json",
+      "axioms": {
+        "PEqualNP.Research.PrivateDichotomy.private_or_and": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "OneHeavyDeficit": {
+      "status": "PASS",
+      "source_sha256": "cc7966a89ca21d0564d38c5c9f0f90acbc79cbc33885d4253302cb6f3f9f36f3",
+      "log_sha256": "dd651248fa201e9e6eff4630f472dcda66c2048379eade930ac5b5009b707e9c",
+      "elapsed_seconds": 11.582,
+      "record": "OneHeavyDeficit.verification.json",
+      "axioms": {
+        "PEqualNP.Research.OneHeavyDeficit.one_heavy_private_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OneHeavyDeficit.one_not_one_heavy_deficit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OneHeavyDeficit.one_not_failure_has_two_heavy_deficits": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
     }
   },
-  "formal_module_count": 26,
+  "formal_module_count": 29,
   "paper_saturation_status": "Q<=H+k+e+2 for arbitrary k>=2 independently reviewed; complete classification not kernel-checked.",
   "sat_status": "INTERRUPTED_UNKNOWN",
   "original_sat_child_cleanup": "reaping_unconfirmed",
   "refund_semantics": "Exact posted guarded biconditional; source encoder unchanged.",
   "helper_correction": "A failed helper dropped grouping; corrected RefundCount includes a checked equality to the verbatim posted expression.",
   "source_bytes_unchanged": [
-    "all seventeen previously published Lean modules",
-    "all nine new Lean modules match their successful verification records",
-    "previous SAT encoder, geometry generator, and runner sources",
-    "all five frozen overlap-audit files"
+    "all twenty-six previously published Lean modules",
+    "all three new Lean modules match their successful verification records",
+    "previous solver/geometry/runner sources and frozen audit artifacts",
+    "the nine frozen historical L-meta-670 assignment/search-snapshot files"
   ],
   "public_transform": "Local workspace paths and operational process/session identifiers removed from records and logs; proof source bytes are unchanged.",
   "excluded": [
@@ -561,12 +623,15 @@
     "solver binaries",
     "unverified current Lean drafts"
   ],
-  "checked_followup": "Boundary activation, directed separation, deficient-class packing, OR compensation, coupled frontiers, private AND count, and exact997 under Eplus<=4|Y|-3 for |Y|>=3; SmallWindow covers |Y|<=2.",
+  "checked_followup": "Arbitrary-boundary cut evaluation, the global private OR/AND dichotomy, and the exact weighted inequality without refunds whenever at most one heavy C1 private class is deficient.",
   "original_eight_sources_unchanged": true,
   "original_twelve_sources_unchanged": true,
-  "exceptional_support_status": "The direct-cut r<=3k-4 and Eplus<=4k-3 criterion are checked for k>=3. Supplementary normalization, transversal refinements, historical support classification, and the stronger global OR/AND dichotomy remain paper-level.",
+  "exceptional_support_status": "The numerical Eplus<=4k-3 range and private OR/AND dichotomy are checked. The all-h=0 activation/clause extension remains a paper consequence; unrestricted cross-window accounting is open.",
   "case13_status": "Python family/baseline/support audits plus independently reviewed paper exclusion; no SAT or target-specific Lean instance. The data also meet the checked DoubleExcess and FourWindow hypotheses.",
   "original_seventeen_sources_unchanged": true,
-  "deficiency_budget_status": "All six component/assembly modules passed on current source with standard-only axioms; explanatory paper and independent review updated to the checked result.",
-  "overlap_audit_status": "Four seven-input circuits checked on all 128 rows each. Raw eligible overlap can exceed whole-target refunds; disjoint minimum-quota choices exist in these examples. Full L-meta-997 holds in each example."
+  "deficiency_budget_status": "The earlier six-module deficiency chain remains unchanged; CutEvaluation and PrivateDichotomy prove the stronger alternative, and OneHeavyDeficit isolates at least two heavy deficits as necessary for failure.",
+  "overlap_audit_status": "Four seven-input circuits checked on all 128 rows each. Raw eligible overlap can exceed whole-target refunds; disjoint minimum-quota choices exist in these examples. Full L-meta-997 holds in each example.",
+  "original_twenty_six_sources_unchanged": true,
+  "quota_audit_status": "Full original truth tables for 17-input and 19-input obstructions; generator identities and exact required rows for 301-input and 23-input examples. These refute auxiliary matching statements while satisfying full L-meta-997.",
+  "cross_window_status": "Fixed activation frontier against every negative h-input and every h-clause is a paper lemma; independent 19-input audit is exhaustive. Exact cited public sketch returned404."
 }

@@ -1,0 +1,31 @@
+import took 1.33s
+'PEqualNP.Research.CutEvaluation.cutValue_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.CutEvaluation.admissible_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.CutEvaluation.admissible_frontier' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 12.7ms
+	attribute application 0.0825ms
+	blocked (unaccounted) 419ms
+	compilation (IR) 0.107ms
+	compilation (LCNF base) 1.88ms
+	compilation (LCNF impure) 0.521ms
+	compilation (LCNF mono) 0.933ms
+	congr simp thm 3.64ms
+	declTypeLinter 3.42ms
+	elaboration 59.6ms
+	fix level params 0.589ms
+	import 1.33s
+	initialization 28.7ms
+	instantiate metavars 2.94ms
+	interpretation 199ms
+	let-to-have transformation 0.143ms
+	linting 21.2ms
+	module linting 0.0404ms
+	parsing 9.24ms
+	process pre-definitions 8.35ms
+	share common exprs 3.77ms
+	simp 68.7ms
+	tactic execution 164ms
+	tacticAnalysis 3.43ms
+	type checking 65.5ms
+	typeclass inference 64.9ms

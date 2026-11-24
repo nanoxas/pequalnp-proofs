@@ -130,6 +130,10 @@ empty and singleton targets and the exact guarded refund predicate.
 The k<=2 cases are already covered by SmallWindow.
 
 The adjacent verification records provide the proof-checker verdicts.
-The stronger global OR/AND dichotomy and an unrestricted quota-selection
-argument remain paper-level research. This checkpoint proves sufficient
-cases and leaves the full L-meta-997 statement open.
+The global private OR/AND dichotomy has subsequently been checked in
+PrivateDichotomy using CutEvaluation. OneHeavyDeficit also proves that every
+failure of the original inequality requires at least two deficient heavy
+private classes. These additional statements preserve the argument above.
+An unrestricted accounting that includes resources outside the partial
+charge pools remains open. The completed quota audits rule out several
+pool-only selection shortcuts while satisfying the original inequality.

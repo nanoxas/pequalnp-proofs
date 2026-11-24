@@ -154,5 +154,8 @@ The exact current sources of all six modules in this chain have successful
 checks with no warnings and only the standard Lean axioms propext,
 Classical.choice, and Quot.sound in the recorded audits. The abstract
 sharpness example in Section2 remains a set-distance observation. The
-stronger global OR/AND dichotomy and unrestricted quota selection remain
-paper-level work, and this note makes no full L-meta-997 proof claim.
+global private OR/AND dichotomy was subsequently checked in PrivateDichotomy
+and independently reviewed together with CutEvaluation. OneHeavyDeficit
+also checks that at most one deficient heavy private class suffices for
+the original inequality without refunds. Unrestricted accounting remains
+open, and this note makes no full L-meta-997 proof claim.

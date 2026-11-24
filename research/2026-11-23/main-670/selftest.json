@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T04:00:29.853996+00:00",
+  "seconds": 2.566989190996537,
+  "normalization_cases": 160,
+  "rows_per_case": 512,
+  "baseline_fixture_gates": 17,
+  "fixed_baseline": "SAT",
+  "one_bit_mismatch": "UNSAT",
+  "fixed_NOT_and_constants": "SAT",
+  "program_sha256": "147a5b7368bad8678574c23aa1905cca561d9a82ddf4247f68db3eaffd5f5a1d"
+}

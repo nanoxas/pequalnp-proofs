@@ -1,0 +1,177 @@
+QUOTA MATCHING NEEDS GENERAL UNUSED-GATE CREDITS
+
+Status: reproducible finite audits. No Lean proof or SAT solver is claimed.
+All examples satisfy the hypotheses and conclusion of L-meta-997. They
+refute auxiliary resource-selection statements that are stronger than997.
+
+1. NOTATION AND THE EXACT GAP
+
+Let Y have size k, h=AND(Y), and z=NOT h. For a gate w, U(w) is its
+singleton-positive support, equivalently its singleton support after z is
+replaced by true. V(w) is its positive support on Y union{p}, p outside Y,
+equivalently that shifted support after z is replaced by false.
+
+For target S, the C1 private pool G_S consists of gates w other than z
+with |U(w)|>=2 and U(w) subset S. For heavy T disjoint Y, the C0 pool H_T
+consists of OR gates false on the complement of T and with |V(w)|>=2.
+Every H_T gate is C0-sound for T, and V(w) subset T.
+
+The relevant quotas are min(k,|S|)-1 for light S and |T|-1 for heavy T.
+A refund requires U(w) to equal an entire target and V(w) to equal an
+entire heavy target. Containment and partial overlaps do not suffice.
+
+2. FULL-HEAVY-OR QUOTAS: TWO SMALL AUXILIARY CLAIMS FAIL
+
+audit.py generates two families with pools consisting entirely of OR
+gates and excluding every direct NOT reader. Each light target uses the
+construction
+
+  S={y_i} union P,
+  w_j=(p_j AND z) OR(t_j AND h),
+  M=OR_j w_j,
+  light_output=y_i OR M.
+
+The p_j cycle through P, and T={t_j} is a fresh heavy target. Put
+Q=AND_{y in Y}(y OR OR(T))=h OR OR(T). The heavy output is
+
+  (Q AND z) OR(M AND h).
+
+If h=false, M=OR(P), Q=OR(T), and z=true. If h=true, every y_i is true,
+M=OR(T), Q=true, and z=false. These identities prove both outputs exactly.
+
+For k=5, |P|=4, |T|=8, the minimum overlap between a light quota4 and a
+heavy OR quota7 is2, while R=1. All131,072 rows of this17-input circuit
+are checked. It refutes minimum-full-quota overlap<=R.
+
+An affine-plane order5 construction shares the narrow p AND z gates
+among30 light targets. Here k=6, each light target has size6, and each
+fresh heavy target has size9. The exact minimum full-quota overlap is90,
+R=30, and there are55 direct NOT readers. Hence90>30+55. The claimed
+reader-budget bound fails even after all readers are removed from the
+candidate OR pools. Its301-input original-output correctness follows
+from the displayed generator identities, independently checked on every
+abstract Boolean case. All662 singleton, shifted and soundness rows are
+also evaluated. A full301-variable truth table is not claimed.
+
+The full-quota examples leave abundant C1-private or unused-gate credit.
+They do not refute residual-deficit accounting after those credits are
+used. The next example addresses that distinction directly.
+
+3. RESIDUAL G/H POOL MATCHING PLUS REFUNDS ALSO FAILS
+
+residual_audit.py builds a19-input circuit. Points0..6 are the nonzero
+vectors1..7 of F_2^3. Set Y={0,1,2}, one Fano line. The other six Fano
+lines are light targets S_1,...,S_6; each has one point y_i in Y and two
+points P_i outside Y. Their pairwise intersections have size1.
+
+Take one heavy target T={7,...,18}, disjoint from the Fano plane. Partition
+it into six pairs T_i. For each light target use the two-point version of
+the switch above:
+
+  M_i=OR_{j=1,2}((p_ij AND z) OR(t_ij AND h)),
+  light_output_i=y_i OR M_i.
+
+Share each p AND z gate globally among the three light targets containing
+p. Define M=OR_i M_i, Q=AND_{y in Y}(y OR OR(T)), and
+
+  heavy_output=(Q AND z) OR(M AND h).
+
+The same two-case identity proves every output exactly. The evaluator
+also checks all524,288 Boolean assignments independently, all earlier-read
+and fan-in conditions, the sole NOT, its complete low-weight window, all
+target intersections, and structural liveness of every gate.
+
+There are89 gates and seven targets. The exact eligible-resource counts
+are:
+
+  each of the six light G_i:       2 gates, quota2;
+  heavy G_T:                      4 gates, quota11;
+  heavy H_T:                     12 gates;
+  union of all G_i:               16 gates;
+  union of all G_i and H_T:        21 gates;
+  total target quota:             23;
+  exact refund count:              1.
+
+The heavy C1-private deficit is7. The heavy H_T contributes only5 gates
+outside the full private union. Thus two units remain unpaid by all
+eligible G/H resources, and one unit remains unpaid after the exact
+refund credit is added. This is a Hall obstruction on the entire target
+family: no choice, exchange order, or matching inside those pools can
+repair it.
+
+The example leaves68 gates outside the eligible union. Its actual997
+inequality is30<=89+1+7=97. It therefore isolates a required feature of any
+successful charging proof: some general unused gates must be eligible as
+credits. A theorem confined to existing target-owned G/H resources plus
+refunds is false, even when it first credits every C1 private gate.
+
+4. ALLOWING EVERY SOUND HEAVY GATE STILL LEAVES A GAP
+
+The heavy pool can be enlarged to include AND gates as well as OR gates,
+retaining C0 soundness and shifted width at least2. This adds the final
+M AND h context gate in Section3 and repairs that example's one-unit gap.
+
+The same family with seven light triples defeats the enlarged pool. Keep
+the six Fano triples, add one target {0,7,8}, and use a fresh14-point heavy
+target {9,...,22}. The circuit has23 inputs and104 gates. Its private union
+has18 gates, the all-operation heavy pool has15 gates, and their union
+has25 gates. The quotas total27, while the refund count is1. Thus one
+unit remains unpaid. The actual997 inequality is35<=104+1+8=113.
+
+all_ops_audit.py verifies all56 required singleton, shifted, complement,
+zero and Y rows, and every input/read/liveness condition. Output correctness
+on arbitrary original assignments follows from an independently evaluated
+abstract generator identity: three Y bits, seven independent values
+s_i=OR(P_i), and seven independent values t_i=OR(T_i). All131,072 assignments
+to those17 abstract bits are checked. Every original assignment maps to
+one of those abstract assignments. A full23-variable truth-table audit is
+not claimed.
+
+The general count for L light triples in this pattern is
+
+  |G_all|=2L+4, |H_all|=2L+1, |G_all intersect H_all|=L+1,
+  |G_all union H_all|=3L+4, demand=4L-1, R=1.
+
+The unpaid remainder after refunds is L-6. Both construction and counts
+were independently reviewed. These examples have only one deficient heavy
+class, so the separate checked OneHeavyDeficit theorem already proves their
+actual weighted inequality using the outside-wide gates.
+
+5. A PRECISE REMAINING EXCHANGE FORMULATION
+
+For a target subfamily A, let G_A be its private-gate union and H_A the
+heavy-pool union over its heavy members. The pools are disjoint within
+each family. They already satisfy
+
+  |G_A union H_A| >= sum_{heavy i in A} quota_i + |G_A minus H_A|.
+
+Thus heavy-only subfamilies cannot obstruct ordinary quota matching.
+Any obstruction includes light demand. Every private AND in G_A lies in
+G_A minus H_A, since heavy pools contain only OR gates. The checked
+private OR/AND dichotomy and deficient-heavy AND bound provide real
+credits there. However Section3 shows that these pools alone are still
+insufficient in general.
+
+One useful remaining target is a charging map from the unpaid residual
+Hall cut into gates outside the selected G/H resources, with exact
+refunds providing the additional permitted capacity. Such a map must use
+the circuit's two-window causal structure or its h=false negative rows.
+No such general map is proved by these examples.
+
+6. REPRODUCTION AND SCOPE
+
+Run from the workspace root:
+
+  python3 main-997/quota-audit/audit.py
+  python3 main-997/quota-audit/residual_audit.py
+  python3 main-997/quota-audit/all_ops_audit.py
+
+The first writes circuits.json and results.json. The second writes
+residual-circuit.json and residual-results.json, including the entire
+gate list, all eligible pools, exact refunds and truth-vector hashes.
+The third writes all-ops-circuit.json and all-ops-results.json. All scripts
+use only the Python standard library. Results record the source and
+input hashes, and explicitly set lean_checked=false and solver_used=false.
+
+These are finite counterobstructions to auxiliary counting claims. The
+unrestricted L-meta-997 statement remains open in this research record.

@@ -1,0 +1,19 @@
+{
+  "status": "PASS_INDEPENDENT_FULL_VECTOR_AUDIT",
+  "script_sha256": "bafaafb6ffde77f90a3c85d1c3d7c5bffb757d21653b1b4981aa497df67ad69b",
+  "source_circuit_sha256": "4aab121f778bd592757e29231baad3d2d788e73da4ca9ad0d74fe1ae27fd57e6",
+  "inputs": 19,
+  "complete_truth_rows": 524288,
+  "gate_count": 89,
+  "target_count": 7,
+  "target_quotas_sum": 23,
+  "eligible_union_count": 21,
+  "exact_refunds": 1,
+  "unused_gate_count": 68,
+  "weighted_lhs": 30,
+  "exact_997_rhs": 97,
+  "output_hashes_match_source_audit": true,
+  "scope": "Refutes the specified private/heavy pool-only matching with refund capacity; the full L-meta-997 inequality holds.",
+  "solver_used": false,
+  "lean_checked": false
+}

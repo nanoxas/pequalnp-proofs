@@ -15,7 +15,7 @@ truncated to |Y|, and permits a precisely defined refund for certain gates.
 
 ## Kernel-checked components
 
-There are twenty-six checked modules. Each has a sibling `.verification.json`
+There are twenty-nine checked modules. Each has a sibling `.verification.json`
 and `.check.log`.
 The records give the exact source hash, successful exit code, and inline
 axiom audit. Audited declarations use only the standard Lean axioms
@@ -49,6 +49,9 @@ axiom audit. Audited declarations use only the standard Lean axioms
 | [CoupledCut](formal/CoupledCut.lean) | Constructs a full cut and a positive subfrontier together, with the required containment and an AND-only branching count. |
 | [PrivateAnd](formal/PrivateAnd.lean) | Proves that every deficient private class contains at least k−1 AND gates. |
 | [QuadrupleExcess](formal/QuadrupleExcess.lean) | Combines the deficiency bounds and proves the exact refund inequality when the heavy excess is at most 4k−3, for k≥3. |
+| [CutEvaluation](formal/CutEvaluation.lean) | Evaluates a private gate set against arbitrary boundary values and proves positive and negative frontiers with AND-only and OR-only branching counts. |
+| [PrivateDichotomy](formal/PrivateDichotomy.lean) | Every target's private class either pays its full |S_i|−1 OR quota or contains at least k−1 AND gates. |
+| [OneHeavyDeficit](formal/OneHeavyDeficit.lean) | Proves the stronger weighted bound ≤N+m whenever at most one heavy private class is deficient; every failure of the full refund inequality therefore needs at least two such classes. |
 
 The files are research modules with local imports. They are not an exact
 standalone submission for the unrestricted posted statement. Earlier
@@ -96,6 +99,15 @@ The combined budget pays both deficits. The
 [independent review](deficiency-budget-independent.txt) record this argument
 and the precise scope of its checked components.
 
+Two further checked statements sharpen the remaining problem. The private
+OR/AND dichotomy now applies to every target class, including classes whose
+total gate count already meets the full quota. Separately, `OneHeavyDeficit`
+pays a lone heavy residual from the exceptional gates without a bound on
+their number. Thus a failure of the requested inequality requires **at least
+two heavy classes with fewer than |S_i|−1 private gates** in the actual C1
+replacement. This condition is stronger than merely requiring two large
+heavy target sets.
+
 ## The thirteen-input audit
 
 The [case data](case13/case.json) have one heavy eight-point target, nine
@@ -134,8 +146,9 @@ The [exceptional-support note](exceptional-support-paper.txt) records the
 checked sequence through r≤3k−4 and Eplus≤4k−3 in Section 8. The historical
 projected-support classification in Section 6 remains **PAPER_REVIEWED**;
 its numerical range is covered by the later checked results. Supplementary
-normalization, transversal refinements, and the stronger global OR/AND
-dichotomy remain paper arguments.
+normalization and transversal refinements remain paper arguments. Section 9
+records the now-checked global private OR/AND dichotomy and the one-heavy-
+deficit theorem.
 
 The unresolved general step controls overlap between light and heavy gate
 charges when the small-input activation argument has too many independent
@@ -158,6 +171,40 @@ gate capacity. They do not refute a suitable minimum-quota selection lemma.
 The [results](overlap-audit/results.json) and [manifest](overlap-audit/manifest.json)
 preserve the exact data and hashes; this is an exhaustive finite audit, with
 no SAT or Lean claim for these particular circuits.
+
+The later [quota audits](quota-audit/selection-obstruction.txt) test stronger
+selection shortcuts. A 17-input circuit is checked on all 131,072 rows and
+forces minimum full-OR quota overlap 2 with only one exact refund. A larger
+affine construction forces overlap 90 with 30 refunds and 55 direct NOT
+readers; it is verified by exact sample rows and a Boolean construction
+identity, with its 301-input truth table left unenumerated.
+
+The 19-input residual example is checked independently on all 524,288 rows.
+Its eligible union of C1-private gates and C0-sound heavy OR gates has size
+21, while the required quota is 23 and the exact refund count is one. It
+therefore rules out minimum-quota matching restricted to those pools, even
+after refund capacity is added. The original inequality holds as 30≤97,
+with 68 gates outside the chosen pools. See the
+[independent audit](cross-window/residual-independent-audit.json) and its
+[reproducer](cross-window/residual-independent-audit.py).
+
+Allowing every sound heavy gate, including AND gates, repairs that particular
+gap. The [23-input extension](quota-audit/all-ops-results.json) then leaves
+25 eligible gates against quota 27 and one refund. Its original inequality
+holds as 35≤113. This extension checks 56 required original input rows and
+all 131,072 cases of an abstract Boolean construction identity; it does not
+enumerate the full 23-input truth table. The distinction is recorded in the
+reproducer and manifest. All these examples have one deficient heavy class,
+so the checked `OneHeavyDeficit` theorem already settles their actual bound.
+
+The [cross-window note](cross-window/activation-clauses.txt) derives a paper
+invariant using every negative input of the NOT predecessor h. If a private
+OR quota is deficient, a fixed small exceptional-gate frontier forces h on
+target-avoiding inputs. Each clause of h must therefore contain one of that
+frontier's nonempty outside singleton supports. This semantic constraint has
+not yet been converted into a disjoint global count or a new Lean theorem.
+The cited upstream cut-sketch path returned HTTP 404; the
+[fetch record](cross-window/public-sketch-fetch.json) records that observation.
 
 ## Exact statement and parsing check
 

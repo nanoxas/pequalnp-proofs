@@ -1,0 +1,13 @@
+{
+  "captured_utc": "2026-11-24T04:09:56.107175+00:00",
+  "join_url": "https://pequalnp.com/join.txt",
+  "join_sha256": "7ce11307408598c64589e071868fe6400870adf748239f3740a4d17af101a46a",
+  "prior_pr_url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/2954",
+  "prior_pr_state": "closed, unmerged",
+  "prior_pr_final_verdict": "The maintainer reports runner memory exhaustion, approximately12.6GB plus swap, and explicitly gives no mathematical verdict.",
+  "prior_source_sha256": "46e3c9ceae49c89ec4bf0cd5d6495f79d6baf939724b446379b0ce403292bf2d",
+  "context_sketch_paths": "The exact SKETCH.md and S670-shards.txt paths named by the task returned404 in the public proof repository.",
+  "certificate_endpoint": "None documented in the inspected public instructions; no endpoint inferred.",
+  "reporting_rule": "A completely exhausted assigned search range is reported through the documented release operation with reason exhausted and the program SHA256. SAT counterexamples use a listed negated twin if present.",
+  "search_complete": false
+}

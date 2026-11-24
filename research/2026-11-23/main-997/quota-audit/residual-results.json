@@ -1,0 +1,113 @@
+{
+  "scope": "Refutes residual pool-only quota matching, even with one extra credit per exact refund. Unused gates remain essential; L-meta-997 holds in this example.",
+  "lean_checked": false,
+  "solver_used": false,
+  "script_sha256": "b58829e478054038cc95f4eee63893b8c534b85fe27641c8a9064fcea60fbd4a",
+  "evaluator_sha256": "08995d84c370af23d1ccd14e0b278e7f719e9383f97098bc041d97dd2ad789b9",
+  "circuit_sha256": "4aab121f778bd592757e29231baad3d2d788e73da4ca9ad0d74fe1ae27fd57e6",
+  "result": {
+    "status": "EXHAUSTIVE_TRUTH_AND_SUPPORT_AUDIT_PASS",
+    "n": 19,
+    "k": 3,
+    "gate_count": 89,
+    "target_count": 7,
+    "full_truth_rows_checked": 524288,
+    "all_gates_live": true,
+    "private_counts": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      4
+    ],
+    "heavy_or_count": 12,
+    "private_union_count": 16,
+    "eligible_union_count": 21,
+    "target_quotas": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      11
+    ],
+    "total_quota": 23,
+    "refund_count": 1,
+    "direct_reader_count": 5,
+    "residual_heavy_deficit": 7,
+    "heavy_resources_outside_private_union": 5,
+    "unpaid_by_eligible_union": 2,
+    "unpaid_after_refund_capacity": 1,
+    "unused_gates": 68,
+    "weighted_lhs": 30,
+    "exact_997_rhs": 97,
+    "G": [
+      [
+        11,
+        12
+      ],
+      [
+        17,
+        18
+      ],
+      [
+        23,
+        24
+      ],
+      [
+        29,
+        30
+      ],
+      [
+        35,
+        36
+      ],
+      [
+        41,
+        42
+      ],
+      [
+        84,
+        85,
+        86,
+        88
+      ]
+    ],
+    "H": [
+      11,
+      17,
+      23,
+      29,
+      35,
+      41,
+      43,
+      44,
+      45,
+      46,
+      47,
+      88
+    ],
+    "refund_gates": [
+      88
+    ],
+    "direct_readers": [
+      3,
+      4,
+      5,
+      6,
+      86
+    ],
+    "truth_vector_sha256": [
+      "a29dc0207948bc9f2e337ac1479c64625083b3bffff61524df16fae939819e0a",
+      "2fb79411602b92268a9da60bf54c67f8160469fa062fac624b0e5a85b819f733",
+      "5665775be0474737ed935a762a94d7f4747e698ba9ceaaf762929f561941dfbf",
+      "23dc70c91364c6ce6d69b48afc8eb2302a933a44bebe5da8b56b766203f66fde",
+      "18fdda0d9849c6b03574a973251eeae5fac0248de7e5f395d3f1f66ae33d00a7",
+      "6c5f9dd3c0b213867bd23b8086a560fe06eecd70088baa3b10aa162f8583e953",
+      "74030207b8f48b944d8ba92a8d8d84e3ede1bf87afcc25a9275b8ca0c3d1bd99"
+    ]
+  }
+}

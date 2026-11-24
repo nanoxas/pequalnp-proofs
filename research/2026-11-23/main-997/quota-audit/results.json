@@ -1,0 +1,1579 @@
+{
+  "status": "FINITE_SUPPORT_AND_BOOLEAN_IDENTITY_AUDIT_PASS",
+  "lean_checked": false,
+  "solver_used": false,
+  "scope": "Refutes full-heavy-OR minimum-quota overlap bounds by refunds alone and by refunds plus direct NOT readers. Does not refute L-meta-997 or residual-deficit/unused-gate accounting.",
+  "script_sha256": "08995d84c370af23d1ccd14e0b278e7f719e9383f97098bc041d97dd2ad789b9",
+  "circuits_sha256": "406fe96a2c57ad47ea12632fddfe1d6b9c075999256f998e7e814e36a1f944f4",
+  "cases": [
+    {
+      "name": "one_pair_k5",
+      "n": 17,
+      "k": 5,
+      "gate_count": 80,
+      "target_count": 2,
+      "all_gates_live": true,
+      "full_truth_rows_checked": 131072,
+      "generator_boolean_identity_cases": 128,
+      "sample_rows_checked": 36,
+      "original_output_correctness": "complete_truth_vectors",
+      "minimum_full_quota_overlap": 2,
+      "refund_count": 1,
+      "direct_reader_count": 5,
+      "minimum_overlap_le_refunds": false,
+      "minimum_overlap_le_refunds_plus_readers": true,
+      "optimal_selected_union_count": 9,
+      "unused_gates": 71,
+      "minimum_overlap_le_refunds_plus_unused": true,
+      "weighted_lhs": 13,
+      "exact_997_rhs": 83,
+      "refund_gates": [
+        79
+      ],
+      "direct_readers": [
+        5,
+        6,
+        7,
+        8,
+        77
+      ],
+      "pools": [
+        {
+          "light_pool": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "heavy_pool": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            79
+          ],
+          "light_quota": 4,
+          "heavy_quota": 7,
+          "minimum_overlap": 2,
+          "selected_light": [
+            25,
+            26,
+            27,
+            32
+          ],
+          "selected_heavy": [
+            25,
+            26,
+            28,
+            29,
+            30,
+            31,
+            79
+          ],
+          "heavy_private_count": 6,
+          "heavy_deficit": 1
+        }
+      ]
+    },
+    {
+      "name": "affine_q5_k6",
+      "n": 301,
+      "k": 6,
+      "gate_count": 2701,
+      "target_count": 60,
+      "all_gates_live": true,
+      "full_truth_rows_checked": 0,
+      "generator_boolean_identity_cases": 256,
+      "sample_rows_checked": 662,
+      "original_output_correctness": "explicit_generator_boolean_identity",
+      "minimum_full_quota_overlap": 90,
+      "refund_count": 30,
+      "direct_reader_count": 55,
+      "minimum_overlap_le_refunds": false,
+      "minimum_overlap_le_refunds_plus_readers": false,
+      "optimal_selected_union_count": 300,
+      "unused_gates": 2401,
+      "minimum_overlap_le_refunds_plus_unused": true,
+      "weighted_lhs": 450,
+      "exact_997_rhs": 2791,
+      "refund_gates": [
+        119,
+        208,
+        297,
+        386,
+        475,
+        564,
+        653,
+        742,
+        831,
+        920,
+        1009,
+        1098,
+        1187,
+        1276,
+        1365,
+        1454,
+        1543,
+        1632,
+        1721,
+        1810,
+        1899,
+        1988,
+        2077,
+        2166,
+        2255,
+        2344,
+        2433,
+        2522,
+        2611,
+        2700
+      ],
+      "direct_readers": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        117,
+        206,
+        295,
+        384,
+        473,
+        562,
+        651,
+        740,
+        829,
+        918,
+        1007,
+        1096,
+        1185,
+        1274,
+        1363,
+        1452,
+        1541,
+        1630,
+        1719,
+        1808,
+        1897,
+        1986,
+        2075,
+        2164,
+        2253,
+        2342,
+        2431,
+        2520,
+        2609,
+        2698
+      ],
+      "pools": [
+        {
+          "light_pool": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "heavy_pool": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            119
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            49,
+            50,
+            51,
+            52,
+            57
+          ],
+          "selected_heavy": [
+            49,
+            50,
+            51,
+            53,
+            54,
+            55,
+            56,
+            119
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146
+          ],
+          "heavy_pool": [
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            208
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            138,
+            139,
+            140,
+            141,
+            146
+          ],
+          "selected_heavy": [
+            138,
+            139,
+            140,
+            142,
+            143,
+            144,
+            145,
+            208
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235
+          ],
+          "heavy_pool": [
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            297
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            227,
+            228,
+            229,
+            230,
+            235
+          ],
+          "selected_heavy": [
+            227,
+            228,
+            229,
+            231,
+            232,
+            233,
+            234,
+            297
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            316,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322,
+            323,
+            324
+          ],
+          "heavy_pool": [
+            316,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322,
+            323,
+            386
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            316,
+            317,
+            318,
+            319,
+            324
+          ],
+          "selected_heavy": [
+            316,
+            317,
+            318,
+            320,
+            321,
+            322,
+            323,
+            386
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            405,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411,
+            412,
+            413
+          ],
+          "heavy_pool": [
+            405,
+            406,
+            407,
+            408,
+            409,
+            410,
+            411,
+            412,
+            475
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            405,
+            406,
+            407,
+            408,
+            413
+          ],
+          "selected_heavy": [
+            405,
+            406,
+            407,
+            409,
+            410,
+            411,
+            412,
+            475
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            494,
+            495,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502
+          ],
+          "heavy_pool": [
+            494,
+            495,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            564
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            494,
+            495,
+            496,
+            497,
+            502
+          ],
+          "selected_heavy": [
+            494,
+            495,
+            496,
+            498,
+            499,
+            500,
+            501,
+            564
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591
+          ],
+          "heavy_pool": [
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            653
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            583,
+            584,
+            585,
+            586,
+            591
+          ],
+          "selected_heavy": [
+            583,
+            584,
+            585,
+            587,
+            588,
+            589,
+            590,
+            653
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680
+          ],
+          "heavy_pool": [
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            742
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            672,
+            673,
+            674,
+            675,
+            680
+          ],
+          "selected_heavy": [
+            672,
+            673,
+            674,
+            676,
+            677,
+            678,
+            679,
+            742
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            761,
+            762,
+            763,
+            764,
+            765,
+            766,
+            767,
+            768,
+            769
+          ],
+          "heavy_pool": [
+            761,
+            762,
+            763,
+            764,
+            765,
+            766,
+            767,
+            768,
+            831
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            761,
+            762,
+            763,
+            764,
+            769
+          ],
+          "selected_heavy": [
+            761,
+            762,
+            763,
+            765,
+            766,
+            767,
+            768,
+            831
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+            857,
+            858
+          ],
+          "heavy_pool": [
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+            857,
+            920
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            850,
+            851,
+            852,
+            853,
+            858
+          ],
+          "selected_heavy": [
+            850,
+            851,
+            852,
+            854,
+            855,
+            856,
+            857,
+            920
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            939,
+            940,
+            941,
+            942,
+            943,
+            944,
+            945,
+            946,
+            947
+          ],
+          "heavy_pool": [
+            939,
+            940,
+            941,
+            942,
+            943,
+            944,
+            945,
+            946,
+            1009
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            939,
+            940,
+            941,
+            942,
+            947
+          ],
+          "selected_heavy": [
+            939,
+            940,
+            941,
+            943,
+            944,
+            945,
+            946,
+            1009
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1028,
+            1029,
+            1030,
+            1031,
+            1032,
+            1033,
+            1034,
+            1035,
+            1036
+          ],
+          "heavy_pool": [
+            1028,
+            1029,
+            1030,
+            1031,
+            1032,
+            1033,
+            1034,
+            1035,
+            1098
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1028,
+            1029,
+            1030,
+            1031,
+            1036
+          ],
+          "selected_heavy": [
+            1028,
+            1029,
+            1030,
+            1032,
+            1033,
+            1034,
+            1035,
+            1098
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1117,
+            1118,
+            1119,
+            1120,
+            1121,
+            1122,
+            1123,
+            1124,
+            1125
+          ],
+          "heavy_pool": [
+            1117,
+            1118,
+            1119,
+            1120,
+            1121,
+            1122,
+            1123,
+            1124,
+            1187
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1117,
+            1118,
+            1119,
+            1120,
+            1125
+          ],
+          "selected_heavy": [
+            1117,
+            1118,
+            1119,
+            1121,
+            1122,
+            1123,
+            1124,
+            1187
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1206,
+            1207,
+            1208,
+            1209,
+            1210,
+            1211,
+            1212,
+            1213,
+            1214
+          ],
+          "heavy_pool": [
+            1206,
+            1207,
+            1208,
+            1209,
+            1210,
+            1211,
+            1212,
+            1213,
+            1276
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1206,
+            1207,
+            1208,
+            1209,
+            1214
+          ],
+          "selected_heavy": [
+            1206,
+            1207,
+            1208,
+            1210,
+            1211,
+            1212,
+            1213,
+            1276
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1295,
+            1296,
+            1297,
+            1298,
+            1299,
+            1300,
+            1301,
+            1302,
+            1303
+          ],
+          "heavy_pool": [
+            1295,
+            1296,
+            1297,
+            1298,
+            1299,
+            1300,
+            1301,
+            1302,
+            1365
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1295,
+            1296,
+            1297,
+            1298,
+            1303
+          ],
+          "selected_heavy": [
+            1295,
+            1296,
+            1297,
+            1299,
+            1300,
+            1301,
+            1302,
+            1365
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1384,
+            1385,
+            1386,
+            1387,
+            1388,
+            1389,
+            1390,
+            1391,
+            1392
+          ],
+          "heavy_pool": [
+            1384,
+            1385,
+            1386,
+            1387,
+            1388,
+            1389,
+            1390,
+            1391,
+            1454
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1384,
+            1385,
+            1386,
+            1387,
+            1392
+          ],
+          "selected_heavy": [
+            1384,
+            1385,
+            1386,
+            1388,
+            1389,
+            1390,
+            1391,
+            1454
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481
+          ],
+          "heavy_pool": [
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1543
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1473,
+            1474,
+            1475,
+            1476,
+            1481
+          ],
+          "selected_heavy": [
+            1473,
+            1474,
+            1475,
+            1477,
+            1478,
+            1479,
+            1480,
+            1543
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1570
+          ],
+          "heavy_pool": [
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1632
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1562,
+            1563,
+            1564,
+            1565,
+            1570
+          ],
+          "selected_heavy": [
+            1562,
+            1563,
+            1564,
+            1566,
+            1567,
+            1568,
+            1569,
+            1632
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1651,
+            1652,
+            1653,
+            1654,
+            1655,
+            1656,
+            1657,
+            1658,
+            1659
+          ],
+          "heavy_pool": [
+            1651,
+            1652,
+            1653,
+            1654,
+            1655,
+            1656,
+            1657,
+            1658,
+            1721
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1651,
+            1652,
+            1653,
+            1654,
+            1659
+          ],
+          "selected_heavy": [
+            1651,
+            1652,
+            1653,
+            1655,
+            1656,
+            1657,
+            1658,
+            1721
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1740,
+            1741,
+            1742,
+            1743,
+            1744,
+            1745,
+            1746,
+            1747,
+            1748
+          ],
+          "heavy_pool": [
+            1740,
+            1741,
+            1742,
+            1743,
+            1744,
+            1745,
+            1746,
+            1747,
+            1810
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1740,
+            1741,
+            1742,
+            1743,
+            1748
+          ],
+          "selected_heavy": [
+            1740,
+            1741,
+            1742,
+            1744,
+            1745,
+            1746,
+            1747,
+            1810
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1829,
+            1830,
+            1831,
+            1832,
+            1833,
+            1834,
+            1835,
+            1836,
+            1837
+          ],
+          "heavy_pool": [
+            1829,
+            1830,
+            1831,
+            1832,
+            1833,
+            1834,
+            1835,
+            1836,
+            1899
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1829,
+            1830,
+            1831,
+            1832,
+            1837
+          ],
+          "selected_heavy": [
+            1829,
+            1830,
+            1831,
+            1833,
+            1834,
+            1835,
+            1836,
+            1899
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            1918,
+            1919,
+            1920,
+            1921,
+            1922,
+            1923,
+            1924,
+            1925,
+            1926
+          ],
+          "heavy_pool": [
+            1918,
+            1919,
+            1920,
+            1921,
+            1922,
+            1923,
+            1924,
+            1925,
+            1988
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            1918,
+            1919,
+            1920,
+            1921,
+            1926
+          ],
+          "selected_heavy": [
+            1918,
+            1919,
+            1920,
+            1922,
+            1923,
+            1924,
+            1925,
+            1988
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2007,
+            2008,
+            2009,
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015
+          ],
+          "heavy_pool": [
+            2007,
+            2008,
+            2009,
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2077
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2007,
+            2008,
+            2009,
+            2010,
+            2015
+          ],
+          "selected_heavy": [
+            2007,
+            2008,
+            2009,
+            2011,
+            2012,
+            2013,
+            2014,
+            2077
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2096,
+            2097,
+            2098,
+            2099,
+            2100,
+            2101,
+            2102,
+            2103,
+            2104
+          ],
+          "heavy_pool": [
+            2096,
+            2097,
+            2098,
+            2099,
+            2100,
+            2101,
+            2102,
+            2103,
+            2166
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2096,
+            2097,
+            2098,
+            2099,
+            2104
+          ],
+          "selected_heavy": [
+            2096,
+            2097,
+            2098,
+            2100,
+            2101,
+            2102,
+            2103,
+            2166
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2185,
+            2186,
+            2187,
+            2188,
+            2189,
+            2190,
+            2191,
+            2192,
+            2193
+          ],
+          "heavy_pool": [
+            2185,
+            2186,
+            2187,
+            2188,
+            2189,
+            2190,
+            2191,
+            2192,
+            2255
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2185,
+            2186,
+            2187,
+            2188,
+            2193
+          ],
+          "selected_heavy": [
+            2185,
+            2186,
+            2187,
+            2189,
+            2190,
+            2191,
+            2192,
+            2255
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2274,
+            2275,
+            2276,
+            2277,
+            2278,
+            2279,
+            2280,
+            2281,
+            2282
+          ],
+          "heavy_pool": [
+            2274,
+            2275,
+            2276,
+            2277,
+            2278,
+            2279,
+            2280,
+            2281,
+            2344
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2274,
+            2275,
+            2276,
+            2277,
+            2282
+          ],
+          "selected_heavy": [
+            2274,
+            2275,
+            2276,
+            2278,
+            2279,
+            2280,
+            2281,
+            2344
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2363,
+            2364,
+            2365,
+            2366,
+            2367,
+            2368,
+            2369,
+            2370,
+            2371
+          ],
+          "heavy_pool": [
+            2363,
+            2364,
+            2365,
+            2366,
+            2367,
+            2368,
+            2369,
+            2370,
+            2433
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2363,
+            2364,
+            2365,
+            2366,
+            2371
+          ],
+          "selected_heavy": [
+            2363,
+            2364,
+            2365,
+            2367,
+            2368,
+            2369,
+            2370,
+            2433
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2452,
+            2453,
+            2454,
+            2455,
+            2456,
+            2457,
+            2458,
+            2459,
+            2460
+          ],
+          "heavy_pool": [
+            2452,
+            2453,
+            2454,
+            2455,
+            2456,
+            2457,
+            2458,
+            2459,
+            2522
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2452,
+            2453,
+            2454,
+            2455,
+            2460
+          ],
+          "selected_heavy": [
+            2452,
+            2453,
+            2454,
+            2456,
+            2457,
+            2458,
+            2459,
+            2522
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2541,
+            2542,
+            2543,
+            2544,
+            2545,
+            2546,
+            2547,
+            2548,
+            2549
+          ],
+          "heavy_pool": [
+            2541,
+            2542,
+            2543,
+            2544,
+            2545,
+            2546,
+            2547,
+            2548,
+            2611
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2541,
+            2542,
+            2543,
+            2544,
+            2549
+          ],
+          "selected_heavy": [
+            2541,
+            2542,
+            2543,
+            2545,
+            2546,
+            2547,
+            2548,
+            2611
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        },
+        {
+          "light_pool": [
+            2630,
+            2631,
+            2632,
+            2633,
+            2634,
+            2635,
+            2636,
+            2637,
+            2638
+          ],
+          "heavy_pool": [
+            2630,
+            2631,
+            2632,
+            2633,
+            2634,
+            2635,
+            2636,
+            2637,
+            2700
+          ],
+          "light_quota": 5,
+          "heavy_quota": 8,
+          "minimum_overlap": 3,
+          "selected_light": [
+            2630,
+            2631,
+            2632,
+            2633,
+            2638
+          ],
+          "selected_heavy": [
+            2630,
+            2631,
+            2632,
+            2634,
+            2635,
+            2636,
+            2637,
+            2700
+          ],
+          "heavy_private_count": 7,
+          "heavy_deficit": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,14 +1,15 @@
 PRIVATE SUPPORT CLASSES AND EXCEPTIONAL WIDE GATES
 
 Status: checked core with supplementary paper analysis. The checkpoint now
-contains 26 checked modules. Sections3a, 4 and7 record the checked direct-cut
+contains 29 checked modules. Sections3a, 4 and7 record the checked direct-cut
 and boundary results through r<=2k-2 and Eplus<=3k-1. Section8 records the
 new checked deficiency argument through r<=3k-4 and Eplus<=4k-3 for k>=3.
 The adjacent verification records audit only propext, Classical.choice,
 and Quot.sound. Independent mathematical reviews accompany the checked
-sources. The normalization route, transversal refinements, historical
-classification in Section6, and stronger global OR/AND dichotomy remain
-paper arguments. Later checked results cover Section6's numerical range.
+sources. Section9 records the checked global private OR/AND dichotomy and
+the one-heavy-deficit theorem. The normalization route, transversal
+refinements and historical classification in Section6 remain paper
+arguments. Later checked results cover Section6's numerical range.
 The unrestricted L-meta-997 statement remains open in this checkpoint.
 
 
@@ -423,6 +424,49 @@ implies the exact refund inequality.
 Finally, a violation under Eplus<=4k-3 would combine (1) and (3) to force
 r<=Eplus-k-1<=3k-4. QuadrupleExcess checks this original-circuit assembly
 with the exact guarded refund predicate. SmallWindow already covers k<=2.
-The additional +e refinement and the stronger global OR/AND dichotomy are
-retained as paper observations; neither is asserted as a new checked
-theorem by this section. No unrestricted L-meta-997 proof is claimed.
+The additional +e refinement remains a paper observation. The stronger
+global private OR/AND dichotomy was subsequently checked and is recorded
+in Section9. No unrestricted L-meta-997 proof is claimed.
+
+
+9. CHECKED PRIVATE DICHOTOMY AND THE ONE-HEAVY-DEFICIT CASE
+
+CutEvaluation formalizes arbitrary boundary evaluations of a private gate
+set and frontiers for either Boolean value. Its positive frontier branches
+only at AND gates, while its negative frontier branches only at OR gates.
+Unavailable references, constants, repeated ports and nullary gates keep
+their actual circuit semantics.
+
+PrivateDichotomy applies this to the boundary that sets z and every
+exceptional wide gate true, and all other boundary wires false. If its
+output is false, the negative frontier covers all target singleton points,
+yielding |Si|-1 private OR gates. If its output is true, the positive
+frontier can be activated outside Si using at most privateAND_i+1 points.
+The negative input window therefore forces at least k-1 private AND gates.
+The checked alternative is
+
+  |Si|-1 <= privateOR_i  OR  k-1 <= privateAND_i.
+
+It holds for every target class under the stated singleton positives and
+target-avoiding negative-window hypotheses. It strengthens PrivateAnd,
+whose conclusion was conditional on a deficit in the total private count.
+
+OneHeavyDeficit addresses the weighted demand directly. Light targets use
+only min(k,|Si|)-1 private gates. Every nondeficient heavy target already
+pays |Si|-1. A single deficient heavy target can use the compensated bound
+|Si|-1<=|Gi|+r, and the r exceptional gates are outside all private classes.
+Thus at most one deficient heavy class implies the stronger conclusion
+
+  weighted target sum <= N+m,
+
+without refund credits and without any upper bound on r. The original-
+circuit bridge covers every window size, using SmallWindow for k<=2.
+Any failure of the exact L-meta-997 inequality must therefore have at least
+two deficient heavy C1 private classes. All three new modules passed on
+their frozen sources with standard-only axiom audits.
+
+The completed quota-audit examples show why further selection rules must
+account for resources outside the C1-private/C0-heavy pools. They satisfy
+the original inequality and do not contradict this checked theorem. The
+all-h=0 activation/clause invariant in cross-window/activation-clauses.txt
+is a separate paper consequence; the shared global accounting remains open.

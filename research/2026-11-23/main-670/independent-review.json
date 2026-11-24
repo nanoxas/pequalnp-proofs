@@ -1,0 +1,10 @@
+{
+  "status": "STATIC_REVIEW_AND_FINITE_SELFTEST_PASS",
+  "scope": "bound15 assigned first-gate shard, with false sentinel and arbitrary NOT count",
+  "program_sha256": "147a5b7368bad8678574c23aa1905cca561d9a82ddf4247f68db3eaffd5f5a1d",
+  "selftest_record_sha256": "34a684d44f8ffadfdf243058821c85f14f6fbc9df7e9e7119363a3eff1e70b97",
+  "independent_review": "A second team member reviewed the selector/mux clauses, operation truth clauses, false-sentinel translation, original-index validity mapping, output cases, commutative ordering and padding. No issue found for bound15. The unrelated bound1 raw-output case is outside this API use.",
+  "supervision_change": "Signal-aware parent cleanup and proof-copy disk-reserve checks were added after the first interrupted run; encoding unchanged.",
+  "first_run_status": "UNKNOWN after controlled stop; no exhaustion claim.",
+  "notes_sha256": "49723bab17c16c30d7309f8243b9b2a7663b7372f093e23c251acd2eb4e8dd42"
+}

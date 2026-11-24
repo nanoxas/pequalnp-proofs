@@ -1,0 +1,56 @@
+{
+  "scope": "Validated auxiliary quota-matching obstructions; all examples satisfy L-meta-997.",
+  "lean_checked": false,
+  "files": [
+    {
+      "path": "audit.py",
+      "bytes": 9738,
+      "sha256": "08995d84c370af23d1ccd14e0b278e7f719e9383f97098bc041d97dd2ad789b9"
+    },
+    {
+      "path": "circuits.json",
+      "bytes": 284067,
+      "sha256": "406fe96a2c57ad47ea12632fddfe1d6b9c075999256f998e7e814e36a1f944f4"
+    },
+    {
+      "path": "results.json",
+      "bytes": 30451,
+      "sha256": "473a5a0fa3510a4ef4d78aef5c52917c82519c49cde36d64559a05bb466d492d"
+    },
+    {
+      "path": "residual_audit.py",
+      "bytes": 8102,
+      "sha256": "b58829e478054038cc95f4eee63893b8c534b85fe27641c8a9064fcea60fbd4a"
+    },
+    {
+      "path": "residual-circuit.json",
+      "bytes": 8383,
+      "sha256": "4aab121f778bd592757e29231baad3d2d788e73da4ca9ad0d74fe1ae27fd57e6"
+    },
+    {
+      "path": "residual-results.json",
+      "bytes": 2400,
+      "sha256": "f7cdf4dd682476d3244b50d64ec5690a3bb5dfa96bb3dc47cd9ef8f34b752a71"
+    },
+    {
+      "path": "all_ops_audit.py",
+      "bytes": 7142,
+      "sha256": "cbe8b7a9882d3b793f49f1859880581029d5a10e84e4f2a6cf768137633ddcba"
+    },
+    {
+      "path": "all-ops-circuit.json",
+      "bytes": 9790,
+      "sha256": "9b032740d0feb4498f8db6449e79847c041ba3baeeda85e544aa4a6e4023d2ca"
+    },
+    {
+      "path": "all-ops-results.json",
+      "bytes": 1805,
+      "sha256": "e39855391a366c61288b9a553eb55895748f5da0596b20e531bca582c35e5a79"
+    },
+    {
+      "path": "selection-obstruction.txt",
+      "bytes": 8289,
+      "sha256": "1c1f643f7d32d85f2de5267b9227d1eaf5dafba3e01e305b1d98a30ba84db610"
+    }
+  ]
+}

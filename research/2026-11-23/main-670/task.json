@@ -1,0 +1,24 @@
+{
+  "gap": {
+    "id": "L-meta-670",
+    "title": "Petersen graph minus a vertex: no circuit of AND, OR (fan-in two) and NOT gates with at most 15 gates computes its edge function",
+    "statement": "¬ PEqualNP.MetaComplexity.HasCircuitSize 9 (fun x : Fin 9 → Bool => (x 0 && x 1) || (x 1 && x 2) || (x 2 && x 3) || (x 3 && x 4) || (x 4 && x 0) || (x 0 && x 5) || (x 1 && x 6) || (x 2 && x 7) || (x 3 && x 8) || (x 5 && x 7) || (x 6 && x 8) || (x 8 && x 5)) 15",
+    "file": "lean/PEqualNP/Outside/L_meta_670.lean",
+    "module": "PEqualNP.Outside.L_meta_670",
+    "imports": [
+      "PEqualNP.Defs"
+    ],
+    "unlocks": "Gives the value 16 for the Petersen graph minus a vertex, the piece the restriction route to the Petersen graph at 20 gates needs; a fleet seat is proving that row now.",
+    "context": "SKETCH: split by the circuit's first gate. The graph (the Petersen graph minus a vertex, 9 inputs, 12 edges) has 12 automorphisms, so up to symmetry the first gate is one of 14 (routes/lgp/own/filing/petersen/SKETCH.md and S670-shards.txt). Each shard: no circuit of at most 15 gates with that first gate, by a SAT run whose certificate goes on the desk's certificate path and is replayed in Lean. Size: about 30 to 90 minutes a shard, the author's estimate from the encoding size, not from a run.",
+    "dead": [],
+    "weight": 90,
+    "parallel": 10,
+    "lane": "main",
+    "shards": 14,
+    "shard_spec": "0: first gate NOT x_0\n1: first gate NOT x_4\n2: first gate AND(x_0, x_1)\n3: first gate AND(x_0, x_2)\n4: first gate AND(x_0, x_3)\n5: first gate AND(x_0, x_4)\n6: first gate AND(x_0, x_6)\n7: first gate AND(x_4, x_6)\n8: first gate OR(x_0, x_1)\n9: first gate OR(x_0, x_2)\n10: first gate OR(x_0, x_3)\n11: first gate OR(x_0, x_4)\n12: first gate OR(x_0, x_6)\n13: first gate OR(x_4, x_6)",
+    "pr_open": 0,
+    "pr_numbers": []
+  },
+  "shard": 7,
+  "shards": 14
+}

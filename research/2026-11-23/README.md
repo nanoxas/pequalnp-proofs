@@ -118,35 +118,46 @@ None is claimed to resolve P versus NP.
 
 ## One-NOT refund research: L-meta-997
 
-The [research checkpoint](main-997/README.md) now contains twenty-six kernel-checked
-modules with standard-axiom audits. Nine additional modules establish the
-deficiency budget: directed separation leaves at most two deficient private
-classes, and OR compensation plus private AND counts pays their deficits.
-The exact inequality follows when the heavy excess Eplus is at most 4|Y|−3
-for |Y|≥3; the earlier SmallWindow theorem covers |Y|≤2. All seventeen
-previously published Lean source files remain unchanged. The unrestricted
-L-meta-997 statement remains unproved here.
+The [research checkpoint](main-997/README.md) contains twenty-nine kernel-checked
+modules with standard-axiom audits. The numerical sufficient range remains
+Eplus≤4|Y|−3 for |Y|≥3, with |Y|≤2 covered separately. Three new modules check
+arbitrary boundary evaluation, the global private OR/AND alternative, and
+the stronger weighted bound ≤N+m whenever at most one heavy private class
+is deficient. Any failure of the exact refund inequality therefore requires
+at least two deficient heavy C1 classes. All twenty-six previously published
+Lean sources remain unchanged. The unrestricted statement remains open.
 
-The [reviewed small-surplus argument](main-997/saturation-small-surplus-audit.txt)
-extends the paper sufficient criterion to Q≤H+k+e+2 for every k=|Y|≥2,
-including pair outputs. Its complete gate classification is not yet a Lean
-theorem. The earlier PG(2,4) audit remains preserved.
+The [quota audit](main-997/quota-audit/selection-obstruction.txt) rules out
+several auxiliary matching claims. Its 17-input and 19-input examples have
+complete original truth-table checks. The 301-input affine example and
+23-input extension use exact required rows plus exhaustive abstract Boolean
+identities; their original truth tables are not enumerated. Every example
+satisfies L-meta-997. The 19-input residual obstruction was independently
+checked on all 524,288 rows with a separate vector evaluator.
 
-The thirteen-input family has a complete Python baseline/data audit and a
-reviewed support-based exclusion; it also meets checked sufficient criteria.
-The exceptional-support and deficiency notes identify the checked chain
-through Eplus≤4|Y|−3 and retain the stronger global OR/AND dichotomy as paper
-research. A new [overlap audit](main-997/overlap-audit/selection-obstruction.txt)
-checks four circuits on all 128 input rows each: raw partial-charge overlap
-can exceed whole-target refunds, while minimum quota selections are disjoint
-in these examples. Their full L-meta-997 inequalities hold.
+The [cross-window note](main-997/cross-window/activation-clauses.txt) retains a
+fixed activation frontier against every negative input of the NOT predecessor.
+Its clause-refinement consequence remains paper work, with shared global
+accounting open. Earlier finite overlap, geometry, and saturation notes remain
+preserved with their individual verification scopes. The historical PG4 solver
+query remains INTERRUPTED_UNKNOWN and its original child cleanup unconfirmed.
 
-The sole 49-gate finite solver query remains INTERRUPTED_UNKNOWN; no candidate
-or UNSAT result was observed, and its original child cleanup is unconfirmed.
-Corrected runner cleanup passed five dummy-only lifecycle checks.
+The [checkpoint status](main-997/checkpoint-status.json) separates those
+results and retains the exact guarded refund predicate and corrected-helper
+history. This research checkpoint makes no unrestricted theorem submission.
 
-The [checkpoint status](main-997/checkpoint-status.json) separates these
-results. A fresh public-text comparison and checked definitional equality
-also preserve the exact guarded refund predicate after correcting a failed
-helper transcription. No target-specific theorem was submitted from this
-checkpoint.
+## Finite first-gate search snapshot: L-meta-670
+
+The [assigned statement](main-670/statement.txt) and
+[complete encoding notes](main-670/completeness-notes.txt) preserve the original
+first-AND(4,6) search range: at most 15 AND/OR/NOT gates on nine inputs, with
+arbitrary NOT count and all 512 assignments. The false sentinel, invalid-read
+normalization, equal fanins, unused gates, and padding are explicit.
+
+The [self-test](main-670/selftest.json) covers 160 normalized circuits and
+fixed-formula SAT/UNSAT fixtures. A second source review found no issue in the
+bound-15 model. The fixed [status snapshot](main-670/status-snapshot.json) is
+RUNNING_UNRESOLVED at its recorded time, with no candidate, exhaustion claim,
+or checked proof certificate. These files preserve that assigned range and
+historical snapshot; they make no assertion about current desk availability.
+Raw solver proofs, CNF files, process state, and private assignments are excluded.

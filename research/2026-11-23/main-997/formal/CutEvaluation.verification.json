@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "source": "CutEvaluation.lean",
+  "source_sha256": "5d1bb53b51a8084779a02701816e59aa7e2f62402e36118f04895dbe6178055f",
+  "source_bytes": 13189,
+  "object_sha256": "11daa47102db205f6f767f7eadce57347a6a1cceb798cc793ce301afbeedbb96",
+  "started_utc": "2026-11-24T03:45:20.568442+00:00",
+  "completed_utc": "2026-11-24T03:45:22.739850+00:00",
+  "elapsed_seconds": 2.171,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.CutEvaluation.cutValue_admissible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.CutEvaluation.admissible_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.CutEvaluation.admissible_frontier": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "CutEvaluation.check.log",
+  "log_sha256": "f5a875b000acdd37088727e79297e29072aaa33e52399766728d1d33f4de8aed",
+  "dependencies": [
+    {
+      "module": "CoupledCut",
+      "source_sha256": "aa1a62237e8981d59436f6b9fb65f22ef88c99451c64d6f7624f18877cd81c1a",
+      "object_sha256": "226dae8a13fea99ac6bcc78a3336c54ef061e55d3b4203dac0edd9e410267051"
+    },
+    {
+      "module": "OrCompensation",
+      "source_sha256": "b8e448db73494e74557b4ed667e3658b9c183a65414a4c9b74123b82ea6fdc9e",
+      "object_sha256": "7f269e81d10cbb92ea9958923debe0e47acc556c9730fa701b2f93559211e660"
+    }
+  ],
+  "public_defs_sha256": "5c1c838c9d27f7d7467e86546f0abd26972fc675a3b9f3d3219937ac5b018e7c",
+  "scope": "Generic arbitrary-boundary evaluation on a selected gate region, comparison of admissible evaluations, and positive/negative frontiers counted by AND/OR branching. Handles nullary, unary, duplicate and unavailable references.",
+  "recorded_utc": "2026-11-24T03:49:31.904741+00:00"
+}

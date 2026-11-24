@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "source": "OneHeavyDeficit.lean",
+  "source_sha256": "cc7966a89ca21d0564d38c5c9f0f90acbc79cbc33885d4253302cb6f3f9f36f3",
+  "source_bytes": 10056,
+  "object_sha256": "e4006d45a96eae70cf2c881cb9321556fe9e90dfe6beba7d7f41c240203d82d7",
+  "started_utc": "2026-11-24T04:03:54.180677+00:00",
+  "completed_utc": "2026-11-24T04:04:05.762588+00:00",
+  "elapsed_seconds": 11.582,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.OneHeavyDeficit.one_heavy_private_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OneHeavyDeficit.one_not_one_heavy_deficit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OneHeavyDeficit.one_not_failure_has_two_heavy_deficits": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "OneHeavyDeficit.check.log",
+  "log_sha256": "dd651248fa201e9e6eff4630f472dcda66c2048379eade930ac5b5009b707e9c",
+  "dependencies": [
+    {
+      "module": "BoundaryRigidity",
+      "source_sha256": "a8601d9732d24c099c9c4c7b536ea1b822ba7a4a8d61cf9f8220526f07e1aae0",
+      "object_sha256": "aec7884797af5cc43c4ac026dd236b5372c47c5a86664ad5003233b649257341"
+    },
+    {
+      "module": "SmallWindow",
+      "source_sha256": "8f354a48080a33b18f233d75b2b30c1547f801ed73612c2a0118f7217e810075",
+      "object_sha256": "b3c59dd02c007b5d3296a7c7da1a252c54b403320919940db5ff697853d9613b"
+    }
+  ],
+  "scope": "Under the original one-NOT hypotheses, at most one deficient heavy C1 private class implies the stronger weighted inequality <=C.size+m, for every window size and outsider count. Therefore any failure of the exact L-meta-997 refund conclusion requires at least two deficient heavy classes. The unrestricted target remains open.",
+  "mathematical_audit": [
+    "Only heavy private deficiencies are counted. Light targets always use their min(k,d)-1 window quota.",
+    "The lone heavy residual is paid by all outside-wide gates using compensated_private_count, and the private/outside unions are disjoint.",
+    "The original-circuit bridge uses the same-index true-NOT replacement. Windows of size<=2 use the already checked SmallWindow theorem.",
+    "Empty/singleton targets and malformed reads remain permitted; no extra well-formedness premise is introduced."
+  ],
+  "recorded_utc": "2026-11-24T04:05:38.747474+00:00"
+}
