@@ -1,0 +1,18 @@
+{
+  "gap": "L-meta-670",
+  "reason": "reduction_submitted_renewal_stopped",
+  "http_status": null,
+  "release_acknowledgment": false,
+  "utc": "2026-11-24T06:40:18.854044+00:00",
+  "pr": 4110,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4110",
+  "commit": "66fde525c8d62b2a7f9622173dcd149925d3853c",
+  "authoritative_verdict": "PENDING",
+  "local_compile": "PASS",
+  "local_lightweight_preflight": "PASS_FOUR_CHILDREN_STANDARD_AXIOMS",
+  "children_status": "ALL_OPEN",
+  "full_official_kernel_replay": "NOT_CLAIMED",
+  "reservation_status": "RENEWAL_STOPPED_AWAITING_NATURAL_EXPIRY",
+  "last_confirmed_expiry": "2026-11-24T06:54:38.516Z",
+  "scope": "The PR is submitted. No successful desk release acknowledgment is claimed."
+}

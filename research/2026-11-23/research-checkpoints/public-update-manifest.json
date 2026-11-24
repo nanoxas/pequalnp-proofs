@@ -1,105 +1,40 @@
 {
-  "snapshot_utc": "2026-11-24T06:29:09.037777+00:00",
-  "kind": "supporting_circuit_research_and_official_submission_record",
+  "snapshot_utc": "2026-11-24T06:45:53.236505+00:00",
+  "kind": "search_completion_and_official_reduction_record",
   "this_checkpoint_is_official_checker_submission": false,
-  "official_reductions_recorded": [
-    {
-      "pull_request": 3918,
-      "commit": "49043dba9bca45e818e44fdf2d829a8e3fddb92c",
-      "frozen_verdict": "REFUSED_EXISTING_REDUCTION_PATH",
-      "build_attempted": false,
-      "pull_request_state": "OPEN",
-      "parent_status": "OPEN_IN_DESK_SNAPSHOT_2026-11-24T06:17:24.662Z"
-    },
-    {
-      "pull_request": 4051,
-      "commit": "8292b94e2ba785988092e2b86e675548455140a2",
-      "frozen_verdict": "PENDING"
-    }
-  ],
-  "previous_public_commit": "a533eeef6115c2e18260f99b06f5347d0ac96ffc",
-  "previous_public_tree": "537c6243de21351bddc42226938208c329484efe",
-  "previous_manifest_sha256": "9a512218269fa7d64a500cf321264cf26904492a92ec8375cc39395937912f53",
-  "new_checked_670_modules": {
-    "FirstGateReduction": {
-      "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
-      "status": "PASS",
-      "elapsed_seconds": 2.623,
-      "axioms": [
-        "Classical.choice",
-        "Quot.sound",
-        "propext"
-      ]
-    },
-    "ReaderShape": {
-      "source_sha256": "703e8969fcbaf8f71d729d18062df6159fc1a5fdb187865b2da279730480b42f",
-      "status": "PASS",
-      "elapsed_seconds": 5.405,
-      "axioms": [
-        "Classical.choice",
-        "Quot.sound",
-        "propext"
-      ]
-    },
-    "DegreeThreeShape": {
-      "source_sha256": "30fff405b4153dcabf561f47902af5b6deab0d9b8e499ad0e56ed84b406d711e",
-      "status": "PASS",
-      "elapsed_seconds": 7.931,
-      "axioms": [
-        "Classical.choice",
-        "Quot.sound",
-        "propext"
-      ]
-    },
-    "RawGateShape": {
-      "source_sha256": "075d337ab375a87011c332ff59bff528df5f33e78cf0dfb85e8f0ea964690f51",
-      "status": "PASS",
-      "elapsed_seconds": 4.976,
-      "axioms": [
-        "Classical.choice",
-        "Quot.sound",
-        "propext"
-      ]
-    }
+  "previous_public_commit": "4339f94e994b039a4554c15bed25b8735015a990",
+  "previous_public_tree": "f340766ef6941015b9593fb28bd6cbd7d0fea5c4",
+  "previous_manifest_sha256": "2907add8291ef562831d871b2f5d11197d31794820d9d7170013cef65ce42dea",
+  "prior_main997_sources_unchanged": 29,
+  "all_prior_lean_sources_unchanged": true,
+  "official_reduction_recorded": {
+    "pull_request": 4110,
+    "commit": "66fde525c8d62b2a7f9622173dcd149925d3853c",
+    "source_sha256": "dab49ddb2f73397130333e5dd0e2184f75ae3c78f7103226e80898c73168228f",
+    "local_build": "PASS",
+    "local_lightweight_readback": "PASS",
+    "frozen_verdict": "PENDING"
   },
-  "checked_909_support_and_submitted_reduction": {
-    "AndCountMonotonicity": {
-      "status": "LEAN_AND_AXIOM_AUDIT_PASS",
-      "source_sha256": "8fbecc8a959668825b2c70094077a9ebd1e84a75c16114e8d63e26e577099308",
-      "axioms": [
-        "propext",
-        "Classical.choice",
-        "Quot.sound"
-      ]
-    },
-    "BasisCompleteness": {
-      "status": "LEAN_AND_AXIOM_AUDIT_PASS",
-      "source_sha256": "2906238febf158fd359c89b568265c61e7b3f7901180c81dc904127ead66366b",
-      "axioms": [
-        "propext",
-        "Classical.choice",
-        "Quot.sound"
-      ]
-    },
-    "R_meta_909_1_r2": {
-      "status": "PASS_BUILD_AND_LIGHTWEIGHT_REDUCTION_PREFLIGHT",
-      "source_sha256": "e211599728de14bdec7ea9e4412500cebb6fd3d12ab5d9b05e8ba283c0973018",
-      "axioms": [
-        "propext",
-        "Classical.choice",
-        "Quot.sound"
-      ],
-      "official_verdict": "PENDING_PR_4051"
-    }
+  "authoritative_909_acceptance": {
+    "pull_request": 4051,
+    "commit": "8292b94e2ba785988092e2b86e675548455140a2",
+    "checker_exit": 0,
+    "comment_url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051#issuecomment-7124158856",
+    "merged": false
   },
-  "unchecked_draft_count": 3,
-  "main997_sources_unchanged": 29,
-  "scope": "Four conditional checked670 helpers; finite UNKNOWN records; reviewed CEGAR source/controls; exact909 query/audits and checked support plus submitted r2 reduction; failed-printer history and three explicitly unchecked prototypes; official1031 refusal and909 pending-verdict records.",
+  "cegar_result": {
+    "status": "UNKNOWN",
+    "rows": 60,
+    "elapsed_seconds": 1800.233,
+    "reaped": true,
+    "proof_retained": false
+  },
+  "scope": "Preserve completed CEGAR UNKNOWN and exact rows; record official four-child R670 reduction with pending verdict; add authoritative acceptance of the three-child R909 reduction while retaining historical pending records. No parent proof or search exhaustion.",
   "files": [
     {
       "path": "README.md",
-      "bytes": 11930,
-      "sha256": "9f98c013eb5ab73447aa487f55b11248584ea8c7b5d8bc5139b934e404fe506d",
+      "bytes": 13546,
+      "sha256": "0394982a0864f609cb0ccb0318dea11e435260df736a127578e59db908b2b566",
       "public_transform": [
         "Updated main997 to29 checked modules, exact quota-audit scopes and the paper cross-window invariant; appended the frozen unresolved L-meta-670 setup."
       ]
@@ -1059,8 +994,8 @@
     },
     {
       "path": "main-670/README.md",
-      "bytes": 2171,
-      "sha256": "e426a224fc332c78e3217bbaccf5548865ccac4bf0fbf8772e070c22f5459d75"
+      "bytes": 3344,
+      "sha256": "b89aabf9b23886f4119428a653f116583566f04da0f41e844f5a55dac5fd8daa"
     },
     {
       "path": "main-670/baseline-fixture.json",
@@ -1238,6 +1173,16 @@
         "path": "main-670/global14-baseline-fixture.json",
         "bytes": 671,
         "sha256": "0c5da104ea879b0d3f23a068f1b38cd43b001df942edb6e2e0a427ec2e2a3761"
+      }
+    },
+    {
+      "path": "main-670/global14-cegar-completed-snapshot.json",
+      "bytes": 2266,
+      "sha256": "1c0c21105326c4efa618fabdbb32485b8e860f6a5ce2fe9bf903fd03111130a0",
+      "original_source": {
+        "path": "main-670/global14-cegar-completed-snapshot.json",
+        "bytes": 2266,
+        "sha256": "1c0c21105326c4efa618fabdbb32485b8e860f6a5ce2fe9bf903fd03111130a0"
       }
     },
     {
@@ -1429,6 +1374,104 @@
       }
     },
     {
+      "path": "main-670/reduction/README.md",
+      "bytes": 2097,
+      "sha256": "9d62562983ab7f0aef32db05cf0a378b8a302f01ab9fbfc3e7b5244a0fe070d0"
+    },
+    {
+      "path": "main-670/reduction/R_meta_670_718.check.log",
+      "bytes": 512,
+      "sha256": "b15b606b4c5adc3f1a0c2515740b6c659472b6ff007d7663674cb0c9c7d2e753",
+      "original_source": {
+        "path": "main-670/reduction/R_meta_670_718.check.log",
+        "bytes": 512,
+        "sha256": "b15b606b4c5adc3f1a0c2515740b6c659472b6ff007d7663674cb0c9c7d2e753"
+      }
+    },
+    {
+      "path": "main-670/reduction/R_meta_670_718.lean",
+      "bytes": 7059,
+      "sha256": "dab49ddb2f73397130333e5dd0e2184f75ae3c78f7103226e80898c73168228f",
+      "original_source": {
+        "path": "main-670/reduction/R_meta_670_718.lean",
+        "bytes": 7059,
+        "sha256": "dab49ddb2f73397130333e5dd0e2184f75ae3c78f7103226e80898c73168228f"
+      }
+    },
+    {
+      "path": "main-670/reduction/R_meta_670_718.verification.json",
+      "bytes": 2168,
+      "sha256": "2619155f827e14d0e5b16a2d348902156669c4375bce09ed3340ec65a0a4c210",
+      "original_source": {
+        "path": "main-670/reduction/R_meta_670_718.verification.json",
+        "bytes": 2168,
+        "sha256": "2619155f827e14d0e5b16a2d348902156669c4375bce09ed3340ec65a0a4c210"
+      }
+    },
+    {
+      "path": "main-670/reduction/ReductionPreflight.check.log",
+      "bytes": 9162,
+      "sha256": "bed4eb57a51f032301fc22a4e830aa7ae3db91346e26a182d2eb1f9548823f15",
+      "original_source": {
+        "path": "main-670/reduction/ReductionPreflight.check.log",
+        "bytes": 9162,
+        "sha256": "bed4eb57a51f032301fc22a4e830aa7ae3db91346e26a182d2eb1f9548823f15"
+      }
+    },
+    {
+      "path": "main-670/reduction/children-readback.json",
+      "bytes": 9043,
+      "sha256": "842c13c217398d72cef8426751d40f4a7c1df091fdde841d27d6db5876fd84b5",
+      "original_source": {
+        "path": "main-670/reduction/children-readback.json",
+        "bytes": 10015,
+        "sha256": "502fab05866065386454aa53731f46f39f6439ade4950dcd6ecad11297b83637"
+      },
+      "public_transform": [
+        "Sanitized local workspace/process identifiers and normalized JSON formatting; original hash retained."
+      ]
+    },
+    {
+      "path": "main-670/reduction/independent-review.json",
+      "bytes": 1242,
+      "sha256": "df426572b8e7facbb47fb8803c7cd240925a9e2176cc31883e99abce99f496da",
+      "original_source": {
+        "path": "main-670/reduction/independent-review.json",
+        "bytes": 1242,
+        "sha256": "df426572b8e7facbb47fb8803c7cd240925a9e2176cc31883e99abce99f496da"
+      }
+    },
+    {
+      "path": "main-670/reduction/statement.txt",
+      "bytes": 264,
+      "sha256": "1f8841ef9c02246d892fdeca4b1e4f1d22f1e99078b11b811a972d9abcf6990c",
+      "original_source": {
+        "path": "main-670/statement.txt",
+        "bytes": 264,
+        "sha256": "1f8841ef9c02246d892fdeca4b1e4f1d22f1e99078b11b811a972d9abcf6990c"
+      }
+    },
+    {
+      "path": "main-670/run-global14-cegar/round-000/phase.json",
+      "bytes": 1203,
+      "sha256": "1383c33bc66df29c9d518d9c79959d3902b6a35421d99cbb5e006a31c39ba864",
+      "original_source": {
+        "path": "main-670/run-global14-cegar/round-000/phase.json",
+        "bytes": 1203,
+        "sha256": "1383c33bc66df29c9d518d9c79959d3902b6a35421d99cbb5e006a31c39ba864"
+      }
+    },
+    {
+      "path": "main-670/run-global14-cegar/round-000/rows.json",
+      "bytes": 381,
+      "sha256": "c1d8bc28d63e89b67559f38c5a68c879139fe21e914370152f65ac66d8dbb152",
+      "original_source": {
+        "path": "main-670/run-global14-cegar/round-000/rows.json",
+        "bytes": 381,
+        "sha256": "c1d8bc28d63e89b67559f38c5a68c879139fe21e914370152f65ac66d8dbb152"
+      }
+    },
+    {
       "path": "main-670/run-global14-strengthened/result.json",
       "bytes": 1814,
       "sha256": "82de8bfe3a5b5442562ff6539dea8f6314a51a4bc818012c9b2fdbfda449a6a2",
@@ -1525,6 +1568,46 @@
       }
     },
     {
+      "path": "main-670/submission/outcome.json",
+      "bytes": 748,
+      "sha256": "5a1760b41372eae2c5c8b887499ab232d1d333da06e09dd42169c4012502e022",
+      "original_source": {
+        "path": "main-670/submission/outcome.json",
+        "bytes": 748,
+        "sha256": "5a1760b41372eae2c5c8b887499ab232d1d333da06e09dd42169c4012502e022"
+      }
+    },
+    {
+      "path": "main-670/submission/pr-body.txt",
+      "bytes": 2029,
+      "sha256": "4f01671e7230ac405d053af3ea11c71ee6950c54f862dde87ec7ec462aa866c6",
+      "original_source": {
+        "path": "main-670/submission/pr-body.txt",
+        "bytes": 2029,
+        "sha256": "4f01671e7230ac405d053af3ea11c71ee6950c54f862dde87ec7ec462aa866c6"
+      }
+    },
+    {
+      "path": "main-670/submission/preflight.json",
+      "bytes": 644,
+      "sha256": "9afcd369971124ba171af916ce05c66c35a50cff085b9e56ad3cd3167e8bb603",
+      "original_source": {
+        "path": "main-670/submission/preflight.json",
+        "bytes": 644,
+        "sha256": "9afcd369971124ba171af916ce05c66c35a50cff085b9e56ad3cd3167e8bb603"
+      }
+    },
+    {
+      "path": "main-670/submission/published.json",
+      "bytes": 643,
+      "sha256": "5bbe210944f50dbf0c8607052a329a5219eedc30a201f0e1e77b25bdd19a5044",
+      "original_source": {
+        "path": "main-670/submission/published.json",
+        "bytes": 643,
+        "sha256": "5bbe210944f50dbf0c8607052a329a5219eedc30a201f0e1e77b25bdd19a5044"
+      }
+    },
+    {
       "path": "main-670/task.json",
       "bytes": 1892,
       "sha256": "a1e0f1426c6adb94e40fcadb8e8af528cc1dcb6bd210b79fa5e6cb4741dcf05e",
@@ -1535,8 +1618,8 @@
     },
     {
       "path": "main-909/README.md",
-      "bytes": 3614,
-      "sha256": "30069e606b630623f269c92bc0add698f48bd96d5b4b6b01bd19d63c5c0856c6"
+      "bytes": 3931,
+      "sha256": "836566881432bd437f52fe8fa8931b0b97c7199f2823e28604dd07d13298bbba"
     },
     {
       "path": "main-909/drafts/DirtyTriangle.lean.txt",
@@ -1734,8 +1817,8 @@
     },
     {
       "path": "main-909/reduction-status.json",
-      "bytes": 816,
-      "sha256": "69b9e942ecbf32d0f2dbead8d95a8546d56c13a9371bf1e060ba8e4009177914"
+      "bytes": 1186,
+      "sha256": "636b9fb73ca005089f958ce4a7758d39a90b045c0c663ddb1a904e7426cfcc0e"
     },
     {
       "path": "main-909/revisions/r2/R_meta_909_1.check.log",
@@ -1858,6 +1941,16 @@
         "path": "main-909/submission/R_meta_909_1.lean",
         "bytes": 2953,
         "sha256": "e211599728de14bdec7ea9e4412500cebb6fd3d12ab5d9b05e8ba283c0973018"
+      }
+    },
+    {
+      "path": "main-909/submission/acceptance.json",
+      "bytes": 1118,
+      "sha256": "14dd06ca6cd21ce28ea2d1742e1fd9b3e2264e1e06e916613f8ee0eb8d0e9607",
+      "original_source": {
+        "path": "main-909/submission/acceptance.json",
+        "bytes": 1118,
+        "sha256": "14dd06ca6cd21ce28ea2d1742e1fd9b3e2264e1e06e916613f8ee0eb8d0e9607"
       }
     },
     {

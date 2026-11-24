@@ -1,5 +1,5 @@
 {
-  "status": "SUBMITTED_PENDING_VERDICT",
+  "status": "ACCEPTED_REDUCTION",
   "official_pull_request": 4051,
   "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051",
   "commit": "8292b94e2ba785988092e2b86e675548455140a2",
@@ -8,12 +8,18 @@
   "lean_build": "PASS",
   "axiom_audit": "STANDARD_THREE_ONLY",
   "lightweight_printer_readback": "PASS",
-  "official_checker_verdict": "PENDING",
+  "official_checker_verdict": "ACCEPTED",
   "children": [
     "Unresolved finite circuit construction",
     "Kernel-checked basis completeness",
     "Kernel-checked monotonicity"
   ],
   "previous_candidate": "PREPARED_BUT_ROUNDTRIP_FAILED",
-  "scope": "Officially submitted reduction and checked support. It is not a complete proof of L-meta-909 or an official acceptance."
+  "scope": "The authoritative checker accepted the three-child reduction. The parent and remaining synthesis child are not proved. Historical pending records are preserved.",
+  "checker_exit": 0,
+  "authoritative_comment": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051#issuecomment-7124158856",
+  "authoritative_run": "https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45341329777",
+  "acceptance_comment_utc": "2026-11-24T06:39:31Z",
+  "pull_request_state": "open",
+  "merged": false
 }

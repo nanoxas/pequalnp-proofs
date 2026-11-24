@@ -1,0 +1,14 @@
+Reduction submission for L-meta-670 (kind: reduce).
+
+This proposes a reader-profile split that complements the existing first-gate cases 1665–1678:
+
+1. Any circuit of size at most 15 for the posted function has a clean globally minimum representative. All reads are of earlier wires, NOT gates have one operand, binary gates have two distinct operands, and each of inputs 4, 6 and 7 has one or two actual reader gates; two readers must both be OR gates.
+2. Exclude that representative class when a special input has an AND or NOT reader (necessarily its sole reader).
+3. Exclude the class when all special-input readers are OR gates and at least one special input has two readers.
+4. Exclude the class when each of the three special inputs has exactly one OR reader.
+
+Global minimality and explicit clean arity are retained in every residual class. They prevent unused padding gates or ignored NOT operands from distorting reader counts. The normalization child has a concrete route through the existing cleaning machinery and the eight-input restriction lower bound; its complete proof remains a child obligation. The implication assembles the exhaustive split and preserves the exact posted conclusion. None of the four child obligations is claimed complete by this PR.
+
+One file, one theorem, importing only PEqualNP.Defs. Local Lean compilation passed without warnings. A lightweight preflight using the public checker's canonical binder/printer functions passed: the four printed child lengths are 1792, 1887, 1983 and 1915 characters, and all four statements read back to identical expressions. The axiom audit found only propext, Classical.choice and Quot.sound. An independent mathematical review of the exact predicates and case split also passed. This is not a claim of full official project-wide kernel replay; the authoritative reduction check is requested.
+
+Separate bounded searches of a narrower 14-gate class ended UNKNOWN. They provide no impossibility certificate and are not used as proof in this reduction.

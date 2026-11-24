@@ -39,8 +39,12 @@ and all read back to the same expressions. This preflight does not replay the
 full official pinned-library checker. The corrected source was officially submitted as upstream PR #4051 at
 https://github.com/brilliant-hq/pequalnp-proofs/pull/4051, commit
 8292b94e2ba785988092e2b86e675548455140a2. The API verified one file and one commit.
-The desk acknowledged the reduced report at 06:20:23 UTC. The frozen official
-verdict is PENDING; no full official kernel replay or acceptance is claimed.
+The desk acknowledged the reduced report at 06:20:23 UTC. The official checker accepted this three-child reduction with exit code 0 at
+06:39:31 UTC on 2026-11-24. The authoritative comment and successful run are
+recorded in submission/acceptance.json. The PR remained open and unmerged at
+readback. This acceptance does not prove the parent or its remaining circuit-
+construction child. The earlier pending outcome and local preflight records
+remain historical snapshots.
 
 AndCountMonotonicity and BasisCompleteness have separate kernel-check and
 standard-axiom records. They establish monotone propagation and the exact

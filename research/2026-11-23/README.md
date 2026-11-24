@@ -192,7 +192,7 @@ service then refused the PR before building. An existing accepted reduction
 already occupies the same file path; the parent remained open in the later
 desk snapshot, and PR #3918 remains open. The distinct L-meta-909 reduction is
 submitted as PR #4051 and its
-frozen remote verdict is pending. This research-branch update itself is not a new
+authoritative reduction verdict is ACCEPTED (checker exit 0), recorded at 06:39:31 UTC. This research-branch update itself is not a new
 checker submission. Earlier research and all 29 L-meta-997 Lean sources remain
 unchanged.
 
@@ -201,8 +201,32 @@ unchanged.
 
 The L-meta-909 r2 reduction is built, standard-axiom audited and
 lightweight-printer/readback checked. It is officially submitted as PR #4051,
-with a pending remote verdict. Two supporting children are separately kernel
+with an accepted authoritative reduction verdict. The PR remained open and unmerged at readback. Two supporting children are separately kernel
 checked; the circuit-construction child remains open. Its older compiled
 candidate is preserved with its real child1 round-trip failure. Three other
 research prototypes are archived with explicit DRAFT_UNCHECKED status and
 .lean.txt filenames; they are excluded from checked-module counts.
+
+## L-meta-670 completion and official reduction
+
+The reduced-row CEGAR query completed UNKNOWN after 1,800.233 seconds on its
+initial 60 rows, with no candidate circuit and its worker reaped. Its partial
+trace was not retained because of the configured disk reserve; exact row,
+source and CNF hashes remain in the [completion record](main-670/global14-cegar-completed-snapshot.json).
+
+A separate [reader-profile reduction](main-670/reduction/README.md) was
+submitted as [PR #4110](https://github.com/brilliant-hq/pequalnp-proofs/pull/4110). Its assembly theorem and lightweight child
+printer/readback checks passed locally; its four children remain obligations.
+The frozen official verdict is PENDING. This checkpoint records those two
+outcomes without claiming a circuit lower bound or search exhaustion.
+
+## Authoritative L-meta-909 reduction acceptance
+
+The [official checker accepted PR #4051](https://github.com/brilliant-hq/pequalnp-proofs/pull/4051#issuecomment-7124158856)
+with exit code 0 at 06:39:31 UTC on 2026-11-24, for the exact published head
+8292b94e2ba785988092e2b86e675548455140a2. Its successful run and comment are
+preserved in [acceptance.json](main-909/submission/acceptance.json). The PR
+remained open and unmerged at readback. This accepts the three-child reduction;
+it does not prove the parent or the remaining circuit-construction child.
+Historical pending records are retained, while current status files record
+acceptance. PR #4110 remains pending in this snapshot.

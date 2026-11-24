@@ -1,0 +1,33 @@
+{
+  "status": "INDEPENDENT_REDUCTION_REVIEW_PASS",
+  "source": "R_meta_670_718.lean",
+  "source_sha256": "dab49ddb2f73397130333e5dd0e2184f75ae3c78f7103226e80898c73168228f",
+  "catalog_updated_at": "2026-11-24T06:17:24.662Z",
+  "catalog_sha256": "efb171d509a6ac041a5d3d720662c000f87f299e2eb3be2125251e5043c5c6a2",
+  "existing_first_gate_task_ids": [
+    "L-meta-1665",
+    "L-meta-1666",
+    "L-meta-1667",
+    "L-meta-1668",
+    "L-meta-1669",
+    "L-meta-1670",
+    "L-meta-1671",
+    "L-meta-1672",
+    "L-meta-1673",
+    "L-meta-1674",
+    "L-meta-1675",
+    "L-meta-1676",
+    "L-meta-1677",
+    "L-meta-1678"
+  ],
+  "reviewed": [
+    "Exact parent target is preserved.",
+    "All four child statements use the same minimum, clean, reader-profile predicate.",
+    "Nonempty reader sets of size at most two with saturation requiring OR give the three exhaustive residual profiles.",
+    "Minimum-circuit and clean-arity hypotheses avoid ignored NOT operands and padding artifacts.",
+    "The new cut concerns whole-circuit direct-reader profiles and does not repeat the posted first-gate partition."
+  ],
+  "new_paper_progress": "nonor-funnel-progress.txt",
+  "compiler_run_by_this_reviewer": false,
+  "full_parent_proof_claimed": false
+}

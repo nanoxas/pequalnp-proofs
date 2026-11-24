@@ -38,3 +38,25 @@ A target CEGAR run was subsequently authorized and started on 2026-11-24 at
 no result from that ongoing run is asserted here. Sources and control records
 are unchanged. See global14-strengthened-public-completeness.txt for exact
 premises, orbit/greedy normalization and control scopes.
+
+## Completed reduced-row query
+
+The previously running CEGAR follow-up finished UNKNOWN at its 1,800-second
+bound: 1,800.233 seconds, 15,279,371 conflicts, and its owned child reaped.
+It remained on the initial 60 rows and produced no sampled SAT candidate or
+refinement. The completed snapshot and exact row/phase records retain the
+source, row and CNF hashes. Its 1,428,349,151-byte temporary partial trace was
+not copied because doing so would breach the configured disk reserve; no
+saved trace hash or certificate is claimed. No further solver was started.
+
+The historical preparation/running records above remain unchanged. This
+UNKNOWN result does not establish range exhaustion or the parent theorem.
+
+## Separate official reader-profile reduction
+
+The [reader-profile reduction](reduction/README.md) has four closed children
+and the exact parent statement as conclusion. Its source, passing local build,
+standard-axiom audit, lightweight child readback and independent review are
+preserved separately from the finite searches. Official PR provenance and
+its pending verdict are recorded in submission/. The remaining children
+are not proved by this assembly file.

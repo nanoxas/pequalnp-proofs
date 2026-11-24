@@ -1,0 +1,56 @@
+{
+  "status": "PASS_BUILD_AND_LIGHTWEIGHT_REDUCTION_PREFLIGHT",
+  "theorem": "PEqualNP.Outside.R_meta_670_718",
+  "source": "main-670/reduction/R_meta_670_718.lean",
+  "source_sha256": "dab49ddb2f73397130333e5dd0e2184f75ae3c78f7103226e80898c73168228f",
+  "source_bytes": 7059,
+  "object_sha256": "d6857fe3707430855518e1274f90228ffa48de7ef7dc62c4c462888fed5a1057",
+  "lean_version": "4.36.0",
+  "build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 1.87,
+    "warnings": 0,
+    "source_unchanged": true,
+    "log": "R_meta_670_718.check.log"
+  },
+  "exact_recorded_conclusion": true,
+  "recorded_statement_sha256": "cad25a8179028bb431b529eabd16f4653c36589ecba53c2085ee869fbecce2cb",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lightweight_preflight": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 5.034,
+    "child_printed_lengths": [
+      1792,
+      1887,
+      1983,
+      1915
+    ],
+    "all_parse": true,
+    "all_roundtrip_expression_equal": true,
+    "closed_nondependent_children": true,
+    "public_checker_revision": "f5238c8",
+    "public_checker_source_sha256": "86997b026ef2b80d738df77f4c214166cf5b0b2ea8cc98d4bd3c8b5e420dbdd5",
+    "copied_functions": [
+      "canonBinders",
+      "childPpOptions"
+    ],
+    "source": "ReductionPreflight.lean",
+    "source_sha256": "ed92a046116e9bc2a1ea27efaaa11ce68dbcfc90731ccb117377746891284099",
+    "log": "ReductionPreflight.check.log",
+    "environment": "Loaded Defs-only reduction plus Lean and audit helpers; no separate full-library statement environment was rebuilt.",
+    "scope": "Lightweight child printer/readback and axiom audit. This is not the official checker verdict and does not replay all project constants."
+  },
+  "mathematical_scope": "This proves that the four closed children imply the exact L-meta-670 statement. None of the four children is claimed proved by this file.",
+  "independent_source_review": {
+    "reviewer": "heawood_bounds",
+    "status": "PASS",
+    "scope": "Read-only mathematical and predicate review; distinct from Lean checking."
+  },
+  "verified_utc": "2026-11-24T06:32:25.651320+00:00"
+}

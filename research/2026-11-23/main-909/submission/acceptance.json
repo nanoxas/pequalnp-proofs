@@ -1,0 +1,19 @@
+{
+  "gap": "L-meta-909",
+  "pull_request": 4051,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051",
+  "commit": "8292b94e2ba785988092e2b86e675548455140a2",
+  "authoritative_verdict": "ACCEPTED",
+  "checker_exit": 0,
+  "comment_url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051#issuecomment-7124158856",
+  "comment_utc": "2026-11-24T06:39:31Z",
+  "comment_body": "Checked on the base repository at commit `8292b94e2b`.\n\n**ACCEPTED (checker exit 0)**\n\nRun: https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45341329777\n\nThis is an automatic message. A new commit on this pull request is checked again.",
+  "run_url": "https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45341329777",
+  "run_id": 45341329777,
+  "run_status": "completed",
+  "run_conclusion": "success",
+  "pull_request_state": "open",
+  "merged": false,
+  "scope": "The authoritative checker accepted the three-child reduction. This does not prove the parent or the remaining synthesis child. The pull request was not merged at readback.",
+  "recorded_at": "2026-11-24T06:45:17.966452+00:00"
+}
