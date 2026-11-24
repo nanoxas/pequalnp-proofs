@@ -1,0 +1,33 @@
+{
+  "artifact": "OneSurplusQuadraticAndC4.lean",
+  "status": "LEAN_CHECKED",
+  "sha256": "4986000d09d5b75e9f3bd5ed8838b09bce64087bd85a71c0dd2a8694a088e171",
+  "bytes": 319912,
+  "lean_version": "4.36.0",
+  "project_base_commit": "67b12c81a4864e00b7443c98602811c27825f5b7",
+  "check": {
+    "exit_code": 0,
+    "elapsed_seconds": 8.39,
+    "checked_utc": "2026-11-24T07:00:19.816590+00:00",
+    "passed_unchanged": true
+  },
+  "namespace": "PEqualNP.Outside.L_meta_1031_aux.QuadraticCircuit",
+  "theorem_roots": [
+    "one_surplus_accepted_pair",
+    "one_surplus_pair_forest",
+    "relative_c4free_small_circuit_lower",
+    "relative_c4free_large_potential",
+    "relative_c4free_small_circuit_equality"
+  ],
+  "scope": [
+    "Leastness-free raw-input quadratic rigidity for monotone circuits with at most n gates, singleton rejection, and pair activity at every input.",
+    "C4-free accepted-pair graphs under the same small-circuit hypotheses are acyclic.",
+    "Relative C4-free lower bound: active critical vertices and g<=n imply |E(H)|+tau(H)<=g+1.",
+    "Large-potential threshold: |E(H)|+tau(H)>=n+2 implies g>=n+1, without a g<=n premise.",
+    "Relative C4-free equality at canonical budget and g<=n."
+  ],
+  "imports": "Mathlib modules and PEqualNP.Defs.MetaComplexityLgpMono only; no Outside proof imports.",
+  "pruned_from_sha256": "67aabc707b455d46bcf8a6325e559469cccc6dc070f759490ce320cf690beb80",
+  "full_l_meta_1031_proved": false,
+  "upstream_completion_submission": false
+}
