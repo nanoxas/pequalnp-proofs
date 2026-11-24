@@ -1,0 +1,18 @@
+{
+  "source": "OneSurplusQuadraticAndForest.lean",
+  "sha256": "ddc0e3d8accf19c933314c2c51355086118f136e8df08ee4151e5d9d5fe4d026",
+  "bytes": 243843,
+  "exit": 0,
+  "elapsed_seconds": 7.95,
+  "checked_utc": "2026-11-24T06:44:04.314060+00:00",
+  "scope": [
+    "Independent compiler validation of the dependency-pruned source exposing leastness-free one_surplus_accepted_pair and relative_forest_small_circuit_equality."
+  ],
+  "pruned_from_sha256": "d8ecc55d484b8d88f27b9488787be424ad977cfee0a666d0a4e85a2f13bb7260",
+  "limitations": [
+    "Only the stated bounded and relative-forest theorems are asserted; full L-meta-1031 remains unresolved."
+  ],
+  "lean_version": "4.36.0",
+  "mathlib_revision": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842",
+  "project_revision": "67b12c81a4864e00b7443c98602811c27825f5b7"
+}
