@@ -2092,10 +2092,12 @@ lemma geometry_bonus {n m : ℕ} (S : Fin m → Finset (Fin n)) (Y : Finset (Fin
 
 end PEqualNP.Outside.L_meta_997.Small
 
+open PEqualNP.Outside.L_meta_997.Light (hasAllowedGates onlyNegAt switchLight computesRows refunds)
+
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light
 
-theorem size_window_bonus : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 4*y.card+7) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem size_window_bonus : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 4*y.card+7) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
 
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
@@ -2121,7 +2123,7 @@ theorem size_window_bonus : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : 
         · simp [hi]
       · simp
 
-theorem num_inputs_nineteen : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 19 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_nineteen : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 19 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn
   apply size_window_bonus n m S C o t y
   omega
@@ -2736,7 +2738,7 @@ end PEqualNP.Outside.L_meta_997.Small
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light
 
-theorem size_window_sharp : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+4 ≤ 8*y.card)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem size_window_sharp : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+4 ≤ 8*y.card)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
 
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
@@ -2755,7 +2757,7 @@ theorem size_window_sharp : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : 
         ((S d).card-y.card) + D.card + y.card + (y.card-1) at hb
       omega
 
-theorem num_inputs_twenty : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 20 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 20 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn
   apply size_window_sharp n m S C o t y
   omega
@@ -2851,7 +2853,7 @@ namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light
 
 theorem supported_large_rows : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ ∃ V : Finset (Fin n), (∀ i, Disjoint (S i) y → y.card+2 ≤ (S i).card → S i ⊆ V) ∧
-      V.card ≤ 6*y.card+1 ∧ V.card+4 ≤ 7*y.card) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+      V.card ≤ 6*y.card+1 ∧ V.card+4 ≤ 7*y.card) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
 
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
@@ -3826,7 +3828,7 @@ end PEqualNP.Outside.L_meta_997.Light
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light
 
-theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
 
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
@@ -3841,7 +3843,7 @@ theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : 
     exact Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp hi hp⟩
   · omega
 
-theorem num_inputs_twenty_one : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 21 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_one : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 21 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn
   apply size_window_joint n m S C o t y
   omega
@@ -4100,7 +4102,7 @@ lemma window_refund_22 {n m : ℕ} (S : Fin m → Finset (Fin n))
 end PEqualNP.Outside.L_meta_997.Light
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light
-theorem num_inputs_twenty_two_one_gate : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m + 1 := by
+theorem num_inputs_twenty_two_one_gate : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m + 1 := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
   by_cases hs : y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)
@@ -4116,9 +4118,9 @@ theorem num_inputs_twenty_two_one_gate : ∀ (n m : ℕ) (S : Fin m → Finset (
     have h := (Finset.mem_filter.mp hi).2
     exact ⟨h.1, by have hsize := h.2.2; omega⟩
 
-theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
+theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
     Disjoint (S i) y ∧ (assigned C (S i)).card+1 < (S i).card ∧
-    y.card+2 ≤ (S i).card)).card < (refunds S C y).card → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    y.card+2 ≤ (S i).card)).card < (refunds S C y).card → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
   obtain ⟨hk3,hquota⟩ := hn
@@ -4133,9 +4135,9 @@ theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
   simpa only [Finset.sum_filter,PEqualNP.CircuitLowerBounds.Circuit.size,Nat.add_zero] using ht
 
 
-theorem num_inputs_twenty_two_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
+theorem num_inputs_twenty_two_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
     Disjoint (S i) y ∧ (assigned C (S i)).card+1 < (S i).card ∧
-    y.card+2 ≤ (S i).card)).card < (refunds S C y).card → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    y.card+2 ≤ (S i).card)).card < (refunds S C y).card → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn hlin hg hu ho hl hy
   rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
   · intro _; exact size_window_joint n m S C o t y hs hlin hg hu ho hl hy
@@ -4188,8 +4190,8 @@ end PEqualNP.Outside.L_meta_997.Light
 
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
-theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
-    min y.card (S i).card ≤ ((assigned C (S i)).erase (n+t)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
+    min y.card (S i).card ≤ ((assigned C (S i)).erase (n+t)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
   obtain ⟨hk3,hquota⟩ := hn
@@ -4231,15 +4233,15 @@ theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin
   · simpa only [Finset.sum_filter,PEqualNP.CircuitLowerBounds.Circuit.size] using hterm
 
 
-theorem num_inputs_twenty_two_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
-    min y.card (S i).card ≤ ((assigned C (S i)).erase (n+t)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_two_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
+    min y.card (S i).card ≤ ((assigned C (S i)).erase (n+t)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn hlin hg hu ho hl hy
   rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
   · intro _; exact size_window_joint n m S C o t y hs hlin hg hu ho hl hy
   exact three_window_touching_spare n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem num_inputs_twenty_two_touching_output : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧ y.card < (S i).card ∧
-    (∃ p, p ∉ S i) ∧ ¬andAt C n (o i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_two_touching_output : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧ y.card < (S i).card ∧
+    (∃ p, p ∉ S i) ∧ ¬andAt C n (o i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
   by_cases hs : y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)
@@ -4251,10 +4253,10 @@ theorem num_inputs_twenty_two_touching_output : ∀ (n m : ℕ) (S : Fin m → F
   rw [min_eq_left hsize.le]
   exact touching_spare S C o d t (by omega) hg hu ho hlight hsize hproper hop
 
-theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
+theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
     (∀ w ∈ A, ∀ i, w ∈ assigned C (S i) → i ∈ underDisjoint C S y ∧ ¬andAt C n w) ∧
     (∀ w ∈ A, ∀ i ∈ underDisjoint C S y, ¬andAt C n w → S i ⊆ support C w →
-      PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ≠ S i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+      PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ≠ S i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
   obtain ⟨hk3,hquota⟩ := hn
@@ -4284,17 +4286,17 @@ theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (
     omega
 
 
-theorem num_inputs_twenty_two_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
+theorem num_inputs_twenty_two_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
     (∀ w ∈ A, ∀ i, w ∈ assigned C (S i) → i ∈ underDisjoint C S y ∧ ¬andAt C n w) ∧
     (∀ w ∈ A, ∀ i ∈ underDisjoint C S y, ¬andAt C n w → S i ⊆ support C w →
-      PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ≠ S i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+      PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ≠ S i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn hlin hg hu ho hl hy
   rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
   · intro _; exact size_window_joint n m S C o t y hs hlin hg hu ho hl hy
   exact three_window_gate_set n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem num_inputs_twenty_two_small_support : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (y.card ≤ ((Finset.Ico n (n+C.size)).filter (fun w =>
-      w ≠ n+t ∧ (support (n:=n) C w).card ≤ 1)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_two_small_support : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (y.card ≤ ((Finset.Ico n (n+C.size)).filter (fun w =>
+      w ≠ n+t ∧ (support (n:=n) C w).card ≤ 1)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
   apply num_inputs_twenty_two_gate_set n m S C o t y hn hlin hg hu ho hlight hy
@@ -4309,7 +4311,7 @@ theorem num_inputs_twenty_two_small_support : ∀ (n m : ℕ) (S : Fin m → Fin
     have hu := (Finset.mem_filter.mp (Finset.mem_filter.mp hi).1).2
     omega
 
-theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     22 ≤ n ∧ y.card = 3 ∧ ∃ A : Finset ℕ, A.card = 2 ∧ A ⊆ Finset.Ico n (n+t) ∧
       (∀ w ∈ A, support (n:=n) C w = ∅ ∧ value C (fun p => decide (p ∈ y)) w = true) ∧
       ∀ w ∈ Finset.Ico n (n+C.size), w ≠ n+t → w ∉ A →
@@ -4364,7 +4366,7 @@ theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (
     · exact af hv hi hsub
 
 
-theorem num_inputs_twenty_two_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     n = 22 ∧ y.card = 3 ∧ ∃ A : Finset ℕ, A.card = 2 ∧ A ⊆ Finset.Ico n (n+t) ∧
       (∀ w ∈ A, support (n:=n) C w = ∅ ∧ value C (fun p => decide (p ∈ y)) w = true) ∧
       ∀ w ∈ Finset.Ico n (n+C.size), w ≠ n+t → w ∉ A →
@@ -4378,7 +4380,7 @@ theorem num_inputs_twenty_two_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (
   obtain ⟨h,hk,rest⟩ := three_window_rigidity n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy bad
   exact ⟨by omega,hk,rest⟩
 
-theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ w ∈ Finset.Ico n (n+t), (support (n:=n) C w).Nonempty →
       ∃ i, w ∈ assigned C (S i) := by
   classical
@@ -4413,7 +4415,7 @@ theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C 
   exact ⟨i,Finset.mem_filter.mpr ⟨hw',hinc,by omega⟩⟩
 
 
-theorem num_inputs_twenty_two_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ w ∈ Finset.Ico n (n+t), (support (n:=n) C w).Nonempty →
       ∃ i, w ∈ assigned C (S i) := by
   intro n m S C o t y hn hlin hg hu ho hl hy
@@ -4421,7 +4423,7 @@ theorem num_inputs_twenty_two_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fi
   · intro bad; exact (bad (size_window_joint n m S C o t y hs hlin hg hu ho hl hy)).elim
   exact three_window_prefix n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t, ((support C w) ∩ S i).card ≤ 1 := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy hbad
@@ -4526,14 +4528,14 @@ theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
       omega
 
 
-theorem num_inputs_twenty_two_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t, ((support C w) ∩ S i).card ≤ 1 := by
   intro n m S C o t y hn hlin hg hu ho hl hy
   rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
   · intro bad; exact (bad (size_window_joint n m S C o t y hs hlin hg hu ho hl hy)).elim
   exact three_window_prefix_pairs n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t,
       PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ⊆ S i →
       (PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w).card ≤ 1 := by
@@ -4593,7 +4595,7 @@ theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)
       omega
 
 
-theorem num_inputs_twenty_two_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t,
       PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w ⊆ S i →
       (PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w).card ≤ 1 := by
@@ -4602,7 +4604,7 @@ theorem num_inputs_twenty_two_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finse
   · intro bad; exact (bad (size_window_joint n m S C o t y hs hlin hg hu ho hl hy)).elim
   exact three_window_high_prefix n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem num_inputs_twenty_two_cold_suffix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_cold_suffix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     (∑ i ∈ underDisjoint C S y, ((S i).card-1)) ≤
       ((Finset.Ico (n+t+1) (n+C.size)).filter (fun w =>
         value C (fun p => decide (p ∈ y)) w = false)).card := by
@@ -4639,7 +4641,7 @@ theorem num_inputs_twenty_two_cold_suffix : ∀ (n m : ℕ) (S : Fin m → Finse
       omega
   exact Finset.mem_filter.mpr ⟨Finset.mem_Ico.mpr ⟨by omega,(Finset.mem_Ico.mp hr).2⟩,hcold⟩
 
-theorem three_window_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem three_window_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ w r : ℕ, n+t < r ∧ r < w ∧
       (∃ g ∈ C.gates[w-n]?, g.op = .or ∧
         (g.inputs = [n+t,r] ∨ g.inputs = [r,n+t])) ∧
@@ -4811,7 +4813,7 @@ theorem three_window_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n))
   exact ⟨w,r,ra,rlt,⟨g,by simp [gsome],hor,shape⟩,allL,⟨j,hj,rh,high⟩,⟨b,hnb,hb⟩,early⟩
 
 
-theorem num_inputs_twenty_two_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem num_inputs_twenty_two_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ w r : ℕ, n+t < r ∧ r < w ∧
       (∃ g ∈ C.gates[w-n]?, g.op = .or ∧
         (g.inputs = [n+t,r] ∨ g.inputs = [r,n+t])) ∧
@@ -4881,7 +4883,7 @@ private lemma before_output_charge {n : ℕ} (C : Circuit) (T : Finset (Fin n)) 
     exact Finset.mem_Ico.mpr ⟨lr.1,by change u<n+gs.length; have hjj : j.val < gs.length := j.isLt; omega⟩
 
 set_option maxHeartbeats 1400000 in
-theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy
   by_contra bad
@@ -5070,13 +5072,13 @@ theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C :
   omega
 
 
-theorem num_inputs_twenty_two : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_two : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hn hlin hg hu ho hl hy
   rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
   · exact size_window_joint n m S C o t y hs hlin hg hu ho hl hy
   exact three_window_bound n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
 
-theorem size_window_seven : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 7*y.card+1) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem size_window_seven : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 7*y.card+1) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hsize
   by_cases hn : n ≤ 22
   · exact num_inputs_twenty_two n m S C o t y hn
@@ -5084,7 +5086,7 @@ theorem size_window_seven : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : 
     omega
 
 theorem three_window_pool : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), y.card = 3 → (∃ V : Finset (Fin n), V.card ≤ 19 ∧ ∀ i, Disjoint (S i) y →
-    (assigned C (S i)).card+1 < (S i).card → 5 ≤ (S i).card → S i ⊆ V) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    (assigned C (S i)).card+1 < (S i).card → 5 ≤ (S i).card → S i ⊆ V) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   intro n m S C o t y hk hpool hlin hg hu ho hl hy
   obtain ⟨V,hv,hcover⟩ := hpool
   apply three_window_bound n m S C o t y ⟨hk,?_⟩ hlin hg hu ho hl hy
@@ -5128,7 +5130,7 @@ lemma five_row_surplus {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (F
 
 theorem three_window_incidence : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), y.card=3 → (∃ r q : ℕ, 5 ≤ r ∧ r ≤ (Finset.univ.filter (fun i => Disjoint (S i) y ∧
     (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)).card ∧
-    (n-3)*(q+1).choose 2 + r.choose 2 < q*(5*r+5)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    (n-3)*(q+1).choose 2 + r.choose 2 < q*(5*r+5)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hk hcap hlin hg hu ho hl hy
   apply three_window_bound n m S C o t y ⟨hk,?_⟩ hlin hg hu ho hl hy
@@ -5179,7 +5181,7 @@ lemma outside_pair_budget {n m : ℕ} (S : Fin m → Finset (Fin n)) (y : Finset
 
 theorem three_window_pair_budget : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), y.card=3 → (let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
     (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-    (n-3).choose 2 < B.card*10+25+∑ i ∈ Finset.univ \ B, (S i \ y).card.choose 2) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    (n-3).choose 2 < B.card*10+25+∑ i ∈ Finset.univ \ B, (S i \ y).card.choose 2) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hk hb hlin hg hu ho hl hy
   let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
@@ -5214,7 +5216,7 @@ theorem three_window_pair_budget : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)
 
 theorem num_inputs_twenty_three_outer_counts : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
     (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-    B.card ≤ 2 ∨ 8 ≤ B.card) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+    B.card ≤ 2 ∨ 8 ≤ B.card) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hc hlin hg hu ho hl hy
   by_cases known : y.card ≤ 2 ∨ n ≤ 7*y.card+1
@@ -5248,7 +5250,7 @@ theorem num_inputs_twenty_three_outer_counts : ∀ (n m : ℕ) (S : Fin m → Fi
     norm_num [Nat.choose]
     omega
 
-theorem twenty_three_three_rows : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_three_rows : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     (let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
      B.card = 3 → (∑ i ∈ B, (S i).card) = 23 ∧
@@ -5738,7 +5740,7 @@ theorem two_row_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finse
   rw [jc] at inc cut
   omega
 
-theorem twenty_three_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     (let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
      n=23 ∧ y.card=3 ∧ 5 ≤ B.card ∧ B.card ≤ 7 ∧ (∑ i ∈ B, (S i).card)=5*B.card+5 ∧
@@ -5837,7 +5839,7 @@ private lemma folded_geometry {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Fi
   generalize hr : B.card = r at *
   interval_cases r <;> norm_num [Nat.choose] at * <;> omega
 
-theorem size_window_five_or_more : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), 5 ≤ y.card → n ≤ 7*y.card+2 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem size_window_five_or_more : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), 5 ≤ y.card → n ≤ 7*y.card+2 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hk hn hlin hg hu ho hl hy
   let k := y.card
@@ -5880,7 +5882,7 @@ theorem size_window_five_or_more : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)
     omega
 
 open PEqualNP.Outside.L_meta_997_aux
-theorem twenty_three_free_credits : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_free_credits : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     (let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
         (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
      (refunds S C y).card + (∑ i, if Disjoint (S i) y then 0 else
@@ -6377,7 +6379,7 @@ end PEqualNP.Outside.L_meta_997.Light
 
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
-theorem twenty_three_crossing_triples : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_crossing_triples : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ E : Finset (Fin m), (refunds S C y).card+3 ≤ E.card ∧
       ∀ i ∈ E, ¬ Disjoint (S i) y ∧ (S i).card=3 ∧ ∃ w j,
         n+t<w ∧ w<o i ∧ assigned C (S i)={w,o i} ∧ Disjoint y (S j) ∧
@@ -6454,7 +6456,7 @@ theorem twenty_three_crossing_triples : ∀ (n m : ℕ) (S : Fin m → Finset (F
     simp [ne]
   exact ⟨xd.1,three,w,j,after,before,all,dis,hj,lost,gained⟩
 
-theorem twenty_three_gate_reserve : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_gate_reserve : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ A : Finset ℕ, A ⊆ Finset.Ico n (n+C.size) → n+t ∉ A →
       (∀ w ∈ A, ∀ i, w ∈ assigned C (S i) → i ∈ underDisjoint C S y ∧ ¬andAt C n w) →
       (∀ w ∈ A, ∀ i ∈ underDisjoint C S y, ¬andAt C n w → S i ⊆ support C w →
@@ -6495,7 +6497,7 @@ theorem twenty_three_gate_reserve : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
   rw [hk] at bad
   omega
 
-theorem twenty_three_gate_roles : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_three_gate_roles : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ A F : Finset ℕ, 2 ≤ A.card ∧ F.card ≤ 1 ∧ Disjoint A F ∧
       A ⊆ Finset.Ico n (n+t) ∧ (∀ w ∈ A, support (n:=n) C w=∅ ∧ value C (fun p => decide (p ∈ y)) w=true) ∧
       ∀ w ∈ Finset.Ico n (n+C.size), w ≠ n+t → w ∉ A → w ∉ F →
@@ -6896,7 +6898,7 @@ end PEqualNP.Outside.L_meta_997.Small
 
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
-theorem num_inputs_twenty_three : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m := by
+theorem num_inputs_twenty_three : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu hout hl hy
   by_contra hbad
@@ -7827,7 +7829,7 @@ end PEqualNP.Outside.L_meta_997.Small
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
 
-theorem twenty_four_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_four_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
     n=24 ∧ y.card=3 ∧ B.biUnion S = Finset.univ \ y ∧
@@ -8994,7 +8996,7 @@ end PEqualNP.Outside.L_meta_997.Small
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
 
-theorem twenty_four_sharp_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_four_sharp_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
     n=24 ∧ y.card=3 ∧ B.biUnion S = Finset.univ \ y ∧
@@ -9050,8 +9052,10 @@ namespace PEqualNP.Outside.L_meta_997.Light
 open PEqualNP.CircuitLowerBounds
 
 private lemma low_double_fold {n k : ℕ} (C : Circuit) (t : ℕ) (a b : Fin C.gates.length)
-    (ta : t<a.val) (ab : a.val<b.val)
-    (aReads : n+t ∈ (C.gates.get a).inputs) (bReads : n+t ∈ (C.gates.get b).inputs)
+    (hk : 0 < k) (ta : t<a.val) (ab : a.val<b.val)
+    (aReads : n+t ∈ (C.gates.get a).inputs)
+    (bReads : n+t ∈ (C.gates.get b).inputs ∨
+      (n+a.val ∈ (C.gates.get b).inputs ∧ value C (fun _ : Fin n => false) (n+a.val)=true))
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<k → value C x (n+t)=true) :
@@ -9083,8 +9087,18 @@ private lemma low_double_fold {n k : ℕ} (C : Circuit) (t : ℕ) (a b : Fin C.g
     have av : u<v := by dsimp [u,v]; omega
     have zu : z<u := by dsimp [z,u]; omega
     have ehot (x : Fin n → Bool) : value E x z=true := fixed_value true gs j x
-    obtain ⟨D,g,dg,ds,db,gAgree,gId,pre⟩ := fold_consumer E eg z v
-      (er b) (zu.trans av) (ei b) (by rw [em b (by omega)]; exact bReads) ehot
+    have bh : ∃ q<v, q ∈ (E.gates[v-n]'(ei b)).inputs ∧
+        ∀ x : Fin n → Bool, value E x q=true := by
+      rcases bReads with direct | ⟨chain,hot⟩
+      · exact ⟨z,zu.trans av,by rw [em b (by omega)]; exact direct,ehot⟩
+      · refine ⟨u,av,by rw [em b (by omega)]; exact chain,?_⟩
+        have zero := hl (fun _ => false) (by simpa using hk)
+        intro x
+        have he := fixed_eq true gs j oo (fun _ : Fin n => false) zero u
+        exact value_mono E eg (fun _ : Fin n => false) x (by simp) u (he.trans hot)
+    obtain ⟨q,qv,qin,qOn⟩ := bh
+    obtain ⟨D,g,dg,ds,db,gAgree,gId,pre⟩ := fold_consumer E eg q v
+      (er b) qv (ei b) qin qOn
     have di : u-n<D.gates.length := by change u-n<D.size; rw [ds]; exact ei a
     have ar : n ≤ u ∧ u<n+D.size := by rw [ds]; exact er a
     have eq : D.gates[u-n] = E.gates[u-n]'(ei a) := by
@@ -9116,7 +9130,9 @@ open PEqualNP.CircuitLowerBounds
 theorem double_folded_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
     (a b : Fin C.gates.length) (ta : t<a.val) (ab : a.val<b.val)
-    (aReads : n+t ∈ (C.gates.get a).inputs) (bReads : n+t ∈ (C.gates.get b).inputs)
+    (aReads : n+t ∈ (C.gates.get a).inputs)
+    (bReads : n+t ∈ (C.gates.get b).inputs ∨
+      (n+a.val ∈ (C.gates.get b).inputs ∧ value C (fun _ : Fin n => false) (n+a.val)=true))
     (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
@@ -9142,7 +9158,7 @@ theorem double_folded_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (d :
   have uv : u<v := by dsimp [u,v]; omega
   have hbig : k < (S d).card := by have := card_light (S d) C (o d) t hg hu (out d) hl; change min k (S d).card ≤ _ at this; omega
   obtain ⟨D,f,goodD,sz,dead,unchanged,agree⟩ :=
-    low_double_fold C t a b ta ab aReads bReads hg hu hl
+    low_double_fold C t a b (by omega) ta ab aReads bReads hg hu hl
   have zero : (Finset.univ.filter (fun _ : Fin n => false = true)).card < y.card := by simpa using (show 0<y.card by omega)
   have sing (p : Fin n) : (Finset.univ.filter (fun q : Fin n => decide (q=p) = true)).card < y.card := by
     have e : Finset.univ.filter (fun q : Fin n => decide (q=p) = true) = {p} := by ext; simp
@@ -9525,11 +9541,130 @@ theorem lost_points_of_unique_reader {n : ℕ} (C : Circuit) (y : Finset (Fin n)
 
 end PEqualNP.Outside.L_meta_997.Light
 
+namespace PEqualNP.Outside.L_meta_997.Light
+open PEqualNP.CircuitLowerBounds
+
+-- A hot reader cannot be the row output. If nothing consumes that reader,
+-- we can set both it and the switch to false and recover full monotone payment.
+lemma hot_reader_has_consumer {n : ℕ} (C : Circuit) (T : Finset (Fin n))
+    (t o : ℕ) (a : Fin C.gates.length) (ta : t<a.val)
+    (hg : hasAllowedGates C) (hu : onlyNegAt C t)
+    (onlyReader : ∀ i : Fin C.gates.length, t < i.val →
+      n+t ∈ (C.gates.get i).inputs → i=a)
+    (switchHot : value C (fun _ : Fin n => false) (n+t) = true)
+    (readerHot : value C (fun _ : Fin n => false) (n+a.val) = true)
+    (out : ∀ x : Fin n → Bool, value C x o = decide (∃ p ∈ T, x p=true))
+    (short : (assigned C T).card+1 < T.card) :
+    ∃ b : Fin C.gates.length, a.val<b.val ∧ n+a.val ∈ (C.gates.get b).inputs := by
+  classical
+  by_contra! unread
+  cases C with
+  | mk gs oo =>
+    let C : Circuit := ⟨gs,oo⟩
+    let z := n+t
+    let v := n+a.val
+    let j : Fin gs.length := ⟨t,ta.trans a.isLt⟩
+    let E := frozen false gs t
+    have es : E.size=gs.length := fixed_size ..
+    have eg : good E := fixed_gates false gs j hg (fun i hi => Fin.ext (hu i hi))
+    let av : Fin E.gates.length := ⟨a.val,by change a.val<E.size; rw [es]; exact a.isLt⟩
+    let F := frozen false E.gates a.val
+    have fs : F.size=gs.length := (fixed_size ..).trans es
+    have fg : good F := fixed_gates false E.gates av
+      (fun g hg => ⟨(eg g hg).1.imp id Or.inl,(eg g hg).2⟩) (fun i hn => by
+        have h : (E.gates.get i).op = .and ∨ (E.gates.get i).op = .or := (eg _ (List.get_mem _ i)).1
+        change E.gates[i.val].op = .not at hn
+        simp [hn] at h)
+    have hoz : o≠z := by
+      intro e
+      change value C (fun _ : Fin n => false) z = true at switchHot
+      rw [←e,out] at switchHot
+      simp at switchHot
+    have hov : o≠v := by
+      intro e
+      change value C (fun _ : Fin n => false) v = true at readerHot
+      rw [←e,out] at readerHot
+      simp at readerHot
+    have sameGate (w : ℕ) (lo : n≤w) (up : w<n+gs.length) (ne : w≠z) :
+        E.gates[w-n]'(by change w-n<E.size; rw [es]; omega) = gs[w-n]'(by omega) := by
+      have e : w-n≠t := by dsimp [z] at ne; omega
+      simp [E,frozen,e,Ne.symm e]
+    have fv (x : Fin n → Bool) : value F x v=false := fixed_value false E.gates av x
+    have fz (x : Fin n → Bool) : value F x z=false := by
+      have zu : z<v := by dsimp [z,v]; omega
+      have f := fixed_other false E.gates a.val x z (by dsimp [z]; omega)
+        (by change z<n+E.size; rw [es]; dsimp [z]; have q : t<gs.length := j.isLt; omega) (ne_of_lt zu)
+      change value F x z = _ at f
+      have e : E.gates[z-n]'(by
+          change z-n<E.size
+          rw [es]
+          dsimp [z]
+          have q : t<gs.length := j.isLt
+          omega) = ⟨.or,[]⟩ := by
+        dsimp [z]
+        simp [E, frozen]
+      rw [f,e]
+      rfl
+    have agree (x : Fin n → Bool) (w : ℕ) (nz : w≠z) (nv : w≠v) :
+        value F x w=value C x w := by
+      induction w using Nat.strong_induction_on with
+      | ind w ih =>
+        by_cases inp : w<n
+        · let p : Fin n := ⟨w,inp⟩
+          change value F x p.val=value C x p.val
+          rw [input_value,input_value]
+        by_cases up : w<n+gs.length
+        swap
+        · rw [missing_value F _ _ (by rw [fs]; omega),
+              missing_value C _ _ (by change n+gs.length ≤ w; omega)]
+        rw [show value F x w = _ from fixed_other false E.gates a.val x w (by omega)
+            (by change w<n+E.size; rwa [es]) nv, sameGate w (by omega) up nz,
+          show value C x w = _ from orig_value gs oo x w (by omega) up]
+        apply repl_eval_congr
+        intro r hr
+        by_cases below : r<w
+        · have rn : r≠z := by
+            rintro rfl
+            have eq := onlyReader (⟨w-n,by omega⟩ : Fin gs.length) (by change t < w-n; omega) hr
+            exact nv (by have h := congrArg Fin.val eq; change w-n=a.val at h; dsimp [v]; omega)
+          have rv : r≠v := by
+            rintro rfl
+            exact unread (⟨w-n,by omega⟩ : Fin gs.length) (by change a.val<w-n; dsimp [v] at below; omega) hr
+          simpa only [ite_eq_left below] using ih r below rn rv
+        · simp [below]
+    have sc : assigned F T ⊆ assigned C T := by
+      intro w hw
+      obtain ⟨hr,hs,hc⟩ := Finset.mem_filter.mp hw
+      have nz : w≠z := by
+        rintro rfl
+        have em : support (n:=n) F z=∅ := by ext p; simp [mem_support,fz]
+        rw [em,Finset.card_empty] at hc
+        omega
+      have nv : w≠v := by
+        rintro rfl
+        have em : support (n:=n) F v=∅ := by ext p; simp [mem_support,fv]
+        rw [em,Finset.card_empty] at hc
+        omega
+      have eq : support (n:=n) F w=support C w := by ext p; rw [mem_support,mem_support,agree _ _ nz nv]
+      exact Finset.mem_filter.mpr ⟨by simpa only [show F.size=C.size from fs] using hr,eq ▸ hs,eq ▸ hc⟩
+    have cnt := card_assigned (k:=T.card) (c:=T.card-1) F T o fg
+      (fun p => by rw [agree _ _ hoz hov]; change value ⟨gs,oo⟩ _ o = true ↔ _; rw [out]; simp)
+      (fun x _ off => by rw [agree _ _ hoz hov]; exact (out x).trans (decide_eq_false
+        (fun ⟨p,hp,on⟩ => Bool.noConfusion ((off p hp).symm.trans on))))
+      (by omega) (by omega)
+    have := Finset.card_le_card sc
+    change (assigned C T).card+1<T.card at short
+    omega
+
+end PEqualNP.Outside.L_meta_997.Light
+
+
 namespace PEqualNP.Outside.L_meta_997.Small
 open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light
-theorem twenty_four_unique_reader : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (PEqualNP.Outside.L_meta_997.Light.hasAllowedGates C) → (PEqualNP.Outside.L_meta_997.Light.onlyNegAt C t) → (PEqualNP.Outside.L_meta_997.Light.computesRows C S o) → (PEqualNP.Outside.L_meta_997.Light.switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (PEqualNP.Outside.L_meta_997.Light.refunds S C y).card + m) →
+theorem twenty_four_unique_cold_reader : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ a : Fin C.gates.length, t<a.val ∧ n+t ∈ (C.gates.get a).inputs ∧
-      ∀ b : Fin C.gates.length, t<b.val → n+t ∈ (C.gates.get b).inputs → b=a := by
+      (∀ b : Fin C.gates.length, t < b.val → n+t ∈ (C.gates.get b).inputs → b=a) ∧
+      value C (fun _ : Fin n => false) (n+a.val)=false := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy bad
   let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
@@ -9553,14 +9688,56 @@ theorem twenty_four_unique_reader : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
     rw [hk]
     change (∑ i ∈ B, (S i).card) ≤ 4*B.card+(S d).card+3+1
     rw [mass,bc,sz' d hd]
-  refine ⟨a,ta,aReads,?_⟩
-  intro b tb bReads
-  by_contra h
-  have neq : b.val≠a.val := fun e => h (Fin.ext e)
-  rcases lt_or_gt_of_ne neq with lt | gt
-  · exact bad (double_folded_projection S d C o t y (by omega) b a tb lt bReads aReads
+  have only (b : Fin C.gates.length) (tb : t < b.val) (bReads : n+t ∈ (C.gates.get b).inputs) : b=a := by
+    by_contra h
+    have neq : b.val≠a.val := fun e => h (Fin.ext e)
+    rcases lt_or_gt_of_ne neq with lt | gt
+    · exact bad (double_folded_projection S d C o t y (by omega) b a tb lt bReads (Or.inl aReads)
+        hlin hg hu ho hl hy short large quota)
+    · exact bad (double_folded_projection S d C o t y (by omega) a b ta gt aReads (Or.inl bReads)
+        hlin hg hu ho hl hy short large quota)
+  have cold : value C (fun _ : Fin n => false) (n+a.val)=false := by
+    by_contra! hot
+    have hotTrue : value C (fun _ : Fin n => false) (n+a.val)=true := Bool.eq_true_of_ne_false hot
+    have h0 := hl (fun _ => false) (by simpa using (show 0<y.card by omega))
+    obtain ⟨b,ab,bReads⟩ := hot_reader_has_consumer C (S d) t (o d) a ta hg hu only h0 hotTrue (ho d) short
+    exact bad (double_folded_projection S d C o t y (by omega) a b ta ab aReads (Or.inr ⟨bReads,hotTrue⟩)
       hlin hg hu ho hl hy short large quota)
-  · exact bad (double_folded_projection S d C o t y (by omega) a b ta gt aReads bReads
-      hlin hg hu ho hl hy short large quota)
+  exact ⟨a,ta,aReads,only,cold⟩
+
+theorem twenty_four_unique_reader : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+    ∃ a : Fin C.gates.length, t<a.val ∧ n+t ∈ (C.gates.get a).inputs ∧
+      ∀ b : Fin C.gates.length, t<b.val → n+t ∈ (C.gates.get b).inputs → b=a := by
+  intro n m S C o t y hn hlin hg hu ho hl hy bad
+  obtain ⟨a,ta,inA,unique,_⟩ := twenty_four_unique_cold_reader n m S C o t y hn hlin hg hu ho hl hy bad
+  exact ⟨a,ta,inA,unique⟩
+
+
+theorem twenty_four_and_reader : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+    ∃ a : Fin C.gates.length, t<a.val ∧ n+t ∈ (C.gates.get a).inputs ∧
+      (∀ b : Fin C.gates.length, t<b.val → n+t ∈ (C.gates.get b).inputs → b=a) ∧
+      (C.gates.get a).op = .and ∧ value C (fun _ : Fin n => false) (n+a.val)=false := by
+  intro n m S C o t y hn hlin hg hu ho hl hy bad
+  obtain ⟨a,ta,inA,unique,cold⟩ := twenty_four_unique_cold_reader n m S C o t y hn hlin hg hu ho hl hy bad
+  have k := (twenty_four_sharp_residual n m S C o t y hn hlin hg hu ho hl hy bad).2.1
+  have h0 := hl (fun _ => false) (by simpa using (show 0<y.card by omega))
+  obtain ⟨op,_⟩ := hg (C.gates.get a) (List.get_mem _ _)
+  refine ⟨a,ta,inA,unique,?_,cold⟩
+  rcases op with hand | hor | hn
+  · exact hand
+  · have ar : n+a.val<n+C.size := Nat.add_lt_add_left a.isLt n
+    replace hor : C.gates[a.val].op = .or := hor
+    have e : (List.map (fun r => if r<n+a.val then value C (fun _ : Fin n => false) r else false)
+        C.gates[a.val].inputs).any id = true := by
+      rw [List.any_eq_true]
+      refine ⟨true,List.mem_map.mpr ⟨n+t,inA,?_⟩,rfl⟩
+      simp only [ite_eq_left (by omega : n+t<n+a.val)]
+      exact h0
+    have base := gate_value C (fun _ : Fin n => false) (n+a.val) (by omega) ar
+    simp only [Nat.add_sub_cancel_left,hor,GateOp.eval] at base
+    exact Bool.noConfusion (cold.symm.trans (base.trans e))
+  · have atSource := hu a hn
+    omega
+
 
 end PEqualNP.Outside.L_meta_997.Small
