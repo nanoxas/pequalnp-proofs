@@ -24,10 +24,19 @@ import PEqualNP.Defs.CircuitLowerBounds
 -- For |y|=3, three_window_bound gives a row-size criterion independent of n.
 -- Folding a direct consumer of the switch improves the projection count in
 -- any dimension. For |y| at least five this gives the bound through n = 7|y|+2.
--- The 23-input case follows from a bound on touching triples. A violation
--- would force their first assigned gates to read the same exceptional wire.
--- Each triple would then contain its common point and a distinct point of y,
--- but there are at most three such points. The unrestricted case is open.
+-- At 23 inputs a hypothetical violation requires five to seven disjoint underpaid rows of
+-- size at least five, covering all twenty outside inputs. Their sizes sum to
+-- five times the number of these rows plus five. A second necessary condition
+-- uses the OR gates charged on the upper window. At least three more than
+-- the refund count of touching triples have exactly two singleton-assigned
+-- gates each, the output and an earlier upper-window OR after the switch.
+-- Every such triple uses the same exceptional wire to obtain one singleton
+-- point. The final OR must get its third point directly from the witness set.
+-- Pairwise linearity permits at most three triples of this form.
+-- In any dimension the crossing count improves the k=3 bound under the
+-- row-size quotas in three_window_packing_bound. At 24 inputs a hypothetical
+-- violation requires the profiles (8,8,8) or (6,7,7,7).
+-- The unrestricted case is open.
 -- This file builds on Apache-2.0 code by contributors to brilliant-hq/pequalnp-proofs.
 -- L_meta_270.lean, restored by ilyasudakov in PR 805, supplies the small-cut counting argument.
 -- L_meta_988.lean, RepoTactics in PR 2015, supplies the sound-wire count on a fixed window.
@@ -6788,5 +6797,924 @@ theorem num_inputs_twenty_three : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n))
     ⟨(Finset.mem_filter.mp hi).2.1,by have h := (Finset.mem_filter.mp hi).2.2.2; omega⟩)
   change 5 ≤ B.card at hB
   omega
+
+end PEqualNP.Outside.L_meta_997.Small
+
+
+namespace PEqualNP.Outside.L_meta_997.Small
+open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
+
+def touchingCredit {n : ℕ} (C : Circuit) (t : ℕ) (y T : Finset (Fin n)) : ℕ :=
+  if Disjoint T y then 0 else ((assigned C T).erase (n+t)).card+1-min y.card T.card
+
+open Classical in
+theorem combined_gate_reserve {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
+    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → (i : ℕ) = t)
+    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
+      value C x (n+t) = true)
+    (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
+    (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
+      C.size + (refunds S C y).card + m))
+    (A : Finset ℕ) (ar : A ⊆ Finset.Ico n (n+C.size)) (az : n+t ∉ A)
+    (ap : ∀ w ∈ A, ∀ i, w ∈ assigned C (S i) → i ∈ underDisjoint C S y ∧ ¬andAt C n w)
+    (af : ∀ w ∈ A, ∀ i ∈ underDisjoint C S y, ¬andAt C n w → S i ⊆ support C w →
+        Heavy.supp C y w ≠ S i) :
+    (refunds S C y).card + (∑ i : Fin m, touchingCredit C t y (S i)) + A.card + 2 ≤
+        ∑ i ∈ underDisjoint C S y, ((S i).card-(y.card+1)) := by
+  classical
+  have h := low_budget_with_gate_set C y t S o hk
+    (Finset.card_pos.mp (by omega)) hg hu hl hy hlin ho (fun i => touchingCredit C t y (S i))
+    (fun i hi => by simp [touchingCredit,hi])
+    (fun i hi => by
+      have c := card_light_erase_switch (S i) C (o i) t hk hg hu (ho i) hl
+      simp only [touchingCredit,ite_eq_right hi]; omega)
+    A ar az ap af (by
+      intro i hi
+      obtain ⟨hi',hd⟩ := Finset.mem_filter.mp hi
+      have small := (Finset.mem_filter.mp hi').2
+      obtain ⟨w,hr,op,l,sig,wz⟩ := terminal_or C y (S i) (o i) t (by omega) hd hg hu (ho i)
+        (hl (fun _ => false) (by simpa using (show 0<y.card by omega))) hy
+      exact ⟨w,hr,wz,op,l,sig⟩)
+  omega
+
+open Classical in
+theorem combined_gate_roles {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
+    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → (i : ℕ) = t)
+    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
+      value C x (n+t) = true)
+    (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
+    (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
+      C.size + (refunds S C y).card + m))
+    :
+    ∃ A F : Finset ℕ, y.card ≤ A.card+1 ∧ (refunds S C y).card + (∑ i : Fin m, touchingCredit C t y (S i)) + F.card + y.card + 1 ≤
+        (∑ i ∈ underDisjoint C S y, ((S i).card-(y.card+1))) ∧ Disjoint A F ∧
+      A ⊆ Finset.Ico n (n+t) ∧ (∀ w ∈ A, support (n:=n) C w=∅ ∧ value C (fun p => decide (p ∈ y)) w=true) ∧
+      ∀ w ∈ Finset.Ico n (n+C.size), w ≠ n+t → w ∉ A → w ∉ F →
+        (∃ i, w ∈ assigned C (S i) ∧ (i ∈ underDisjoint C S y → andAt C n w)) ∨
+        (∃ i ∈ underDisjoint C S y, ¬andAt C n w ∧ S i ⊆ support C w ∧
+          PEqualNP.Outside.L_meta_997_aux.Heavy.supp C y w = S i) := by
+  classical
+  obtain ⟨A,ac,ar,ad⟩ := guard_hot_gates C t y (by omega : 0<y.card) hg hu hl hy
+  let role (w : ℕ) := (∃ i, w ∈ assigned C (S i) ∧ (i ∈ underDisjoint C S y → andAt C n w)) ∨
+    ∃ i ∈ underDisjoint C S y, ¬andAt C n w ∧ S i ⊆ support C w ∧ Heavy.supp C y w=S i
+  let F := (Finset.Ico n (n+C.size)).filter (fun w => w≠n+t ∧ w ∉ A ∧ ¬role w)
+  have sep : Disjoint A F := Finset.disjoint_left.mpr (fun w wa wf => (Finset.mem_filter.mp wf).2.2.1 wa)
+  have hz := hl (fun _ => false) (by simpa using (show 0<y.card by omega))
+  have zr : n+t<n+C.size := by
+    by_contra! h
+    exact Bool.noConfusion ((missing_value C (fun _ : Fin n => false) _ h).symm.trans hz)
+  have cap := combined_gate_reserve S C o t y hk hlin hg hu ho hl hy bad (A ∪ F)
+    (Finset.union_subset (fun w hw => Finset.mem_Ico.mpr
+      ⟨(Finset.mem_Ico.mp (ar hw)).1,(Finset.mem_Ico.mp (ar hw)).2.trans zr⟩) (Finset.filter_subset _ _))
+    (by intro h; rcases Finset.mem_union.mp h with h | h
+        · exact Nat.lt_irrefl _ (Finset.mem_Ico.mp (ar h)).2
+        · exact (Finset.mem_filter.mp h).2.1 rfl)
+    (by
+      intro w hw i wi
+      rcases Finset.mem_union.mp hw with wa | wf
+      · have c := (Finset.mem_filter.mp wi).2.2
+        rw [(ad w wa).1,Finset.card_empty] at c
+        omega
+      · by_contra h
+        apply (Finset.mem_filter.mp wf).2.2.2
+        exact Or.inl ⟨i,wi,fun hd => by by_contra hand; exact h ⟨hd,hand⟩⟩)
+    (by
+      intro w hw i hi op sub eq
+      rcases Finset.mem_union.mp hw with wa | wf
+      · have c := Finset.card_le_card sub
+        rw [(ad w wa).1,Finset.card_empty] at c
+        have sh := (Finset.mem_filter.mp (Finset.mem_filter.mp hi).1).2
+        omega
+      · exact (Finset.mem_filter.mp wf).2.2.2 (Or.inr ⟨i,hi,op,sub,eq⟩))
+  rw [Finset.card_union_of_disjoint sep] at cap
+  refine ⟨A,F,by omega,by omega,sep,ar,ad,?_⟩
+  intro w wr wz wa wf
+  by_contra h
+  exact wf (Finset.mem_filter.mpr ⟨wr,wz,wa,h⟩)
+
+
+open Classical in
+theorem regular_crossing_triples {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
+    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → (i : ℕ) = t)
+    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
+      value C x (n+t) = true)
+    (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
+    (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
+      C.size + (refunds S C y).card + m))
+    :
+    ∃ E : Finset (Fin m), (refunds S C y).card+4 ≤ E.card + (∑ i : Fin m, touchingCredit C t y (S i)) ∧
+      ∀ i ∈ E, ¬ Disjoint (S i) y ∧ (S i).card=3 ∧ ∃ w j,
+        n+t<w ∧ w<o i ∧ assigned C (S i)={w,o i} ∧ Disjoint y (S j) ∧
+        w ∈ highOrGates C y (S j) ∧ (support C w \ S j).Nonempty ∧
+        (Heavy.supp C y w \ S i).Nonempty := by
+  classical
+  let X := Finset.univ.filter (crossingDeficit S C t y)
+  let P (i : Fin m) := (assigned C (S i)).erase (n+t)
+  let rare := X.filter (fun i => 3 ≤ (P i).card)
+  let E := X \ rare
+  let credit (i : Fin m) := touchingCredit C t y (S i)
+  have xcount := three_crossing_rows S C o t y hk hlin hg hu ho hl hy bad
+  change _ ≤ X.card at xcount
+  have sum := Finset.sum_le_sum (s:=rare) (f:=fun _ => 1) (g:=credit) (by
+    intro i hi
+    have h := Finset.mem_filter.mp hi
+    have c := (Finset.mem_filter.mp h.1).2.1
+    simp only [credit,touchingCredit,ite_eq_right c]
+    change 1 ≤ (P i).card + 1 - min y.card (S i).card
+    omega)
+  simp only [Finset.sum_const,smul_eq_mul,mul_one] at sum
+  have hi := Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ rare) (f:=credit) (by intros; omega)
+  have eq := Finset.card_sdiff_add_card_eq_card (show rare ⊆ X from Finset.filter_subset _ _)
+  change E.card+rare.card=X.card at eq
+  refine ⟨E,?_,?_⟩
+  · change (refunds S C y).card + 4 ≤ E.card + ∑ i, credit i
+    omega
+  intro i he
+  obtain ⟨xi,nr⟩ := Finset.mem_sdiff.mp he
+  have xd := (Finset.mem_filter.mp xi).2
+  have small : (P i).card ≤ 2 := by by_contra! h; exact nr (Finset.mem_filter.mpr ⟨xi,h⟩)
+  obtain ⟨large,non,forallCross⟩ := three_crossing_gate S C o t y hk hlin hg hu ho hl hy i xd
+  obtain ⟨w,hw⟩ := non
+  obtain ⟨after,j,dis,hj,lost,gained⟩ := forallCross w hw
+  obtain ⟨p,hp⟩ := (show (Heavy.supp C y w \ S i).Nonempty from gained)
+  have znot : n+t ∉ assigned C (S i) := by
+    intro asg
+    have sup : p ∈ support C (n+t) := by
+      apply (mem_support _ _ _).mpr
+      apply hl
+      have e : Finset.univ.filter (fun q : Fin n => decide (q=p)=true)={p} := by ext; simp
+      rw [e,Finset.card_singleton]; omega
+    exact (Finset.mem_sdiff.mp hp).2 ((Finset.mem_filter.mp asg).2.1 sup)
+  have same : P i=assigned C (S i) := Finset.erase_eq_of_notMem znot
+  have paid := crossing_paid S C o t y (by omega) hg hu ho hl hy i xd
+  rw [←same] at paid
+  have three : (S i).card=3 := by omega
+  have count : (P i).card=2 := by omega
+  obtain ⟨ne,win⟩ := Finset.mem_erase.mp hw
+  have ass := (Finset.mem_erase.mp win).2
+  have before : w<o i := by
+    by_contra! h
+    have hr := Finset.mem_Ico.mp (Finset.mem_filter.mp ass).1
+    have idx : w-n<C.gates.length := by have up := hr.2; change w<n+C.gates.length at up; omega
+    have bound := before_output_charge C (S i) (o i) t w ⟨w-n,idx⟩ (by simp; omega)
+      (lt_of_le_of_ne h ne.symm) after y.card hg hu (ho i) hl (by omega)
+    have cut := Finset.ssubset_iff_of_subset (Finset.filter_subset (· < w) (P i)) |>.mpr
+      ⟨w,win,fun hm => Nat.lt_irrefl _ (Finset.mem_filter.mp hm).2⟩
+    have smaller := Finset.card_lt_card cut
+    change min y.card (S i).card ≤ ((P i).filter (· < w)).card+1 at bound
+    omega
+  have oeq : support C (o i)=S i := by ext q; exact (mem_support C (o i) q).trans (PEqualNP.Outside.L_meta_997_refund.output_singleton S C o ho i q)
+  have op : o i ∈ assigned C (S i) := Finset.mem_filter.mpr
+    ⟨Finset.mem_Ico.mpr (support_gate C (o i) (by rw [oeq,three]; decide)),oeq ▸ Finset.Subset.rfl,by rw [oeq,three]; decide⟩
+  have all : assigned C (S i) = {w,o i} := by
+    symm
+    apply Finset.eq_of_subset_of_card_le (Finset.insert_subset ass (Finset.singleton_subset_iff.mpr op))
+    rw [←same,count]
+    simp [ne]
+  exact ⟨xd.1,three,w,j,after,before,all,dis,hj,lost,gained⟩
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
+
+lemma crossing_parents_general {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o t w : ℕ) (y : Finset (Fin n)) (i j : Fin m) (A F : Finset ℕ)
+    (hT : (S i).card = 3)
+    (hA : ∀ r ∈ A, value C (fun p => decide (p ∈ y)) r = true)
+    (roles : ∀ r ∈ Finset.Ico n (n+C.size), r ≠ n+t → r ∉ A → r ∉ F →
+        (∃ a, r ∈ assigned C (S a) ∧ (a ∈ underDisjoint C S y → andAt C n r)) ∨
+        (∃ a ∈ underDisjoint C S y, ¬andAt C n r ∧ S a ⊆ support C r ∧ Heavy.supp C y r = S a))
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ a : Fin C.gates.length, (C.gates.get a).op = .not → (a : ℕ) = t)
+    (hsw : ∀ p : Fin n, p ∈ support C (n+t))
+    (hwa : n+t < w) (hwo : w < o) (hasg : assigned C (S i) = {w,o})
+    (hw : w ∈ highOrGates C y (S j)) (hout : (support C w \ S j).Nonempty) :
+    ∃ (u : ℕ) (p r : Fin n), u ∈ F ∧ p ≠ r ∧ support C u = {p} ∧
+      value C (fun a => decide (a ∈ y)) u = false ∧ support C w = {p,r} := by
+  classical
+  have hwi : w ∈ assigned C (S i) := by simp [hasg]
+  obtain ⟨_, hws, hwc⟩ := Finset.mem_filter.mp hwi
+  obtain ⟨hhigh, hnand⟩ := Finset.mem_filter.mp hw
+  obtain ⟨hrange,hupper,_,hcold⟩ := Finset.mem_filter.mp hhigh
+  obtain ⟨hn,hnw⟩ := Finset.mem_Ico.mp hrange
+  have hidx : w-n < C.gates.length := by change w<n+C.gates.length at hnw; omega
+  let g := C.gates[w-n]
+  obtain ⟨hop, hlen⟩ := hg g (List.getElem_mem _)
+  have hor : g.op = .or := by
+    rcases hop with ha | ho | hz
+    · exact (hnand (by simp [andAt, g, hidx, ha])).elim
+    · exact ho
+    · have e := hu ⟨w-n,hidx⟩ hz
+      change w-n=t at e
+      omega
+  have read (x : Fin n → Bool) :
+      value C x w = true ↔ ∃ v ∈ g.inputs, v < w ∧ value C x v = true := by
+    rw [gate_value C x w hn hnw]
+    change g.op.eval (g.inputs.map (fun v => if v<w then value C x v else false)) = true ↔ _
+    simp [hor, GateOp.eval]
+  have parentSub (v : ℕ) (_hv : v ∈ g.inputs) (hv' : v < w) : support (n:=n) C v ⊆ support C w := by
+    intro p hp
+    exact (mem_support C w p).mpr ((read _).mpr ⟨v,_hv,hv',(mem_support C v p).mp hp⟩)
+  have parentCold (v : ℕ) (hv : v ∈ g.inputs) (hv' : v < w) :
+      value C (fun a => decide (a ∈ y)) v = false := by
+    apply Bool.eq_false_iff.mpr
+    intro hot
+    have won := (read _).mpr ⟨v,hv,hv',hot⟩
+    rw [hcold] at won
+    contradiction
+  have parentCard (v : ℕ) (hv : v ∈ g.inputs) (hv' : v < w) :
+      (support (n:=n) C v).card ≤ 1 := by
+    by_contra! big
+    have ass : v ∈ assigned C (S i) :=
+      Finset.mem_filter.mpr ⟨Finset.mem_Ico.mpr (support_gate C v big), (parentSub v hv hv').trans hws, big⟩
+    rw [hasg] at ass
+    rcases (by simpa using ass : v=w ∨ v=o) with e | e <;> omega
+  have parentExc (v : ℕ) (hv : v ∈ g.inputs) (hv' : v < w) (hnv : n ≤ v) : v ∈ F := by
+    by_contra hf
+    have ha : v ∉ A := by
+      intro ha
+      have e := hA v ha
+      rw [parentCold v hv hv'] at e
+      contradiction
+    have hc := parentCard v hv hv'
+    have hz : v ≠ n+t := by
+      intro eq
+      have ht : 3 ≤ n := by simpa [hT] using (Finset.card_le_univ (S i))
+      have hcu : (support (n:=n) C v).card = n := by
+        rw [eq, Finset.eq_univ_of_forall hsw]
+        simp
+      omega
+    rcases roles v (Finset.mem_Ico.mpr ⟨hnv, by omega⟩) hz ha hf with ⟨a,has,_⟩ | ⟨a,ha',_,hsa,_⟩
+    · have big := (Finset.mem_filter.mp has).2.2
+      omega
+    · have lt := (Finset.mem_filter.mp (Finset.mem_filter.mp ha').1).2
+      have le := Finset.card_le_card hsa
+      omega
+  obtain ⟨q,hq⟩ := hout
+  obtain ⟨u,hug,huw,huq⟩ := (read _).mp ((mem_support C w q).mp (Finset.mem_sdiff.mp hq).1)
+  have hnu : n ≤ u := by
+    by_contra! hun
+    let raw : Fin n := ⟨u,hun⟩
+    have eq : raw=q := by
+      change value C (fun p => decide (p=q)) raw = true at huq
+      simpa [input_value] using huq
+    have up : value C (fun p => decide (p ∈ y ∨ p=q)) u = true := by
+      change value C (fun p => decide (p ∈ y ∨ p=q)) raw = true
+      simp [input_value,eq]
+    have hin := hupper ((Heavy.mem_supp C y w q).mpr ((read _).mpr ⟨u,hug,huw,up⟩))
+    exact (Finset.mem_sdiff.mp hq).2 hin
+  have huF := parentExc u hug huw hnu
+  have huSupp : support C u = {q} := by
+    symm
+    apply Finset.eq_of_subset_of_card_le (Finset.singleton_subset_iff.mpr ((mem_support C u q).mpr huq))
+    simpa using parentCard u hug huw
+  have less : ({q} : Finset (Fin n)).card < (support (n:=n) C w).card := by simp; omega
+  obtain ⟨r,hrw,hrq⟩ := Finset.exists_mem_notMem_of_card_lt_card less
+  obtain ⟨v,hvg,hvw,hvr⟩ := (read _).mp ((mem_support C w r).mp hrw)
+  have hvu : v ≠ u := by
+    intro e
+    exact hrq (huSupp ▸ (mem_support C u r).mpr (e ▸ hvr))
+  have hrs : support C v = {r} := by
+    symm
+    apply Finset.eq_of_subset_of_card_le (Finset.singleton_subset_iff.mpr ((mem_support C v r).mpr hvr))
+    simpa using parentCard v hvg hvw
+  have hpair : ∀ b ∈ g.inputs, b=u ∨ b=v := by
+    intro b hb
+    have sub : ({u,v,b} : Finset ℕ) ⊆ g.inputs.toFinset := by
+      refine Finset.insert_subset (List.mem_toFinset.mpr hug)
+        (Finset.insert_subset (List.mem_toFinset.mpr hvg)
+          (Finset.singleton_subset_iff.mpr (List.mem_toFinset.mpr hb)))
+    have cap := (Finset.card_le_card sub).trans ((List.toFinset_card_le g.inputs).trans hlen)
+    by_contra! h
+    rw [Finset.card_insert_of_notMem, Finset.card_insert_of_notMem, Finset.card_singleton] at cap
+    · omega
+    · simpa using Ne.symm h.2
+    · simp [hvu.symm, h.1.symm]
+  refine ⟨u,q,r,huF,by simpa [eq_comm] using hrq,huSupp,parentCold u hug huw,?_⟩
+  ext a
+  rw [mem_support, read]
+  constructor
+  · rintro ⟨b,hb,bl,hba⟩
+    rcases hpair b hb with e | e
+    · subst b
+      have h : a ∈ support C u := (mem_support C u a).mpr hba
+      rw [huSupp] at h
+      exact Finset.mem_insert.mpr (Or.inl (Finset.mem_singleton.mp h))
+    · subst b
+      have h : a ∈ support C v := (mem_support C v a).mpr hba
+      rw [hrs] at h
+      exact Finset.mem_insert_of_mem h
+  · intro h
+    rcases Finset.mem_insert.mp h with eq | hr
+    · subst a
+      exact ⟨u,hug,huw,huq⟩
+    · simp only [Finset.mem_singleton] at hr
+      subst a
+      exact ⟨v,hvg,hvw,hvr⟩
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
+
+lemma crossing_output_roles {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin n))
+    (i : Fin m) (y : Finset (Fin n)) (t w o : ℕ) (A F : Finset ℕ) (p r : Fin n)
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → (i : ℕ) = t)
+    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hout : ∀ x : Fin n → Bool, value C x o = decide (∃ q ∈ S i, x q = true))
+    (htouch : ¬Disjoint (S i) y) (hthree : (S i).card = 3)
+    (hw_before : n+t < w ∧ w < o)
+    (hassigned : assigned C (S i) = {w,o})
+    (hsw : support C w = {p,r}) (hpr : p ≠ r)
+    (hw_cold : value C (fun q => decide (q ∈ y)) w = false)
+    (hz_cold : value C (fun q => decide (q ∈ y)) (n+t) = false)
+    (hz_full : ∀ q : Fin n, q ∈ support C (n+t))
+    (hA : ∀ v ∈ A, support (n:=n) C v = ∅)
+    (hroles : ∀ v ∈ Finset.Ico n (n+C.size), v ≠ n+t → v ∉ A → v ∉ F →
+      (∃ j, v ∈ assigned C (S j) ∧ (j ∈ underDisjoint C S y → andAt C n v)) ∨
+      (∃ j ∈ underDisjoint C S y, ¬andAt C n v ∧ S j ⊆ support C v ∧ Heavy.supp C y v = S j)) :
+    (∃ a ∈ F, ∃ b ∈ F, a ≠ b ∧ value C (fun q => decide (q ∈ y)) a = true ∧
+      value C (fun q => decide (q ∈ y)) b = true ∧ S i = support C a ∩ support C b) ∨
+    (∃ s ∈ S i, s ≠ p ∧ (s ∈ y ∨ ∃ v ∈ F, support C v = {s} ∧
+      value C (fun q => decide (q ∈ y)) v = true)) := by
+  classical
+  have hso : support C o = S i := by ext q; rw [mem_support,hout]; simp
+  have hww : w ∈ assigned C (S i) := hassigned.symm ▸ Finset.mem_insert_self _ _
+  have hws : support C w ⊆ S i := (Finset.mem_filter.mp hww).2.1
+  have hp : p ∈ S i := hws (hsw.symm ▸ Finset.mem_insert_self _ _)
+  have hr : r ∈ S i := hws (hsw.symm ▸ Finset.mem_insert_of_mem (Finset.mem_singleton_self _))
+  obtain ⟨q,hqi,hqy⟩ := Finset.not_disjoint_iff.mp htouch
+  let χ : Fin n → Bool := fun q => decide (q ∈ y)
+  have hot : value C χ o = true := by
+    rw [hout]; exact decide_eq_true ⟨q,hqi,decide_eq_true hqy⟩
+  obtain ⟨hon,horange⟩ := support_gate C o (by rw [hso,hthree]; decide)
+  have hidx : o-n < C.gates.length := by change o<n+C.gates.length at horange; omega
+  let g := C.gates[o-n]
+  obtain ⟨hop,hlen⟩ := hg g (List.getElem_mem _)
+  let read (x : Fin n → Bool) (v : ℕ) := if v < o then value C x v else false
+  have eqv (x : Fin n → Bool) : value C x o = g.op.eval (g.inputs.map (read x)) :=
+    gate_value C x o hon horange
+  have to_w (v : ℕ) (less : v < o) (sub : support C v ⊆ S i)
+      (large : 2 ≤ (support (n:=n) C v).card) : v = w := by
+    have ass : v ∈ assigned C (S i) :=
+      Finset.mem_filter.mpr ⟨Finset.mem_Ico.mpr (support_gate C v large),sub,large⟩
+    rw [hassigned] at ass
+    simpa [show v ≠ o by omega] using ass
+  have terminal_cold (v : ℕ) (j : Fin m) (hj : j ∈ underDisjoint C S y)
+      (signature : Heavy.supp C y v = S j) : value C χ v ≠ true := by
+    intro hv
+    have hd : Disjoint (S j) y := (Finset.mem_filter.mp hj).2
+    have e : (fun z : Fin n => decide (z ∈ y ∨ z = q)) = χ := by
+      funext z
+      by_cases hz : z = q
+      · subst z; simp [χ,hqy]
+      · simp [χ,hz]
+    exact (Finset.disjoint_left.mp hd) (signature ▸ (Heavy.mem_supp C y v q).mpr (e.symm ▸ hv)) hqy
+  rcases hop with hand | hor | hnot
+  · have hall (x : Fin n → Bool) : value C x o = true ↔ ∀ v ∈ g.inputs, read x v = true := by
+      rw [eqv x,hand]; simp [GateOp.eval]
+    have hzero : value C (fun _ : Fin n => false) o = false := by rw [hout]; simp
+    have hex : g.inputs ≠ [] := by
+      intro hnil
+      rw [eqv _, hnil, hand] at hzero
+      simp [GateOp.eval] at hzero
+    have gates_in_F (v : ℕ) (hv : v ∈ g.inputs) :
+        v ∈ F ∧ v < o ∧ value C χ v = true ∧ S i ⊆ support C v := by
+      have vhot := (hall χ).mp hot v hv
+      have vlt : v < o := by by_contra h; simp [read,h] at vhot
+      have vhot' : value C χ v = true := by simpa [read,vlt] using vhot
+      have vsub : S i ⊆ support C v := by
+        intro a ha
+        apply (mem_support _ _ _).mpr
+        have good := (mem_support C o a).mp (hso.symm ▸ ha)
+        simpa [read,vlt] using (hall _).mp good v hv
+      refine ⟨?_,vlt,vhot',vsub⟩
+      by_contra vF
+      have vl := Finset.card_le_card vsub
+      have vlarge : 2 ≤ (support (n:=n) C v).card := by omega
+      have vrange := Finset.mem_Ico.mpr (support_gate C v vlarge)
+      have vne : v ≠ n+t := by
+        intro e; exact Bool.noConfusion (hz_cold.symm.trans (e ▸ vhot'))
+      have vA : v ∉ A := by
+        intro h; rw [hA _ h] at vlarge; simp at vlarge
+      rcases hroles v vrange vne vA vF with ⟨j,hj,_⟩ | ⟨j,hj,_,_,hsg⟩
+      · have vsub' : support C v ⊆ S j := (Finset.mem_filter.mp hj).2.1
+        have j_eq : i = j := by
+          by_contra h
+          have hinc : S i ⊆ S i ∩ S j :=
+            fun a ha => Finset.mem_inter.mpr ⟨ha,vsub' (vsub ha)⟩
+          have hcard := (Finset.card_le_card hinc).trans (hlin i j h)
+          omega
+        subst j
+        have ve := to_w v vlt vsub' vlarge
+        exact Bool.noConfusion (hw_cold.symm.trans (ve ▸ vhot'))
+      · exact terminal_cold v j hj hsg vhot'
+    left
+    obtain ⟨a,ha⟩ := List.exists_mem_of_ne_nil _ hex
+    obtain ⟨aF,ao,ahot,asub⟩ := gates_in_F a ha
+    have hdist : ∃ b ∈ g.inputs, a ≠ b := by
+      by_contra! hsame
+      have eq : support C a = S i := by
+        refine Finset.Subset.antisymm ?_ asub
+        intro q hq
+        rw [←hso,mem_support,hall]
+        intro b hb
+        have e := hsame b hb
+        rw [←e]
+        simpa [read,ao] using (mem_support C a q).mp hq
+      have v := to_w a ao eq.le (by rw [eq,hthree]; decide)
+      exact Bool.noConfusion (hw_cold.symm.trans (v ▸ ahot))
+    obtain ⟨b,hb,hab⟩ := hdist
+    obtain ⟨bF,bo,bhot,bsub⟩ := gates_in_F b hb
+    let P := g.inputs.toFinset
+    have Pbound : P.card ≤ 2 := (List.toFinset_card_le g.inputs).trans hlen
+    have pair : P = {a,b} := by
+      symm
+      apply Finset.eq_of_subset_of_card_le
+      · intro v hv
+        simp only [Finset.mem_insert,Finset.mem_singleton] at hv
+        rcases hv with rfl|rfl
+        · simpa [P] using ha
+        · simpa [P] using hb
+      · simpa [Finset.card_pair hab] using Pbound
+    refine ⟨a,aF,b,bF,hab,ahot,bhot,Finset.Subset.antisymm ?_ ?_⟩
+    · intro q hq; exact Finset.mem_inter.mpr ⟨asub hq,bsub hq⟩
+    · intro q hq
+      obtain ⟨hqa,hqb⟩ := Finset.mem_inter.mp hq
+      rw [←hso,mem_support,hall]
+      intro v hv
+      have vP : v ∈ P := by simpa [P] using hv
+      rw [pair] at vP
+      simp only [Finset.mem_insert,Finset.mem_singleton] at vP
+      rcases vP with e|e
+      · rw [e]; simpa [read,ao] using (mem_support C a q).mp hqa
+      · rw [e]; simpa [read,bo] using (mem_support C b q).mp hqb
+  · have hany (x : Fin n → Bool) : value C x o = true ↔ ∃ v ∈ g.inputs, read x v = true := by
+      rw [eqv x,hor]; simp [GateOp.eval]
+    let P := g.inputs.toFinset.filter (· < o)
+    have Pbound : P.card ≤ 2 := (Finset.card_filter_le _ _).trans ((List.toFinset_card_le g.inputs).trans hlen)
+    have Pmem {v} : v ∈ P ↔ v ∈ g.inputs ∧ v < o := by simp [P]
+    have support_parent {v} (hv : v ∈ P) : support C v ⊆ S i := by
+      intro a ha
+      have data := Pmem.mp hv
+      rw [←hso,mem_support,hany]
+      exact ⟨v,data.1, by simpa [read,data.2] using (mem_support C v a).mp ha⟩
+    have covered (a) (ha : a ∈ S i) : ∃ v ∈ P, a ∈ support C v := by
+      obtain ⟨v,hv,honv⟩ := (hany _).mp ((mem_support C o a).mp (hso.symm ▸ ha))
+      have vo : v<o := by by_contra h; simp [read,h] at honv
+      exact ⟨v,Pmem.mpr ⟨hv,vo⟩,(mem_support _ _ _).mpr (by simpa [read,vo] using honv)⟩
+    have sc : ({p,r} : Finset (Fin n)).card < (S i).card := by rw [Finset.card_pair hpr,hthree]; decide
+    obtain ⟨s,hsi,hsout⟩ := Finset.exists_mem_notMem_of_card_lt_card sc
+    have hsp : s ≠ p := fun e => hsout (e ▸ Finset.mem_insert_self _ _)
+    have hsr : s ≠ r := fun e => hsout (e ▸ Finset.mem_insert_of_mem (Finset.mem_singleton_self _))
+    obtain ⟨v,hv,hsv⟩ := covered s hsi
+    have hvw : v ≠ w := by intro e; exact hsout (hsw ▸ e ▸ hsv)
+    have vlt := (Pmem.mp hv).2
+    have vsmall : (support (n:=n) C v).card ≤ 1 := by
+      by_contra! big; exact hvw (to_w v vlt (support_parent hv) (by omega))
+    have vne : v ≠ n+t := by
+      intro e
+      have inc : S i ⊆ support C v := fun a _ => e.symm ▸ hz_full a
+      have := Finset.card_le_card inc
+      omega
+    have vA : v ∉ A := by intro h; rw [hA _ h] at hsv; simp at hsv
+    have vraw : support C v = {s} :=
+      Finset.eq_of_subset_of_card_le (Finset.singleton_subset_iff.mpr hsv) (by simpa using vsmall) |>.symm
+    obtain ⟨vp,hvp,hpvp⟩ := covered p hp
+    obtain ⟨vr,hvr,hrvr⟩ := covered r hr
+    have hpn : vp ≠ v := by
+      intro e; rw [e,vraw] at hpvp
+      exact hsp (Finset.mem_singleton.mp hpvp).symm
+    have hrn : vr ≠ v := by
+      intro e; rw [e,vraw] at hrvr
+      exact hsr (Finset.mem_singleton.mp hrvr).symm
+    have hvpr : vp = vr := by
+      by_contra h
+      have sub : ({vp,vr,v} : Finset ℕ) ⊆ P := by
+        intro a ha
+        simp only [Finset.mem_insert,Finset.mem_singleton] at ha
+        rcases ha with rfl|rfl|rfl
+        exacts [hvp,hvr,hv]
+      have hc := Finset.card_le_card sub
+      rw [Finset.card_triple_eq_three_iff.mpr ⟨h,hpn,hrn⟩] at hc
+      omega
+    have hbig : 2 ≤ (support (n:=n) C vp).card := by
+      have sub : ({p,r} : Finset (Fin n)) ⊆ support C vp := by
+        intro a ha
+        simp only [Finset.mem_insert,Finset.mem_singleton] at ha
+        rcases ha with rfl|rfl
+        exacts [hpvp,hvpr.symm ▸ hrvr]
+      simpa [Finset.card_pair hpr] using Finset.card_le_card sub
+    have vpw := to_w vp (Pmem.mp hvp).2 (support_parent hvp) hbig
+    have hwm : w ∈ P := vpw ▸ hvp
+    have pair : P = {w,v} := by
+      symm
+      apply Finset.eq_of_subset_of_card_le
+      · intro a ha
+        simp only [Finset.mem_insert,Finset.mem_singleton] at ha
+        rcases ha with rfl|rfl
+        exacts [hwm,hv]
+      · simpa [Finset.card_pair hvw.symm] using Pbound
+    obtain ⟨a,ha,hya⟩ := (hany χ).mp hot
+    have ha_lt : a < o := by by_contra h; simp [read,h] at hya
+    have ha_support : a ∈ P := Pmem.mpr ⟨ha,ha_lt⟩
+    rw [pair] at ha_support
+    simp only [Finset.mem_insert,Finset.mem_singleton] at ha_support
+    have hya' : value C χ a = true := by simpa [read,ha_lt] using hya
+    rcases ha_support with e|e
+    · exact Bool.noConfusion (hw_cold.symm.trans (e ▸ hya'))
+    · rw [e] at hya'
+      right
+      refine ⟨s,hsi,hsp,?_⟩
+      by_cases hf : v ∈ F
+      · exact Or.inr ⟨v,hf,vraw,hya'⟩
+      · have vinput : v < n := by
+          by_contra! hlo
+          have vrange : v ∈ Finset.Ico n (n+C.size) :=
+            Finset.mem_Ico.mpr ⟨hlo,vlt.trans horange⟩
+          rcases hroles v vrange vne vA hf with ⟨j,hj,_⟩ | ⟨j,hj,_,hsub,_⟩
+          · have big := (Finset.mem_filter.mp hj).2.2
+            omega
+          · have a := (Finset.mem_filter.mp (Finset.mem_filter.mp hj).1).2
+            have b := Finset.card_le_card hsub
+            omega
+        let a : Fin n := ⟨v,vinput⟩
+        have on : value C (fun z : Fin n => decide (z = s)) a = true := (mem_support C v s).mp hsv
+        rw [input_value] at on
+        have vi : v = (s : ℕ) := congrArg Fin.val (of_decide_eq_true on)
+        rw [vi,input_value] at hya'
+        exact Or.inl (of_decide_eq_true hya')
+  · have e := hu ⟨o-n,hidx⟩ hnot
+    change o-n=t at e
+    omega
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+
+lemma role_pair_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (E : Finset (Fin m))
+    (P Y : Finset (Fin n)) (H : Finset ℕ) (σ : ℕ → Finset (Fin n))
+    (hthree : ∀ i ∈ E, (S i).card = 3)
+    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (roles : ∀ i ∈ E,
+      (∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
+      ∃ p ∈ P, ∃ s ∈ Y, s ≠ p ∧ p ∈ S i ∧ s ∈ S i) :
+    E.card ≤ H.card.choose 2 + P.card * Y.card := by
+  classical
+  let A := E.filter (fun i => ∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b)
+  let O := E \ A
+  let intersection (K : Finset ℕ) := Finset.univ.filter (fun z : Fin n => ∀ a ∈ K, z ∈ σ a)
+  have acases (i : A) : ∃ K ∈ H.powersetCard 2, S i.val = intersection K := by
+    have hi := (Finset.mem_filter.mp i.property).2
+    obtain ⟨a,ha,b,hb,hab,hs⟩ := hi
+    refine ⟨{a,b},Finset.mem_powersetCard.mpr ⟨?_,Finset.card_pair hab⟩,?_⟩
+    · intro z hz
+      have hz' : z = a ∨ z = b := by simpa using hz
+      rcases hz' with rfl|rfl
+      exacts [ha,hb]
+    · rw [hs]
+      ext z
+      simp [intersection]
+  choose a ah asig using acases
+  have ainj : Function.Injective a := by
+    intro i j eq
+    by_contra ne
+    have ne' : i.val ≠ j.val := fun h => ne (Subtype.ext h)
+    have h := hlin i.val j.val ne'
+    have hs : S i.val = S j.val := by rw [asig i,asig j,eq]
+    rw [←hs,Finset.inter_self,hthree i.val (Finset.mem_filter.mp i.property).1] at h
+    omega
+  let af : A → H.powersetCard 2 := fun i => ⟨a i,ah i⟩
+  have asz : A.card ≤ H.card.choose 2 := by
+    have he : Function.Injective af := fun _ _ h => ainj (congrArg Subtype.val h)
+    simpa using Fintype.card_le_of_injective af he
+  have ocases (i : O) : ∃ p ∈ P, ∃ s ∈ Y, s ≠ p ∧ p ∈ S i.val ∧ s ∈ S i.val := by
+    have hi := Finset.mem_sdiff.mp i.property
+    rcases roles i.val hi.1 with ar|orr
+    · exact (hi.2 (Finset.mem_filter.mpr ⟨hi.1,ar⟩)).elim
+    · exact orr
+  choose p hp s hs hne hP hS using ocases
+  let ofn : O → P × Y := fun i => (⟨p i,hp i⟩,⟨s i,hs i⟩)
+  have oinj : Function.Injective ofn := by
+    intro i j eq
+    by_contra ne
+    have ne' : i.val ≠ j.val := fun h => ne (Subtype.ext h)
+    have h := hlin i.val j.val ne'
+    have ep : p i = p j := congrArg (fun w : P × Y => w.1.val) eq
+    have es : s i = s j := congrArg (fun w : P × Y => w.2.val) eq
+    have sub : ({s i,p i} : Finset (Fin n)) ⊆ S i.val ∩ S j.val := by
+      intro q hq
+      simp only [Finset.mem_insert,Finset.mem_singleton] at hq
+      rcases hq with rfl|rfl
+      · exact Finset.mem_inter.mpr ⟨hS i,es.symm ▸ hS j⟩
+      · exact Finset.mem_inter.mpr ⟨hP i,ep.symm ▸ hP j⟩
+    have hc := Finset.card_le_card sub
+    rw [Finset.card_pair (hne i)] at hc
+    omega
+  have osz : O.card ≤ P.card * Y.card := by
+    simpa using Fintype.card_le_of_injective ofn oinj
+  have ecard := Finset.card_sdiff_add_card_eq_card (Finset.filter_subset _ E :
+    A ⊆ E)
+  change O.card + A.card = E.card at ecard
+  omega
+
+
+noncomputable def singletonPoints {n : ℕ} (G : Finset ℕ) (σ : ℕ → Finset (Fin n)) :
+    Finset (Fin n) := by
+  classical
+  exact Finset.univ.filter (fun p => ∃ v ∈ G, σ v = {p})
+
+lemma singleton_points_card {n : ℕ} (G : Finset ℕ) (σ : ℕ → Finset (Fin n)) :
+    (singletonPoints G σ).card ≤ G.card := by
+  classical
+  have w (p : singletonPoints G σ) : ∃ v ∈ G, σ v = {p.val} :=
+    (Finset.mem_filter.mp p.property).2
+  choose v hv hs using w
+  let f : singletonPoints G σ → G := fun p => ⟨v p,hv p⟩
+  have inj : Function.Injective f := by
+    intro p q e
+    apply Subtype.ext
+    have eq : v p = v q := congrArg Subtype.val e
+    have eq' : ({p.val} : Finset (Fin n)) = {q.val} :=
+      (hs p).symm.trans ((congrArg σ eq).trans (hs q))
+    simpa using eq'
+  simpa using Fintype.card_le_of_injective f inj
+
+lemma crossing_exception_packing {n m : ℕ} (S : Fin m → Finset (Fin n))
+    (E : Finset (Fin m)) (y : Finset (Fin n)) (H G : Finset ℕ) (σ : ℕ → Finset (Fin n))
+    (hthree : ∀ i ∈ E, (S i).card = 3)
+    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hroles : ∀ i ∈ E,
+      ∃ u ∈ G, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧
+        ((∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
+          ∃ s ∈ S i, s ≠ p ∧ (s ∈ y ∨ ∃ v ∈ H, σ v = {s}))) :
+    E.card ≤ H.card.choose 2 + G.card * (y.card + H.card) := by
+  classical
+  let P := singletonPoints G σ
+  let Y := y ∪ singletonPoints H σ
+  have packed := role_pair_packing S E P Y H σ hthree hlin (by
+    intro i hi
+    obtain ⟨u,hu,p,hσ,hp,ars | ors⟩ := hroles i hi
+    · exact Or.inl ars
+    · right
+      obtain ⟨s,hs,hneq,hy | ⟨v,hv,hvs⟩⟩ := ors
+      · exact ⟨p,Finset.mem_filter.mpr ⟨Finset.mem_univ _,u,hu,hσ⟩,s,
+          Finset.mem_union.mpr (Or.inl hy),hneq,hp,hs⟩
+      · exact ⟨p,Finset.mem_filter.mpr ⟨Finset.mem_univ _,u,hu,hσ⟩,s,
+          Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨Finset.mem_univ _,v,hv,hvs⟩)),hneq,hp,hs⟩)
+  have cardY : Y.card ≤ y.card + H.card := (Finset.card_union_le _ _).trans
+    (Nat.add_le_add_left (singleton_points_card H σ) y.card)
+  exact packed.trans (Nat.add_le_add_left (Nat.mul_le_mul (singleton_points_card G σ) cardY) _)
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+
+lemma crossing_packing_cutoff {b δ r e w h c : ℕ}
+    (hlarge : (3 ≤ b ∧ δ ≤ 6) ∨ (6 ≤ b ∧ δ ≤ 7))
+    (refunds : b ≤ r)
+    (ledger : r + h + c + 4 + w ≤ b + δ)
+    (crossing : r + 4 ≤ e + w)
+    (packing : e ≤ h.choose 2 + c*(3+h)) : False := by
+  rcases hlarge with ⟨hb,hδ⟩ | ⟨hb,hδ⟩
+  · have hc : c ≤ 2 := by omega
+    have hh : h ≤ 2 := by omega
+    interval_cases h <;> interval_cases c <;> norm_num [Nat.choose] at packing <;> omega
+  · have hc : c ≤ 3 := by omega
+    have hh : h ≤ 3 := by omega
+    interval_cases h <;> interval_cases c <;> norm_num [Nat.choose] at packing <;> omega
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
+
+open Classical in
+theorem three_window_packing_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card = 3)
+    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
+    (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → (i : ℕ) = t)
+    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
+      value C x (n+t) = true)
+    (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
+    (hgap : let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
+      (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
+      (3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨
+      (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7)) :
+    (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
+      C.size + (refunds S C y).card + m := by
+  classical
+  by_contra bad
+  let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
+    (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
+  obtain ⟨E,lower,triples⟩ := regular_crossing_triples S C o t y hk hlin hg hu ho hl hy bad
+  obtain ⟨A,F,_,reserve,_,_,hA,roles⟩ :=
+    combined_gate_roles S C o t y (by omega) hlin hg hu ho hl hy bad
+  let χ : Fin n → Bool := fun p => decide (p ∈ y)
+  let H := F.filter (fun w => value C χ w = true)
+  let G := F.filter (fun w => ¬value C χ w = true)
+  have splitF : H.card + G.card = F.card := Finset.card_filter_add_card_filter_not _
+  have hz (p : Fin n) : p ∈ support C (n+t) := by
+    apply (mem_support C (n+t) p).mpr
+    apply hl
+    have eq : Finset.univ.filter (fun q : Fin n => decide (q=p) = true) = {p} := by ext q; simp
+    rw [eq,Finset.card_singleton,hk]
+    decide
+  have packed := crossing_exception_packing S E y H G (support C)
+    (fun i hi => (triples i hi).2.1) hlin (by
+    intro i hi
+    obtain ⟨meet,three,w,j,after,before,assignedEq,_,high,lowOutside,_⟩ := triples i hi
+    obtain ⟨u,p,r,huF,hpr,hsu,huc,hsw⟩ :=
+      crossing_parents_general S C (o i) t w y i j A F three (fun a ha => (hA a ha).2)
+        roles hg hu hz after before assignedEq high lowOutside
+    have hw : w ∈ assigned C (S i) := by simp [assignedEq]
+    have hp : p ∈ S i := (Finset.mem_filter.mp hw).2.1 (hsw.symm ▸ Finset.mem_insert_self _ _)
+    have cold := (Finset.mem_filter.mp (Finset.mem_filter.mp high).1).2.2.2
+    refine ⟨u,Finset.mem_filter.mpr ⟨huF,by simp [χ,huc]⟩,p,hsu,hp,?_⟩
+    rcases crossing_output_roles C S i y t w (o i) A F p r hg hu hlin (ho i) meet three ⟨after,before⟩
+      assignedEq hsw hpr cold hy hz (fun a ha => (hA a ha).1) roles with andRole | orRole
+    · obtain ⟨a,ha,b,hb,ne,hota,hotb,eq⟩ := andRole
+      exact Or.inl ⟨a,Finset.mem_filter.mpr ⟨ha,hota⟩,b,Finset.mem_filter.mpr ⟨hb,hotb⟩,ne,eq⟩
+    · obtain ⟨s,hs,hne,hs'⟩ := orRole
+      exact Or.inr ⟨s,hs,hne,hs'.imp_right (fun ⟨v,hv,sv,hot⟩ =>
+        ⟨v,Finset.mem_filter.mpr ⟨hv,hot⟩,sv⟩)⟩)
+  rw [hk] at packed reserve
+  let paid := fun i => (assigned C (S i)).card+1 < (S i).card
+  have underEq : underDisjoint C S y = Finset.univ.filter (fun i => Disjoint (S i) y ∧ paid i) := by
+    ext i
+    simp [paid,underDisjoint,underpaid,and_comm]
+  rw [underEq, Finset.sum_filter, excess_identity S y paid 3] at reserve
+  change _ ≤ ∑ i ∈ B, ((S i).card-4) at reserve
+  have mass := Finset.sum_congr (s₁:=B) (f:=fun i => (S i).card) rfl
+    (g:=fun i => 4+((S i).card-4)) (fun i hi => by have h := (Finset.mem_filter.mp hi).2.2.2; omega)
+  rw [Finset.sum_add_distrib,Finset.sum_const,smul_eq_mul] at mass
+  have ref := disjoint_outputs_refunded S C o y B hlin ho (fun i hi =>
+    ⟨(Finset.mem_filter.mp hi).2.1,by have h := (Finset.mem_filter.mp hi).2.2.2; omega⟩)
+  let δ := (∑ i ∈ B, (S i).card)-5*B.card
+  have pos : 5*B.card ≤ ∑ i ∈ B, (S i).card := by
+    have calcBound := Finset.sum_le_sum (s:=B) (f:=fun _ => 5) (g:=fun i => (S i).card)
+      (fun i hi => (Finset.mem_filter.mp hi).2.2.2)
+    rw [Finset.sum_const,smul_eq_mul,Nat.mul_comm] at calcBound
+    exact calcBound
+  change (3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨ (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7) at hgap
+  have large : (3 ≤ B.card ∧ δ ≤ 6) ∨ (6 ≤ B.card ∧ δ ≤ 7) := by
+    dsimp [δ]
+    rcases hgap with a | b
+    · exact Or.inl ⟨a.1,by have := a.2; omega⟩
+    · exact Or.inr ⟨b.1,by have := b.2; omega⟩
+  have charge : (refunds S C y).card + H.card + G.card + 4 +
+      (∑ i, touchingCredit C t y (S i)) ≤ B.card + δ := by
+    dsimp [δ]
+    omega
+  exact crossing_packing_cutoff large ref charge lower packed
+
+end PEqualNP.Outside.L_meta_997.Small
+
+
+namespace PEqualNP.Outside.L_meta_997.Small
+
+lemma twenty_four_row_profiles {n m : ℕ} (S : Fin m → Finset (Fin n))
+    (B : Finset (Fin m)) (V : Finset (Fin n))
+    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hsub : ∀ i ∈ B, S i ⊆ V) (hV : V.card ≤ 21)
+    (hbig : ∀ i ∈ B, 5 ≤ (S i).card)
+    (hstd : 5*B.card+5 ≤ ∑ i ∈ B, (S i).card)
+    (hfold : ∀ i ∈ B, 4*B.card+(S i).card+3 < ∑ j ∈ B, (S j).card)
+    (hcut : ¬ ((3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨
+      (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7))) :
+    B.biUnion S = V ∧
+      ((B.card = 3 ∧ ∀ i ∈ B, (S i).card = 8) ∨
+       (B.card = 4 ∧ (∀ i ∈ B, 6 ≤ (S i).card ∧ (S i).card ≤ 7) ∧
+          (B.filter (fun i => (S i).card = 6)).card = 1)) := by
+  classical
+  have hcard : B.card ≤ 8 := by
+    by_contra! hmany
+    have hcap (I : Finset (Fin m)) (sub : I ⊆ B) (size : I.card=9) :
+        (∑ i ∈ I, (S i).card) ≤ 5*9+4 := by
+      have hi := pair_incidence S I V (fun i hi => hsub i (sub hi)) hlin
+      rw [size] at hi
+      norm_num [Nat.choose] at hi ⊢
+      omega
+    have hsur := five_row_surplus S B 9 (by decide) hmany hbig hcap
+    omega
+  have nonempty : B.Nonempty := by
+    by_contra h
+    rw [Finset.not_nonempty_iff_eq_empty.mp h] at hstd
+    simp at hstd
+  obtain ⟨d,hd,hmax⟩ := B.exists_max_image (fun i => (S i).card) nonempty
+  have fst := hfold d hd
+  have mx := Finset.sum_le_sum (s:=B) hmax
+  simp only [Finset.sum_const,smul_eq_mul] at mx
+  have hU : B.biUnion S ⊆ V := by
+    intro p hp
+    obtain ⟨i,hi,hep⟩ := Finset.mem_biUnion.mp hp
+    exact hsub i hi hep
+  have hsU := Finset.card_le_card hU
+  have un := line_union S hlin B
+  have pair := pair_incidence S B V hsub hlin
+  have hpos := Finset.card_pos.mpr nonempty
+  have profile : (B.card=3 ∧ (∑ i ∈ B, (S i).card)=24 ∨
+      B.card=4 ∧ (∑ i ∈ B, (S i).card)=27) ∧ (B.biUnion S).card=21 := by
+    generalize heq : B.card = b at *
+    interval_cases b <;> norm_num [Nat.choose] at * <;> omega
+  have Ueq : B.biUnion S = V := Finset.eq_of_subset_of_card_le hU (by omega)
+  refine ⟨Ueq,?_⟩
+  obtain ⟨cas | cas,_⟩ := profile
+  · obtain ⟨bc,sc⟩ := cas
+    left
+    refine ⟨bc,fun i hi => ?_⟩
+    have sizes (j) (hj : j ∈ B) : (S j).card ≤ 8 := by have h := hfold j hj; omega
+    have er := Finset.card_erase_of_mem hi
+    have s := Finset.sum_le_sum (s:=B.erase i) (g:=fun _ => 8)
+      (fun a ha => sizes a (Finset.mem_of_mem_erase ha))
+    simp only [Finset.sum_const,smul_eq_mul] at s
+    rw [er,bc] at s
+    have cut := Finset.sum_erase_add B (fun j => (S j).card) hi
+    have si := sizes i hi
+    omega
+  · obtain ⟨bc,sc⟩ := cas
+    right
+    have sizes (j) (hj : j ∈ B) : (S j).card ≤ 7 := by have h := hfold j hj; omega
+    have both (i) (hi : i ∈ B) : 6 ≤ (S i).card ∧ (S i).card ≤ 7 := by
+      have er := Finset.card_erase_of_mem hi
+      have s := Finset.sum_le_sum (s:=B.erase i) (g:=fun _ => 7)
+        (fun a ha => sizes a (Finset.mem_of_mem_erase ha))
+      simp only [Finset.sum_const,smul_eq_mul] at s
+      rw [er,bc] at s
+      have cut := Finset.sum_erase_add B (fun j => (S j).card) hi
+      exact ⟨by omega,sizes i hi⟩
+    refine ⟨bc,both,?_⟩
+    have per := Finset.sum_congr (s₁:=B) rfl
+      (g:=fun i => 7) (f:=fun i => (S i).card + if (S i).card=6 then 1 else 0)
+      (fun i hi => by have := both i hi; split <;> omega)
+    rw [Finset.sum_add_distrib,Finset.sum_const,smul_eq_mul,bc,sc] at per
+    rw [←Finset.sum_filter,Finset.sum_const,smul_eq_mul,Nat.mul_one] at per
+    omega
+
+end PEqualNP.Outside.L_meta_997.Small
+
+namespace PEqualNP.Outside.L_meta_997.Small
+open PEqualNP.CircuitLowerBounds PEqualNP.Outside.L_meta_997.Light PEqualNP.Outside.L_meta_997_aux
+
+theorem twenty_four_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (∀ g ∈ C.gates, (g.op = PEqualNP.CircuitLowerBounds.GateOp.and ∨ g.op = PEqualNP.CircuitLowerBounds.GateOp.or ∨ g.op = PEqualNP.CircuitLowerBounds.GateOp.not) ∧ g.inputs.length ≤ 2) → (∀ i : Fin C.gates.length, (C.gates.get i).op = PEqualNP.CircuitLowerBounds.GateOp.not → (i : ℕ) = t) → (∀ (i : Fin m) (x : Fin n → Bool), (C.wires (List.ofFn x)).getD (o i) false = decide (∃ p ∈ S i, x p = true)) → (∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card → (C.wires (List.ofFn x)).getD (n + t) false = true) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (Finset.univ.filter (fun g : Fin C.gates.length => (∃ i : Fin m, ∀ p : Fin n, (C.wires (List.ofFn (fun v : Fin n => decide (v = p)))).getD (n + g) false = true ↔ p ∈ S i) ∧ (∃ i : Fin m, Disjoint (S i) y ∧ ∀ p : Fin n, p ∉ y → ((C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y ∨ v = p)))).getD (n + g) false = true ↔ p ∈ S i)))).card + m) →
+    let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
+      (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
+    n=24 ∧ y.card=3 ∧ B.biUnion S = Finset.univ \ y ∧
+      ((B.card = 3 ∧ ∀ i ∈ B, (S i).card = 8) ∨
+       (B.card = 4 ∧ (∀ i ∈ B, 6 ≤ (S i).card ∧ (S i).card ≤ 7) ∧
+          (B.filter (fun i => (S i).card = 6)).card = 1)) := by
+  classical
+  intro n m S C o t y hn hlin hg hu ho hl hy bad
+  have n24 : n=24 := by
+    by_contra h
+    exact bad (num_inputs_twenty_three n m S C o t y (by omega) hlin hg hu ho hl hy)
+  have hk : y.card=3 := by
+    by_contra h
+    exact bad (size_window_seven n m S C o t y (by omega) hlin hg hu ho hl hy)
+  let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
+    (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
+  let V := Finset.univ \ y
+  have uc : V.card ≤ 21 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk,n24]
+  have sub (i) (hi : i ∈ B) : S i ⊆ V := by
+    intro p hp
+    exact Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp (Finset.mem_filter.mp hi).2.1 hp⟩
+  have big (i) (hi : i ∈ B) : 5 ≤ (S i).card := (Finset.mem_filter.mp hi).2.2.2
+  have ordinary : 5*B.card+5 ≤ ∑ i ∈ B, (S i).card := by
+    by_contra! h
+    apply bad (three_window_bound n m S C o t y ⟨hk,?_⟩ hlin hg hu ho hl hy)
+    unfold threeRowQuota
+    rw [hk]
+    change B.Nonempty → _
+    exact fun ⟨d,hd⟩ => ⟨d,hd,Or.inr (by
+      change (∑ i ∈ B, (S i).card) ≤ B.card*5+4
+      omega)⟩
+  have fold (d) (hd : d ∈ B) : 4*B.card+(S d).card+3 < ∑ i ∈ B, (S i).card := by
+    by_contra! h
+    apply bad (folded_projection S d C o t y (by omega) hlin hg hu ho hl hy (Finset.mem_filter.mp hd).2.2.1 ?_)
+    rw [hk]
+    change _ ≤ 4*B.card+(S d).card+3
+    exact h
+  have cut : ¬ ((3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨
+      (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7)) := by
+    intro h
+    exact bad (three_window_packing_bound S C o t y hk hlin hg hu ho hl hy h)
+  obtain ⟨cover,profiles⟩ := twenty_four_row_profiles S B V hlin sub uc big ordinary fold cut
+  exact ⟨n24,hk,cover,profiles⟩
 
 end PEqualNP.Outside.L_meta_997.Small
