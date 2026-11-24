@@ -1,0 +1,58 @@
+{
+  "source_sha256": "6a0c8b75f379149b357334dfc3eb40cc8d6b4d038dd5815a40a1a0637260e75f",
+  "all320_witness_rows_pass": true,
+  "all10_final_queries_unsat": true,
+  "model_review": "full truth tables; complete source ordering and topological renaming; free constants form superset; no semantic cuts",
+  "cases": [
+    {
+      "table": "0xe8808080",
+      "upper": 8,
+      "unsat_bound": 7
+    },
+    {
+      "table": "0xa8888880",
+      "upper": 7,
+      "unsat_bound": 6
+    },
+    {
+      "table": "0xa888a080",
+      "upper": 5,
+      "unsat_bound": 4
+    },
+    {
+      "table": "0xe8808880",
+      "upper": 8,
+      "unsat_bound": 7
+    },
+    {
+      "table": "0xe888a000",
+      "upper": 6,
+      "unsat_bound": 5
+    },
+    {
+      "table": "0xa8888888",
+      "upper": 4,
+      "unsat_bound": 3
+    },
+    {
+      "table": "0xa888a880",
+      "upper": 6,
+      "unsat_bound": 5
+    },
+    {
+      "table": "0xa8a8a800",
+      "upper": 4,
+      "unsat_bound": 3
+    },
+    {
+      "table": "0xe880a880",
+      "upper": 8,
+      "unsat_bound": 7
+    },
+    {
+      "table": "0xe8888880",
+      "upper": 9,
+      "unsat_bound": 8
+    }
+  ]
+}

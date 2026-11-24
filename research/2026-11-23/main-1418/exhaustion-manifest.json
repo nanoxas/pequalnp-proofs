@@ -1,0 +1,92 @@
+{
+  "task": "L-meta-1418",
+  "status": "complete computational exhaustion",
+  "all10_tables_exhausted": true,
+  "formal_Lean_or_DRAT_certificate": false,
+  "source_sha256": "6a0c8b75f379149b357334dfc3eb40cc8d6b4d038dd5815a40a1a0637260e75f",
+  "model": "Full32-row, at most1NOT, free constants, equal fanins, valid earlier sources; complete source and topological renaming symmetries only.",
+  "independent_post_audit": [
+    {
+      "table": "0xe8808080",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xa8888880",
+      "monotone_upper": 7,
+      "one_not_unsat_bound": 6,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xa888a080",
+      "monotone_upper": 5,
+      "one_not_unsat_bound": 4,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe8808880",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe888a000",
+      "monotone_upper": 6,
+      "one_not_unsat_bound": 5,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xa8888888",
+      "monotone_upper": 4,
+      "one_not_unsat_bound": 3,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xa888a880",
+      "monotone_upper": 6,
+      "one_not_unsat_bound": 5,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xa8a8a800",
+      "monotone_upper": 4,
+      "one_not_unsat_bound": 3,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe880a880",
+      "monotone_upper": 8,
+      "one_not_unsat_bound": 7,
+      "all32_witness_rows_passed": true
+    },
+    {
+      "table": "0xe8888880",
+      "monotone_upper": 9,
+      "one_not_unsat_bound": 8,
+      "all32_witness_rows_passed": true
+    }
+  ],
+  "files": {
+    "search.py": {
+      "bytes": 13976,
+      "sha256": "6a0c8b75f379149b357334dfc3eb40cc8d6b4d038dd5815a40a1a0637260e75f"
+    },
+    "results-ordered.json": {
+      "bytes": 10761,
+      "sha256": "b8aac22715a442472257ccaffa9b248c028e34d890a1f991f483450c354942a4"
+    },
+    "results-budget2m.json": {
+      "bytes": 13026,
+      "sha256": "436cb3e6c998ad07b7a85e8cf8727492c4d61c021369d784c9604877d5614e3f"
+    },
+    "completeness-notes.txt": {
+      "bytes": 4519,
+      "sha256": "6f77e8f2126c26c9e5ba0a335bd28b36f8949abcfa7649023bd0e23ee4f53851"
+    },
+    "encoding-sanity-ordered.json": {
+      "bytes": 4644,
+      "sha256": "ffcc855b4bba26dd36572e218ec1f6de7843e0cff128a17f007071ce46a111ac"
+    }
+  }
+}

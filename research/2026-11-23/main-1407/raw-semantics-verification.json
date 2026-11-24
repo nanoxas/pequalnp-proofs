@@ -1,0 +1,18 @@
+{
+  "Common.lean": {
+    "sha256": "7216bc2ea66daa3b2103e14ac12a7b410870eb13fc47bdd1c6170650a679f4cd",
+    "bytes": 20312,
+    "lean_exit": 0,
+    "warnings": 0,
+    "object": "main-1407/Common.olean",
+    "elapsed_seconds": 12.01
+  },
+  "RawStars.lean": {
+    "sha256": "9b7b1d18ae8c8ff18abb2389466d21e7b196ff4b8797cd043769769c360d984f",
+    "bytes": 9154,
+    "lean_exit": 0,
+    "warnings": 0,
+    "object": "main-1407/RawStars.olean",
+    "elapsed_seconds": 82.34
+  }
+}

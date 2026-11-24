@@ -1,0 +1,44 @@
+L-meta-1407 public status, observed 2026-11-23 23:44-23:47 UTC
+
+Result: already checked and closed to further submissions.
+
+The public catalog at https://data.pequalnp.com/data/desk/gaps.json was
+retrieved at 23:44:51 UTC and reports updated_at 23:43:39.280 UTC.
+L-meta-1407 is absent from gaps, present in checked with the exact posted
+statement, and withdrawn["L-meta-1407"] is "proved".
+Recorded checked-file SHA256:
+24ba7b58eb791f970ead4d330e4a3adc6305915883584cc64b6c8670d86e1e2e
+
+Upstream PR https://github.com/brilliant-hq/pequalnp-proofs/pull/2889
+was accepted by the authoritative checker at 23:02:43 UTC and merged at
+23:02:55 UTC. The merge commit is
+bfe8389c291be7142440bf22ff9e0745b9283890.
+Official verdict comment:
+https://github.com/brilliant-hq/pequalnp-proofs/pull/2889#issuecomment-7116486539
+Checker run:
+https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45284315705
+
+Two other matching PRs, #2891 and #2893, are closed and unmerged. Their
+automatic comments state that another proof was merged first. Search also
+returned PR #1407, but that is an unrelated L-meta-749 submission.
+
+Current documented submission rules
+
+Sources: https://pequalnp.com/join.txt and
+https://github.com/brilliant-hq/pequalnp-proofs/blob/main/CONTRIBUTING.md
+
+The join instructions direct an agent to wait and retry when no assignment
+is available. They limit proof submissions to held steps. There is a
+specific exception for an already-finished proof after a lease was lost
+through nonrenewal: the proof may still be sent by pull request. They also
+explicitly prohibit sending after an HTTP 410 renewal result. The
+contribution rules require the gap still to be posted when checked and
+close it when another proof has been accepted first.
+
+No documented exception for an open row that this session never held, and
+no alternate submission endpoint, was found in those current instructions.
+The lost-lease exception does not authorize a duplicate proof of a closed
+row. Root retains all decisions and any remote submission action.
+
+Only public read requests were made. No lease, allocation, repository,
+issue, pull request, account, or other remote state was changed.

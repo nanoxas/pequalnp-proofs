@@ -3,8 +3,10 @@ P vs NP research checkpoint — 23 November 2026
 This checkpoint records completed local work while the collaboration continues.
 No theorem in this bundle is claimed to resolve P versus NP. No new upstream
 proof submission has been accepted on behalf of this session. The current desk
-assignment is L-meta-519, shard 0: a paying restriction step at a degree-three
-vertex in a least circuit. The user removed the original time limit.
+assignment is L-meta-1422, a five-input one-NOT search. L-meta-1418 was completed
+computationally and reported to the desk as statement_seems_false. L-meta-519
+and L-meta-582 are inactive after HTTP410; task-specific work has stopped.
+The user removed the original time limit. Status refreshed 23:57 UTC.
 
 Verification labels
 -------------------
@@ -39,8 +41,9 @@ circuits. For the Heawood graph this restricted class needs at least27 gates.
 
 TypedPortCount.lean checks the finite union-network count, typed aggregation
 count, and numerical assembly. The extraction of these abstract finite networks
-from the full circuit semantics is not yet formalized. Thus it would be incorrect
-to describe the full clean-circuit theorem as Lean checked.
+from the full circuit semantics was initially a formalization gap. Section9
+records additional checked actual-circuit modules. The assembled clean-circuit
+theorem in this bundle remains unverified.
 
 The proof permits shared OR subcomputations among stars with the same center.
 C4-freeness forbids certain shared merges across different centers. Normalizing
@@ -121,6 +124,51 @@ boundary condition. An exhaustive2,048-input audit finds39 false negatives and
 no false positives for the full11-vertex graph function. It therefore does not
 refute a six-AND lower bound for computing the full function. The separate
 full-function six-AND exploratory run reached its conflict budget and is UNKNOWN.
+
+8. L-meta-1418 five-input one-NOT search — COMPLETE COMPUTATIONAL AUDIT
+-------------------------------------------------------------------
+For each of the exact ten posted truth tables, a verified monotone circuit of
+size M is paired with a definitive UNSAT result for the full 32-row model of
+circuits with at most one NOT and at most M-1 gates. In posted table order,
+the minima are [8,7,5,8,6,4,6,4,8,9]. The search includes free constants and is
+a superset of the project's list-gate model, including invalid references,
+empty and unary gates, repeated inputs, and dead gates. The documented gate
+ordering restriction has a completeness argument by greedy topological order.
+All 320 rows of the ten monotone witnesses were independently re-evaluated;
+legal references and final UNSAT bounds were also checked. Nine operator and
+known-minimum sanity cases passed. UNKNOWN intermediate runs are retained
+with their original labels and are not treated as UNSAT.
+
+This is solver-based computational exhaustion with an audited encoding. It is
+not a Lean theorem or a DRAT/LRAT-checked certificate. The desk rejected an
+exhausted report (HTTP400) because the lease had no server-defined shard range,
+then accepted statement_seems_false (HTTP200). desk-report.json records both.
+Search source SHA256:
+6a0c8b75f379149b357334dfc3eb40cc8d6b4d038dd5815a40a1a0637260e75f
+
+9. Actual-circuit clean-count components — LEAN CHECKED; TARGET CLOSED
+--------------------------------------------------------------------
+Common.lean and RawStars.lean connect singleton supports, valid reads, liveness,
+productive AND gates and raw OR merges to actual CircuitLowerBounds semantics.
+C4Stars.lean supplies the graph star and common-neighbor combinatorics.
+RawUnionCount.lean proves a backward-frontier union bound that accounts for
+shared predecessors. CircuitFamilyCount.lean instantiates and sums this bound
+over star centers. TypedAggregation.lean proves
+  2 * number_of_live_productive_ANDs + number_of_live_raw_OR_merges <= size+1.
+These six component sources completed Lean with exit0. C4Stars had two harmless
+unused-section-variable warnings; the other five had none. The final counting
+module audits use only propext, Classical.choice and Quot.sound.
+
+StarSelection and the final integrated theorem were not completed. A draft
+opened on the user's fork did not trigger the official checker or any Actions
+run. It was closed without merging after a fresh status check showed that the
+exact target had already been accepted upstream before this assembly began:
+https://github.com/brilliant-hq/pequalnp-proofs/pull/2889
+Accepted23:02:43 UTC, merged23:02:55 UTC on23 November2026.
+Our closed duplicate draft:
+https://github.com/nanoxas/pequalnp-proofs/pull/1
+The verified reusable components are included. The unverified assembled draft
+is omitted. No credit for the accepted upstream theorem is claimed.
 
 Reproduction and provenance
 ---------------------------

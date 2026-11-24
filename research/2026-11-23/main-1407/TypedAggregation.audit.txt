@@ -1,0 +1,38 @@
+Typed aggregation for L-meta-1407
+
+Status: Lean 4.36.0 accepted TypedAggregation.lean with exit 0 and no warnings.
+The successful direct, single-threaded object check took 26.79 seconds.
+The axiom report for typed_aggregation_bound is exactly:
+  [propext, Classical.choice, Quot.sound]
+
+Source SHA256:
+  4b03adeda2ac76d09652280684b609eded16b46a60b06526e16b98e15590798a
+Object SHA256:
+  c9e99318b5bf4888e0274357bcf95f91dd483f7b811ea0d7d05d4b27898a3957
+Check-log SHA256:
+  20627c38247eeeb463c66e688387d8721a99e296a5d4c7afe388932c13b0c39a
+
+The checked result uses the actual Circuit, gate evaluation, live dependency
+relation, and singleton support definitions in Common.lean. It proves
+  2 * productiveGates.card + rawMergeGates.card <= liveGates.card + 1
+and consequently the same bound with Circuit.size in place of liveGates.card.
+Its hypotheses are AndOr C and AndBelow G C. No circuit normalization,
+leastness assumption, graph-function correctness, or output-validity premise
+is needed for this component.
+
+Counting argument: let E be the live gates with empty singleton support,
+A the productive AND gates, W the wide raw OR merges, B = E \ A, and
+D = (live \ E) \ W. Each E gate except the possible output has a valid
+live consumer. A and W consume no empty-support gate wires; B consumes at
+most two, and D at most one. Thus |A| <= |B| + |D| + 1, and the disjoint
+partition identities give the stated bound.
+
+Input ports are explicitly restricted to valid earlier gate wires. Repeated
+ports are deduplicated as finite sets. Empty and unary gates are included in
+the residual classes, and an invalid or input output is allowed. The final
+one-unit exception uses output - n; if this is not an actual live gate it
+only weakens the bound.
+
+Scope: this is one checked component of the clean-circuit theorem. The
+standalone posted theorem requires the separately maintained semantic,
+star-selection, raw-union, and assembly components.

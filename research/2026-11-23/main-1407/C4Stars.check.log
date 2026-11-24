@@ -1,0 +1,13 @@
+/workspace/scratch/91448c28ebe7/main-1407/C4Stars.lean:15:0: warning: automatically included section variable(s) unused in theorem `PEqualNP.MetaComplexity.L1407.common_neighbors_card_le_one`:
+  [Fintype V]
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype V] [DecidableEq V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+/workspace/scratch/91448c28ebe7/main-1407/C4Stars.lean:81:0: warning: automatically included section variable(s) unused in theorem `PEqualNP.MetaComplexity.L1407.centers_form_cover`:
+  [Fintype V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

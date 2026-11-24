@@ -1,0 +1,16 @@
+{
+  "task": "L-meta-1418",
+  "computational_status": "complete ten-table exhaustion; no one-NOT saving found",
+  "exhausted_api_attempt": {
+    "http": 400,
+    "reason": "lease has no sharded range"
+  },
+  "release_http": 200,
+  "release_reason": "statement_seems_false",
+  "program_sha256": "6a0c8b75f379149b357334dfc3eb40cc8d6b4d038dd5815a40a1a0637260e75f",
+  "formal_certificate": false,
+  "reply": {
+    "released": "L-meta-1418",
+    "reason": "statement_seems_false"
+  }
+}
