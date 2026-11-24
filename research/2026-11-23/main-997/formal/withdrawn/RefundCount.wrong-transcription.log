@@ -1,0 +1,82 @@
+import took 2.02s
+<workspace>/main-997/formal/RefundCount.lean:108:14: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+case refine_2
+n m : ℕ
+C : Circuit
+S : Fin m → Finset (Fin n)
+out : Fin m → ℕ
+Y : Finset (Fin n)
+hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (out i) = decide (∃ p ∈ S i, x p = true)
+hinter : ∀ (i j : Fin m), i ≠ j → (S i ∩ S j).card ≤ 1
+H : Finset (Fin m) := heavyNontrivial S Y
+hlarge : ∀ (i : ↥H), 2 ≤ (S ↑i).card
+hvalid : ∀ (i : ↥H), n ≤ out ↑i ∧ out ↑i < n + C.size
+f : ↥H → Fin C.gates.length := fun i => ⟨out ↑i - n, ⋯⟩
+hwire : ∀ (i : ↥H), n + ↑(f i) = out ↑i
+hf : Function.Injective f
+i : ↥H
+hdis : Disjoint (S ↑i) Y
+p : Fin n
+⊢ p ∉ Y → value C (fun v => decide (v ∈ Y ∨ v = p)) (n + ↑(f i)) = true ↔ p ∈ S ↑i
+<workspace>/main-997/formal/RefundCount.lean:149:49: error: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+<workspace>/main-997/formal/RefundCount.lean:156:47: error: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+<workspace>/main-997/formal/RefundCount.lean:157:8: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  h ≥ 0
+  g ≥ 0
+  g ≤ 0
+  f ≥ 1
+  f + h ≥ 0
+  e ≥ 0
+  e - f ≤ 1
+  d ≥ 0
+  c ≥ 0
+  c - d ≥ 0
+  b ≥ 0
+  a ≥ 0
+  a - b - f ≥ 1
+where
+ a := ↑N
+ b := ↑(∑ i, (min k (S i).card - 1))
+ c := ↑R
+ d := ↑(heavyNontrivial S Y).card
+ e := ↑(∑ i, if Disjoint (S i) Y then (S i).card - k - 1 else 0)
+ f := ↑(k - 1)
+ g := ↑(if Disjoint (S i) Y ∧ 2 ≤ (S i).card then 1 else 0)
+ h := ↑((S i).card - (k + 1))
+'PEqualNP.Research.MintermSlack.forced_refund_count' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'PEqualNP.Research.MintermSlack.one_not_refund_bound_of_excess' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.MintermSlack.one_not_refund_bound_of_heavy_size' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.MintermSlack.one_not_refund_bound_all_hit' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	attribute application 0.0764ms
+	blocked (unaccounted) 440ms
+	congr simp thm 1.59ms
+	declTypeLinter 3.54ms
+	elaboration 65.9ms
+	fix level params 0.445ms
+	import 2.02s
+	initialization 54.5ms
+	instantiate metavars 1.16ms
+	interpretation 198ms
+	let-to-have transformation 0.235ms
+	linting 14.7ms
+	module linting 0.0225ms
+	parsing 9.25ms
+	process pre-definitions 5.32ms
+	share common exprs 2.45ms
+	simp 29.2ms
+	tactic execution 101ms
+	tacticAnalysis 2.03ms
+	type checking 95.4ms
+	typeclass inference 178ms

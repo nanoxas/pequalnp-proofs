@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "n": 3,
+      "forced_circuit": "SAT",
+      "refunds": [],
+      "audit": {
+        "outputs_correct": true,
+        "not_window_correct": true,
+        "all_input_rows": 8,
+        "violated_rows": [],
+        "violated_row_count": 0,
+        "not_index": 4,
+        "refunded_gates": [],
+        "weight": 3,
+        "right_hand_side": 6,
+        "violation": false
+      }
+    },
+    {
+      "n": 5,
+      "forced_circuit": "SAT",
+      "refunds": [
+        1,
+        2
+      ],
+      "audit": {
+        "outputs_correct": true,
+        "not_window_correct": true,
+        "all_input_rows": 32,
+        "violated_rows": [],
+        "violated_row_count": 0,
+        "not_index": 4,
+        "refunded_gates": [
+          1,
+          2
+        ],
+        "weight": 4,
+        "right_hand_side": 9,
+        "violation": false
+      }
+    },
+    {
+      "forced_circuit_refund_cap": 1,
+      "status": "UNSAT",
+      "actual_refunds": 2
+    },
+    {
+      "forced_wrong_NOT_predecessor": "UNSAT"
+    },
+    {
+      "cegis_pinned_partial_circuit": "SAT_THEN_UNSAT",
+      "added_row": 56,
+      "full_truth_failures": [
+        56,
+        58,
+        60,
+        62
+      ]
+    }
+  ]
+}

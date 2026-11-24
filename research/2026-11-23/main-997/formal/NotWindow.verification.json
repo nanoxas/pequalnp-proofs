@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "source": "NotWindow.lean",
+  "source_sha256": "a7eaecef609f5f722e0b4b7a827a67cba6dd60a1c7cb7f2a9f766ef340bee6c7",
+  "source_bytes": 12386,
+  "object_sha256": "10602989cb0db153801426348aa51b230b14165d85f33a685dbe186764a40d87",
+  "elapsed_seconds": 2.374,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.MintermSlack.replC_prefix_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.one_not_window_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "NotWindow.check.log",
+  "log_sha256": "af8723db1c97a043715400f2e2a0d84ae20a74b5fb4dcba4e1b2164f9290b60c",
+  "dependencies": [
+    {
+      "module": "LightMinterm",
+      "source_sha256": "89065e43a67490ffb2fb78102d9cd0a59f2d2da2cf0bcde31b529b985be7ab42",
+      "object_sha256": "006b4f078577b90ef77d5879e47b55660146f8001cfb47a54ca956d5e14516a8"
+    }
+  ],
+  "scope": "Original-circuit bridge: for k>=2, the unique-index threshold NOT window and exact OR outputs imply B+k<=size. Derives NOT existence and valid head; proves prefix value/support/gate-operation preservation. Does not prove the complete997 overlap bound.",
+  "recorded_utc": "2026-11-24T01:45:02.782888+00:00",
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "75b80b74d8562dba8a3d3567d57384906d28a3ab30298252a233042f4aeea399",
+    "exit_code": 1,
+    "elapsed_seconds": 2.22,
+    "cause": "List.get versus getElem rewriting in the NOT-head extraction; fixed by explicit input-list rewriting."
+  },
+  "reused_source": {
+    "path": "PEqualNP/Outside/L_meta_986.lean",
+    "sha256": "9f75bc7757c0d871cefb572b24575ce97ec5f0d1abc005406cd3c66d82139920",
+    "attribution": "Accepted same-index replacement helpers; Apache-2.0."
+  }
+}

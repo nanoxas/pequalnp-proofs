@@ -1,0 +1,31 @@
+import took 1.37s
+typeclass inference of Nonempty took 114ms
+'PEqualNP.Research.MintermSlack.light_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.MintermSlack.light_window_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 11.8ms
+	attribute application 0.0499ms
+	blocked (unaccounted) 610ms
+	compilation (IR) 0.0914ms
+	compilation (LCNF base) 2.01ms
+	compilation (LCNF impure) 0.319ms
+	compilation (LCNF mono) 0.939ms
+	congr simp thm 2.16ms
+	declTypeLinter 3.06ms
+	elaboration 38.5ms
+	fix level params 0.356ms
+	import 1.37s
+	initialization 31.8ms
+	instantiate metavars 1.55ms
+	interpretation 201ms
+	let-to-have transformation 0.091ms
+	linting 16ms
+	module linting 0.0262ms
+	parsing 10.6ms
+	process pre-definitions 4.28ms
+	share common exprs 2.38ms
+	simp 46.4ms
+	tactic execution 152ms
+	tacticAnalysis 2.32ms
+	type checking 59.7ms
+	typeclass inference 275ms

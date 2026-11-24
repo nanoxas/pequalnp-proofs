@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "source": "HeavyReplacement.lean",
+  "source_sha256": "1ac8cd33c096192355bf8bd299f796c277157b5b8f087b21fa2b4890ef489b2e",
+  "source_bytes": 14955,
+  "object_sha256": "998049d1824ae7f6afc5454168675813fc48cff9a2bafcf1c863d92cb941e151",
+  "exit_code": 0,
+  "elapsed_seconds": 2.22,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.HeavyReplacement.repl0C_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyReplacement.repl0C_above_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyReplacement.one_not_heavy_or_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.HeavyReplacement.false_window_replacement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "HeavyReplacement.check.log",
+  "log_sha256": "91aff2a035da9846ae61309015fd72ea89b5f08bd79b1c266a15cb7fe834b66e",
+  "dependencies": {
+    "NotWindow": {
+      "source_sha256": "a7eaecef609f5f722e0b4b7a827a67cba6dd60a1c7cb7f2a9f766ef340bee6c7",
+      "object_sha256": "10602989cb0db153801426348aa51b230b14165d85f33a685dbe186764a40d87"
+    },
+    "OrPrivateCount": {
+      "source_sha256": "47c1c76875c7ba77d0a02916728a0dd7eaee53f24d710b2de266ee9d2c6febb3",
+      "object_sha256": "5976f748de21b85e452774d02ad31741566f016e5f199108b059a4a556c6eee3"
+    }
+  },
+  "prior_attempts": [
+    {
+      "label": "HeavyReplacement1",
+      "status": "PASS_WITH_ONE_LINTER_WARNING",
+      "scope": "Replacement monotonicity/agreement and explicit private count before adding full original-C existence theorem."
+    },
+    {
+      "label": "HeavyReplacement2",
+      "status": "ELABORATION_FAILED",
+      "cause": "One definitional size simplification in added existence theorem; corrected."
+    }
+  ],
+  "scope": "False replacement of the unique NOT, globally below the original and agreeing on all inputs containing Y, plus an OR-only private heavy count. Derives the valid NOT index and input from the zero-to-Y drop. Does not prove the full997 joint count.",
+  "recorded_utc": "2026-11-24T01:49:33.022632+00:00"
+}

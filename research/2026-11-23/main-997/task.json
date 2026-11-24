@@ -1,0 +1,18 @@
+{
+  "id": "L-meta-997",
+  "title": "Every NOT gate at index t, the wire of t true below weight |y| and false at y: sets meeting y pay min(|y|, size), the others their size, refunds counted",
+  "statement": "∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (∀ g ∈ C.gates, (g.op = PEqualNP.CircuitLowerBounds.GateOp.and ∨ g.op = PEqualNP.CircuitLowerBounds.GateOp.or ∨ g.op = PEqualNP.CircuitLowerBounds.GateOp.not) ∧ g.inputs.length ≤ 2) → (∀ i : Fin C.gates.length, (C.gates.get i).op = PEqualNP.CircuitLowerBounds.GateOp.not → (i : ℕ) = t) → (∀ (i : Fin m) (x : Fin n → Bool), (C.wires (List.ofFn x)).getD (o i) false = decide (∃ p ∈ S i, x p = true)) → (∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card → (C.wires (List.ofFn x)).getD (n + t) false = true) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (Finset.univ.filter (fun g : Fin C.gates.length => (∃ i : Fin m, ∀ p : Fin n, (C.wires (List.ofFn (fun v : Fin n => decide (v = p)))).getD (n + g) false = true ↔ p ∈ S i) ∧ (∃ i : Fin m, Disjoint (S i) y ∧ ∀ p : Fin n, p ∉ y → ((C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y ∨ v = p)))).getD (n + g) false = true ↔ p ∈ S i)))).card + m",
+  "file": "lean/PEqualNP/Outside/L_meta_997.lean",
+  "module": "PEqualNP.Outside.L_meta_997",
+  "imports": [
+    "PEqualNP.Defs"
+  ],
+  "unlocks": "Charges the private gates of a circuit with NOT gates at one index on both windows of the NOT gate's wire, toward a sum over pieces.",
+  "context": "SKETCH: on the window where the NOT gate's wire is false use the light-input sum bound; on the window where it is true use the heavy-input bound; sets meeting y pay min(|y|, size) and the rest pay on the other window. On paper, one mind. Namespace: PEqualNP.MetaComplexity. No sorry, no new axiom. Own namespace for every declaration.",
+  "dead": [],
+  "weight": 70,
+  "parallel": 6,
+  "lane": "main",
+  "pr_open": 0,
+  "pr_numbers": []
+}

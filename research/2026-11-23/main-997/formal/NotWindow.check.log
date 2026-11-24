@@ -1,0 +1,30 @@
+import took 1.47s
+'PEqualNP.Research.MintermSlack.replC_prefix_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.MintermSlack.one_not_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 15.5ms
+	attribute application 0.101ms
+	blocked (unaccounted) 497ms
+	compilation (IR) 0.0394ms
+	compilation (LCNF base) 0.427ms
+	compilation (LCNF impure) 0.162ms
+	compilation (LCNF mono) 0.271ms
+	congr simp thm 3.36ms
+	declTypeLinter 4.26ms
+	elaboration 63.1ms
+	fix level params 0.565ms
+	import 1.47s
+	initialization 24.7ms
+	instantiate metavars 1.77ms
+	interpretation 211ms
+	let-to-have transformation 0.178ms
+	linting 20.1ms
+	module linting 0.0242ms
+	parsing 9.93ms
+	process pre-definitions 5.94ms
+	share common exprs 4.03ms
+	simp 92.1ms
+	tactic execution 146ms
+	tacticAnalysis 4.17ms
+	type checking 99.7ms
+	typeclass inference 74.2ms

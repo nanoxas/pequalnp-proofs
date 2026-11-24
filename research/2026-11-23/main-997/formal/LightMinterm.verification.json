@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "source": "LightMinterm.lean",
+  "source_sha256": "89065e43a67490ffb2fb78102d9cd0a59f2d2da2cf0bcde31b529b985be7ab42",
+  "source_bytes": 2616,
+  "object_sha256": "006b4f078577b90ef77d5879e47b55660146f8001cfb47a54ca956d5e14516a8",
+  "elapsed_seconds": 6.378,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.MintermSlack.light_minterm_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "LightMinterm.check.log",
+  "log_sha256": "9f0300567fdb5982cb9521afa8508a61b9070546722ffa2b9d550ae0565d5ce9",
+  "dependencies": [
+    {
+      "module": "LightCount",
+      "source_sha256": "597bc21d92734ab4629c7151ba7a4559a91defa74f102f616c65f3f8ac0886bc",
+      "object_sha256": "0f3c718120a2db1a9da4be9f1fff5660a2746e4d62679515ef707c84061f98c4"
+    }
+  ],
+  "scope": "Abstract combined count: light assigned wide-support gates and empty-support prefix branches are disjoint and exclude z, proving B+k<=size.",
+  "recorded_utc": "2026-11-24T01:45:02.781887+00:00"
+}

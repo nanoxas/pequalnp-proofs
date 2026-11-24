@@ -1,0 +1,32 @@
+import took 1.3s
+'PEqualNP.Research.HeavyReplacement.repl0C_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyReplacement.repl0C_above_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyReplacement.one_not_heavy_or_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.HeavyReplacement.false_window_replacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 13.8ms
+	attribute application 0.116ms
+	blocked (unaccounted) 491ms
+	compilation (IR) 0.0403ms
+	compilation (LCNF base) 0.392ms
+	compilation (LCNF impure) 0.202ms
+	compilation (LCNF mono) 0.335ms
+	congr simp thm 2.56ms
+	declTypeLinter 4.41ms
+	elaboration 88ms
+	fix level params 0.602ms
+	import 1.3s
+	initialization 35.3ms
+	instantiate metavars 1.71ms
+	interpretation 219ms
+	let-to-have transformation 0.214ms
+	linting 22.5ms
+	module linting 0.0186ms
+	parsing 12.4ms
+	process pre-definitions 6.08ms
+	share common exprs 3.78ms
+	simp 71.8ms
+	tactic execution 144ms
+	tacticAnalysis 4.28ms
+	type checking 81.4ms
+	typeclass inference 95.8ms

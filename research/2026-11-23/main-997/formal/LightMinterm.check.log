@@ -1,0 +1,25 @@
+import took 5.81s
+'PEqualNP.Research.MintermSlack.light_minterm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 3.69ms
+	attribute application 0.0111ms
+	blocked (unaccounted) 165ms
+	congr simp thm 1.29ms
+	declTypeLinter 1.23ms
+	elaboration 13.4ms
+	fix level params 0.0837ms
+	import 5.81s
+	initialization 85.3ms
+	instantiate metavars 0.257ms
+	interpretation 176ms
+	let-to-have transformation 0.0759ms
+	linting 5.18ms
+	module linting 0.0228ms
+	parsing 1.65ms
+	process pre-definitions 1.1ms
+	share common exprs 0.545ms
+	simp 63.9ms
+	tactic execution 30.3ms
+	tacticAnalysis 0.729ms
+	type checking 16.9ms
+	typeclass inference 48.9ms

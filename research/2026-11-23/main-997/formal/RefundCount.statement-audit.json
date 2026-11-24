@@ -1,0 +1,25 @@
+{
+  "status": "PASS_EXACT_PREDICATE_AND_MANUAL_STATEMENT_AUDIT",
+  "recorded_utc": "2026-11-24T02:00:25.800698+00:00",
+  "statement_sha256": "ca567992ddeacc490b0bbede6591b334d87264f5567c379011899c4ffd3f8742",
+  "task_statement_equals_statement_file_ignoring_final_newline": true,
+  "predicate_file": "refund-predicate-verbatim.txt",
+  "predicate_sha256": "fc3b223c02612d7b140cbf3ac7b2f4793d6dda4b1e6baba452fd224594ca0183",
+  "expression_unicode_characters": 331,
+  "expression_utf8_bytes": 359,
+  "exact_contiguous_substring_of_public_task": true,
+  "exact_rhs_of_checked_refundGates_eq_posted": true,
+  "grouping": "For p outside Y, (shifted value = true iff p belongs to S i). The entire iff is the consequent of the implication.",
+  "statement_mapping": [
+    "All input and target indices remain Fin n and Fin m; the output map is arbitrary Nat-valued as posted.",
+    "The pairwise intersection bound, AND/OR/NOT restriction, fan-in-at-most-two bound, and unique possible NOT index are unchanged.",
+    "value C x w is definitionally (C.wires (List.ofFn x)).getD w false; bit Y is definitionally fun p => decide (p in Y).",
+    "The output correctness and below-threshold hypotheses quantify over every Boolean input; no well-formedness or validity assumption was added.",
+    "The weighted sum uses full target size exactly when Disjoint (S i) Y, and min Y.card (S i).card otherwise, as posted.",
+    "Circuit.size is definitionally C.gates.length; the refund count is the same Finset of Fin C.gates.length by the checked equality.",
+    "The main sufficient-case theorem adds only Y.card>=2 and the stated total heavy-excess bound. It does not assert the unrestricted posted theorem.",
+    "The heavy-size and all-hit corollaries supply the total-excess premise. The forced-refund theorem itself needs only exact outputs and pairwise intersection at most one."
+  ],
+  "independent_review": "heawood_bounds independently matched the extracted expression to task.json and reviewed the corrected guard; root independently confirmed the original parentheses.",
+  "withdrawn_history": "withdrawn/RefundCount.wrong-transcription.json"
+}

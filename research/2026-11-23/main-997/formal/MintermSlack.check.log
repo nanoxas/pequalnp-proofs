@@ -1,0 +1,28 @@
+'PEqualNP.Research.MintermSlack.small_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.MintermSlack.minterm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 25.8ms
+	attribute application 0.822ms
+	blocked (unaccounted) 1.13s
+	compilation (IR) 0.259ms
+	compilation (LCNF base) 3.02ms
+	compilation (LCNF impure) 0.894ms
+	compilation (LCNF mono) 1.43ms
+	congr simp thm 4.52ms
+	declTypeLinter 6.54ms
+	elaboration 76.3ms
+	fix level params 0.935ms
+	initialization 38.5ms
+	instantiate metavars 4.1ms
+	interpretation 184ms
+	let-to-have transformation 0.503ms
+	linting 35ms
+	module linting 0.0205ms
+	parsing 14.7ms
+	process pre-definitions 10.1ms
+	share common exprs 5.75ms
+	simp 155ms
+	tactic execution 289ms
+	tacticAnalysis 6.11ms
+	type checking 193ms
+	typeclass inference 290ms

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<workspace>/main-997/run_bounded.py", line 70, in <module>
+    raise RuntimeError('intentional lifecycle-test runner exception')
+RuntimeError: intentional lifecycle-test runner exception

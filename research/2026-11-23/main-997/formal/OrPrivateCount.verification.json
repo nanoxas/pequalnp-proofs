@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "source": "OrPrivateCount.lean",
+  "source_sha256": "47c1c76875c7ba77d0a02916728a0dd7eaee53f24d710b2de266ee9d2c6febb3",
+  "source_bytes": 16010,
+  "object_sha256": "5976f748de21b85e452774d02ad31741566f016e5f199108b059a4a556c6eee3",
+  "exit_code": 0,
+  "elapsed_seconds": 2.475,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.OrPrivateCount.sample_or_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OrPrivateCount.heavy_or_prefix_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.OrPrivateCount.heavy_or_sum_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "OrPrivateCount.check.log",
+  "log_sha256": "b45413bb6557ce30485b15c7d8174b2cdf4db18e5b0beedf0c983a8bda557b50",
+  "dependency": {
+    "module": "MintermSlack",
+    "source_sha256": "344ac9855efd9f5958cf47d553632e102c9f71fb4a3cdae5391d445c7a7b7aa3",
+    "object_sha256": "ce74297b187e3397004f6e80aa10cf97647d14fb04fb92e499c5c4416498cb94"
+  },
+  "prior_attempts": [
+    {
+      "label": "OrPrivateCount1",
+      "status": "ELABORATION_FAILED",
+      "cause": "Three Boolean/coercion elaboration mismatches; no proof acceptance."
+    },
+    {
+      "label": "OrPrivateCount2",
+      "status": "PASS",
+      "scope": "Generic sample count before adding base-input and linear-family corollaries."
+    }
+  ],
+  "scope": "Monotone fan-in-at-most-two circuits. OR-only private heavy count, including a prefix bound and disjoint sum across a linear family. No original one-NOT replacement bridge or complete997 claim.",
+  "recorded_utc": "2026-11-24T01:45:05.338974+00:00"
+}

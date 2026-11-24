@@ -1,0 +1,15 @@
+{
+  "case": "pg4-case.json",
+  "case_sha256": "71733580ed990637fee04c6f3a7aa69f156999893e6c9732714e9e83465a8fbc",
+  "source_sha256": "f3c68d228c7da5f1b7b86fa04d559e765b491c085bc07da7dd889dc0f9e6212c",
+  "bound_seconds": 0.2,
+  "started_utc": "2026-11-24T01:36:39.939076+00:00",
+  "status": "UNKNOWN_TIME_LIMIT",
+  "stop_file": "lifecycle-deadline.stop",
+  "mode": "lifecycle_dummy",
+  "exit_code": -15,
+  "child_reaped": true,
+  "elapsed_seconds": 5.202202387998113,
+  "log_bytes": 14,
+  "stopped_utc": "2026-11-24T01:36:45.141544+00:00"
+}

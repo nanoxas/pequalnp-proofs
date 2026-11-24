@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "source": "LightCount.lean",
+  "source_sha256": "597bc21d92734ab4629c7151ba7a4559a91defa74f102f616c65f3f8ac0886bc",
+  "source_bytes": 9146,
+  "object_sha256": "0f3c718120a2db1a9da4be9f1fff5660a2746e4d62679515ef707c84061f98c4",
+  "exit_code": 0,
+  "elapsed_seconds": 2.379,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.MintermSlack.light_window_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.light_window_sum_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "LightCount.check.log",
+  "log_sha256": "d064abb381e5aaa07745a40f636a7019d3343ae52d7d8c5bf11f23224fd3ba94",
+  "dependency": {
+    "module": "MintermSlack",
+    "source_sha256": "344ac9855efd9f5958cf47d553632e102c9f71fb4a3cdae5391d445c7a7b7aa3",
+    "object_sha256": "ce74297b187e3397004f6e80aa10cf97647d14fb04fb92e499c5c4416498cb94"
+  },
+  "prior_attempt": {
+    "status": "ELABORATION_FAILED",
+    "source_sha256": "bf488d6a0af8cfcc99e3563ade728622ef93bbfa8d33983ea78ddb7725d2ac21",
+    "exit_code": 1,
+    "elapsed_seconds": 5.474,
+    "cause": "Singleton-input weight simplification; corrected with an explicit equality rewrite."
+  },
+  "scope": "Research helper: monotone fan-in-at-most-two circuit; constant-true exceptional wire; OR output agreement below weight k. Proves the light private-gate count and disjoint sum for a linear set family. Does not establish the complete L-meta-997 statement or the joint light/heavy overlap step.",
+  "recorded_utc": "2026-11-24T01:33:52.321698+00:00"
+}

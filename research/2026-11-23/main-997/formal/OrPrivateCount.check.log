@@ -1,0 +1,31 @@
+import took 1.37s
+'PEqualNP.Research.OrPrivateCount.sample_or_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OrPrivateCount.heavy_or_prefix_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.OrPrivateCount.heavy_or_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 18.3ms
+	attribute application 0.0998ms
+	blocked (unaccounted) 702ms
+	compilation (IR) 0.189ms
+	compilation (LCNF base) 2.73ms
+	compilation (LCNF impure) 0.471ms
+	compilation (LCNF mono) 1.26ms
+	congr simp thm 2.81ms
+	declTypeLinter 4.34ms
+	elaboration 74.5ms
+	fix level params 0.676ms
+	import 1.37s
+	initialization 29.7ms
+	instantiate metavars 2.76ms
+	interpretation 238ms
+	let-to-have transformation 0.185ms
+	linting 27.9ms
+	module linting 0.0246ms
+	parsing 12.3ms
+	process pre-definitions 7.18ms
+	share common exprs 4.07ms
+	simp 46.4ms
+	tactic execution 223ms
+	tacticAnalysis 3.98ms
+	type checking 122ms
+	typeclass inference 167ms

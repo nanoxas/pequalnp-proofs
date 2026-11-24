@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "source": "RefundCount.lean",
+  "source_sha256": "08cedd1ed8c084add41882ffd7bc64922cd54f4c8733a533886824a6756cb508",
+  "source_bytes": 12128,
+  "object_sha256": "6b6b241be431f92b445a4dae4310e075b600939baf73b44085d69ac541b0c087",
+  "started_utc": "2026-11-24T01:55:05.050423+00:00",
+  "completed_utc": "2026-11-24T01:55:11.690182+00:00",
+  "elapsed_seconds": 6.639,
+  "bound_seconds": 180.0,
+  "exit_code": 0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.MintermSlack.refundGates_eq_posted": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.forced_refund_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.one_not_refund_bound_of_excess": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.one_not_refund_bound_of_heavy_size": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.MintermSlack.one_not_refund_bound_all_hit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "RefundCount.check.log",
+  "log_sha256": "2ade7736151889677330ae6121403f894621fd95d476b756588649427620b3a7",
+  "dependencies": [
+    {
+      "module": "NotWindow",
+      "source_sha256": "a7eaecef609f5f722e0b4b7a827a67cba6dd60a1c7cb7f2a9f766ef340bee6c7",
+      "object_sha256": "10602989cb0db153801426348aa51b230b14165d85f33a685dbe186764a40d87"
+    }
+  ],
+  "statement_audit": "RefundCount.statement-audit.json",
+  "statement_audit_sha256": "4e2ab946291a196fa5255adf5b203942eb712daa9d605d1154f69ec53647b5cc",
+  "scope": "Exact posted refund predicate, distinct valid large output gates, forced refunds for nontrivial targets disjoint from Y, and sufficient cases of 997 under Y.card>=2 and total heavy excess above Y.card+1 at most Y.card. The unrestricted 997 inequality is not claimed.",
+  "recorded_utc": "2026-11-24T02:00:25.801888+00:00",
+  "prior_attempt": {
+    "status": "WITHDRAWN_WRONG_TRANSCRIPTION",
+    "history": "withdrawn/RefundCount.wrong-transcription.json",
+    "correction": "Restored the explicit parentheses around the guarded iff. The posted task had the correct grouping; only the abbreviated helper was wrong. Current predicate is definitionally equal to the verbatim posted Finset expression."
+  }
+}

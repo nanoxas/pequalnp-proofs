@@ -1,0 +1,156 @@
+INDEPENDENT REVIEW OF THE PG(2,4) AND THREE-POINT SATURATION ARGUMENTS
+
+Status: independent paper review; no complete Lean proof of either saturation
+criterion or of L-meta-997 is asserted. This review found no mathematical flaw
+in pg4-exclusion-paper.txt or Criteria A, B, and C of
+saturation-generalization.txt under their stated hypotheses. The separate
+finite SAT query remains INTERRUPTED_UNKNOWN and supplies no lower bound.
+
+1. EXACT REFUND PREDICATE
+
+The public statement fetched at 2026-11-24T01:53:29.938101+00:00 is identical
+to the saved statement after stripping the final newline. Its SHA256 is
+ca567992ddeacc490b0bbede6591b334d87264f5567c379011899c4ffd3f8742.
+
+The first balanced parenthesized group after `p not-in y ->` contains the
+ENTIRE biconditional. In abbreviated notation, the exact clause is
+
+  forall p, p not-in Y -> (value(Y union {p}) = true <-> p in S_i).
+
+The live row and balanced group are preserved in refund-parse-public-row.json.
+Thus the encoder's guarded refund semantics and the forced-refund argument
+match the posted statement. A temporary helper transcription omitted the
+outer grouping; this was a helper error, not an error in the posted statement.
+The corrected helper has an equality to the verbatim posted Finset expression.
+Its checking status is recorded separately with that helper's source and log.
+
+2. THE COUNT AND ITS ARITHMETIC
+
+With |Y|=3, let P count nonempty targets, e=m-P, A=sum of (d_i-1) over heavy
+targets, H count nontrivial heavy targets, L count nontrivial light targets,
+and L3 count light targets of size at least3. Natural subtraction is used.
+
+The target sum is exactly F=P+A+L+L3. The selected gate classes are A private
+heavy ORs, L distinct light output gates, two true-at-Y empty-singleton-support
+prefix ANDs, and the NOT. These classes are disjoint by operation, support,
+or value at Y, giving B0=A+L+3 <= N. Each nontrivial heavy output satisfies
+both exact refund clauses, and the outputs are distinct, giving R>=H.
+
+Under a strict failure, N+R+m <= F-1. Substitution yields
+
+  delta=N-B0 <= L3-R-e-4 <= L3-H-e-4.
+
+This includes empty and singleton targets correctly. Empty sets contribute
+zero to F; singleton sets contribute one, paid by the m term. Distinctness
+is needed only for targets of size at least2, where it follows from the
+pairwise-intersection-at-most-one hypothesis.
+
+3. RESIDUAL PREFIX WITH NO NONTRIVIAL LIGHT OUTPUT
+
+When delta<=1 and no nontrivial light output precedes NOT, the prefix contains
+only selected heavy ORs false at Y, two selected ANDs true at Y with empty
+singleton support, and at most one extra gate Q. This is a global inventory
+of actual prefix gates, not a statement about one chosen accepting trace.
+
+If Q is absent, irrelevant, after NOT, false at Y, or an AND true at Y, every
+gate in the true-at-Y ancestor cone of the NOT input h is an AND. A true AND
+cannot read any false-at-Y wire. Flattening this entire cone gives a genuine
+global conjunction of raw Y variables and possible constant-one factors.
+The window excludes constant true and forces a mandatory raw variable.
+
+If Q is an OR true at Y, every selected heavy OR is a pure OR of raw variables
+outside Y. Such an OR cannot read a true Q or either selected AND, directly
+or through an OR path. Before Q, the selected ANDs are raw conjunctions.
+After Q, they are conjunctions of Q and raw factors, possibly with sharing
+and repetition. Therefore h has the form Q^epsilon AND conjunction(T).
+Nonempty T immediately gives a mandatory raw variable. If T is empty, the
+only possible nonconstant case is h=Q.
+
+In the latter case every nonzero operand of Q must itself have minimum
+positive weight at least3. Raw inputs and nonzero heavy ORs have a singleton
+witness. The earlier of the two selected ANDs combines at most two raw inputs
+and has a witness of weight at most2. Only the later selected AND can compute
+a degree-three conjunction, using both ANDs. Consequently every nonzero
+operand of Q must be this same later conjunction. Repeated operands and
+false-default operands do not change it. Q therefore has a mandatory variable.
+
+This argument explicitly accommodates nullary gates, aliases, equal fan-ins,
+sharing, and unavailable references. A nullary AND cannot be one of the two
+empty-support ANDs when n>=3. A true nullary extra AND contributes only a
+constant-one factor; a nullary OR is false. No false-at-Y OR branch is silently
+discarded from a disjunction that can influence h on other inputs.
+
+4. CRITERION C: ONE PREFIX TRIPLE AT SURPLUS ONE
+
+A prefix output of size d requires d-1 private sound ORs of singleton support
+at least2. These ORs are disjoint from the heavy selected gates, empty-support
+ANDs, NOT, and other nontrivial light outputs. At most the output itself is
+already selected. Across targets the private sets are disjoint by linearity.
+Thus sum over prefix light outputs of (d-2) <= delta.
+
+Assume all nontrivial light targets have size at least3 and delta<=1. If a
+prefix light output exists, it is the only one, its set S has size3, delta=1,
+and the two private ORs are the output itself and the sole extra gate Q.
+The private count uses the output's ancestor network, so Q precedes it.
+
+Before Q, every heavy OR is a pure outside-Y OR: earlier prefix gates are raw
+inputs, other heavy ORs, or the true empty-support ANDs, which a false-at-Y OR
+cannot read. Because Q is globally sound for S, each of its operands is sound
+for S. A heavy operand has singleton support inside the intersection of S
+with its own heavy target and therefore at most one point; being a pure OR,
+it is a singleton alias or zero. A raw operand contributes one point; an
+empty-support AND contributes none. Q has at least two singleton positives
+and at most two operands. It follows that both operands are distinct
+singleton aliases, and Q is exactly the OR of a two-point subset S' of S.
+
+No later heavy OR can read Q, even if Q is false at Y: the first such OR would
+contain both singleton positives of Q, incompatible with its heavy target's
+intersection-at-most-one with S. Heavy ORs cannot read the true light output
+or the true selected ANDs either. They remain pure outside-Y ORs.
+
+The triple output is an OR. To cover its three singleton positives with two
+ports, it must read Q and the third singleton. Thus the only two prefix light
+OR atoms are OR(S') and OR(S), with S' subset S. They are independent of the
+ANDs. The true AND cone of h consequently flattens to raw factors and these
+two nested atoms. With no raw factor it is constant one or one of those ORs,
+and has minimum positive weight zero or one. This contradicts h's minimum
+positive weight3. A mandatory raw factor exists.
+
+Accepted L-meta-986 with that singleton clause applies to the subfamily of
+targets of size at least2. It gives N>=1+sum_i(d_i-1). This is already stronger
+than the required weighted count after adding m, even with zero refunds.
+It closes the contradiction in all three saturation criteria. The same
+reasoning validates the PG(2,4) collinear slice with N<=49.
+
+5. THE UNRESOLVED GENERAL STRUCTURAL STEP
+
+The saturation argument does not settle arbitrary L-meta-997 instances.
+It requires a small surplus and, for its mandatory-variable step, excludes
+light pairs. Pair outputs need no private OR beyond their own output gate.
+For example, with Y={0,1,2}, the three disjoint pair targets
+
+  {0,3}, {1,4}, {2,5}
+
+can appear as free selected output atoms in the prefix. The function
+
+  h=(x0 OR x3) AND (x1 OR x4) AND (x2 OR x5)
+
+uses these three pair ORs and two ANDs. It has minimum positive weight3,
+is true at Y, and has no mandatory singleton variable. Its three pair
+supports are linear, and all fan-ins are binary. Adding NOT(h) gives a valid
+window, but this circuit is not a counterexample to997: its target sum is6,
+while six gates plus three outputs' m contribution already give9.
+
+The example blocks a blanket assertion that every saturated prefix has a
+mandatory variable. A small mandatory clause still exists, but using986 with
+that clause incurs incidence charges for the remaining clause points. Those
+charges must be controlled by an additional global count.
+
+For larger surplus, light/private and heavy/private gate charges can overlap
+after the NOT. The light count uses the constant-one replacement and small
+input windows; the heavy count uses the constant-zero replacement and
+Y-plus-point inputs. A useful next theorem must either limit this overlap or
+assign it to the exact refund gates. Merely knowing that one gate has two
+different partial support patterns does not establish either full target
+signature required by the refund predicate. This is the outstanding bridge;
+the separate checked light, minterm, and heavy counts do not supply it.

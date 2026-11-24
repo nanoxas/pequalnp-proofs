@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "scope": "Dummy sleeping children only; no SAT query or lease action.",
+  "old_pg4_cleanup": "reaping_unconfirmed; these tests do not retroactively establish cleanup.",
+  "runner_sha256": "42aca219b1ec31b1515c1096ad8555abc808b8557fb7fc6cd84808f7b4237810",
+  "test_sha256": "c41cf3a2f4bdd1af1a68700b1eafad76287b3c37c9af2c997e165a2bd0ea90db",
+  "cases": [
+    {
+      "case": "natural",
+      "status": "FINISHED",
+      "runner_exit_code": 0,
+      "child_exit_code": 0,
+      "child_reaped": true,
+      "elapsed_seconds": 0.10101156000018818,
+      "record_file": "lifecycle-natural-bounded.json"
+    },
+    {
+      "case": "stopfile",
+      "status": "STOP_REQUESTED",
+      "runner_exit_code": 2,
+      "child_exit_code": -15,
+      "child_reaped": true,
+      "elapsed_seconds": 0.10223030300039682,
+      "record_file": "lifecycle-stopfile-bounded.json"
+    },
+    {
+      "case": "signal",
+      "status": "INTERRUPTED",
+      "runner_exit_code": 2,
+      "child_exit_code": -15,
+      "child_reaped": true,
+      "elapsed_seconds": 0.10202203399967402,
+      "record_file": "lifecycle-signal-bounded.json"
+    },
+    {
+      "case": "exception",
+      "status": "RUNNER_EXCEPTION",
+      "runner_exit_code": 2,
+      "child_exit_code": -15,
+      "child_reaped": true,
+      "elapsed_seconds": 0.20732759599923156,
+      "record_file": "lifecycle-exception-bounded.json"
+    },
+    {
+      "case": "deadline",
+      "status": "UNKNOWN_TIME_LIMIT",
+      "runner_exit_code": 2,
+      "child_exit_code": -15,
+      "child_reaped": true,
+      "elapsed_seconds": 5.202202387998113,
+      "record_file": "lifecycle-deadline-bounded.json"
+    }
+  ]
+}

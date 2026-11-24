@@ -1,0 +1,289 @@
+PAPER EXCLUSION FOR L-META-997 ON PG(2,4), THREE COLLINEAR POINTS
+
+Status: a self-contained paper argument, audited independently by the parent
+and this worker. It is not a Lean-checked proof, a SAT exhaustion certificate,
+or a submission to the project. The universal L-meta-997 theorem remains open.
+The interrupted finite SAT query is UNKNOWN and supplies no lower bound.
+
+The argument actually uses the following abstract set-system hypotheses.
+There are21 target sets S_i, each of size5, meeting pairwise in at most one
+point. A three-point set Y meets exactly13 targets and is disjoint from the
+other8. No projective-plane intersection property is used beyond these facts.
+For PG(2,4), each point is on5 lines; three collinear points therefore meet
+their common line and4 other lines through each point, for13 in total.
+
+We use the exact circuit conventions of the posted row: AND, OR, or NOT;
+at most two input ports; unavailable references have value false; NOT reads
+its first port and negates false if that port is absent. Every output is an
+exact set-OR on all inputs. All NOT gates, if any, occur at the one index t.
+
+Let N be the gate count, z the wire at n+t, and assume the row's window
+hypotheses: z is true on all inputs of weight less than3 and false on Y.
+Let R be the exact refund count in the posted statement. Its left side is
+
+  F = 13*3 + 8*5 =79.
+
+We prove F<=N+R+21 for this family. The proof has five obligations below.
+
+
+PRELIMINARY: THE NOT INPUT AND ITS TWO REPLACEMENTS
+
+The wire z is a valid NOT gate. An out-of-range wire is constantly false and
+would contradict its value on the empty input. If gate t were not a NOT, then
+the uniqueness condition would make the entire circuit monotone, contradicting
+z(empty)=true and z(Y)=false. Its first operand is a valid earlier wire h:
+an absent or unavailable first operand would make z constantly true.
+
+The prefix computing h is monotone, and
+
+  h(Y)=true; h(X)=false whenever |X|<3.
+
+Thus h has minimum positive weight exactly3 and empty singleton support.
+Its input wire cannot be raw or unavailable. Since h is monotone, z is false
+on every input containing Y.
+
+Let C0 replace the NOT gate by the zero-input OR (constant false), and let C1
+replace it by the zero-input AND (constant true). Gate indices and counts are
+preserved. C0 is monotone, is pointwise below the original circuit on each
+wire, and agrees with it on all inputs containing Y. C1 agrees on all inputs
+of weight less than3. These are ordinary same-index replacement inductions;
+the accepted L-meta-986 source has the corresponding replacement machinery.
+
+The singleton support U(w) of a prefix wire is the set of points p for which
+that wire is true on input {p}. Before NOT, the original circuit and C0/C1
+agree globally, so this definition is unambiguous.
+
+
+OBLIGATION 1: OR-ONLY SOUND PRIVATE COUNT
+
+General claim. Let D be a monotone fan-in-at-most-two circuit, T a target set,
+and B a base set disjoint from T. Suppose an output wire is globally below
+OR(T) and accepts B union {p} for every p in T. Then D contains at least
+|T|-1 OR gates w such that:
+
+  (a) w is globally below OR(T);
+  (b) w accepts B union {p} for at least two different p in T.
+
+Proof. Call a wire sound if it is globally below OR(T), and let V(w) be its
+support on the base-plus-point inputs B union {p}. A sound wire has V(w)
+contained in T: because B misses T, acceptance at B union {p} forces p in T.
+
+At a sound OR, every operand is sound. At a sound AND, at least one effective
+operand is sound. Otherwise choose, for each operand, an input avoiding T
+on which that operand is true. Their union still avoids T, and monotonicity
+makes the AND true there, contradicting soundness. The chosen sound operand
+has base support containing the AND's base support. A nullary true AND cannot
+be sound, since it accepts the empty input; unary gates and invalid false
+operands obey the same argument.
+
+Starting at the output, stop whenever |V(w)|<=1. At an AND choose the sound
+child just described; at an OR retain its effective children. The resulting
+finite acyclic network has unary AND continuations and binary OR branches.
+The union of the stop supports covers T: support can only enlarge at a chosen
+AND child and is the union of the child supports at an OR. Each stop covers
+at most one point. Hence there are at least |T| distinct stops. A rooted DAG
+with b binary branch nodes and any number of unary nodes has at most b+1
+distinct stops, by counting one necessary incoming port for each non-root
+node against two ports per branch and one per unary node. Thus b>=|T|-1.
+Every expanded OR has |V(w)|>=2 and satisfies (a), proving the claim.
+
+For different targets T,T' disjoint from the same base B and with
+|T intersection T'|<=1, the charged OR sets are disjoint. A shared sound
+wire's base support would be contained in T intersection T', while having
+at least two points.
+
+Apply the claim to C0 and the8 targets disjoint from Y, with base B=Y.
+Each target has size5, so choose four private charged ORs per target. This
+gives exactly32 distinct gates, denoted H. Every H gate is false at Y,
+because it is globally below a target disjoint from Y.
+
+The base-empty special case is also needed later: a monotone prefix computing
+an exact OR of five points contains at least four globally sound OR gates
+whose singleton support has at least two points.
+
+
+OBLIGATION 2: THE48-GATE PARTITION BY VALUES AT Y
+
+Let L be the13 actual output gates for the targets meeting Y. These are valid
+gate wires: a raw input or an unavailable wire cannot compute an OR of five
+distinct variables. They are distinct, because equal output functions would
+give equal target sets, contrary to pairwise intersection at most one. Each
+is true at Y, so L is disjoint from H.
+
+There are at least two prefix AND gates with empty singleton support that
+are true at Y. Here is the full minterm argument. Prune the true cone of h
+at Y, stopping at any wire with nonempty singleton support, choosing one true
+child at an OR, and retaining all true children at an AND with empty singleton
+support. Every retained reference is valid and earlier: an unavailable
+reference cannot be true. A zero-input OR cannot be true, while a zero-input
+AND would have nonempty singleton support because n>=3.
+
+If A is the number of retained empty-support AND nodes, the same unary/binary
+DAG port count gives at most A+1 stops. Choose a singleton input activating
+each stop. The union of these singletons activates every retained node and
+h by monotonicity and gate propagation. Its weight is at most A+1. Since h
+has no positive input of weight less than3, A>=2. Choose two such gates and
+call their set A0. Both are true at Y and are therefore outside H. Their empty
+singleton support separates them from all L outputs.
+
+The NOT gate z is outside H (its value in C0 is constantly false), outside L
+(it is true on the empty input), and outside A0 (different operation and later
+than the prefix). Thus
+
+  |H|+|L|+|A0|+1 =32+13+2+1=48 <=N.
+
+Each of the8 heavy targets contributes a distinct forced refund. Its actual
+output has singleton signature exactly that target, and on Y union {p}, for
+p outside Y, has the same target signature because the target misses Y.
+It satisfies both exact refund clauses. Therefore R>=8.
+
+If the posted inequality failed, N+R+21<79, hence N+R<=57 and N<=49. Together
+with N>=48, only N48 or N49 remains. In this situation H,L,A0,z account for48
+distinct gates and there is at most one other gate Q in the entire circuit.
+The possible numerical failures are N48 with R<=9 or N49 with R<=8.
+
+
+OBLIGATION 3: NO LIGHT OUTPUT CAN OCCUR BEFORE NOT
+
+Suppose one L output for target S_i occurred before the NOT. Its prefix is
+monotone and computes exactly OR(S_i). Obligation1 with empty base gives four
+prefix OR gates globally below OR(S_i), each having at least two singleton
+positives. Call this private set P_i.
+
+P_i is disjoint from H. At a prefix wire, C0 and the original circuit agree
+on all inputs. A shared P_i/H wire would therefore be globally below both
+OR(S_i) and a heavy target OR(S_j). Its singleton support would lie in
+S_i intersection S_j and have at least two points, impossible.
+
+P_i is disjoint from A0 by operation/support and from z by prefix order. It
+is disjoint from every other light output: another full five-point target
+support cannot be contained in S_i when their intersection has size at most
+one. At most its own output gate can belong to both P_i and L.
+
+Thus at least three of the four P_i gates are outside the48 already selected
+gates. This contradicts N<=49. Consequently all13 light outputs occur after
+NOT. This exclusion uses only linearity of the set system, not any property
+that light targets intersect one another.
+
+
+OBLIGATION 4: THE GLOBAL RESIDUAL PREFIX FORCES A MANDATORY INPUT
+
+Before NOT, every gate is now one of:
+
+  - a selected H OR, false at Y;
+  - one of the two selected A0 ANDs, true at Y and with empty singleton support;
+  - the one possible extra gate Q.
+
+No NOT occurs in this prefix. Invalid references act as constant false.
+The following analysis concerns the complete functions of the wires, not
+merely one accepting trace. False-at-Y alternative branches are retained.
+
+Case 1: Q is absent, lies after NOT, is irrelevant to h, or is false at Y.
+
+The gates true at Y in h's prefix cone can only be the two A0 ANDs and raw
+variables of Y. An AND true at Y cannot read a false-at-Y wire. The H gates
+are false at Y and cannot turn a false branch into a true one. If Q is also
+false at Y, its whole false-at-Y OR network cannot reach h through the
+remaining true AND nodes. Therefore h is globally a conjunction of raw
+variables. It is neither false nor constant true, by its window hypotheses,
+so at least one raw variable is mandatory.
+
+Case 2: Q is an AND true at Y.
+
+H gates false at Y cannot read Q or A0 through OR ancestry. All gates true at
+Y in the residual h-cone are ANDs. They flatten globally to a conjunction of
+raw variables. Again at least one variable is mandatory.
+
+Case 3: Q is an OR true at Y.
+
+In this case every H gate is globally an OR of raw variables outside Y (or
+constant false). It cannot read Q or an A0 gate, which are true at Y, and
+there is no other prefix gate type. In particular false-at-Y alternatives
+entering Q are genuine linear OR functions; they have not been dropped.
+
+Every A0 gate before Q is a conjunction of raw variables of Y. Every A0 gate
+after Q is a conjunction of Q and raw variables, possibly with repeated
+factors. Consequently h has the global form
+
+  Q^epsilon AND (AND over a raw-variable set T),  epsilon in {0,1}.
+
+If T is nonempty, a variable in T is mandatory. If T is empty and epsilon=0,
+h is constant true, impossible. The only remaining possibility without an
+already mandatory variable is h=Q.
+
+Since h=Q has minimum positive weight3, every nonzero operand of Q must also
+have minimum positive weight at least3. Raw variables and nonempty linear
+ORs have minimum positive weight1, so cannot be such operands. Among the two
+A0 AND gates, the earlier one combines only raw variables and has a positive
+witness of weight at most2. Only the later A0 gate can have a degree-three
+raw conjunction, and obtaining degree3 uses both A0 gates. Thus every nonzero
+operand of Q must be this same later raw-conjunction wire. Empty/invalid
+operands contribute zero, and repeated operands change nothing. Hence Q
+equals that raw conjunction and has a mandatory variable after all.
+
+This completes all cases. There is a point u such that h(x)=true implies
+x_u=true on every input. Since h(Y)=true, u belongs to Y.
+
+The counts also cover unary/nullary gates. A true nullary AND in A0 would
+contradict empty singleton support; a true nullary OR is impossible. Unary
+AND/OR gates are aliases. If Q is a true nullary AND, it is constant one and
+does not remove any mandatory factor. If Q is a unary OR, Case3 is its alias
+special case. No well-formedness beyond the project's false-default semantics
+is being silently assumed.
+
+
+OBLIGATION 5: APPLY THE ACCEPTED SINGLETON-CLAUSE LEMMA
+
+Use accepted L-meta-986 with T={u} and t0=u, where u is the mandatory input of
+h. Its key premise is exactly that h is false whenever every variable of T
+is false. All other premises hold: one actual NOT gate with a valid earlier
+first operand; fan-in at most two; exact set-OR outputs; pairwise intersection
+at most one; and every target has size5. The maximum-incidence choice of t0
+is automatic for a singleton T. The sum over T.erase t0 is empty.
+
+Its conclusion is therefore
+
+  1 + sum_i(|S_i|-1) <=N,
+  1 +21*4 =85 <=N.
+
+This contradicts N<=49. Hence the supposed997 violation cannot exist. In
+fact, under this Y-window hypothesis the paper argument excludes every
+circuit of size at most49 for this set system; N>=50 together with R>=8 gives
+
+  N+R+21 >=50+8+21 =79 =F.
+
+The number85 is used only after deriving a mandatory input in the saturated
+small-size case. It is not asserted as an unconditional lower bound for all
+circuits satisfying the original plane problem.
+
+
+PROVENANCE AND FORMALIZATION BOUNDARY
+
+Primary project sources used:
+
+  pequalnp-proofs/lean/PEqualNP/Outside/L_meta_986.lean
+    Accepted singleton-clause bound and same-index NOT replacement machinery.
+
+  pequalnp-proofs/lean/PEqualNP/Outside/L_meta_988.lean
+    Accepted sound heavy-window gate count and private-family counting method.
+
+  pequalnp-proofs/lean/PEqualNP/Outside/L_meta_270.lean
+  pequalnp-proofs/lean/PEqualNP/Outside/L_meta_782.lean
+    Accepted light-window cut proofs; no novelty is claimed for that method.
+
+The true-at-Y empty-AND budget has a separate Lean-kernel-checked helper,
+main-997/formal/MintermSlack.lean: small_witness and minterm_bound include empty
+and unary gates, invalid references, and sharing. The OR-only sample/private
+count is now checked in formal/OrPrivateCount.lean, including its heavy-family
+sum bound; HeavyReplacement.lean checks its C0 bridge. LightCount.lean and
+NotWindow.lean check the complementary light/window bounds. RefundCount.lean
+checks the exact posted refund and excess criterion; SmallWindow.lean checks
+the complete original theorem when |Y|<=2 or all target sizes are at most4.
+These helper audits use the standard three axioms only.
+The full gate partition and residual prefix classification above remain paper
+arguments. No complete Lean proof of this finite slice or of the universal997
+statement has been produced. The stopped solver query remains UNKNOWN.
+
+The original posted refund has the entire iff parenthesized after its guard.
+A transient missing-parenthesis error in a shortened local helper did not
+change the original statement or the predicate used by this paper argument.

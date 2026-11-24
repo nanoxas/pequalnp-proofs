@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "source": "SmallWindow.lean",
+  "source_sha256": "8f354a48080a33b18f233d75b2b30c1547f801ed73612c2a0118f7217e810075",
+  "source_bytes": 12042,
+  "object_sha256": "b3c59dd02c007b5d3296a7c7da1a252c54b403320919940db5ff697853d9613b",
+  "exit_code": 0,
+  "elapsed_seconds": 2.873,
+  "bound_seconds": 180.0,
+  "child_reaped": true,
+  "source_unchanged_during_check": true,
+  "warnings": 0,
+  "axioms": {
+    "PEqualNP.Research.SmallWindow.monotone_replacement_small_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.SmallWindow.one_not_small_window_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "PEqualNP.Research.SmallWindow.one_not_refund_bound_max_four": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log": "SmallWindow.check.log",
+  "log_sha256": "bcbb84daa343f4040b5cac662db55b126c09fa8bd3ff476d14b3802e4d2cfbda",
+  "dependencies": {
+    "RefundCount": {
+      "source_sha256": "08cedd1ed8c084add41882ffd7bc64922cd54f4c8733a533886824a6756cb508",
+      "object_sha256": "6b6b241be431f92b445a4dae4310e075b600939baf73b44085d69ac541b0c087"
+    },
+    "HeavyReplacement": {
+      "source_sha256": "1ac8cd33c096192355bf8bd299f796c277157b5b8f087b21fa2b4890ef489b2e",
+      "object_sha256": "998049d1824ae7f6afc5454168675813fc48cff9a2bafcf1c863d92cb941e151"
+    }
+  },
+  "prior_attempts": [
+    {
+      "label": "SmallWindow1",
+      "status": "PASS_WITH_LINTER_WARNINGS",
+      "scope": "Same theorem content; five deprecated tactic-lemma aliases and one unused simp argument were corrected."
+    }
+  ],
+  "scope": "Exact original997 circuit assumptions. Proves no-refund bound for Y.card≤2 (including emptyY/noNOT), and exact997 refund bound for all target sets of size≤4, using the checked RefundCount predicate equivalence. The unrestricted997 theorem remains unproved.",
+  "recorded_utc": "2026-11-24T01:58:49.150864+00:00"
+}

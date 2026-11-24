@@ -1,0 +1,29 @@
+import took 1.9s
+'PEqualNP.Research.SmallWindow.monotone_replacement_small_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.SmallWindow.one_not_small_window_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.SmallWindow.one_not_refund_bound_max_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 10.6ms
+	attribute application 0.04ms
+	blocked (unaccounted) 606ms
+	congr simp thm 2.8ms
+	declTypeLinter 2.72ms
+	elaboration 53.9ms
+	fix level params 0.428ms
+	import 1.9s
+	initialization 37.7ms
+	instantiate metavars 2.18ms
+	interpretation 206ms
+	let-to-have transformation 0.12ms
+	linting 21.4ms
+	module linting 0.0274ms
+	parsing 9.21ms
+	process pre-definitions 4.83ms
+	share common exprs 2.67ms
+	simp 92.6ms
+	tactic execution 171ms
+	tacticAnalysis 2.48ms
+	type checking 71.8ms
+	typeclass inference 174ms

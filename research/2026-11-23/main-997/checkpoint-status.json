@@ -1,0 +1,202 @@
+{
+  "snapshot_utc": "2026-11-24T02:01:13.174925+00:00",
+  "full_statement_proved": false,
+  "upstream_submission_made": false,
+  "formal_modules": {
+    "MintermSlack": {
+      "status": "PASS",
+      "source_sha256": "344ac9855efd9f5958cf47d553632e102c9f71fb4a3cdae5391d445c7a7b7aa3",
+      "log_sha256": "29c8bc492c958b93e7c4470a48a0e08e933c99c3ae889d4f8c3f47a90cc91981",
+      "elapsed_seconds": 2.02,
+      "record": "MintermSlack.verification.json",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "LightCount": {
+      "status": "PASS",
+      "source_sha256": "597bc21d92734ab4629c7151ba7a4559a91defa74f102f616c65f3f8ac0886bc",
+      "log_sha256": "d064abb381e5aaa07745a40f636a7019d3343ae52d7d8c5bf11f23224fd3ba94",
+      "elapsed_seconds": 2.379,
+      "record": "LightCount.verification.json",
+      "axioms": {
+        "PEqualNP.Research.MintermSlack.light_window_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.light_window_sum_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "LightMinterm": {
+      "status": "PASS",
+      "source_sha256": "89065e43a67490ffb2fb78102d9cd0a59f2d2da2cf0bcde31b529b985be7ab42",
+      "log_sha256": "9f0300567fdb5982cb9521afa8508a61b9070546722ffa2b9d550ae0565d5ce9",
+      "elapsed_seconds": 6.378,
+      "record": "LightMinterm.verification.json",
+      "axioms": {
+        "PEqualNP.Research.MintermSlack.light_minterm_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "NotWindow": {
+      "status": "PASS",
+      "source_sha256": "a7eaecef609f5f722e0b4b7a827a67cba6dd60a1c7cb7f2a9f766ef340bee6c7",
+      "log_sha256": "af8723db1c97a043715400f2e2a0d84ae20a74b5fb4dcba4e1b2164f9290b60c",
+      "elapsed_seconds": 2.374,
+      "record": "NotWindow.verification.json",
+      "axioms": {
+        "PEqualNP.Research.MintermSlack.replC_prefix_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.one_not_window_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "OrPrivateCount": {
+      "status": "PASS",
+      "source_sha256": "47c1c76875c7ba77d0a02916728a0dd7eaee53f24d710b2de266ee9d2c6febb3",
+      "log_sha256": "b45413bb6557ce30485b15c7d8174b2cdf4db18e5b0beedf0c983a8bda557b50",
+      "elapsed_seconds": 2.475,
+      "record": "OrPrivateCount.verification.json",
+      "axioms": {
+        "PEqualNP.Research.OrPrivateCount.sample_or_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OrPrivateCount.heavy_or_prefix_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.OrPrivateCount.heavy_or_sum_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "HeavyReplacement": {
+      "status": "PASS",
+      "source_sha256": "1ac8cd33c096192355bf8bd299f796c277157b5b8f087b21fa2b4890ef489b2e",
+      "log_sha256": "91aff2a035da9846ae61309015fd72ea89b5f08bd79b1c266a15cb7fe834b66e",
+      "elapsed_seconds": 2.22,
+      "record": "HeavyReplacement.verification.json",
+      "axioms": {
+        "PEqualNP.Research.HeavyReplacement.repl0C_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyReplacement.repl0C_above_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyReplacement.one_not_heavy_or_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.HeavyReplacement.false_window_replacement": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "RefundCount": {
+      "status": "PASS",
+      "source_sha256": "08cedd1ed8c084add41882ffd7bc64922cd54f4c8733a533886824a6756cb508",
+      "log_sha256": "2ade7736151889677330ae6121403f894621fd95d476b756588649427620b3a7",
+      "elapsed_seconds": 6.639,
+      "record": "RefundCount.verification.json",
+      "axioms": {
+        "PEqualNP.Research.MintermSlack.refundGates_eq_posted": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.forced_refund_count": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.one_not_refund_bound_of_excess": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.one_not_refund_bound_of_heavy_size": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.MintermSlack.one_not_refund_bound_all_hit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    "SmallWindow": {
+      "status": "PASS",
+      "source_sha256": "8f354a48080a33b18f233d75b2b30c1547f801ed73612c2a0118f7217e810075",
+      "log_sha256": "bcbb84daa343f4040b5cac662db55b126c09fa8bd3ff476d14b3802e4d2cfbda",
+      "elapsed_seconds": 2.873,
+      "record": "SmallWindow.verification.json",
+      "axioms": {
+        "PEqualNP.Research.SmallWindow.monotone_replacement_small_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.SmallWindow.one_not_small_window_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.Research.SmallWindow.one_not_refund_bound_max_four": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    }
+  },
+  "formal_module_count": 8,
+  "paper_saturation_status": "INDEPENDENTLY_REVIEWED_NOT_KERNEL_CHECKED",
+  "sat_status": "INTERRUPTED_UNKNOWN",
+  "original_sat_child_cleanup": "reaping_unconfirmed",
+  "refund_semantics": "Exact posted guarded biconditional; source encoder unchanged.",
+  "helper_correction": "A failed helper dropped grouping; corrected RefundCount includes a checked equality to the verbatim posted expression.",
+  "source_bytes_unchanged": [
+    "all eight Lean modules",
+    "SAT encoder",
+    "geometry generator",
+    "runner and lifecycle test"
+  ],
+  "public_transform": "Local workspace paths and operational process/session identifiers removed from records and logs; proof source bytes are unchanged.",
+  "excluded": [
+    "private assignment state and credentials",
+    "raw process/environment snapshots",
+    "compiled Lean objects and binary caches",
+    "solver binaries",
+    "unverified current Lean drafts"
+  ]
+}

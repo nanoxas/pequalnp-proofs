@@ -1,0 +1,11 @@
+{
+  "status": "WITHDRAWN_WRONG_TRANSCRIPTION",
+  "source_sha256": "f117cc7de601c1b27d94f5c485df79689ab5e32b3f150c2a3916ad409b0f2be4",
+  "log_sha256": "fb63dfd409aecc07209d25045362d06c8d3f2674d47902cdbdf95c6f957e3029",
+  "kernel_check": "FAILED",
+  "reason": "The value helper dropped the posted outer parentheses around the shifted equivalence after p notin Y. The posted statement is correctly parenthesized; this draft does not faithfully reproduce its refund predicate.",
+  "correction": "Restore the guarded equivalence and check a definitional equality against a verbatim extraction of the posted refund Finset.",
+  "recorded_utc": "2026-11-24T01:54:45.885277+00:00",
+  "original_log_sha256": "feb76d98fb357edf2c9961f1d3b624ceb2deab21a1640c6fde7dd175be32092e",
+  "public_log_transform": "Absolute local workspace prefix replaced by <workspace>; original hash retained."
+}

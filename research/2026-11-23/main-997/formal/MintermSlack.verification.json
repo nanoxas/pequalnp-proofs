@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "task_full_statement_proved": false,
+  "role": "Reusable actual-circuit empty-singleton-support AND lower bound",
+  "source_sha256": "344ac9855efd9f5958cf47d553632e102c9f71fb4a3cdae5391d445c7a7b7aa3",
+  "object_sha256": "ce74297b187e3397004f6e80aa10cf97647d14fb04fb92e499c5c4416498cb94",
+  "log_sha256": "29c8bc492c958b93e7c4470a48a0e08e933c99c3ae889d4f8c3f47a90cc91981",
+  "lean_version": "4.36.0",
+  "elapsed_seconds": 2.02,
+  "exit_code": 0,
+  "warnings": 0,
+  "child_reaped": true,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "declarations": [
+    "PEqualNP.Research.MintermSlack.small_witness",
+    "PEqualNP.Research.MintermSlack.minterm_bound"
+  ],
+  "scope": "Monotone AND/OR circuits of fan-in at most two, with actual false-default wire semantics. Charged gates lie at or before the target output, have empty singleton support, and are true at the supplied positive input. Minimum positive weight is global; the constructed witness need not be contained in the original input.",
+  "provenance": "Evaluation and cut helpers copied from accepted L-meta-986 under Apache-2.0; new true-frontier construction and branch bound.",
+  "import_cache": "Verified import-only six-import header snapshot; no previous proof bodies reused.",
+  "checked_at": "2026-11-24T01:31:02.802537+00:00"
+}

@@ -1,0 +1,214 @@
+SATURATION GENERALIZATION OF THE PG(2,4) PAPER ARGUMENT
+
+Status: paper mathematics, not a Lean theorem or a SAT certificate. The
+underlying true-at-Y minterm budget is kernel-checked separately in
+formal/MintermSlack.lean. The light-window private count is kernel-checked
+in formal/LightCount.lean, the OR-only private count in OrPrivateCount.lean,
+its C0 bridge in HeavyReplacement.lean, and the original NOT-window light
+bound in NotWindow.lean. RefundCount.lean checks the posted refund and excess
+criterion; SmallWindow.lean checks the complete original theorem for |Y|<=2
+or for families whose target sets all have size at most4. The full saturation
+gate partition and residual-prefix classification remain paper arguments.
+Criterion C was independently reviewed by the bounds worker, who found no
+flaw; the resulting theorem still has no complete Lean formalization.
+
+All circuit and refund conventions are exactly those of L-meta-997. The
+target sets meet pairwise in at most one point. No assumption is made that
+two distinct light targets actually intersect.
+
+
+1. NOTATION FOR A THREE-POINT WINDOW
+
+Assume |Y|=3. A target is heavy if it is disjoint from Y, and light otherwise.
+Write d_i=|S_i| and define:
+
+  P  = number of nonempty targets;
+  e  = m-P = number of empty targets;
+  H  = number of heavy targets with d_i>=2;
+  A  = sum over heavy targets of (d_i-1), with natural subtraction;
+  L  = number of light targets with d_i>=2;
+  L3 = number of light targets with d_i>=3.
+
+The exact posted left side is
+
+  F=P+A+L+L3.
+
+The OR-only sound private count selects A distinct heavy OR gates, all false
+at Y. Select the L distinct actual nontrivial light output gates, all true
+at Y; two empty-singleton-support prefix AND gates true at Y; and the NOT.
+These sets are pairwise disjoint, so
+
+  B0=A+L+3 <=N.
+
+Every nontrivial heavy output is a distinct forced refund, so R>=H. If997
+were false, integrality would give
+
+  N+R+m <=F-1,
+  delta :=N-B0 <=L3-R-e-4 <=L3-H-e-4.                 (1)
+
+In particular L3<=H+e+3 is already impossible by the basic heavy bound.
+The interesting next two layers have delta<=0 or delta<=1.
+
+
+2. PRIVATE COST OF A WHOLE LIGHT OUTPUT BEFORE NOT
+
+Suppose a nontrivial light target S_i is computed by its actual output wire
+before NOT. That prefix is monotone and computes the exact linear function
+OR(S_i). The sound OR-only count with empty base gives at least d_i-1 prefix
+OR gates globally below OR(S_i), with at least two singleton positives each.
+
+They are disjoint from every selected heavy OR: before NOT the replacement
+and original circuits agree, so a shared gate would have at least two
+singleton positives in S_i intersect S_j. They are disjoint from the two
+empty-support ANDs and NOT. They are disjoint from every other nontrivial
+light output, whose full target support cannot be contained in S_i under
+linearity. At most the output for S_i itself is already in the B0 budget.
+
+Thus a prefix light output requires at least d_i-2 extra gates. These extra
+private sets are disjoint across different prefix light outputs. Therefore
+
+  sum over prefix nontrivial light outputs of (d_i-2) <=delta.       (2)
+
+This statement explicitly permits sharing inside one target's OR network;
+the distinct-target disjointness follows from singleton support and linearity.
+
+
+3. GENERAL SUFFICIENT CRITERIA
+
+Criterion A. Suppose every nontrivial light target has size at least4 and
+
+  L3<=H+e+5.
+
+Then997 holds.
+
+Proof. Under a failure, (1) gives delta<=1. A prefix nontrivial light output
+would cost at least2 extra gates by (2), so none exists. The entire prefix
+then consists of the selected heavy OR gates false at Y, the two selected
+empty-support AND gates true at Y, and at most one extra gate Q. The global
+residual-prefix argument in pg4-exclusion-paper.txt, Obligation4, applies
+verbatim. It includes false-at-Y alternative branches and proves that the
+NOT input h has a mandatory raw variable u.
+
+Apply accepted986 to the subfamily of all targets of size at least2, with
+the singleton clause T={u}. Empty and singleton targets contribute zero to
+the sum of predecessors, so its conclusion is
+
+  N >=1+sum_i(d_i-1)
+    =1+A+sum over light targets of (d_i-1).
+
+For every light target, d_i-1 is at least min(3,d_i)-1. Consequently
+
+  N+m >=1+A+L+L3+m >=F+1.
+
+This contradicts failure even without using a refund. This proves A.
+
+Criterion B. Suppose every nontrivial light target has size at least3 and
+
+  L3<=H+e+4.
+
+Then997 holds.
+
+The same proof works with delta<=0. Even a triple output would need one
+extra gate before NOT, so all nontrivial light outputs are again excluded.
+
+Singleton light targets may be present in both criteria: their exact outputs
+can be raw variables, and any separate alias gate already consumes one of
+the extra slots. Empty targets only improve inequality (1). Heavy target
+sizes are unrestricted.
+
+Criterion C (stronger paper extension, independently reviewed).
+Suppose every nontrivial light target has size at least3 and
+
+  L3<=H+e+5.
+
+Then997 holds. This extends both criteria above by allowing a triple output
+to occur before NOT when delta=1. Here is the additional argument.
+
+Assume failure. If no nontrivial light output occurs before NOT, Criterion A's
+residual-prefix argument applies. Otherwise (2) implies delta=1 and exactly
+one such output can occur. Its target S has size3. Its two private OR gates
+must be the output itself and the sole extra gate Q: only the output can
+overlap the selected light-output budget, and there is no other spare gate.
+In particular both gates are OR, Q precedes the output, Q is globally below
+OR(S), and Q has at least two singleton positives.
+
+Before Q, each selected heavy OR is a pure OR of variables outside Y. Such
+an OR cannot read either true-at-Y empty-support AND. There is no other
+prefix light output, no other extra gate, and no earlier NOT. The two selected
+ANDs that occur before Q, if any, are conjunctions of raw variables of Y and
+have empty singleton support.
+
+Since Q is a sound OR for S, each effective operand is globally below OR(S).
+A raw input contributes at most one singleton positive. A heavy OR operand
+is globally below both OR(S) and its heavy target, so has at most one
+singleton positive by linearity; being a pure OR, a nonempty such operand
+is exactly a singleton alias. An empty-support AND contributes none. Q has
+at most two operands and at least two singleton positives, so both operands
+are singleton aliases of two distinct variables in S. Thus Q is exactly
+the OR of a two-point subset S' of S.
+
+No selected heavy OR after Q can depend on Q: the first such OR would contain
+the two singleton positives of Q, contradicting its heavy target's
+intersection-at-most-one with S. Heavy ORs also cannot depend on the true
+light output or the true empty-support ANDs. Hence every selected heavy OR
+throughout the prefix remains a pure outside-Y OR.
+
+The triple output is itself an OR with singleton support exactly S. Its
+potential operands are raw inputs; heavy ORs sound for S, hence singleton
+aliases; empty-support ANDs; or Q. Two operands can cover all three points
+only by using Q and the third singleton. Therefore the actual full output
+function is Q OR x_v for v in S minus S'. Both prefix light OR atoms are
+independent of the ANDs and have nested supports S' subset S.
+
+Every true-at-Y AND in the residual prefix takes only raw variables or these
+two OR atoms, possibly through the other AND. All other prefix wires are
+false at Y and cannot be its operands. The complete NOT-input function h
+therefore flattens to an AND of raw factors and a subset of the two nested
+OR atoms. If there is no raw factor, this function is constant one, OR(S'),
+or OR(S); its minimum positive weight is zero or one. This contradicts the
+minimum weight3 of h. A raw factor is therefore mandatory. Applying986 as
+in Criterion A finishes the contradiction.
+
+The nested-atom argument does not apply to pair outputs. Several distinct
+pair outputs can be present without consuming extra private gates, as the
+example in Section5 shows.
+
+
+4. CONSEQUENCES FOR THE ORDER-FOUR PROJECTIVE PLANE
+
+For21 five-point targets and a three-point Y meeting13 targets and missing8,
+Criterion A applies with L3=13, H=8, e=0. This recovers the paper exclusion
+without using any projective-plane geometry after the incidence counts.
+
+For a noncollinear three-point Y in PG(2,4), the number of light lines is12
+and heavy lines9. The basic bound already suffices: L3=12=H+3. The exact
+left side is12*3+9*5=81; the selected-gate bound is N>=9*4+12+3=51 and
+forced refunds give R>=9, hence N+R+21>=81.
+
+Combining the collinear and noncollinear cases with the previously derived
+k<=2 argument and the d_i<=k+1 criterion for k>=4 covers every choice of Y
+for the PG(2,4) set family on paper. This is a special case of997; it does
+not establish the universal997 statement or a separate full line-OR lower
+bound without the NOT-window hypotheses.
+
+
+5. WHY PAIR TARGETS REQUIRE ANOTHER ARGUMENT
+
+A light pair output costs no additional private gate beyond its own output,
+so it can remain in the prefix even when delta=0. For example, let
+
+  Y={y1,y2,y3},
+  h=(y1 OR a1) AND (y2 OR a2) AND (y3 OR a3),
+
+using three pair-OR outputs and two AND gates. The pairs can be disjoint,
+so they satisfy the original pairwise-intersection-at-most-one assumption.
+Then h has minimum positive weight3 and is true at Y, yet has no mandatory
+raw variable. This is an obstruction to this residual-prefix lemma, not a
+counterexample to997: the remaining outputs and refund inequality still
+need to be met.
+
+A small mandatory clause, such as {y1,a1}, still exists in this example.
+Accepted986 then charges the incidence count of one surviving clause point.
+Controlling that incidence cost relative to the gate surplus is a possible
+next step. It must be proved globally; the pair example prevents assuming
+that low surplus alone always produces a mandatory singleton.

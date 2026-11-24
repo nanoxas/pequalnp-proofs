@@ -1,0 +1,16 @@
+{
+  "case": "pg4-case.json",
+  "case_sha256": "71733580ed990637fee04c6f3a7aa69f156999893e6c9732714e9e83465a8fbc",
+  "source_sha256": "f3c68d228c7da5f1b7b86fa04d559e765b491c085bc07da7dd889dc0f9e6212c",
+  "bound_seconds": 20.0,
+  "started_utc": "2026-11-24T01:36:39.683900+00:00",
+  "status": "RUNNER_EXCEPTION",
+  "stop_file": "lifecycle-exception.stop",
+  "mode": "lifecycle_dummy",
+  "runner_exception": "Traceback (most recent call last):\n  File \"<workspace>/main-997/run_bounded.py\", line 70, in <module>\n    raise RuntimeError('intentional lifecycle-test runner exception')\nRuntimeError: intentional lifecycle-test runner exception\n",
+  "exit_code": -15,
+  "child_reaped": true,
+  "elapsed_seconds": 0.20732759599923156,
+  "log_bytes": 14,
+  "stopped_utc": "2026-11-24T01:36:39.891368+00:00"
+}

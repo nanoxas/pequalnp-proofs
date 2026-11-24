@@ -115,3 +115,24 @@ search; Lean-checked ladder support, first-dirty-AND witnesses, dyadic inverter
 semantics, and clean-count components; and finite audits of several structural
 constructions. Their assumptions and formalization boundaries remain explicit.
 None is claimed to resolve P versus NP.
+
+## One-NOT refund research: L-meta-997
+
+The [new research checkpoint](main-997/README.md) contains eight kernel-checked
+modules with standard-axiom audits: minterm AND counts, private light and heavy
+gate counts, actual one-NOT replacement bridges, the exact refund predicate,
+and sufficient cases. In particular, the posted inequality is proved when
+every target set has size at most four; the |Y|≤2 case needs no refunds.
+The unrestricted L-meta-997 statement remains unproved here.
+
+The PG(2,4) and three-point saturation arguments have a separate independent
+paper audit. Their complete classification is not yet a Lean theorem. The
+sole 49-gate finite solver query remains INTERRUPTED_UNKNOWN; no candidate
+or UNSAT result was observed, and its original child cleanup is unconfirmed.
+Corrected runner cleanup passed five dummy-only lifecycle checks.
+
+The [checkpoint status](main-997/checkpoint-status.json) separates these
+results. A fresh public-text comparison and checked definitional equality
+also preserve the exact guarded refund predicate after correcting a failed
+helper transcription. No target-specific theorem was submitted from this
+checkpoint.
