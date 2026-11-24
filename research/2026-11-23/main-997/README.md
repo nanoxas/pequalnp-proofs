@@ -243,3 +243,25 @@ The search requires Python-SAT; the observed environment used
 `python-sat==1.9.dev24` and `six==1.17.0`. Solver binaries and compiled Lean
 objects are excluded from this checkpoint. A new target search requires a
 current authorized assignment and an explicit decision to run it.
+
+## Handoff after the missing-lemma report
+
+The desk accepted a `missing_lemma` release on 2026-11-24 at 05:04 UTC.
+The unrestricted theorem remains open, and this branch has no upstream
+submission for L-meta-997. All twenty-nine checked Lean sources are unchanged.
+
+The [remaining counting obligation](cross-window/joint-deletion-open.txt) is
+Q_H + Q_L <= N + R + e, with empty targets included explicitly. The
+[constructive OR normalization](cross-window/or-normalization.txt) retains a
+subset of original OR identities and never decreases their singleton values.
+Both are paper notes; the joint bound on removed context gates is unproved.
+
+The [nonempty-pool obstruction](nonempty-pool-obstruction/README.txt) rules
+out another restricted accounting shortcut. Its q=47 construction has an
+auxiliary deficit of 235 even after refunds, while satisfying the actual
+weighted inequality 49,068 <= 229,980. The producer used exact symbolic
+support propagation and all 2,048 abstract control cases. The independent
+review checked the construction and closed-form counts without rerunning the
+large computation. It is neither a counterexample to L-meta-997 nor a new
+Lean verification. The frozen [manifest](nonempty-pool-obstruction/manifest.json)
+and [desk outcome](release-missing-lemma.json) preserve those distinctions.

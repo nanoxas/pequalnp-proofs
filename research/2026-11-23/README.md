@@ -161,3 +161,13 @@ RUNNING_UNRESOLVED at its recorded time, with no candidate, exhaustion claim,
 or checked proof certificate. These files preserve that assigned range and
 historical snapshot; they make no assertion about current desk availability.
 Raw solver proofs, CNF files, process state, and private assignments are excluded.
+
+## L-meta-997 handoff
+
+The desk accepted a missing-lemma report on 2026-11-24 at 05:04 UTC.
+The [handoff](main-997/README.md#handoff-after-the-missing-lemma-report)
+preserves twenty-nine unchanged checked helper modules, the exact open joint
+deletion inequality, a reviewed OR-normalization argument, and a symbolic
+counterexample to a restricted eligible-pool shortcut. The full theorem
+remains open. This supporting research publication is not an upstream proof
+submission or an accepted theorem.

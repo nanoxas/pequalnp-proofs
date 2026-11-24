@@ -1,5 +1,5 @@
 {
-  "snapshot_utc": "2026-11-24T04:13:23.284292+00:00",
+  "snapshot_utc": "2026-11-24T05:07:37.612106+00:00",
   "full_statement_proved": false,
   "upstream_submission_made": false,
   "formal_modules": {
@@ -633,5 +633,11 @@
   "overlap_audit_status": "Four seven-input circuits checked on all 128 rows each. Raw eligible overlap can exceed whole-target refunds; disjoint minimum-quota choices exist in these examples. Full L-meta-997 holds in each example.",
   "original_twenty_six_sources_unchanged": true,
   "quota_audit_status": "Full original truth tables for 17-input and 19-input obstructions; generator identities and exact required rows for 301-input and 23-input examples. These refute auxiliary matching statements while satisfying full L-meta-997.",
-  "cross_window_status": "Fixed activation frontier against every negative h-input and every h-clause is a paper lemma; independent 19-input audit is exhaustive. Exact cited public sketch returned404."
+  "cross_window_status": "Fixed activation frontier against every negative h-input and every h-clause is a paper lemma; independent 19-input audit is exhaustive. Exact cited public sketch returned404.",
+  "work_status": "RELEASED_MISSING_LEMMA",
+  "released_utc": "2026-11-24T05:04:00.409038+00:00",
+  "desk_release_http_status": 200,
+  "all_twenty_nine_formal_sources_unchanged": true,
+  "remaining_obligation": "Joint deletion count Q_H + Q_L <= N + R + e. A common heavy OR normalization and singleton-support monotonicity are paper-reviewed; the global context-gate accounting remains open.",
+  "nonempty_pool_audit": "Exact symbolic gate signatures and 2,048 abstract control cases, with independent source and closed-form review. The q=47 example refutes a restricted eligible-pool bound by 235 and satisfies the actual L-meta-997 inequality. No full original truth table or Lean proof is claimed."
 }

@@ -1,0 +1,108 @@
+COMMON OR-ONLY NORMALIZATION FOR A LINEAR DISJUNCTION FAMILY
+
+Status: paper proof, independently reviewed by inspect_project. This file
+does not contain a new Lean verification or solve unrestricted L-meta-997.
+The checked OrPrivateCount already gives the corresponding OR-count lower
+bound; the point here is an actual common deletion history.
+
+1. STATEMENT
+
+Let a monotone AND/OR circuit compute outputs OR(S_i), where any two
+distinct target sets intersect in at most one input. Constants and repeated
+or missing ports are permitted, with missing reads interpreted as false.
+There is an OR-only circuit for the same output family whose OR gates are
+a subset of the original OR gate identities. Rewiring can change their
+operand lists. No original gate is duplicated or new binary gate added.
+
+The construction may use false as a free boundary constant. It can be
+represented by an unavailable wire in the project semantics; alternatively
+keep a pre-existing false wire while counting it separately. A final exact
+OR output is false at zero, so a constant-true wire cannot survive in its
+OR-only cone.
+
+2. ELIMINATE THE LAST LIVE AND
+
+Prune gates outside all output cones. Choose the live AND with the largest
+index. Every later gate on a path from it to an output is now OR, so the
+chosen AND has an OR-only downstream cone.
+
+Write A for its singleton-positive support.
+
+If A is empty, replace its value by false. If A={p}, replace it by input p.
+Monotonicity makes this a pointwise decrease. The replacement agrees with
+the gate on every singleton assignment, hence every output retains exactly
+its former singleton positives. Outputs cannot become larger. A monotone
+function bounded above by OR(S_i) and true at every singleton in S_i is
+exactly OR(S_i), so all outputs remain correct.
+
+If |A|>=2, every OR-only reachable output contains A in its target. Linearity
+therefore permits only one such target S_i. On the complement of S_i, that
+output is false, so the chosen AND is false. At least one operand is false
+there. Choose that operand f. Since f is monotone, f<=OR(S_i) globally.
+Bypass the AND through f. This raises the old AND value, preserves every
+previous positive output, and keeps the unique affected output bounded by
+OR(S_i). Other outputs are unaffected. All outputs remain exact.
+
+A nullary AND is true and cannot have an OR-only path to an exact OR output,
+which is false at zero. An unavailable read is false; a gate with a wide
+singleton support cannot have such a false operand. Unary ANDs are aliases.
+
+After the bypass, remove the AND, redirect its uses to the chosen earlier
+wire, and prune newly dead gates. Repeating terminates because the live AND
+count decreases. Remaining repeated-input ORs, one-input aliases and false
+inputs can also be simplified without adding a gate.
+
+3. APPLICATION TO THE Y=1 RESTRICTION
+
+In997, set every variable in Y to true. The monotone NOT predecessor h is
+then true and z=NOT h is false. Every light output is constant true and is
+discarded; every heavy output remains the exact disjunction of its target,
+whose variables all lie outside Y. The remaining circuit is monotone on
+those outside variables, so Section2 applies to the heavy linear family.
+
+Consequently all AND gates, the NOT, constant contexts, aliases and dead
+gates can be excluded from a common retained heavy OR circuit. A heavy OR
+forest still requires sum_heavy(|S_i|-1) branching gates. The quantitative
+goal left for997 is to show that the removed identities supply at least
+
+  sum_light(min(|Y|,|S_i|)-1) - R
+
+credits, with natural subtraction and the exact original refund R. The
+private OR/AND dichotomy pays AND-rich light classes directly through
+removed AND identities. OR-full light classes require the remaining work.
+
+4. OWNERSHIP MUST BE TRACKED THROUGH REWIRING
+
+Retained identities need not retain their original functions or singleton
+supports after earlier gates are bypassed. In particular, original global
+C0 soundness and original refund equality need separate justification.
+
+There is a useful one-sided invariant: on each singleton of the remaining
+outside variables, the value at every surviving identity never decreases.
+A wide-AND bypass is a pointwise increase. A support0/1 replacement agrees
+with its gate on every singleton, so all later singleton values remain
+unchanged in that step. Dead pruning and alias renumbering preserve values
+at surviving identities. Hence the original shifted support V(w) is a
+subset of the final OR support at a retained gate w. This does not assert
+that the original full gate function is bounded by that final disjunction.
+
+If a retained OR has a final wide support inside heavy T and its original
+C1 support U lies inside light S, the invariant gives
+
+  U(w) intersect V(w) subset S intersect T,
+
+so its stable original support has at most one point. This connects the
+deletion history to the original paired signatures without assuming that
+rewiring leaves them unchanged.
+
+The original overlap ORs also known to be C0-sound for T are false both at
+zero and at Y. Their OR-only predecessors have those same two false base
+values, until a raw input or an AND entry is reached. The unfinished task
+is an injective or amortized count of those entries and the context gates
+removed by the normalization, including the other retained identities for
+which only shifted-support containment has been proved.
+
+Heavy-only OR gates can also be true at zero and false at Y. Those gates
+have universal C1 singleton support and do not lie in a proper light private
+class. They are safe retained capacity, so the assertion that every heavy
+retained OR is false at both base inputs would be too strong.

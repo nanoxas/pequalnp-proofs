@@ -1,0 +1,110 @@
+JOINT DELETION FORMULATION AND THE REMAINING CROSS-WINDOW COUNT
+
+Status: PAPER REDUCTION / OPEN QUANTITATIVE LEMMA. Frozen when the shared997
+research attempt ended with missing_lemma. This note does not prove the full
+statement, add a checked helper, or claim exhaustion. The published checkpoint
+contains29 checked helpers. No SAT or compiler was run for this note.
+
+1. Exact open inequality
+------------------------
+Work in k=|Y|>=3; the checked SmallWindow theorem handles smaller k. Put
+
+ Q_H = sum over targets disjoint Y of max(|S_i|-1,0),
+ Q_L = sum over targets meeting Y of (min(k,|S_i|)-1),
+ e   = number of empty targets.
+
+Every light target is nonempty. Consequently the exact posted inequality is
+
+ Q_H + Q_L <= N + R + e.                              (J)
+
+After fixing every input in Y to1, h becomes1 and z becomes0. All light
+outputs become constant1. The heavy outputs remain their exact linear OR
+functions on the outside inputs. The checked heavy OR argument supplies
+Q_H distinct heavy OR gate charges. The desired joint deletion accounting is
+
+ N - Q_H + R + e >= Q_L.                              (D)
+
+(D) is an exact reformulation of the remaining count, not an independently
+proved deletion theorem. It becomes useful only with a joint construction
+that pays the light quotas using removed gates, spare heavy resources, and
+whole-set refunds. Constant propagation alone does not supply that argument.
+One must include dead cones, aliases and the AND gates bypassed in a heavy
+OR extraction. A minimal numerical OR charge selection is not by itself a
+proof of a simultaneous circuit rewrite.
+
+2. Full semantic sandwich available at every output
+---------------------------------------------------
+Let A_w(X)=C1_w(X) and B_w(X)=C0_w(X), where the sole NOT output is replaced
+by1 or0 at the same index. For the actual output F_i=OR(S_i), monotonicity
+in the replaced source and agreement on the two h-domains give
+
+ h AND F_i <= B_i <= F_i <= A_i <= h OR F_i.
+
+These are full-input function inequalities. In particular A_i is exact on
+every h=0 input, not only below weight k, and B_i is exact on every h=1 input.
+The all-negative-input frontier consequence is in activation-clauses.txt.
+
+For outside input X define the paired monotone function
+
+ D_w(X) = A_w(X) AND B_w(Y union X).
+
+At each heavy output D_i is exactly OR(S_i). At an AND gate,
+
+ D_(a AND b) = D_a AND D_b.
+
+At an OR gate,
+
+ D_(a OR b) = D_a OR D_b
+             OR (A_a(X) AND B_b(Y union X))
+             OR (A_b(X) AND B_a(Y union X)).
+
+The two last terms are genuine cross births. Bounding them by one unit of
+new gate capacity requires context accounting; neither their singleton
+supports nor existing owner pools suffice.
+
+3. Corrected four-type reduction
+-------------------------------
+Classify a wire by its actual values at the zero input and at Y. An overlap
+between a proper C1-private light class and a C0-sound heavy class has type00:
+its C1 singleton support is proper, so its value at0 is0; heavy soundness and
+Y disjointness make its value atY zero. An OR gate of type00 has both children
+of type00. Thus the OR-only predecessor region of each potentially shared
+merge consists entirely of type00 wires and terminates at outside raw inputs
+or type00 AND entries. Unary/invalid ports may be contracted or treated as
+false in this paper description; the source model's exact semantics remain
+those of Circuit.
+
+This does NOT classify every retained heavy OR as type00. For example,
+(z OR a) OR b has type10 and becomes a OR b after Y=1. Type10 OR gates have
+universal C1 singleton support and cannot belong to a proper light private
+class. They provide heavy-only capacity. The hard sharing is confined to00
+OR regions and their AND/context boundaries. Constants and an exceptional
+full-universe target must be handled separately; the difficult branch with
+multiple nontrivial heavy targets has proper light targets automatically.
+
+4. Frozen diagnostic evidence
+-----------------------------
+The affine q47,k9 construction in ../nonempty-pool-obstruction/ has an exact
+symbolic gate audit plus an independent source/closed-form audit. It has423
+heavy targets,9729 light triples,219405 gates, and423 exact refunds. Even the
+union of every C1-private gate with every C0-sound heavy gate having nonempty
+shifted support has38258 gates against total quota38916; adding refunds still
+leaves235 unpaid. This is an auxiliary-pool counterexample, not a counterexample
+to997. Its actual weighted inequality is49068 <=229980.
+
+After Y=1, elementary simplification of that construction retains exactly
+19458 heavy line-OR gates and removes199947 gates. The removed resources
+include all three switch gates per affine point and all distributed Q_i
+clause gates. Thus the missing accounting really can reside far outside the
+proposed private/heavy pools. The construction is frozen; no larger example
+or additional pool conjecture is being pursued.
+
+5. Honest stopping point
+------------------------
+The full semantic sandwich, fixed-frontier activation requirements, and00
+component reduction are concrete structural information. None currently
+implies a disjoint or amortized bound on all cross births. A proof of(D)
+requires a global capacity invariant for context gates shared across several
+light/heavy owners, or a gate-elimination argument that establishes the same
+count. The existing29 checked special-case helpers and these diagnostics do
+not close that lemma. The desk outcome is missing_lemma, not exhausted.

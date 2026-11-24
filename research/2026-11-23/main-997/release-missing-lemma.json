@@ -1,0 +1,11 @@
+{
+  "task": "L-meta-997",
+  "action": "release",
+  "reason": "missing_lemma",
+  "http_status": 200,
+  "observed_utc": "2026-11-24T05:04:00.409038+00:00",
+  "complete_proof": false,
+  "official_pull_request": null,
+  "research_checkpoint_commit": "85070d3fa352269c80af81a72276e1d3547ea3f9",
+  "released": "L-meta-997"
+}

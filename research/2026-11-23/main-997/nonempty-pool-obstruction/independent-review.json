@@ -1,0 +1,64 @@
+{
+  "status": "INDEPENDENT_STATIC_AND_CLOSED_FORM_AUDIT_PASS",
+  "date_utc": "2026-11-24T04:43:13.209880+00:00",
+  "source_sha256": "a7248439b7862e8a673c0a14d8a70238669402981de50fcafcc176253893a82f",
+  "results_sha256": "ec9a8b78d6a9d28c68087d23212f75e86709df76eda497ea5dd4dd90b7c3da0b",
+  "reviewed_claims": [
+    "Distinct selected affine lines meet in at most one point; light pairs in one direction share only their Y point; distinct directions can share at most one copied point; light and heavy targets use disjoint point copies.",
+    "The only NOT is negation of AND(Y), so all inputs of weight below k satisfy z=1 and z(Y)=0.",
+    "On Y=1 every propagated C0 gate is exactly a constant or an OR of outside inputs; an OR mask contained in a heavy target implies global C0 soundness by monotonicity.",
+    "The singleton propagation is exact, and equals C1 singleton propagation because h has no singleton positives.",
+    "The control identities justify every original light and heavy output on all inputs without enumerating those inputs.",
+    "The eligible-pool overlap consists of the paired cherries and each final heavy output. Exact refunds consist of those final heavy outputs.",
+    "After Y=1, elementary alias/constant simplification retains exactly each heavy line OR tree and removes all switch gates and distributed clause gates."
+  ],
+  "scope_limits": [
+    "This independent review did not rerun the large all-gate symbolic computation.",
+    "The producer record reports all-gate symbolic propagation, not an original full truth table.",
+    "No SAT, Lean proof, or counterexample to L-meta-997 is claimed."
+  ],
+  "cases": [
+    {
+      "q": 11,
+      "k": 5,
+      "closed_form_checks": {
+        "input_count": 247,
+        "heavy_targets": 55,
+        "light_targets": 275,
+        "target_count": 330,
+        "gate_count": 4603,
+        "G_union_count": 880,
+        "H_nonempty_union_count": 902,
+        "eligible_union_count": 1452,
+        "total_quota": 1100,
+        "refund_count": 55,
+        "weighted_lhs": 1430,
+        "unpaid_after_refunds": -407,
+        "retained_OR_gates_after_Y_fixed_one": 550,
+        "removed_gates_after_elementary_simplification": 4053
+      },
+      "all_closed_form_checks_passed": true
+    },
+    {
+      "q": 47,
+      "k": 9,
+      "closed_form_checks": {
+        "input_count": 4427,
+        "heavy_targets": 423,
+        "light_targets": 9729,
+        "target_count": 10152,
+        "gate_count": 219405,
+        "G_union_count": 23688,
+        "H_nonempty_union_count": 24722,
+        "eligible_union_count": 38258,
+        "total_quota": 38916,
+        "refund_count": 423,
+        "weighted_lhs": 49068,
+        "unpaid_after_refunds": 235,
+        "retained_OR_gates_after_Y_fixed_one": 19458,
+        "removed_gates_after_elementary_simplification": 199947
+      },
+      "all_closed_form_checks_passed": true
+    }
+  ]
+}

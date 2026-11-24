@@ -1,16 +1,16 @@
 {
-  "snapshot_utc": "2026-11-24T04:13:23.284292+00:00",
-  "kind": "supporting_research_update",
+  "snapshot_utc": "2026-11-24T05:07:37.612106+00:00",
+  "kind": "supporting_research_handoff",
   "official_upstream_proof_submission": false,
-  "previous_public_commit": "d58a182fd28e1080a5c877a1041c0c91787c55fd",
-  "previous_public_tree": "97e66976ccf0d3f9b3fa522bbe21fd00a819d1d9",
-  "previous_manifest_sha256": "d002f5d241ac58a663d4919b77fb6409c043b9bdb15bb89983b183324b613f25",
-  "scope": "Preserved prior research and all26 published main997 sources; added three checked modules, completed quota and cross-window audits with exact scopes, and nine frozen unresolved L-meta-670 setup files.",
+  "previous_public_commit": "85070d3fa352269c80af81a72276e1d3547ea3f9",
+  "previous_public_tree": "f038bb0bf25f53704ae472532e6d3ed817ee034f",
+  "previous_manifest_sha256": "87a488c2b9fb2d2362295bfdca435313ae8e6afcc41b87d7d45c9776d86da1ac",
+  "scope": "Preserve all 29 checked sources; record accepted missing_lemma release, exact open counting obligation, reviewed normalization, and frozen symbolic auxiliary obstruction.",
   "files": [
     {
       "path": "README.md",
-      "bytes": 9495,
-      "sha256": "7c0ce8febb20faa02828e9e28ddb7f688b16f718608b808966107fa6536a5bb0",
+      "bytes": 9995,
+      "sha256": "99149674761e9764516640b0662ea3a31c4f40e08a2bf0356a8a3b1b0c564507",
       "public_transform": [
         "Updated main997 to29 checked modules, exact quota-audit scopes and the paper cross-window invariant; appended the frozen unresolved L-meta-670 setup."
       ]
@@ -856,8 +856,8 @@
     },
     {
       "path": "main-997/README.md",
-      "bytes": 16997,
-      "sha256": "799240745ee473d99482235e638239d6cef474ab71fab4b76c63312ca0f9cbd7",
+      "bytes": 18317,
+      "sha256": "ea9b5773373cb09d9ead943282b8562fc86af1109b36d12e58f6a254cb02331b",
       "original_source": {
         "bytes": 16997,
         "sha256": "799240745ee473d99482235e638239d6cef474ab71fab4b76c63312ca0f9cbd7"
@@ -946,8 +946,8 @@
     },
     {
       "path": "main-997/checkpoint-status.json",
-      "bytes": 23490,
-      "sha256": "a6fc4f29e9316c75f0a4100736841c0e604d9f42cd7ebd119e8ab39c7835710a"
+      "bytes": 24193,
+      "sha256": "5585db65bf4d876f874980c45029f6f1025216cf74a021fd266672fd1d813aa4"
     },
     {
       "path": "main-997/cross-window/activation-clauses.txt",
@@ -956,6 +956,24 @@
       "original_source": {
         "bytes": 7072,
         "sha256": "011b8289edb831f27cd0de0f7a5cc636a48a5d0146afb270165c6a5a3016283f"
+      }
+    },
+    {
+      "path": "main-997/cross-window/joint-deletion-open.txt",
+      "bytes": 5511,
+      "sha256": "9b10df38542a14fa0cd3464fc86c99fad7070b95cf5e7e80dd526f1edb7d0d0a",
+      "original_source": {
+        "bytes": 5511,
+        "sha256": "9b10df38542a14fa0cd3464fc86c99fad7070b95cf5e7e80dd526f1edb7d0d0a"
+      }
+    },
+    {
+      "path": "main-997/cross-window/or-normalization.txt",
+      "bytes": 5688,
+      "sha256": "2ab39dff93c98bb57f6e8bb76b13a2511bce78881d3bcba6247ed44fc0d3334a",
+      "original_source": {
+        "bytes": 5688,
+        "sha256": "2ab39dff93c98bb57f6e8bb76b13a2511bce78881d3bcba6247ed44fc0d3334a"
       }
     },
     {
@@ -1952,6 +1970,51 @@
       ]
     },
     {
+      "path": "main-997/nonempty-pool-obstruction/README.txt",
+      "bytes": 5587,
+      "sha256": "bd039f956c14b9a7fd6037f93a26cd503bfa23b6f32801a035594b79a425118a",
+      "original_source": {
+        "bytes": 5587,
+        "sha256": "bd039f956c14b9a7fd6037f93a26cd503bfa23b6f32801a035594b79a425118a"
+      }
+    },
+    {
+      "path": "main-997/nonempty-pool-obstruction/audit.py",
+      "bytes": 9895,
+      "sha256": "a7248439b7862e8a673c0a14d8a70238669402981de50fcafcc176253893a82f",
+      "original_source": {
+        "bytes": 9895,
+        "sha256": "a7248439b7862e8a673c0a14d8a70238669402981de50fcafcc176253893a82f"
+      }
+    },
+    {
+      "path": "main-997/nonempty-pool-obstruction/independent-review.json",
+      "bytes": 2906,
+      "sha256": "f0d5350a411d9916841f5f34394fb4eab25b2652eb3bc9f2d474b27cf40752da",
+      "original_source": {
+        "bytes": 2906,
+        "sha256": "f0d5350a411d9916841f5f34394fb4eab25b2652eb3bc9f2d474b27cf40752da"
+      }
+    },
+    {
+      "path": "main-997/nonempty-pool-obstruction/manifest.json",
+      "bytes": 738,
+      "sha256": "03e69e23b84925ca8c683f9253d647972d478550ded65d1f5647fdb55240fa3e",
+      "original_source": {
+        "bytes": 738,
+        "sha256": "03e69e23b84925ca8c683f9253d647972d478550ded65d1f5647fdb55240fa3e"
+      }
+    },
+    {
+      "path": "main-997/nonempty-pool-obstruction/results.json",
+      "bytes": 2733,
+      "sha256": "ec9a8b78d6a9d28c68087d23212f75e86709df76eda497ea5dd4dd90b7c3da0b",
+      "original_source": {
+        "bytes": 2733,
+        "sha256": "ec9a8b78d6a9d28c68087d23212f75e86709df76eda497ea5dd4dd90b7c3da0b"
+      }
+    },
+    {
       "path": "main-997/overlap-audit/audit.py",
       "bytes": 8644,
       "sha256": "b28a68c98f46934ba4ccdf2a7df25f10d318c965325f7f3495cbe8bcd2c9f0de",
@@ -2177,6 +2240,15 @@
       "original_source": {
         "bytes": 2778,
         "sha256": "025829be2c2c9907d82624a006f46f49c753cae0cd46d3843c6c72e2bec90e18"
+      }
+    },
+    {
+      "path": "main-997/release-missing-lemma.json",
+      "bytes": 319,
+      "sha256": "7a3e5183a2bae08bcd01ba7515073f5552e0ee5941e4a5958c6eac54bd41b179",
+      "original_source": {
+        "bytes": 319,
+        "sha256": "7a3e5183a2bae08bcd01ba7515073f5552e0ee5941e4a5958c6eac54bd41b179"
       }
     },
     {

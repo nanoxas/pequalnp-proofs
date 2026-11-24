@@ -1,0 +1,26 @@
+{
+  "scope": "Auxiliary nonempty-heavy-pool counterobstruction; actual L-meta-997 inequality holds.",
+  "lean_checked": false,
+  "files": [
+    {
+      "path": "audit.py",
+      "bytes": 9895,
+      "sha256": "a7248439b7862e8a673c0a14d8a70238669402981de50fcafcc176253893a82f"
+    },
+    {
+      "path": "results.json",
+      "bytes": 2733,
+      "sha256": "ec9a8b78d6a9d28c68087d23212f75e86709df76eda497ea5dd4dd90b7c3da0b"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 2906,
+      "sha256": "f0d5350a411d9916841f5f34394fb4eab25b2652eb3bc9f2d474b27cf40752da"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 5587,
+      "sha256": "bd039f956c14b9a7fd6037f93a26cd503bfa23b6f32801a035594b79a425118a"
+    }
+  ]
+}
