@@ -1,9 +1,6 @@
 # General input counts and NOT budgets
 
-**Draft status:** the GenericCore check ended at its 180-second import limit;
-GenericSmoke was not compiled. No generic theorem or axiom audit is claimed checked.
-
-`GenericCore.lean` is a separate prototype. The checked five-input source
+`GenericCore.lean` is a separately checked generalization. The five-input source
 generator and its pinned accepted body are preserved unchanged.
 
 The prototype uses namespace `PEqualNP.FiniteCircuitCertificates.Generic`.
@@ -59,13 +56,30 @@ correct list length.
 
 - `GenericCore.lean` contains the general interfaces and inline axiom queries
   for `cost`, `cost_countP`, and `cost_oneNot`.
-- `GenericSmoke.lean` proposes a check of the new interface on two-input XOR
-  with a budget of two NOT gates. Its intended conclusions require at least
-  four gates and exhibit a four-gate circuit using one NOT. Its three rejection searches take one,
+- `GenericSmoke.lean` checks the new interface on two-input XOR with a budget
+  of two NOT gates. It proves that at least four gates are required and gives
+  a four-gate circuit using one NOT. Its three rejection searches take one,
   one, and three recursive calls in the independent Python audit.
 
-The completed run status is recorded in `generic-verification.json`: the
-core timed out during imports, and the generic smoke was not run. Both files
-remain prototypes.
-The existing `smoke/lean-verification.json` concerns the preserved five-input
-generator and does not establish the new generic theorems.
+Both files passed Lean with their axiom queries in the checked runs. Core
+checking took 13.671 seconds, and the corrected interface smoke took 2.421
+seconds after a reusable import-header snapshot had been loaded. All five
+audited theorems use only standard Lean axioms; none uses `sorryAx`.
+
+`cost_countP` accepts a `DecidableEq GateOp` instance. The interface smoke
+supplies a computable structural equality instance, so its finite count
+checks reduce in the kernel.
+
+Exact source/object hashes, logs, and the earlier incomplete import attempt
+are recorded in `generic-verification.json`. The verified source hashes are:
+
+```text
+GenericCore.lean
+73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1
+
+GenericSmoke.lean
+2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d
+```
+
+The existing `smoke/lean-verification.json` separately records the preserved
+five-input generator's standalone check.

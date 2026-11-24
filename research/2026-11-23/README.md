@@ -17,7 +17,7 @@ exact published file hashes. Earlier work remains documented in the
 | L-meta-1422 | All ten tables exhausted in the audited circuit model | Solver evidence and full witness evaluation; no formal UNSAT certificate |
 | L-meta-1031 | 19 solver cases and two explicit witness audits completed | Restricted small-graph models; the general theorem remains unproved here |
 | Five-input certificate pipeline | Complete synthetic AND-of-five theorem passed Lean | Whole generated source checked; separate axiom audit timed out during imports |
-| GenericCore and GenericSmoke | Explicit drafts | Core import timed out; generic smoke was not run |
+| GenericCore and GenericSmoke | Both passed Lean with inline axiom audits | Arbitrary input count and NOT-budget theorem; two-input XOR example; standard axioms only |
 | Our L-meta-1421 assembly | Stopped, unverified, and superseded | Another contributor's upstream PR2958 was accepted and merged |
 
 Task-specific work stopped when the corresponding assignments became inactive.
@@ -55,9 +55,12 @@ limit before producing an axiom list. Exact hashes and logs are in the
 Every newly generated target file still requires its own completed Lean check.
 
 The [generic extension](finite-circuit-certificates/GENERIC.md) parameterizes
-input count and NOT budget. It remains a draft: the core check ended during
-imports, and the generic XOR smoke was not compiled. Its status is independent
-of the successful five-input example.
+input count and NOT budget. Its corrected core passed in 13.671 seconds; the
+two-input XOR example with a NOT budget of two passed in 2.421 seconds. All
+five audited theorems use exactly `propext`, `Classical.choice`, and `Quot.sound`.
+The [verification record](finite-circuit-certificates/generic-verification.json)
+preserves earlier import timeouts and ordinary elaboration errors as history.
+The five-input generator and its separate axiom-audit status remain unchanged.
 
 The five-input engine preserves the accepted L-meta-1445 proof body, which
 credits L-meta-1007. The package retains its Apache-2.0 license, attribution,
@@ -98,6 +101,12 @@ The [import note](infra-lean/IMPORT_BOTTLENECK.md) and
 proof work. Reduced imports completed quickly in several generic tests; later
 complete checks spent most or all of their limits loading mapped files. The
 evidence does not establish a precise historical memory-limit cause.
+
+A subsequent [header-reuse experiment](infra-lean/header-reuse/REPORT.md) saved
+the import-only environment in 17.932 seconds and successfully reused it for
+the generic proof check. The exact-header and fixed-dependency assumptions,
+commands, source fixes, and bounded-run history are recorded. Binary caches
+and raw process details are excluded from this public update.
 
 ## Earlier preserved work
 

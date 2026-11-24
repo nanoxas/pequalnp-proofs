@@ -1,0 +1,45 @@
+import took 8.42s
+<workspace>/finite-circuit-certificates/GenericSmoke.lean:15:31: error: unsolved goals
+case refl
+m✝ : ℕ
+⊢ False
+<workspace>/finite-circuit-certificates/GenericSmoke.lean:16:2: error: No goals to be solved
+type checking took 305ms
+simp took 126ms
+'PEqualNP.FiniteCircuitCertificates.Generic.cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_countP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_lower' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_upper' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+cumulative profiling times:
+	attribute application 0.287ms
+	blocked (unaccounted) 1.23s
+	compilation (IR) 0.25ms
+	compilation (LCNF base) 2.22ms
+	compilation (LCNF impure) 0.732ms
+	compilation (LCNF mono) 0.909ms
+	congr simp thm 5.08ms
+	declTypeLinter 4.1ms
+	elaboration 21.9ms
+	fix level params 0.245ms
+	import 8.42s
+	initialization 70.5ms
+	instantiate metavars 0.231ms
+	interpretation 242ms
+	let-to-have transformation 0.075ms
+	linting 7.11ms
+	module linting 0.0388ms
+	parsing 1.91ms
+	process pre-definitions 6.21ms
+	share common exprs 1.35ms
+	simp 126ms
+	tactic execution 58.7ms
+	tacticAnalysis 1.39ms
+	type checking 355ms
+	typeclass inference 35.2ms

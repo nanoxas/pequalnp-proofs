@@ -4,7 +4,7 @@ The [run summary](import-evidence.json) records bounded local tests. Default
 startup finished in 1.622 s; a Finset import in 7.073 s; the reduced six-import
 smoke in 6.403 s; and the representative BitVec/simp/omega/aesop smoke in 2.931 s.
 The complete synthetic certificate proof passed in 161.956 s, with 155 s spent
-on imports. Its separate axiom audit and the GenericCore draft each reached
+on imports. Its separate axiom audit and an initial GenericCore run each reached
 their 180-second limits during imports and were terminated and reaped.
 
 The pinned Lean loader maps main `.olean`, `.olean.server`, `.olean.private`,
@@ -31,3 +31,13 @@ Pinned implementation references:
 
 - [Module loader](https://github.com/leanprover/lean4/blob/611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9/src/library/module.cpp)
 - [Compacted-region reader](https://github.com/leanprover/lean4/blob/611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9/src/runtime/compact.cpp)
+
+## Subsequent successful header reuse
+
+The [focused follow-up](header-reuse/REPORT.md) saved an import-only snapshot
+in 17.932 seconds. The corrected generic engine then passed with this cache
+in 13.671 seconds, and the dependent two-input example passed in 2.421 seconds
+by normal import of the produced object. All five inline axiom audits listed
+only the standard axioms. The earlier incomplete runs remain historical
+records; the current generic status is PASS. The cache preserves a working
+local check path without establishing a historical memory cause.

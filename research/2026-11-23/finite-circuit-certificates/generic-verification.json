@@ -1,20 +1,143 @@
 {
-  "status": "INCOMPLETE_IMPORT_TIMEOUT",
-  "kernel_check_status": "not_completed",
-  "axiom_audit_status": "not_reached",
+  "status": "PASS",
+  "kernel_check_status": "completed",
+  "axiom_audit_status": "completed",
   "source": "GenericCore.lean",
-  "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+  "source_sha256": "73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1",
   "source_unchanged": true,
-  "object_produced": false,
-  "elapsed_seconds": 180.453,
-  "bound_seconds": 180.0,
-  "exit_code": -15,
+  "object_produced": true,
+  "elapsed_seconds": 13.671,
+  "exit_code": 0,
   "child_reaped": true,
-  "log_bytes": 0,
-  "last_user_cpu_seconds": 3.09,
-  "last_physical_read_bytes": 77224882176,
   "smoke_source": "GenericSmoke.lean",
-  "smoke_sha256": "23dd7a207fcace523417e57ddfad9476e3468a8ce179ebc21e7de77412dabc26",
-  "smoke_status": "NOT_RUN",
-  "scope": "Target-neutral arbitrary-input/arbitrary-NOT-budget prototype. The checked five-input generator is unchanged."
+  "smoke_sha256": "2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d",
+  "smoke_status": "PASS",
+  "checked": {
+    "GenericCore": {
+      "status": "PASS",
+      "source": "GenericCore.lean",
+      "source_sha256": "73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1",
+      "source_bytes": 44074,
+      "source_unchanged_during_check": true,
+      "object_sha256": "b35e164b7ee96ab896448a8d6f0bbdf26fa057a83325e332de032ab653972e40",
+      "object_bytes": 2485616,
+      "exit_code": 0,
+      "elapsed_seconds": 13.671,
+      "bound_seconds": 180.0,
+      "child_reaped": true,
+      "log": "GenericCore.check.log",
+      "log_sha256": "ca9876d8c87c01fbf73a463f09b997729d3853167d2979e1fca130f5a7dfadf0",
+      "log_bytes": 6377,
+      "axioms": {
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_countP": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "finished_utc": "2026-11-24T01:06:59.973529+00:00",
+      "original_log_sha256": "ec58aa14d9e92a8bc27e29e4e8e367ceec61859d66728b7995588d32086aac44",
+      "original_log_bytes": 6797,
+      "public_log_transform": "Absolute workspace prefix replaced by <workspace>; original hash retained."
+    },
+    "GenericSmoke": {
+      "status": "PASS",
+      "source": "GenericSmoke.lean",
+      "source_sha256": "2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d",
+      "source_bytes": 2261,
+      "source_unchanged_during_check": true,
+      "object_sha256": "3a222149865802474580218fa0a0cc92ce3e90507cb016cccd52e01646f0f690",
+      "object_bytes": 172936,
+      "exit_code": 0,
+      "elapsed_seconds": 2.421,
+      "bound_seconds": 180.0,
+      "child_reaped": true,
+      "log": "GenericSmoke.check.log",
+      "log_sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f",
+      "log_bytes": 1307,
+      "axioms": {
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_countP": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_lower": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "finished_utc": "2026-11-24T01:08:08.028700+00:00",
+      "original_log_sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f",
+      "original_log_bytes": 1307,
+      "public_log_transform": "Absolute workspace prefix replaced by <workspace>; original hash retained."
+    }
+  },
+  "changes": [
+    "cost_countP takes an explicit DecidableEq GateOp parameter; its equality with isNot is proved by operation cases and simp.",
+    "GenericSmoke defines a local computable structural GateOp equality, including natural-number equality in the mod constructor.",
+    "The computational cost theorem, finite search body, sample width, XOR samples, and witness are unchanged."
+  ],
+  "header_reuse": {
+    "status": "PASSED",
+    "header_sha256": "5ea79e56d7f0e0e2940df2fd85f71dbea7ae35539cb420969113112983b5ba69",
+    "snapshot_sha256": "4a4cd895d91e057d533593f17a94ecff4e3b89ab5354d6f9b75700558a5d8929",
+    "header_save_seconds": 17.932,
+    "scope": "Core checked with a locally generated import-only snapshot; Smoke checked by normal import of the produced Core object."
+  },
+  "prior_runs": [
+    {
+      "status": "INCOMPLETE_IMPORT_TIMEOUT",
+      "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "elapsed_seconds": 180.453,
+      "child_reaped": true,
+      "axiom_audit_status": "not_reached"
+    },
+    {
+      "label": "GenericCoreCached",
+      "status": "ELABORATION_FAILED",
+      "scope": "original generic source missing equality decisions",
+      "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "exit_code": 1,
+      "elapsed_seconds": 6.143,
+      "child_reaped": true
+    },
+    {
+      "label": "GenericSmokeFixed",
+      "status": "ELABORATION_FAILED",
+      "scope": "first local equality proof script left a mod case unsolved",
+      "source_sha256": "e8e8b53e10791c1dbaa9d420b0ae6b1baffd2c13332843f48d3882b0573b50ad",
+      "exit_code": 1,
+      "elapsed_seconds": 9.588,
+      "child_reaped": true
+    }
+  ],
+  "scope": "Target-neutral arbitrary-input/arbitrary-NOT-budget theorem, locally kernel-checked and instantiated on two-input XOR with NOT budget two. The checked five-input generator remains unchanged.",
+  "official_submission_status": "not_submitted_as_a_project_gap_proof",
+  "recorded_utc": "2026-11-24T01:09:26.631306+00:00"
 }

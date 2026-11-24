@@ -862,7 +862,7 @@ theorem cost {n : ℕ} (T : ℕ) (raw : List Sig) (s b : ℕ)
   exact Bool.false_ne_true ((test ⟨t,ht⟩).symm.trans good)
 
 /-- The same theorem with the NOT count written using the gate equality test. -/
-theorem cost_countP {n : ℕ} (T : ℕ) (raw : List Sig) (s b : ℕ)
+theorem cost_countP [DecidableEq GateOp] {n : ℕ} (T : ℕ) (raw : List Sig) (s b : ℕ)
     (raw_id : List.ofFn (fun j : Fin n => raw.getD j.val zero) = raw)
     (samples : ∀ side i, evalT T (sample (n := n) raw side i) = side)
     (nd : raw.Nodup)
@@ -875,7 +875,7 @@ theorem cost_countP {n : ℕ} (T : ℕ) (raw : List Sig) (s b : ℕ)
   have hfun : (fun g : Gate => isNot g.op) =
       (fun g : Gate => decide (g.op = GateOp.not)) := by
     funext g
-    cases g.op <;> rfl
+    cases g.op <;> simp [isNot]
   apply cost T raw s b raw_id samples nd essential test C legal _ correct
   simpa only [hfun] using notBudget
 

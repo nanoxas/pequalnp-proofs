@@ -7,6 +7,13 @@ namespace PEqualNP.FiniteCircuitCertificates.GenericSmoke
 open PEqualNP.CircuitLowerBounds
 open PEqualNP.FiniteCircuitCertificates.Generic
 
+-- Keep the finite count computation independent of classical decisions.
+local instance gateOpDecidableEq : DecidableEq GateOp := by
+  intro a b
+  cases a <;> cases b
+  case mod.mod m n => exact decidable_of_iff (m = n) (by simp)
+  all_goals first | exact isTrue rfl | exact isFalse (by intro h; cases h)
+
 def xorRaw : List Sig := [
   (0x3333333333333333333333333333333333333333333333333333333333333333,
    0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa),

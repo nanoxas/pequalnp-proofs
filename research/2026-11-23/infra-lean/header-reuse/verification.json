@@ -1,0 +1,167 @@
+{
+  "status": "HEADER_REUSE_AND_CORRECTED_GENERIC_CORE_AND_SMOKE_PASS",
+  "scope": "Local generic proof and infrastructure checks; no project-gap submission.",
+  "source_verification": "../../finite-circuit-certificates/generic-verification.json",
+  "initial_header_save_seconds": 17.932,
+  "initial_cached_draft_seconds": 6.143,
+  "initial_cached_draft_exit_code": 1,
+  "initial_draft_errors": [
+    {
+      "line": 872,
+      "column": 42,
+      "message": "Missing Decidable instance for equality with GateOp.not in theorem hypothesis"
+    },
+    {
+      "line": 876,
+      "column": 23,
+      "message": "Missing Decidable instance for equality with GateOp.not in proof function"
+    }
+  ],
+  "prior_runs": [
+    {
+      "status": "INCOMPLETE_IMPORT_TIMEOUT",
+      "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "elapsed_seconds": 180.453,
+      "child_reaped": true,
+      "axiom_audit_status": "not_reached"
+    },
+    {
+      "label": "GenericCoreCached",
+      "status": "ELABORATION_FAILED",
+      "scope": "original generic source missing equality decisions",
+      "source_sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "exit_code": 1,
+      "elapsed_seconds": 6.143,
+      "child_reaped": true
+    },
+    {
+      "label": "GenericSmokeFixed",
+      "status": "ELABORATION_FAILED",
+      "scope": "first local equality proof script left a mod case unsolved",
+      "source_sha256": "e8e8b53e10791c1dbaa9d420b0ae6b1baffd2c13332843f48d3882b0573b50ad",
+      "exit_code": 1,
+      "elapsed_seconds": 9.588,
+      "child_reaped": true
+    }
+  ],
+  "corrected_checks": {
+    "GenericCore": {
+      "status": "PASS",
+      "source": "../../finite-circuit-certificates/GenericCore.lean",
+      "source_sha256": "73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1",
+      "source_bytes": 44074,
+      "source_unchanged_during_check": true,
+      "object_sha256": "b35e164b7ee96ab896448a8d6f0bbdf26fa057a83325e332de032ab653972e40",
+      "object_bytes": 2485616,
+      "exit_code": 0,
+      "elapsed_seconds": 13.671,
+      "bound_seconds": 180.0,
+      "child_reaped": true,
+      "log": "../../finite-circuit-certificates/GenericCore.check.log",
+      "log_sha256": "ca9876d8c87c01fbf73a463f09b997729d3853167d2979e1fca130f5a7dfadf0",
+      "log_bytes": 6377,
+      "axioms": {
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_countP": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "finished_utc": "2026-11-24T01:06:59.973529+00:00",
+      "original_log_sha256": "ec58aa14d9e92a8bc27e29e4e8e367ceec61859d66728b7995588d32086aac44",
+      "original_log_bytes": 6797,
+      "public_log_transform": "Absolute workspace prefix replaced by <workspace>; original hash retained."
+    },
+    "GenericSmoke": {
+      "status": "PASS",
+      "source": "../../finite-circuit-certificates/GenericSmoke.lean",
+      "source_sha256": "2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d",
+      "source_bytes": 2261,
+      "source_unchanged_during_check": true,
+      "object_sha256": "3a222149865802474580218fa0a0cc92ce3e90507cb016cccd52e01646f0f690",
+      "object_bytes": 172936,
+      "exit_code": 0,
+      "elapsed_seconds": 2.421,
+      "bound_seconds": 180.0,
+      "child_reaped": true,
+      "log": "../../finite-circuit-certificates/GenericSmoke.check.log",
+      "log_sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f",
+      "log_bytes": 1307,
+      "axioms": {
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_countP": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_lower": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_upper": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "finished_utc": "2026-11-24T01:08:08.028700+00:00",
+      "original_log_sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f",
+      "original_log_bytes": 1307,
+      "public_log_transform": "Absolute workspace prefix replaced by <workspace>; original hash retained."
+    }
+  },
+  "snapshots": [
+    {
+      "file": "six-imports.snap",
+      "included_in_public_update": false,
+      "bytes": 127090577,
+      "sha256": "4a4cd895d91e057d533593f17a94ecff4e3b89ab5354d6f9b75700558a5d8929"
+    },
+    {
+      "file": "six-imports.snap.deps",
+      "included_in_public_update": false,
+      "bytes": 2858586,
+      "sha256": "85817a52db0d383c6484b3dbd573a69a2c0c9d95d8931720bad964edb4a1a06c"
+    }
+  ],
+  "dependency_manifest_module_count": 4212,
+  "cache_assumptions": [
+    "Snapshot is created locally from a byte-identical six-import prefix of GenericCore, with no proof declarations.",
+    "Pinned Lean4.36.0, Mathlib and project dependency objects, path configuration, plugins, and relevant command-line options remain fixed.",
+    "Keep the snapshot and its .deps companion together. Recreate both after any dependency, toolchain, plugin, or header change.",
+    "Header matching includes source information; unchanged import names alone may be insufficient if leading text or positions change.",
+    "GenericSmoke has a different header and must import the successful GenericCore object normally."
+  ],
+  "all_children_reaped": true,
+  "source_fix": "Explicit DecidableEq GateOp parameter for cost_countP; local computable equality in GenericSmoke; original failed sources preserved separately.",
+  "limits": [
+    "Snapshot flags are experimental; this run observed no runtime inconsistency.",
+    "Timings from different cache states do not isolate a speedup or the historical memory cause.",
+    "Binary snapshots, dependency paths, compiled objects, and raw process/environment inventories are excluded."
+  ],
+  "history_log_hashes": {
+    "infra-lean/header-reuse/HeaderSave.log": "c2f00454b0553d0f227b4d15159596a51d369741e30ae120447f7d529fcbc8ae",
+    "infra-lean/header-reuse/history/GenericCore.original-failed.log": "db17c2a026da17801f742be841de4f24f9388886a16486e5beb0e645209441d8",
+    "infra-lean/header-reuse/history/GenericSmoke.first-failed.log": "8314a8d8aa95fd59f1c5dabed1e475b0cd580266a2708b05aec199d2cec2c887"
+  }
+}

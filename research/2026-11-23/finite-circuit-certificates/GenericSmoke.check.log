@@ -1,0 +1,34 @@
+import took 1.59s
+type checking took 267ms
+'PEqualNP.FiniteCircuitCertificates.Generic.cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_countP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.GenericSmoke.xor_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 3.65ms
+	attribute application 0.185ms
+	blocked (unaccounted) 812ms
+	compilation (IR) 0.0858ms
+	compilation (LCNF base) 2.48ms
+	compilation (LCNF impure) 0.42ms
+	compilation (LCNF mono) 0.706ms
+	congr simp thm 1.05ms
+	declTypeLinter 3.26ms
+	elaboration 11.3ms
+	fix level params 0.213ms
+	import 1.59s
+	initialization 36.2ms
+	instantiate metavars 0.34ms
+	interpretation 165ms
+	let-to-have transformation 0.0596ms
+	linting 4.73ms
+	module linting 0.0259ms
+	parsing 1.64ms
+	process pre-definitions 5.18ms
+	share common exprs 0.945ms
+	simp 31.2ms
+	tactic execution 35.5ms
+	tacticAnalysis 1.79ms
+	type checking 304ms
+	typeclass inference 20ms

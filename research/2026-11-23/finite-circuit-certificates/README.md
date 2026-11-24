@@ -199,6 +199,13 @@ to unchecked.
 
 ## Package files
 
+The separate `GenericCore.lean` extension and `GenericSmoke.lean` interface
+test also passed Lean, including inline axiom audits. They parameterize the
+input count and allowed NOT count while keeping the 256-bit sample width.
+The five-input generator remains unchanged. See `GENERIC.md` and
+`generic-verification.json` for the general theorem interface and exact
+checking evidence.
+
 - `formula_upper.py`: bounded formula dynamic programming, DNF baseline,
   semantic sharing, and full witness evaluation.
 - `live_checker.py`: the audited optimized search and independent direct-coverage

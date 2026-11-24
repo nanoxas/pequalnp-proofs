@@ -1,0 +1,123 @@
+<workspace>/finite-circuit-certificates/GenericCore.lean:170:183: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:170:183: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:180:204: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:180:204: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:186:177: warning: Unused tactic linter: `exact h` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:186:177: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:194:81: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:194:81: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:213:108: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:213:112: warning: Unused tactic linter: `aesop` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:213:112: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:235:4: warning: Unused tactic linter: `change x ∈ v ↔ _` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:310:99: warning: This simp argument is unused:
+  BitVec.and_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [bin, one, zero, top, reduceCtorEq, ite_true, ite_false, BitVec.and_allOnes, BitVec.or_allOnes,
+    BitVec.or_zero, BitVec.and_self, BitVec.or_self, Prod.mk.injEq, and_self]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:310:115: warning: This simp argument is unused:
+  BitVec.or_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [bin, one, zero, top, reduceCtorEq, ite_true, ite_false, BitVec.and_allOnes, BitVec.or_allOnes,
+    BitVec.and_zero, BitVec.and_self, BitVec.or_self, Prod.mk.injEq, and_self]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:310:185: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:310:185: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<workspace>/finite-circuit-cer.olean serialization took 173ms
+tificates/GenericCore.lean:440:36: warning: This simp argument is unused:
+  List.countP_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hf] at hcnt ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:656:60: warning: This simp argument is unused:
+  BitVec.getLsbD_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [sep, bin, ite_false, ite_true, takeTwo, top, BitVec.getLsbD_allOnes, BitVec.getLsbD_and,
+    BitVec.getLsbD_or, BitVec.getLsbD_not, reduceCtorEq, hi, decide_true, Bool.true_and] at hh ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:665:59: warning: This simp argument is unused:
+  decide_false
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [slowBinary, tryGate, Nat.sub_zero, hlen, ite_true, Bool.or_eq_true, Bool.and_eq_true,
+    beq_iff_eq] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+<workspace>/finite-circuit-certificates/GenericCore.lean:783:16: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+<workspace>/finite-circuit-certificates/GenericCore.lean:839:12: warning: This simp argument is unused:
+  List.countP_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hf, z]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'PEqualNP.FiniteCircuitCertificates.Generic.cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_countP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.FiniteCircuitCertificates.Generic.cost_oneNot' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 173ms
+	attribute application 0.869ms
+	blocked (unaccounted) 5.41s
+	compilation (IR) 2.83ms
+	compilation (LCNF base) 52ms
+	compilation (LCNF impure) 10.3ms
+	compilation (LCNF mono) 21.4ms
+	congr simp thm 34.6ms
+	declTypeLinter 36.8ms
+	dsimp 0.716ms
+	elaboration 394ms
+	fix level params 4.2ms
+	initialization 130ms
+	instantiate metavars 30.2ms
+	interpretation 538ms
+	let-to-have transformation 5.33ms
+	linting 119ms
+	module linting 0.0438ms
+	parsing 46.1ms
+	process pre-definitions 81.7ms
+	share common exprs 56.1ms
+	simp 2.41s
+	tactic execution 1.15s
+	tacticAnalysis 23.7ms
+	type checking 322ms
+	typeclass inference 579ms

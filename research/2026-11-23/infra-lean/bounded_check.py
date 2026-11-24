@@ -91,8 +91,13 @@ def main() -> int:
     parser.add_argument("--label")
     parser.add_argument("--stop-file", type=Path)
     parser.add_argument("--object", action="store_true")
+    parser.add_argument("--incr-header-save", type=Path)
+    parser.add_argument("--incr-load", type=Path)
+    parser.add_argument("--import-workers", type=int)
     args = parser.parse_args()
-    assert 0 < args.seconds <= 180
+    # Extended intentionally for the authorized, single-compiler header-cache experiment.
+    # Its coordinator keeps all stages within one 600-second total deadline.
+    assert 0 < args.seconds <= 600
     source = args.source.resolve()
     label = args.label or source.stem
     stop_file = args.stop_file.resolve() if args.stop_file else HERE / f"{label}.stop"
@@ -100,12 +105,23 @@ def main() -> int:
         (REPO / ".lake/packages").glob("*/.lake/build/lib/lean"))
     environment = dict(os.environ)
     environment["LEAN_PATH"] = os.pathsep.join(map(str, paths))
+    if args.import_workers is not None:
+        assert args.import_workers >= 1
+        environment["LEAN_IMPORT_WORKERS"] = str(args.import_workers)
     command = [str(TOOLCHAIN / "bin/lean"), "-j", "1", "--profile"]
+    if args.incr_header_save:
+        command += ["--incr-header-save=" + str(args.incr_header_save.resolve())]
+    if args.incr_load:
+        assert args.incr_load.is_file()
+        assert Path(str(args.incr_load) + ".deps").is_file()
+        command += ["--incr-load=" + str(args.incr_load.resolve())]
     if args.object:
         command += ["--root=" + str(source.parent), "-o", str(source.with_suffix(".olean"))]
     command += [str(source)]
     record = {"command": command, "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
               "bound_seconds": args.seconds, "started_utc": datetime.now(timezone.utc).isoformat(),
+              "wrapper_max_bound_seconds": 600,
+              "lean_import_workers": environment.get("LEAN_IMPORT_WORKERS"),
               "stop_file": str(stop_file),
               "parent_cgroup": read("/proc/self/cgroup"), "parent_limits": read("/proc/self/limits"),
               "samples": [], "status": "running"}
@@ -165,6 +181,13 @@ def main() -> int:
             record["source_unchanged"] = record["final_source_sha256"] == record["source_sha256"]
             if args.object and source.with_suffix(".olean").exists():
                 record["object_sha256"] = hashlib.sha256(source.with_suffix(".olean").read_bytes()).hexdigest()
+            if args.incr_header_save:
+                record["snapshot_artifacts"] = {}
+                for artifact in (args.incr_header_save, Path(str(args.incr_header_save) + ".deps")):
+                    if artifact.is_file():
+                        record["snapshot_artifacts"][str(artifact.resolve())] = {
+                            "bytes": artifact.stat().st_size,
+                            "sha256": hashlib.sha256(artifact.read_bytes()).hexdigest()}
             record_path.write_text(json.dumps(record, indent=2) + "\n")
     print(json.dumps({key: record[key] for key in (
         "status", "exit_code", "elapsed_seconds", "child_reaped", "log_bytes")}), flush=True)

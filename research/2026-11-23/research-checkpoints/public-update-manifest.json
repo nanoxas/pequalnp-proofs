@@ -1,51 +1,62 @@
 {
-  "snapshot_utc": "2026-11-24T00:57:41.204413+00:00",
+  "snapshot_utc": "2026-11-24T01:21:23.170425+00:00",
   "kind": "supporting_research_update",
   "official_upstream_proof_submission": false,
-  "scope": "Completed1422 computational evidence, stopped1031 diagnostics, checked synthetic five-input pipeline, explicit generic drafts, and import evidence.",
+  "previous_public_commit": "89387a81b0ea3a486e79b67e44418c5db5fe630d",
+  "previous_manifest_sha256": "1494b35f73d683f14ed3df2145f2c927dfbf4ee9f3143add1ebad4b25268ca4e",
+  "scope": "Preserved prior research plus completed generalized certificate proofs, inline axiom audits, and a successful import-header reuse path.",
   "files": [
     {
       "path": "README.md",
-      "bytes": 5955,
-      "sha256": "f3fee1077c498f45d0f4fb850d064a54cfbd17d8155ff154783891f49adba0d5"
+      "bytes": 6675,
+      "sha256": "9eaefa477f96179ed698689be37f2aad7b02f098270e7010cdd37e3d23a7d9df"
     },
     {
       "path": "finite-circuit-certificates/GENERIC.md",
-      "bytes": 3317,
-      "sha256": "1a4c701249f777f4d4ca2ec5c1972ea6e935afc6e2cccb85e8d2dec7864fa85f",
+      "bytes": 3755,
+      "sha256": "394a73b157963582dc78316138000a6119470d0e13e5056b381369cd80d5c8a0",
       "original_source": {
-        "bytes": 3112,
-        "sha256": "349c209402c5e5cc88fcb7ef17b6b203d3ebca35deef34af8894e4f05e596c63"
-      },
-      "public_transform": [
-        "Made the final incomplete-check status explicit and described uncompiled conclusions as intended statements."
-      ]
-    },
-    {
-      "path": "finite-circuit-certificates/GenericCore.check.log",
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "original_source": {
-        "bytes": 0,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "bytes": 3755,
+        "sha256": "394a73b157963582dc78316138000a6119470d0e13e5056b381369cd80d5c8a0"
       }
     },
     {
-      "path": "finite-circuit-certificates/GenericCore.lean",
-      "bytes": 44044,
-      "sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7",
+      "path": "finite-circuit-certificates/GenericCore.check.log",
+      "bytes": 6377,
+      "sha256": "ca9876d8c87c01fbf73a463f09b997729d3853167d2979e1fca130f5a7dfadf0",
       "original_source": {
-        "bytes": 44044,
-        "sha256": "acb6ed5d2569bd086b775883f4835e89f4e4d68c9bdcd69cdfaf0187339948d7"
+        "bytes": 6797,
+        "sha256": "ec58aa14d9e92a8bc27e29e4e8e367ceec61859d66728b7995588d32086aac44"
+      },
+      "public_transform": [
+        "Replaced the absolute local workspace prefix in log text."
+      ]
+    },
+    {
+      "path": "finite-circuit-certificates/GenericCore.lean",
+      "bytes": 44074,
+      "sha256": "73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1",
+      "original_source": {
+        "bytes": 44074,
+        "sha256": "73b1a26bc538d1a046026bfe2fcbbeca7fb34b1f227c5dc993b5a5cf2a6d8bf1"
+      }
+    },
+    {
+      "path": "finite-circuit-certificates/GenericSmoke.check.log",
+      "bytes": 1307,
+      "sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f",
+      "original_source": {
+        "bytes": 1307,
+        "sha256": "20503a1f02ba19ecc0d25b00625ab36a562ddf350d4b9dce963e63ba50fd090f"
       }
     },
     {
       "path": "finite-circuit-certificates/GenericSmoke.lean",
-      "bytes": 1955,
-      "sha256": "23dd7a207fcace523417e57ddfad9476e3468a8ce179ebc21e7de77412dabc26",
+      "bytes": 2261,
+      "sha256": "2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d",
       "original_source": {
-        "bytes": 1955,
-        "sha256": "23dd7a207fcace523417e57ddfad9476e3468a8ce179ebc21e7de77412dabc26"
+        "bytes": 2261,
+        "sha256": "2ad3b31504e6a37da2defc5b0d3ebba0429adfdaf044eff376b5c35c595c4f1d"
       }
     },
     {
@@ -68,11 +79,11 @@
     },
     {
       "path": "finite-circuit-certificates/README.md",
-      "bytes": 9646,
-      "sha256": "563e6c0a8175b2a8ee485afa50bec933bbdfd45227307485da57ab58ef57a508",
+      "bytes": 10029,
+      "sha256": "66f24ea9fe124855d634002a7c21adc910e5b4758ae3cafa7a6e3da08f444f52",
       "original_source": {
-        "bytes": 9646,
-        "sha256": "563e6c0a8175b2a8ee485afa50bec933bbdfd45227307485da57ab58ef57a508"
+        "bytes": 10029,
+        "sha256": "66f24ea9fe124855d634002a7c21adc910e5b4758ae3cafa7a6e3da08f444f52"
       }
     },
     {
@@ -113,12 +124,15 @@
     },
     {
       "path": "finite-circuit-certificates/generic-verification.json",
-      "bytes": 772,
-      "sha256": "cac2e1976a8d6a385552004067fca85543c8a529d5635bb1f37e1c4e0e7bbe82",
+      "bytes": 5715,
+      "sha256": "fa95c68585b9d5906bd14e042b0632793231bf6eec69432ea1c7fbcc3bb06a14",
       "original_source": {
-        "bytes": 772,
-        "sha256": "cac2e1976a8d6a385552004067fca85543c8a529d5635bb1f37e1c4e0e7bbe82"
-      }
+        "bytes": 5237,
+        "sha256": "560a9428350b4807f5d911431c544888e0b85147bb2f2029210a1f659635981d"
+      },
+      "public_transform": [
+        "Refreshed sanitized public log hashes and byte lengths; original values retained."
+      ]
     },
     {
       "path": "finite-circuit-certificates/live_checker.py",
@@ -140,14 +154,14 @@
     },
     {
       "path": "finite-circuit-certificates/package-manifest.json",
-      "bytes": 4326,
-      "sha256": "c98e6bd9a46966557ea7ba6720bbf3e51d87b1af30de16ab6c02130da4df1c40",
+      "bytes": 4632,
+      "sha256": "3e5b2ee4c96f640efd994ba1c5acd31fc317981f0a241bb4c765a3bc8008ea42",
       "original_source": {
-        "bytes": 3232,
-        "sha256": "1fab676810935faabd8c423abab7cc0a3a0c9b7e85c0c536c0c8958ab67adb66"
+        "bytes": 4352,
+        "sha256": "b3d33099eca3970ddfd4212c2ff1f76b6d66e6bc2d6659933789c03ca79c909a"
       },
       "public_transform": [
-        "Refreshed hashes for the sanitized public copy and explicit draft files."
+        "Refreshed staged package hashes after sanitizing public logs and verification records."
       ]
     },
     {
@@ -258,8 +272,8 @@
     },
     {
       "path": "infra-lean/IMPORT_BOTTLENECK.md",
-      "bytes": 2001,
-      "sha256": "8b71132a329c96a7dd61bbbc081b8cb883dcbe17f169da66cc61b7d58e7ad4b0"
+      "bytes": 2568,
+      "sha256": "b9b4f53240b3ed20d9c09541ae9929735415cb2ebd5288bf91b6435dd43bece1"
     },
     {
       "path": "infra-lean/SmokeDefs.lean",
@@ -335,12 +349,77 @@
     },
     {
       "path": "infra-lean/bounded_check.py",
-      "bytes": 7948,
-      "sha256": "bd63c443d3cb87da7d7d502b2e68a7d6a3fa74f991064cbd518f3229f6af9529",
+      "bytes": 9320,
+      "sha256": "41288330fd35e0b5c9ea3fc16d340cacaf741620cb648aac50dc9d1438dee091",
       "original_source": {
-        "bytes": 7948,
-        "sha256": "bd63c443d3cb87da7d7d502b2e68a7d6a3fa74f991064cbd518f3229f6af9529"
+        "bytes": 9320,
+        "sha256": "41288330fd35e0b5c9ea3fc16d340cacaf741620cb648aac50dc9d1438dee091"
       }
+    },
+    {
+      "path": "infra-lean/header-reuse/HeaderSave.log",
+      "bytes": 232,
+      "sha256": "c2f00454b0553d0f227b4d15159596a51d369741e30ae120447f7d529fcbc8ae",
+      "original_source": {
+        "bytes": 232,
+        "sha256": "c2f00454b0553d0f227b4d15159596a51d369741e30ae120447f7d529fcbc8ae"
+      }
+    },
+    {
+      "path": "infra-lean/header-reuse/ImportHeader.lean",
+      "bytes": 174,
+      "sha256": "5ea79e56d7f0e0e2940df2fd85f71dbea7ae35539cb420969113112983b5ba69",
+      "original_source": {
+        "bytes": 174,
+        "sha256": "5ea79e56d7f0e0e2940df2fd85f71dbea7ae35539cb420969113112983b5ba69"
+      }
+    },
+    {
+      "path": "infra-lean/header-reuse/REPORT.md",
+      "bytes": 5355,
+      "sha256": "a28a8d5a389106cfb13ca372a9417086fb6ac9de5de1aefd62addc49747ade30",
+      "original_source": {
+        "bytes": 5355,
+        "sha256": "a28a8d5a389106cfb13ca372a9417086fb6ac9de5de1aefd62addc49747ade30"
+      }
+    },
+    {
+      "path": "infra-lean/header-reuse/history/GenericCore.original-failed.log",
+      "bytes": 6929,
+      "sha256": "db17c2a026da17801f742be841de4f24f9388886a16486e5beb0e645209441d8",
+      "original_source": {
+        "bytes": 7389,
+        "sha256": "1453d95f67ce5aad932942f2962e9c7bbcc99d299aa4f1a44928e3ac94714553"
+      },
+      "public_transform": [
+        "Replaced the absolute local workspace prefix in log text."
+      ]
+    },
+    {
+      "path": "infra-lean/header-reuse/history/GenericSmoke.first-failed.log",
+      "bytes": 1527,
+      "sha256": "8314a8d8aa95fd59f1c5dabed1e475b0cd580266a2708b05aec199d2cec2c887",
+      "original_source": {
+        "bytes": 1567,
+        "sha256": "7a4c5b636a9ae894aeb26d453b3fd9ef424f3d230c11e5b2ec7d46c69715c244"
+      },
+      "public_transform": [
+        "Replaced the absolute local workspace prefix in log text."
+      ]
+    },
+    {
+      "path": "infra-lean/header-reuse/run_experiment.py",
+      "bytes": 3970,
+      "sha256": "9f1f705e473c41ec6bdf399781533a80c5190a1c21bbdc84492ffa92ec875c53",
+      "original_source": {
+        "bytes": 3970,
+        "sha256": "9f1f705e473c41ec6bdf399781533a80c5190a1c21bbdc84492ffa92ec875c53"
+      }
+    },
+    {
+      "path": "infra-lean/header-reuse/verification.json",
+      "bytes": 6996,
+      "sha256": "80d586ad0c2c17ea55ccef7ba3b29b9dac0b5fc50f662695aada9fd93ed95cdf"
     },
     {
       "path": "infra-lean/import-evidence.json",
