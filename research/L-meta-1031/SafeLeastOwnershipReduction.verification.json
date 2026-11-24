@@ -1,0 +1,23 @@
+{
+  "sha256": "de70b9fd2474b948f8884e72b8e9d872710393909c2a60ceb42202d923723f9d",
+  "bytes": 122617,
+  "exit": 0,
+  "elapsed_seconds": 3.69,
+  "checked_utc": "2026-11-24T07:27:29.547350+00:00",
+  "scope": [
+    "Independent replay of the compact exact full-target conditional reduction and safe-minimum ownership normalization."
+  ],
+  "mechanical_fixes": [
+    "Removed one unused open PrefixBuilder line after all declarations in that namespace were pruned."
+  ],
+  "pruned_candidate_sha256": "5207580737c6cc8289b722d2684c5e6d7c482396b4b7ed93392324d8b47f6982",
+  "limitations": [
+    "Universal all-safe minimum existence hSoundLeast remains explicitly assumed.",
+    "Narrow-import development check; no full-target completion is claimed."
+  ],
+  "source_file": "SafeLeastOwnershipReduction.lean",
+  "lean_version": "4.36.0",
+  "mathlib_revision": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842",
+  "project_base_commit": "67b12c81a4864e00b7443c98602811c27825f5b7",
+  "full_target_completed": false
+}
