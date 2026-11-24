@@ -1,0 +1,32 @@
+{
+  "status": "UNKNOWN",
+  "started_utc": "2026-11-24T05:53:50.487773+00:00",
+  "and_gates": 6,
+  "rows": 115,
+  "variables": 6416,
+  "clauses": 25360,
+  "program_sha256": "3f6b5bed89c20af0636dc99a34711d78983c48d87b097dd84c4f25b084281052",
+  "dependency_sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5",
+  "cnf_sha256": "e161e5b271742581484567f70486157d71cb7284a429ef6ebbf30a4fdb9a3a81",
+  "rows_sha256": "cf980c8b36587aca5b27e17c84f8d95eee7089c3184d87a3fe7288dbae2954d1",
+  "bound_seconds": 300,
+  "proof_verified": false,
+  "lean_verified": false,
+  "output_variables": [],
+  "symmetry_cuts": [],
+  "scope": "Exact partial-function model with empty outputs, overlapping sides, and unused gates allowed. At most2 actual reader gates per variable.",
+  "elapsed_seconds": 300.482,
+  "utc": "2026-11-24T05:58:50.431657+00:00",
+  "stats": {
+    "restarts": 117232,
+    "conflicts": 3639772,
+    "decisions": 9162550,
+    "propagations": 923407921
+  },
+  "stop_reason": "wall_time",
+  "proof_file": "partial.drat.bin",
+  "proof_sha256": "d1035b73d35e8b1287f95517b944e29be3635785bed9524c32f1c1bb4d3ba18f",
+  "proof_bytes": 387301292,
+  "completed_utc": "2026-11-24T05:58:50.899937+00:00",
+  "supervisor_reaped_child": true
+}

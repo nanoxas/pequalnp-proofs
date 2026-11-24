@@ -1,0 +1,21 @@
+import took 4.57s
+cumulative profiling times:
+	.olean serialization 7.11ms
+	attribute application 0.0105ms
+	declTypeLinter 1.07ms
+	elaboration 33.5ms
+	fix level params 0.105ms
+	import 4.57s
+	initialization 37.5ms
+	instantiate metavars 0.244ms
+	interpretation 167ms
+	let-to-have transformation 1.43ms
+	linting 2.43ms
+	module linting 0.0262ms
+	parsing 2.76ms
+	process pre-definitions 0.659ms
+	share common exprs 0.673ms
+	tactic execution 7.57ms
+	tacticAnalysis 0.593ms
+	type checking 2.46ms
+	typeclass inference 10.5ms

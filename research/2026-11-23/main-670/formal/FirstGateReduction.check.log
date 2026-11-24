@@ -1,0 +1,37 @@
+import took 1.36s
+elaboration took 221ms
+tactic execution of Lean.Parser.Tactic.refine took 114ms
+'PEqualNP.Research.L670.clean_first_gate' depends on axioms: [propext, Quot.sound]
+'PEqualNP.Research.L670.sole_first_and_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.second_reader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.restrict_to_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.no_global_thirteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.no_first_and46_of_no_fourteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.first_and46_implies_fourteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 10.6ms
+	attribute application 0.136ms
+	blocked (unaccounted) 761ms
+	compilation (IR) 0.169ms
+	compilation (LCNF base) 7.77ms
+	compilation (LCNF impure) 1.02ms
+	compilation (LCNF mono) 2.16ms
+	congr simp thm 3.66ms
+	declTypeLinter 4.11ms
+	elaboration 263ms
+	fix level params 0.618ms
+	import 1.36s
+	initialization 35.9ms
+	instantiate metavars 1.69ms
+	interpretation 199ms
+	let-to-have transformation 0.166ms
+	linting 17.5ms
+	module linting 0.0269ms
+	parsing 11.5ms
+	process pre-definitions 6.94ms
+	share common exprs 3.53ms
+	simp 152ms
+	tactic execution 258ms
+	tacticAnalysis 3.4ms
+	type checking 51.1ms
+	typeclass inference 81.5ms

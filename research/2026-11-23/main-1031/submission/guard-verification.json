@@ -1,0 +1,31 @@
+[
+  {
+    "command": [
+      "node",
+      "<workspace>/infra-lean/reduction-checker-f5238c8/.github/scripts/outside-guard.mjs",
+      "gap",
+      "<workspace>/main-1031/submission/gaps-snapshot.json",
+      "L-meta-1031",
+      "lean/PEqualNP/Outside/R_meta_1031_1.lean",
+      "<workspace>/main-1031/submission",
+      "reduce"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "node",
+      "<workspace>/infra-lean/reduction-checker-f5238c8/.github/scripts/outside-guard.mjs",
+      "imports",
+      "<workspace>/main-1031/submission/PEqualNP/Outside/R_meta_1031_1.lean",
+      "<workspace>/main-1031/submission/imports.json",
+      "lean/PEqualNP/Outside/R_meta_1031_1.lean",
+      "reduce"
+    ],
+    "exit_code": 0,
+    "stdout": "imports allowed: Mathlib PEqualNP.Defs\n",
+    "stderr": ""
+  }
+]

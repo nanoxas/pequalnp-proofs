@@ -1,0 +1,25 @@
+{
+  "gap": "L-meta-1031",
+  "reason": "reduced",
+  "http_status": 200,
+  "utc": "2026-11-24T05:47:08.694802+00:00",
+  "pr": 3918,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/3918",
+  "commit": "49043dba9bca45e818e44fdf2d829a8e3fddb92c",
+  "authoritative_verdict": "REFUSED_EXISTING_REDUCTION_PATH",
+  "local_compile": "PASS",
+  "local_full_verifier": "TERMINATED_WITHOUT_VERDICT_SIGNAL_9",
+  "authoritative_build_attempted": false,
+  "authoritative_comment": "https://github.com/brilliant-hq/pequalnp-proofs/pull/3918#issuecomment-7123560559",
+  "authoritative_run": "https://github.com/brilliant-hq/pequalnp-proofs/actions/runs/45337719693",
+  "authoritative_comment_utc": "2026-11-24T06:04:49Z",
+  "authoritative_bot_wording": "REFUSED before any build: this step was proved first by another pull request, which has been merged.",
+  "observed_parent_status": "OPEN_IN_DESK_SNAPSHOT_2026-11-24T06:17:24.662Z",
+  "existing_reduction": {
+    "id": "R-L-meta-1031-1",
+    "state": "open",
+    "file": "lean/PEqualNP/Outside/R_meta_1031_1.lean",
+    "source_sha256": "d571a8067bd2475717f109bdc3b7dc52ec9c7bcb725726c0e73890ac97221a72"
+  },
+  "interpretation": "The upstream path already contains a distinct accepted reduction. The refusal message does not establish that the parent theorem is proved."
+}

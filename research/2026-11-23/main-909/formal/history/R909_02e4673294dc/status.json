@@ -1,0 +1,31 @@
+{
+  "status": "PREPARED_BUT_ROUNDTRIP_FAILED",
+  "source_sha256": "02e4673294dc01f78936e4607415edc94a92df35bef91b34fb764d684f64310f",
+  "build_status": "PASS",
+  "lightweight_preflight": {
+    "status": "FAIL",
+    "exit_code": 1,
+    "elapsed_seconds": 104.95,
+    "frozen_reduction_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "child_1_printed_chars": 614,
+    "error": "Child 1 printer renders a Finset filter as a set-builder before .card; readback infers Set and fails field card.",
+    "detailed_status": "FAIL",
+    "detailed_exit_code": 1,
+    "detailed_elapsed_seconds": 113.387,
+    "child_printed_chars": [
+      614,
+      986,
+      139
+    ],
+    "child_roundtrip": [
+      "FAIL",
+      "PASS",
+      "PASS"
+    ]
+  },
+  "scope": "The reduction source compiled successfully. It has not passed the reduction child roundtrip preflight or the full official checker."
+}

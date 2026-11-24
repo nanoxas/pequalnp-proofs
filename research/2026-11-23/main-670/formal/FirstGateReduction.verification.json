@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "scope": "Local research helper; not the final official single-file artifact and not a proof of global task 670.",
+  "source": "FirstGateReduction.lean",
+  "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
+  "object_sha256": "acbce21aebdf3a7a48b53a61b3efcfe917a68135674a24d5b4ce1754c741821d",
+  "check_log": "FirstGateReduction.check.log",
+  "check_log_sha256": "5bcd8f7f798c3ac2dcc239357b6b8b563669e30ef2909a964c3a02311b060812",
+  "started_utc": "2026-11-24T05:08:08.441282+00:00",
+  "stopped_utc": "2026-11-24T05:08:11.064598+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 2.623,
+  "child_reaped": true,
+  "source_unchanged": true,
+  "warnings": [],
+  "axiom_audits": [
+    {
+      "declaration": "PEqualNP.Research.L670.clean_first_gate",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.sole_first_and_agree",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.second_reader",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.restrict_to_eight",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.no_global_thirteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.no_first_and46_of_no_fourteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.first_and46_implies_fourteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "explicit_lower_bound_premise": {
+    "statement": "not HasCircuitSize 8 target8 12",
+    "accepted_source": "PEqualNP/Outside/L_meta_1007.lean",
+    "accepted_source_sha256": "6a05a3f0eece44b4d99a46fec2ae839bb8fa63b1f67578275d623d259b353b7c",
+    "accepted_theorem": "PEqualNP.Outside.L_meta_1007",
+    "local_instantiation_status": "PENDING_ACCEPTED_DEPENDENCY_OBJECT",
+    "note": "The imported ReadersPat infrastructure is kernel-checked locally. L_meta_1007 itself was not imported or recompiled for this helper."
+  },
+  "reproduction": "python3 infra-lean/bounded_check.py main-670/formal/FirstGateReduction.lean --seconds 180 --label FirstGateReduction2 --import-workers 1 --object",
+  "claims": [
+    "The concrete cleaner preserves the first AND(4,6) gate.",
+    "Any circuit for target9 with that first gate has a second raw-input-4 reader.",
+    "Fixing input4=false converts to exactly target8 with no additional gates.",
+    "The exact target8 lower-bound premise rules out global target9 size13.",
+    "The exact target8 lower-bound premise plus no global target9 size14 rules out a size15 first-AND(4,6) circuit.",
+    "Equivalently, the exact target8 lower-bound premise makes any such prescribed-first size15 witness imply a global target9 size14 witness."
+  ],
+  "source_attribution": "Public Apache-2.0 ExchangeElim/Parity3 cleaning and sole-reader proof patterns, preserved in the module comment."
+}

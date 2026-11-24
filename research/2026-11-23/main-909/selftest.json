@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "program_sha256": "3f6b5bed89c20af0636dc99a34711d78983c48d87b097dd84c4f25b084281052",
+  "dependency_sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5",
+  "controls": [
+    {
+      "name": "nested",
+      "result": "SAT_AS_EXPECTED"
+    },
+    {
+      "name": "repeated-port-counted-once",
+      "result": "SAT_AS_EXPECTED"
+    },
+    {
+      "name": "wrong-output-bit",
+      "result": "UNSAT_AS_EXPECTED"
+    },
+    {
+      "name": "three-bare-readers-rejected",
+      "result": "UNSAT_AS_EXPECTED"
+    }
+  ],
+  "utc": "2026-11-24T05:53:36.750297+00:00"
+}

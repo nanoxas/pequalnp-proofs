@@ -1,0 +1,219 @@
+{
+  "status": "STATIC_CONTROLS_PASS",
+  "utc": "2026-11-24T05:33:20.719426+00:00",
+  "seconds": 6.403,
+  "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+  "frozen_base_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "structural_class_changes": "none; only row-indexed allocations and equations changed",
+  "exact_source_transform_match": true,
+  "solver_started": false,
+  "initial_row_count": 60,
+  "initial_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    16,
+    17,
+    18,
+    20,
+    21,
+    24,
+    26,
+    32,
+    33,
+    34,
+    36,
+    40,
+    48,
+    64,
+    65,
+    66,
+    68,
+    72,
+    80,
+    81,
+    96,
+    128,
+    129,
+    130,
+    132,
+    136,
+    144,
+    160,
+    192,
+    255,
+    256,
+    257,
+    258,
+    260,
+    264,
+    272,
+    288,
+    320,
+    383,
+    384,
+    447,
+    479,
+    495,
+    503,
+    507,
+    509,
+    510,
+    511
+  ],
+  "seed_policy": {
+    "policy": "weight0/1/2, all-ones, nine zero-cofactor extremes, pivotal orbit representatives",
+    "pivotal_cases_covered_by_orbits": 144,
+    "pivotal_orbit_count": 16,
+    "pivotal_witnesses": [
+      {
+        "input": 0,
+        "fixed_input": 1,
+        "fixed_value": 0,
+        "negative_mask": 16,
+        "positive_mask": 17
+      },
+      {
+        "input": 0,
+        "fixed_input": 1,
+        "fixed_value": 1,
+        "negative_mask": 2,
+        "positive_mask": 3
+      },
+      {
+        "input": 0,
+        "fixed_input": 2,
+        "fixed_value": 0,
+        "negative_mask": 2,
+        "positive_mask": 3
+      },
+      {
+        "input": 0,
+        "fixed_input": 2,
+        "fixed_value": 1,
+        "negative_mask": 20,
+        "positive_mask": 21
+      },
+      {
+        "input": 0,
+        "fixed_input": 3,
+        "fixed_value": 0,
+        "negative_mask": 2,
+        "positive_mask": 3
+      },
+      {
+        "input": 0,
+        "fixed_input": 3,
+        "fixed_value": 1,
+        "negative_mask": 10,
+        "positive_mask": 11
+      },
+      {
+        "input": 0,
+        "fixed_input": 4,
+        "fixed_value": 0,
+        "negative_mask": 2,
+        "positive_mask": 3
+      },
+      {
+        "input": 0,
+        "fixed_input": 4,
+        "fixed_value": 1,
+        "negative_mask": 16,
+        "positive_mask": 17
+      },
+      {
+        "input": 0,
+        "fixed_input": 6,
+        "fixed_value": 0,
+        "negative_mask": 2,
+        "positive_mask": 3
+      },
+      {
+        "input": 0,
+        "fixed_input": 6,
+        "fixed_value": 1,
+        "negative_mask": 80,
+        "positive_mask": 81
+      },
+      {
+        "input": 4,
+        "fixed_input": 0,
+        "fixed_value": 0,
+        "negative_mask": 8,
+        "positive_mask": 24
+      },
+      {
+        "input": 4,
+        "fixed_input": 0,
+        "fixed_value": 1,
+        "negative_mask": 1,
+        "positive_mask": 17
+      },
+      {
+        "input": 4,
+        "fixed_input": 1,
+        "fixed_value": 0,
+        "negative_mask": 1,
+        "positive_mask": 17
+      },
+      {
+        "input": 4,
+        "fixed_input": 1,
+        "fixed_value": 1,
+        "negative_mask": 10,
+        "positive_mask": 26
+      },
+      {
+        "input": 4,
+        "fixed_input": 6,
+        "fixed_value": 0,
+        "negative_mask": 1,
+        "positive_mask": 17
+      },
+      {
+        "input": 4,
+        "fixed_input": 6,
+        "fixed_value": 1,
+        "negative_mask": 65,
+        "positive_mask": 81
+      }
+    ],
+    "graph_automorphisms": 12
+  },
+  "initial_variables": 3809,
+  "initial_clauses": 53474,
+  "all512_variables": 22793,
+  "all512_clauses": 395638,
+  "fixed_row_controls": [
+    {
+      "rows": "initial",
+      "row_count": 60,
+      "explicit_model": "PASS"
+    },
+    {
+      "rows": "sparse_actual_masks",
+      "row_count": 4,
+      "explicit_model": "PASS"
+    },
+    {
+      "rows": "all512",
+      "row_count": 512,
+      "explicit_model": "PASS"
+    }
+  ],
+  "NOT_false_control": "PASS",
+  "encoded_bit_mismatch_detected": true,
+  "unseen_bit_mismatch_refined_then_detected": true,
+  "full_witness_requires_all512_rows": true,
+  "scope": "Direct fixed-assignment CNF and refinement controls only; no target search or UNSAT result"
+}

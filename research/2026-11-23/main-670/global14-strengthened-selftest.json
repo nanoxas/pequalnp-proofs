@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T05:21:56.660158+00:00",
+  "seconds": 2.893005627003731,
+  "normalization_cases": 160,
+  "attempted_cases": 279,
+  "rows_per_case": 512,
+  "nonconstant_scope": true,
+  "all_four_structural_constraints_hold": true,
+  "reader_conditions_checked_on_controls": true,
+  "reader_preservation_scope": "least14-gate witnesses, paper reduction; not arbitrary cleanup",
+  "control_target": "OR of all9 raw inputs; deliberately nonminimal",
+  "baseline_fixture_gates": 14,
+  "NOT_false_fixture_gates": 16,
+  "cnf_checks_run": true,
+  "program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "fixed_baseline": "SAT",
+  "one_bit_mismatch": "UNSAT",
+  "fixed_NOT_false": "SAT"
+}

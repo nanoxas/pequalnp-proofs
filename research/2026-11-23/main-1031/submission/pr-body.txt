@@ -1,0 +1,11 @@
+Reduction submission for L-meta-1031 (kind: reduce).
+
+This splits the star-ownership existence statement into three closed obligations:
+
+1. A least monotone circuit for the graph edge function can be chosen so that every AND gate owns a nonempty, pairwise-intersecting family of graph edges, using the existing finite `Owns` definition.
+2. For a valid AND gate, finite `Owns` agrees with the exact strict-ancestor `Relation.TransGen` predicate in the assigned statement.
+3. A nonempty pairwise-intersecting family of edges in a triangle-free graph has a common endpoint.
+
+The first child retains both original graph hypotheses and remains the main open circuit-normalization problem. The other two children isolate the ownership interface and graph combinatorics. The reduction preserves minimum total gate count and nonempty ownership; its conclusion is the exact assigned statement.
+
+The change adds one Lean file and one theorem. It uses only Mathlib and PEqualNP.Defs, with no helper declarations. Local compilation passed. The full local replay of the unchanged public reduction verifier exited on signal 9 before producing a verdict. This submission requests the authoritative reduction check; it does not claim that any child is already proved.

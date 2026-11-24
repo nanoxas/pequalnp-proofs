@@ -1,0 +1,29 @@
+import took 103s
+CHILD 1 CHARS 614
+CHILD_TEXT 1 have x1 : ℕ → Finset (Fin (10 : ℕ)) := fun (x1 : ℕ) => {x2 : Fin (10 : ℕ) | x1.testBit ↑x2 = Bool.true}; have x2 : List ℕ := [(50 : ℕ), (69 : ℕ), (104 : ℕ), (116 : ℕ), (138 : ℕ), (201 : ℕ), (208 : ℕ), (276 : ℕ), (385 : ℕ), (402 : ℕ), (521 : ℕ), (548 : ℕ), (554 : ℕ), (770 : ℕ), (773 : ℕ)]; ∃ (x3 : PEqualNP.AndCount.AndCountCircuit (10 : ℕ)), x3.WellFormed ∧ x3.size ≤ (6 : ℕ) ∧ (∀ (x4 : Fin (10 : ℕ)), {x5 : Fin x3.size | x4 ∈ x3.leftVars x5 ∨ x4 ∈ x3.rightVars x5}.card ≤ (2 : ℕ)) ∧ ∀ x4 ∈ x2, x3.eval (x1 x4) = Bool.false ∧ ((x1 x4).card = (3 : ℕ) → ∀ x7 ∉ x1 x4, x3.eval (Insert.insert x7 (x1 x4)) = Bool.true)
+<workspace>/main-909/formal/ReductionPreflight.lean:31:0: error: Child readback did not elaborate
+'PEqualNP.Outside.R_meta_909_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	attribute application 0.0264ms
+	blocked (unaccounted) 269ms
+	compilation (IR) 2.55ms
+	compilation (LCNF base) 66.2ms
+	compilation (LCNF impure) 4.93ms
+	compilation (LCNF mono) 19.5ms
+	declTypeLinter 8.36ms
+	do element elaborator 64.1ms
+	elaboration 51.3ms
+	fix level params 0.0569ms
+	import 103s
+	initialization 39.3ms
+	instantiate metavars 0.0221ms
+	interpretation 1.27s
+	let-to-have transformation 0.189ms
+	linting 7.6ms
+	module linting 0.0233ms
+	parsing 7.58ms
+	process pre-definitions 2.35ms
+	share common exprs 0.47ms
+	tacticAnalysis 0.642ms
+	type checking 5.98ms
+	typeclass inference 75.7ms

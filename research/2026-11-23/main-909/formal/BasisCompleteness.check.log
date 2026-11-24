@@ -1,0 +1,27 @@
+import took 1.43s
+type checking took 6.35s
+'PEqualNP.Research.BasisCompleteness.basis_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 3.77ms
+	attribute application 0.0119ms
+	blocked (unaccounted) 6.39s
+	congr simp thm 0.816ms
+	declTypeLinter 2.35ms
+	dsimp 2.42ms
+	elaboration 17.1ms
+	fix level params 0.118ms
+	import 1.43s
+	initialization 49.8ms
+	instantiate metavars 0.0593ms
+	interpretation 147ms
+	let-to-have transformation 1.53ms
+	linting 4.65ms
+	module linting 0.0965ms
+	parsing 1.48ms
+	process pre-definitions 0.802ms
+	share common exprs 1.32ms
+	simp 7.6ms
+	tactic execution 3.22ms
+	tacticAnalysis 0.572ms
+	type checking 6.35s
+	typeclass inference 21.5ms

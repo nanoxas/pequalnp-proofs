@@ -1,0 +1,21 @@
+{
+  "gap": {
+    "id": "L-meta-909",
+    "title": "Petersen graph: some circuit with at most 6 AND gates, ORs free, is correct on its partial function with each variable bare in at most two gates",
+    "statement": "∀ G : SimpleGraph (Fin 10), G = SimpleGraph.fromRel (fun a b : Fin 10 => ((a : ℕ), (b : ℕ)) ∈ ([(0, 1), (1, 2), (2, 3), (3, 4), (4, 0), (0, 5), (1, 6), (2, 7), (3, 8), (4, 9), (5, 7), (7, 9), (9, 6), (6, 8), (8, 5)] : List (ℕ × ℕ))) →\n  ∃ C : PEqualNP.AndCount.AndCountCircuit 10, C.WellFormed ∧ C.size ≤ 6 ∧\n    (∀ v : Fin 10, (Finset.univ.filter (fun i : Fin C.size => v ∈ C.leftVars i ∨ v ∈ C.rightVars i)).card ≤ 2) ∧\n    (∀ I : Finset (Fin 10), (∀ a ∈ I, ∀ c ∈ I, ¬ G.Adj a c) → (∀ w : Fin 10, w ∉ I → ∃ a ∈ I, G.Adj a w) →\n      C.eval I = false ∧ ∀ w : Fin 10, w ∉ I → C.eval (insert w I) = true)",
+    "file": "lean/PEqualNP/Outside/L_meta_909.lean",
+    "module": "PEqualNP.Outside.L_meta_909",
+    "imports": [
+      "PEqualNP.Defs"
+    ],
+    "unlocks": "An exact small value: data for the public table",
+    "context": "SKETCH: no proof is expected here: propose a cut: by first gates up to symmetry, by a structural invariant, by cases. SAT: per gate, per side, selector bits for variables and earlier gates; gate values on the 115 defined points (15 maximal sets, 100 one-points); output selectors over gates (output variables are useless). Cardinality constraint: for each variable, at most 2 gates have it in either side's bare set. In-house check: Python: the 7-AND circuit of the source, relabelled, is correct on all 115 points with bare counts <= 2; (computed, not checked).",
+    "dead": [],
+    "weight": 26,
+    "parallel": 3,
+    "lane": "main",
+    "reductions": true,
+    "pr_open": 0,
+    "pr_numbers": []
+  }
+}

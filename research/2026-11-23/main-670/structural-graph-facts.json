@@ -1,0 +1,315 @@
+{
+  "status": "FINITE_GRAPH_FACTS_PASS",
+  "utc": "2026-11-24T04:59:32.834102+00:00",
+  "inputs": 9,
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      6,
+      8
+    ]
+  ],
+  "degree_two_inputs": [
+    4,
+    6,
+    7
+  ],
+  "automorphism_count": 12,
+  "zero_restriction_maps": [
+    {
+      "deleted_input": 4,
+      "old_inputs_in_new_order": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "automorphism_old_to_canonical": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "checked_rows": 256
+    },
+    {
+      "deleted_input": 6,
+      "old_inputs_in_new_order": [
+        1,
+        0,
+        5,
+        8,
+        2,
+        4,
+        7,
+        3
+      ],
+      "automorphism_old_to_canonical": [
+        1,
+        0,
+        5,
+        8,
+        6,
+        2,
+        4,
+        7,
+        3
+      ],
+      "checked_rows": 256
+    },
+    {
+      "deleted_input": 7,
+      "old_inputs_in_new_order": [
+        5,
+        0,
+        1,
+        2,
+        8,
+        4,
+        6,
+        3
+      ],
+      "automorphism_old_to_canonical": [
+        1,
+        2,
+        3,
+        8,
+        6,
+        0,
+        7,
+        4,
+        5
+      ],
+      "checked_rows": 256
+    }
+  ],
+  "sole_OR_raw_operand_obstructions": [
+    {
+      "input": 4,
+      "other_raw": 0,
+      "neighbor": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "other_raw": 1,
+      "neighbor": 3,
+      "negative_mask": 10,
+      "positive_mask": 26
+    },
+    {
+      "input": 4,
+      "other_raw": 2,
+      "neighbor": 0,
+      "negative_mask": 5,
+      "positive_mask": 21
+    },
+    {
+      "input": 4,
+      "other_raw": 3,
+      "neighbor": 0,
+      "negative_mask": 9,
+      "positive_mask": 25
+    },
+    {
+      "input": 4,
+      "other_raw": 5,
+      "neighbor": 3,
+      "negative_mask": 40,
+      "positive_mask": 56
+    },
+    {
+      "input": 4,
+      "other_raw": 6,
+      "neighbor": 0,
+      "negative_mask": 65,
+      "positive_mask": 81
+    },
+    {
+      "input": 4,
+      "other_raw": 7,
+      "neighbor": 0,
+      "negative_mask": 129,
+      "positive_mask": 145
+    },
+    {
+      "input": 4,
+      "other_raw": 8,
+      "neighbor": 0,
+      "negative_mask": 257,
+      "positive_mask": 273
+    },
+    {
+      "input": 6,
+      "other_raw": 0,
+      "neighbor": 8,
+      "negative_mask": 257,
+      "positive_mask": 321
+    },
+    {
+      "input": 6,
+      "other_raw": 1,
+      "neighbor": 1,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "other_raw": 2,
+      "neighbor": 8,
+      "negative_mask": 260,
+      "positive_mask": 324
+    },
+    {
+      "input": 6,
+      "other_raw": 3,
+      "neighbor": 1,
+      "negative_mask": 10,
+      "positive_mask": 74
+    },
+    {
+      "input": 6,
+      "other_raw": 4,
+      "neighbor": 1,
+      "negative_mask": 18,
+      "positive_mask": 82
+    },
+    {
+      "input": 6,
+      "other_raw": 5,
+      "neighbor": 1,
+      "negative_mask": 34,
+      "positive_mask": 98
+    },
+    {
+      "input": 6,
+      "other_raw": 7,
+      "neighbor": 1,
+      "negative_mask": 130,
+      "positive_mask": 194
+    },
+    {
+      "input": 6,
+      "other_raw": 8,
+      "neighbor": 1,
+      "negative_mask": 258,
+      "positive_mask": 322
+    },
+    {
+      "input": 7,
+      "other_raw": 0,
+      "neighbor": 2,
+      "negative_mask": 5,
+      "positive_mask": 133
+    },
+    {
+      "input": 7,
+      "other_raw": 1,
+      "neighbor": 5,
+      "negative_mask": 34,
+      "positive_mask": 162
+    },
+    {
+      "input": 7,
+      "other_raw": 2,
+      "neighbor": 2,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "other_raw": 3,
+      "neighbor": 5,
+      "negative_mask": 40,
+      "positive_mask": 168
+    },
+    {
+      "input": 7,
+      "other_raw": 4,
+      "neighbor": 2,
+      "negative_mask": 20,
+      "positive_mask": 148
+    },
+    {
+      "input": 7,
+      "other_raw": 5,
+      "neighbor": 2,
+      "negative_mask": 36,
+      "positive_mask": 164
+    },
+    {
+      "input": 7,
+      "other_raw": 6,
+      "neighbor": 2,
+      "negative_mask": 68,
+      "positive_mask": 196
+    },
+    {
+      "input": 7,
+      "other_raw": 8,
+      "neighbor": 2,
+      "negative_mask": 260,
+      "positive_mask": 388
+    }
+  ],
+  "sole_first_AND_reader_obstruction": {
+    "fixed_false_input": 6,
+    "toggled_input": 4,
+    "negative_mask": 1,
+    "positive_mask": 17
+  },
+  "scope": "Finite graph identities only; no circuit search, no new Lean theorem, no exhaustion claim."
+}

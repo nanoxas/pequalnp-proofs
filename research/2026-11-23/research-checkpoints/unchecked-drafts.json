@@ -1,0 +1,30 @@
+{
+  "status": "DRAFT_UNCHECKED",
+  "drafts": [
+    {
+      "path": "main-1031/drafts/OwnershipBridge.lean.txt",
+      "source_sha256": "4de9e80879e7050918f98fc8659edbd77caf630938df948334b79a438ac40e05",
+      "status": "DRAFT_UNCHECKED",
+      "compiled": false,
+      "official_submission": false,
+      "original_source": "main-1031/formal/OwnershipBridge.lean"
+    },
+    {
+      "path": "main-1031/drafts/IntersectingEdges.lean.txt",
+      "source_sha256": "a688f82c303f440ad90cc449daf827f0616644d9e38074480707985c2715502e",
+      "status": "DRAFT_UNCHECKED",
+      "compiled": false,
+      "official_submission": false,
+      "original_source": "main-1031/formal/IntersectingEdges.lean"
+    },
+    {
+      "path": "main-909/drafts/DirtyTriangle.lean.txt",
+      "source_sha256": "cba2569b584669a2b4ca1297089a76003d10bdc5d7c75fb85cf50bb4d03f3aa7",
+      "status": "DRAFT_UNCHECKED",
+      "compiled": false,
+      "official_submission": false,
+      "original_source": "main-909/formal/DirtyTriangle.lean"
+    }
+  ],
+  "scope": "Preserved research prototypes. They are not included in checked module counts or official submission claims."
+}

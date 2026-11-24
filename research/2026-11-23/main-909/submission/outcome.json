@@ -1,0 +1,13 @@
+{
+  "gap": "L-meta-909",
+  "reason": "reduced",
+  "http_status": 200,
+  "utc": "2026-11-24T06:20:23.940883+00:00",
+  "pr": 4051,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051",
+  "commit": "8292b94e2ba785988092e2b86e675548455140a2",
+  "authoritative_verdict": "PENDING",
+  "local_compile": "PASS",
+  "local_lightweight_preflight": "PASS_THREE_CHILDREN_STANDARD_AXIOMS",
+  "full_official_kernel_replay": "NOT_CLAIMED"
+}

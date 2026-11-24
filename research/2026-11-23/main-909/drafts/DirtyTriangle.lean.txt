@@ -1,0 +1,218 @@
+import Mathlib
+import PEqualNP.Defs
+import PEqualNP.Outside.L_meta_635
+
+/-!
+DEVELOPMENT DRAFT, UNCHECKED.
+
+This prototype reuses public, accepted helpers from L-meta-635 (source
+SHA256 98140d2dc568d455c4cc163e840b1f73a0d909640905de825ba863756815209b).
+It is not an eligible standalone submission under a Mathlib+Defs-only
+import rule. A final standalone version would inline the selected helpers
+with attribution. No assertion here has been checked in this session.
+-/
+
+namespace PEqualNP.Research.DirtyTriangle
+
+open PEqualNP.AndCount PEqualNP.AndCount.AndCountCircuit
+open PEqualNP.Outside.L_meta_635_aux
+open scoped BigOperators
+
+def BareTwo (C : AndCountCircuit 10) : Prop :=
+  ∀ v : V, (Finset.univ.filter
+    (fun i : Fin C.size => v ∈ C.leftVars i ∨ v ∈ C.rightVars i)).card ≤ 2
+
+lemma bare_budget (C : AndCountCircuit 10) (h : BareTwo C) :
+    (∑ i : Fin C.size, (C.leftVars i ∪ C.rightVars i).card) ≤ 20 := by
+  classical
+  have hcount : (∑ i : Fin C.size, (C.leftVars i ∪ C.rightVars i).card) =
+      ∑ v : V, (Finset.univ.filter
+        (fun i : Fin C.size => v ∈ C.leftVars i ∪ C.rightVars i)).card := by
+    calc
+      _ = ∑ i : Fin C.size, ∑ v : V,
+          if v ∈ C.leftVars i ∪ C.rightVars i then 1 else 0 := by simp
+      _ = ∑ v : V, ∑ i : Fin C.size,
+          if v ∈ C.leftVars i ∪ C.rightVars i then 1 else 0 := Finset.sum_comm
+      _ = _ := by simp
+  rw [hcount]
+  calc
+    _ ≤ ∑ _v : V, 2 := Finset.sum_le_sum fun v _ => by
+      simpa only [Finset.mem_union] using h v
+    _ = 20 := by simp [V]
+
+lemma related_irrefl : ∀ v : V, related v v = false := by decide +kernel
+
+lemma jointly_present_in_triangle : ∀ a b : V, related a b = false →
+    ∃ r : Fin 15, (rows r).card = 3 ∧ a ∈ rows r ∧ b ∈ rows r := by
+  decide +kernel
+
+lemma raw_nonedge (C : AndCountCircuit 10) (hsep : Separates C)
+    (hreads : BareTwo C) :
+    ∃ i : Fin C.size, ∃ a ∈ C.leftVars i, ∃ b ∈ C.rightVars i,
+      related a b = false := by
+  classical
+  by_contra hnone
+  have hrect (i : Fin C.size) (a : V) (ha : a ∈ C.leftVars i)
+      (b : V) (hb : b ∈ C.rightVars i) : related a b = true := by
+    cases hr : related a b
+    · exact (hnone ⟨i, a, ha, b, hb, hr⟩).elim
+    · rfl
+  choose center hcenter using fun i => starCenter _ _ (hrect i)
+  let B (i : Fin C.size) := C.leftVars i ∪ C.rightVars i
+  let J := Finset.univ.filter (fun i : Fin C.size =>
+    (C.leftVars i).Nonempty ∧ (C.rightVars i).Nonempty)
+  let U (i : Fin C.size) := if i ∈ J then (B i).erase (center i) else ∅
+  have hmemJ (i : Fin C.size) {a b : V}
+      (ha : a ∈ C.leftVars i) (hb : b ∈ C.rightVars i) : i ∈ J := by
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, ⟨⟨a, ha⟩, ⟨b, hb⟩⟩⟩
+  have hcenter_mem (i : Fin C.size) (hi : i ∈ J) : center i ∈ B i := by
+    obtain ⟨⟨a, ha⟩, ⟨b, hb⟩⟩ := (Finset.mem_filter.mp hi).2
+    rcases hcenter i a ha b hb with he | he
+    · rw [← he]
+      exact Finset.mem_union_left _ ha
+    · rw [← he]
+      exact Finset.mem_union_right _ hb
+  have hcover (a b : V) (hab : related a b = true) :
+      ∃ i ∈ J, (a = center i ∧ b ∈ U i) ∨ (b = center i ∧ a ∈ U i) := by
+    obtain ⟨r, har, hsingle⟩ := isolatedEdge a b hab
+    obtain ⟨i, ⟨x, hx, hxU⟩, ⟨y, hy, hyU⟩⟩ :=
+      firstTrue C hsep _ ((hsep _ (rowsGood r)).2 a har)
+    have hi := hmemJ i hx hy
+    have hxy : x ≠ y := by
+      intro he
+      subst y
+      have hh := hrect i x hx x hy
+      simp [related_irrefl] at hh
+    have hxB : x ∈ B i := Finset.mem_union_left _ hx
+    have hyB : y ∈ B i := Finset.mem_union_right _ hy
+    have hstar : (x = center i ∧ y ∈ U i) ∨
+        (y = center i ∧ x ∈ U i) := by
+      rcases hcenter i x hx y hy with he | he
+      · left
+        refine ⟨he, ?_⟩
+        simp only [U, if_pos hi, Finset.mem_erase]
+        exact ⟨fun hyc => hxy (he.trans hyc.symm), hyB⟩
+      · right
+        refine ⟨he, ?_⟩
+        simp only [U, if_pos hi, Finset.mem_erase]
+        exact ⟨fun hxc => hxy (hxc.trans he.symm), hxB⟩
+    rcases hsingle x hxU y hyU (hrect i x hx y hy) with
+      ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+    · exact ⟨i, hi, hstar⟩
+    · exact ⟨i, hi, hstar.symm⟩
+  let T := J.image center
+  have hT (a b : V) (hab : related a b = true) : a ∈ T ∨ b ∈ T := by
+    obtain ⟨i, hi, h⟩ := hcover a b hab
+    have hc : center i ∈ T := Finset.mem_image_of_mem _ hi
+    rcases h with ⟨he, _⟩ | ⟨he, _⟩
+    · exact Or.inl (he.symm ▸ hc)
+    · exact Or.inr (he.symm ▸ hc)
+  have hsmall : (Finset.univ \ T).card < 5 := by
+    by_contra! hh
+    obtain ⟨a, ha, b, hb, hab⟩ := largeHasEdge _ hh
+    exact (hT a b hab).elim (Finset.mem_sdiff.mp ha).2 (Finset.mem_sdiff.mp hb).2
+  have htotal := Finset.card_sdiff_add_card_eq_card (Finset.subset_univ T)
+  have hTJ : T.card ≤ J.card := Finset.card_image_le
+  have hJ : 6 ≤ J.card := by
+    simp only [Finset.card_univ, Fintype.card_fin] at htotal
+    omega
+  let E (i : Fin C.size) : Finset (Sym2 V) := (U i).image (fun v => s(center i, v))
+  have hsub : edges ⊆ Finset.univ.biUnion E := by
+    intro e
+    induction e using Sym2.inductionOn with
+    | _ a b =>
+      intro he
+      have hab : related a b = true := by simpa only [related, decide_eq_true_eq] using he
+      obtain ⟨i, _hi, h⟩ := hcover a b hab
+      apply Finset.mem_biUnion.mpr
+      refine ⟨i, Finset.mem_univ _, ?_⟩
+      rcases h with ⟨hec, hv⟩ | ⟨hec, hv⟩
+      · exact Finset.mem_image.mpr ⟨b, hv, by rw [← hec]⟩
+      · exact Finset.mem_image.mpr ⟨a, hv, by rw [← hec]; exact Sym2.eq_swap⟩
+  have hE : 15 ≤ ∑ i : Fin C.size, (U i).card := by
+    calc
+      15 = edges.card := by decide +kernel
+      _ ≤ (Finset.univ.biUnion E).card := Finset.card_le_card hsub
+      _ ≤ ∑ i : Fin C.size, (E i).card := Finset.card_biUnion_le
+      _ ≤ ∑ i : Fin C.size, (U i).card :=
+        Finset.sum_le_sum fun _ _ => Finset.card_image_le
+  have hlocal (i : Fin C.size) :
+      (U i).card + (if i ∈ J then 1 else 0) ≤ (B i).card := by
+    by_cases hi : i ∈ J
+    · simp only [U, if_pos hi]
+      exact le_of_eq (Finset.card_erase_add_one (hcenter_mem i hi))
+    · simp [U, hi]
+  have hsum : (∑ i : Fin C.size, (U i).card) + J.card ≤
+      ∑ i : Fin C.size, (B i).card := by
+    simpa [Finset.sum_add_distrib] using
+      Finset.sum_le_sum (fun i (_hi : i ∈ (Finset.univ : Finset (Fin C.size))) => hlocal i)
+  have hbudget := bare_budget C hreads
+  change (∑ i : Fin C.size, (B i).card) ≤ 20 at hbudget
+  omega
+
+theorem dirty_triangle (C : AndCountCircuit 10) (hsep : Separates C)
+    (hreads : BareTwo C) :
+    ∃ i : Fin C.size, ∃ r : Fin 15,
+      (rows r).card = 3 ∧ C.gateVal (rows r) i = true := by
+  obtain ⟨i, a, ha, b, hb, hab⟩ := raw_nonedge C hsep hreads
+  obtain ⟨r, hcard, har, hbr⟩ := jointly_present_in_triangle a b hab
+  exact ⟨i, r, hcard, raw_gate C i _ ⟨⟨a, ha, har⟩, ⟨b, hb, hbr⟩⟩
+
+lemma triangle_orbit : ∀ r : Fin 15, (rows r).card = 3 →
+    ∃ k : Fin 120, (rows r).image (permV k) = rows 1 := by
+  decide +kernel
+
+theorem canonical_dirty_value (C : AndCountCircuit 10) (hsep : Separates C)
+    (hreads : BareTwo C) :
+    ∃ k : Fin 120, ∃ i : Fin C.size,
+      (rename C (permEquiv k) false).gateVal ({0, 2, 6} : Finset V) i = true := by
+  obtain ⟨i, r, hcard, ht⟩ := dirty_triangle C hsep hreads
+  obtain ⟨k, hk⟩ := triangle_orbit r hcard
+  refine ⟨k, i, ?_⟩
+  have he := renameGate C (permEquiv k) false (rows r) i
+  change (rows r).image (permEquiv k) = rows 1 at hk
+  rw [hk] at he
+  simpa [rows] using he.trans ht
+
+lemma rename_bare_two (C : AndCountCircuit 10) (hreads : BareTwo C)
+    (f : Equiv.Perm V) : BareTwo (rename C f false) := by
+  classical
+  intro v
+  obtain ⟨w, rfl⟩ := f.surjective v
+  simpa [rename, vars] using hreads w
+
+lemma rename_wellFormed (C : AndCountCircuit 10) (hf : C.WellFormed)
+    (f : Equiv.Perm V) : (rename C f false).WellFormed := by
+  simpa [WellFormed, rename] using hf
+
+lemma rename_separates (C : AndCountCircuit 10) (hsep : Separates C)
+    (f : Equiv.Perm V) (hf : Autom f) : Separates (rename C f false) := by
+  classical
+  intro I hI
+  let J := I.image f.symm
+  have he : J.image f = I := by simp [J]
+  have hJ : Good J := (good_image f hf J).mp (by simpa only [he] using hI)
+  have hs := hsep J hJ
+  constructor
+  · have hv := renameEval C f false J
+    rw [he] at hv
+    exact hv.trans hs.1
+  · intro w hw
+    have hnot : f.symm w ∉ J := by simpa [J] using hw
+    have hpos := hs.2 (f.symm w) hnot
+    have hv := renameEval C f false (insert (f.symm w) J)
+    have himage : (insert (f.symm w) J).image f = insert w I := by simp [he]
+    rw [himage] at hv
+    exact hv.trans hpos
+
+theorem canonical_dirty_triangle (C : AndCountCircuit 10) (hformed : C.WellFormed)
+    (hsep : Separates C) (hreads : BareTwo C) :
+    ∃ D : AndCountCircuit 10, D.WellFormed ∧ D.size = C.size ∧
+      BareTwo D ∧ Separates D ∧
+      ∃ i : Fin D.size, D.gateVal ({0, 2, 6} : Finset V) i = true := by
+  obtain ⟨k, i, hi⟩ := canonical_dirty_value C hsep hreads
+  refine ⟨rename C (permEquiv k) false, rename_wellFormed C hformed _, rfl,
+    rename_bare_two C hreads _, ?_, i, hi⟩
+  exact rename_separates C hsep _ (permVgood k)
+
+end PEqualNP.Research.DirtyTriangle

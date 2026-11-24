@@ -1,0 +1,18 @@
+{
+  "status": "PASS_SOURCE_REVIEW",
+  "reviewed_utc": "2026-11-24T05:40:30.915092+00:00",
+  "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+  "reviewer": "root",
+  "scope": [
+    "Subset row equations are a necessary relaxation of all512-row equations.",
+    "Every decoded partial model is evaluated on all512 actual input masks.",
+    "Refinement inserts at least one previously absent violated row.",
+    "Each round rebuilds solver from its saved CNF with no target assumptions.",
+    "Final UNSAT proof path, CNF hash, row hash and round directory remain paired.",
+    "Independent DRAT verification and full mathematical reduction remain separate requirements.",
+    "Supervisor owns and reaps only its child under ordinary timeout/interruption paths.",
+    "Frozen base SHA256 checked before import; no new structural cuts."
+  ],
+  "solver_controls": "PENDING_UNTIL_CURRENT_WORKER_REAPED",
+  "target_run_launched": false
+}

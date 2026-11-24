@@ -1,0 +1,59 @@
+Strengthened L-meta-670 research checkpoint
+Frozen status: see global14-strengthened-status-snapshot.json.
+This checkpoint contains supporting research, not an official proof submission.
+
+The original assigned range concerns at most 15 gates with first gate AND(4,6).
+The new search covers a necessary class of global 14-gate witnesses for the same
+nine-input function. It constrains all 512 assignments, permits arbitrary NOT
+count, and uses a false sentinel matching unavailable-wire semantics.
+
+The frozen program SHA256 is:
+  d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880
+The exact generated CNF SHA256 is:
+  81754ed958bf6d67c9e2d22bbf5b48f7549090ce3c2690c0cf8060526983cfa6
+It has 22,793 variables and 395,638 clauses. Raw formula and proof files are
+outside this compact checkpoint.
+
+Four local Lean modules passed with standard axioms only:
+  FirstGateReduction: preserves the first gate through cleaning and reduces
+    the assigned size 15 case to existence of a global size 14 circuit.
+  ReaderShape: gives a least 14-gate witness with output 22; inputs 4,6,7 each
+    have one OR reader whose other operand is an earlier gate.
+  DegreeThreeShape: inputs 0,1,2,3,5,8 have at most two reader gates; any two
+    are both OR. It also proves a unique-successor fact not used by this run.
+  RawGateShape: excludes raw-raw AND gates and forces a second reader for
+    each endpoint of a raw-raw OR, handling repeated-input aliases separately.
+
+These helpers explicitly assume the exact accepted L-meta-1007 lower bound
+for the eight-input deletion graph and L-meta-517 lower bound for theta233.
+Their local objects have not been instantiated with those accepted dependency
+objects. The conditional theorem bodies and the target expressions were
+independently reviewed. Exact source hashes are in the status snapshot.
+
+Reader clauses count gates once even when an input appears on both ports.
+The first gate is NOT(0), OR(0,1), OR(0,2), or OR(0,3). All 12 graph automorphisms
+and the core-pair orbit sizes 6/6/3 were checked. Compatibility with full greedy
+ordering uses a joint construction: choose an input-only gate from the first
+nonempty orbit class, relabel it to its representative, then greedily schedule.
+Blindly relabeling an arbitrary old first gate would not establish coverage.
+The generic liveness, false-operand and double-NOT reductions use a globally
+least witness. They impose no monotonicity or bound on the number of NOTs.
+
+The base fixed-CNF controls passed on the actual graph target: a 20-gate
+circuit, a one-row mismatch, and a 22-gate NOT(false) extension. The strengthened
+controls passed on a deliberate nonminimal OR-all-inputs circuit of 14 gates,
+a one-row mismatch, and its 16-gate NOT(false) extension. The latter controls
+exercise the new conservative structural clauses; they do not establish a
+lower bound for the graph. Generic normalization was checked on 160 seeded
+malformed nonconstant circuits, with all 512 rows evaluated for each.
+
+The broader global 14 run was stopped for this reviewed refinement after
+769.789 seconds and 3,053,380 conflicts. Its result remains UNKNOWN, its owned
+child was reaped, and no exhaustion was claimed. The strengthened run has one
+worker with a 30-minute bound; the frozen public snapshot records its progress.
+
+The full SAT encoding and normalization are not a Lean encoding theorem.
+The target search remains unresolved. No range exhaustion or full L-meta-670
+proof is claimed here.
+Any future UNSAT proof must be checked against the exact saved formula before
+an exhaustion report. External proof checking is distinct from Lean checking.

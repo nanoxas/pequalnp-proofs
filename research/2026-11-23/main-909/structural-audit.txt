@@ -1,0 +1,129 @@
+L-meta-909: Petersen partial-function geometry and a necessary dirty gate
+
+Status: PAPER_PROOF with exact finite geometry audit. No circuit existence
+or nonexistence result is claimed. geometry_audit.py checks all 1024 vertex
+subsets and writes geometry-audit.json. It does not run a SAT solver.
+
+1. Exact Petersen coordinates
+
+The posted vertices 0,...,9 correspond to the following two-element
+subsets of {0,1,2,3,4}:
+
+  01, 23, 04, 13, 24, 34, 14, 12, 02, 03.
+
+Posted adjacency is exactly disjointness of these pairs. Thus a Petersen
+independent set is a pairwise-intersecting family of K5 edges. The maximal
+families are the five complete four-edge stars and the ten triangles.
+There are 76 independent vertex sets in total, with size distribution
+1,10,30,30,5. The maximum independent-set size is four, so the minimum
+vertex-cover size is six.
+
+The fifteen zero rows are these maximal independent sets. Their distinct
+one-point extensions consist of seventy four-sets and thirty five-sets;
+there are no duplicate extensions. Of the seventy four-sets, sixty induce
+one Petersen edge and two isolated vertices, and ten induce a K1,3.
+
+2. Every edge has a unique-edge extension
+
+Write an adjacent Petersen pair as ab and cd, with a,b,c,d distinct K5
+vertices. The K5 triangle {ac,ad,cd} is a maximal Petersen independent
+set. Adjoining ab produces a required positive four-set whose only
+Petersen edge is {ab,cd}. The triangle {bc,bd,cd} gives a second witness
+with ab as the added vertex, and reversing the roles gives two more.
+
+The finite audit independently finds exactly these four extension
+witnesses for each of the fifteen edges, two for each orientation.
+All masks and added-vertex records are retained in geometry-audit.json.
+
+3. Thirty positive rows are redundant by monotonicity
+
+A five-point positive row is a K5 star at a, together with an additional
+edge bc. It contains the triangle {ab,ac,bc} and a fourth edge ad, where
+d is distinct from a,b,c. That four-set is already a required positive
+extension of a triangle MIS. Every AndCountCircuit is monotone, so the
+seventy four-point positives imply all thirty five-point positives.
+
+The exact point constraints can therefore be reduced to fifteen zeros
+and seventy positives. This is a mathematical reduction of row tests;
+the first unrestricted model was intentionally left on all 115 rows.
+
+4. All-clean circuits violate the bare-variable budget
+
+Claim. A well-formed AndCountCircuit satisfying the posted partial
+function and the at-most-two-gates bare-variable condition has some gate
+true on a maximal independent set. The claim does not require size<=6.
+
+Proof. Suppose every gate is false on every maximal independent set.
+For gate i write L_i,R_i for its two bare-variable sets and put
+B_i=L_i union R_i. Each vertex belongs to some maximal independent set.
+Consequently no vertex can belong to both L_i and R_i, since that vertex
+alone would make both sides of gate i true on such a set. More generally,
+every pair a in L_i,b in R_i must be adjacent: any independent pair can
+be extended to a maximal independent set and would make gate i true.
+
+Thus the bare cross-product E_i=L_i times R_i is a Petersen biclique.
+If both sides are nonempty, C4-freeness implies that one side is a
+singleton. Hence E_i is a nonempty star and |B_i|=|E_i|+1. The audit
+enumerates all 110 ordered nonempty bicliques and checks this identity.
+
+There are no output variables: each vertex belongs to a zero MIS. On a
+required positive extension U, choose the earliest gate true on U.
+Well-formedness makes every gate referenced by its sides earlier, and
+therefore false on U. Both sides must instead be activated by bare
+variables. The selected gate consequently contributes an E_i edge inside
+U. Apply this to a unique-edge extension from Section2: that E_i must
+contain the specified Petersen edge. It follows that the bare stars of
+the productive gates cover all fifteen Petersen edges.
+
+Let J be the gates with two nonempty bare sets. Choosing one center from
+each bare star gives a vertex cover, so |J|>=6. Therefore
+
+  sum_i |B_i| >= sum_{i in J} (|E_i|+1)
+               >= 15+|J| >=21.
+
+The exact posted count counts a vertex once per gate when it occurs on
+either side. Double counting those incidences gives
+
+  sum_i |B_i| = sum_v #{i : v in L_i or v in R_i} <=10*2=20,
+
+a contradiction. This argument permits empty sides, repeated use of a
+previous gate, overlapping bare sets before deriving their impossibility
+under the all-clean assumption, arbitrary output-gate subsets, and gates
+that do not feed the output. It counts the union of the two bare sets,
+exactly as the statement requires.
+
+5. A canonical dirty triangle is a complete symmetry restriction
+
+The previous argument forces a dirty gate. Choose an MIS on which some
+gate is true, and take the earliest such gate. Earlier gates are false,
+so its left and right sides contain bare witnesses from that MIS. These
+two witnesses are equal or form a nonadjacent Petersen pair.
+
+In the K5 coordinates, every such pair extends both to a triangle and to
+a four-edge star. For distinct intersecting edges, use their three-point
+triangle and their common-endpoint star; a repeated edge can be extended
+either way. The same gate is therefore true on a triangle MIS and on a
+star MIS, since its bare witnesses suffice without any gate inputs.
+
+Permuting the five K5 vertices induces Petersen automorphisms. These act
+transitively on the triangle MIS, so every witness circuit can be
+relabeled, without changing any gate count or bare-variable incidence,
+to have a dirty gate on the fixed MIS {0,2,6}. A fixed star alternative is
+{0,2,8,9}. One need not split existence into the two MIS-size orbits: the
+triangle orbit alone is always sufficient for this dirty-gate condition.
+
+This does not justify requiring the first circuit gate to be dirty, a
+particular gate index to be dirty, or two fixed MIS to be dirty
+simultaneously. It also does not justify eliminating an AND with equal
+or overlapping bare sides. For example, an AND copying a bare variable
+can distribute it to later gates while using only one bare incidence;
+expanding that alias may violate the at-most-two-gates condition.
+
+6. Remaining construction problem
+
+A six-AND solution, if it exists, must use a dirty internal gate and
+subsequent filtering. Any output gate is false on every zero row, so a
+dirty gate cannot itself be selected by the output. At least one later
+gate is needed on a path by which a live dirty gate influences an output.
+The counting proof above supplies a necessary structural cut, not a
+general lower bound on all six-AND circuits and not a construction.

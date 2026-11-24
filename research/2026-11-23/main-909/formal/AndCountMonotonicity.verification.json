@@ -1,0 +1,33 @@
+{
+  "status": "LEAN_AND_AXIOM_AUDIT_PASS",
+  "recorded_at": "2026-11-24T06:00:15.056864+00:00",
+  "source": "main-909/formal/AndCountMonotonicity.lean",
+  "source_sha256": "8fbecc8a959668825b2c70094077a9ebd1e84a75c16114e8d63e26e577099308",
+  "source_bytes": 1735,
+  "object_sha256": "f2e74a1e03f8b6d73bb64252e73a58e63413a860489388c2f479c7914fc04cc4",
+  "compile_exit_code": 0,
+  "elapsed_seconds": 3.423,
+  "source_unchanged": true,
+  "child_reaped": true,
+  "warnings": false,
+  "audited_theorem": "PEqualNP.Research.AndCountMonotonicity.eval_monotone",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "Exact third child of R_meta_909_1, valid for every AndCountCircuit without a WellFormed premise.",
+  "command": [
+    "python3",
+    "infra-lean/bounded_check.py",
+    "main-909/formal/AndCountMonotonicity.lean",
+    "--seconds",
+    "180",
+    "--label",
+    "R909Monotonicity1",
+    "--import-workers",
+    "1",
+    "--object"
+  ],
+  "log_sha256": "2ec5801abf7ccb9d2999e912c9d40398585681b4b0fba2bdfae666f81ddd5103"
+}

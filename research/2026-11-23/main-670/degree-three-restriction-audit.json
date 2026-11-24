@@ -1,0 +1,192 @@
+{
+  "status": "FINITE_GRAPH_BRIDGES_CHECKED_CIRCUIT_ARGUMENT_PAPER",
+  "scope": "No SAT or Lean run. Exact graph equivalences support a paper lower-bound bridge from checked L_meta_517.",
+  "checked_source": "PEqualNP.Outside.L_meta_517",
+  "checked_source_sha256": "bf8c6d77c9816f66f63b56bd3b3dc52b02c0b5134ef62a735f3a593c6174517a",
+  "theta_edges": [
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "theta_plus_leaf_edges": [
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "lower_bound_route": [
+    "L_meta_517 proves every circuit for theta(2,3,3) needs at least11 gates.",
+    "The added leaf input is essential; fixing it0 saves at least one gate in a genuine least circuit, leaving theta(2,3,3).",
+    "Therefore each degree-three zero restriction of the9-input graph requires at least12 gates."
+  ],
+  "least14_consequence": [
+    "Every degree-three input has at most2 direct readers.",
+    "If there are2 direct readers, both areOR: an AND/NOT reader is constant at0 and Readers.third saves3.",
+    "If there is a sole AND/NOT reader, it has exactly1 successor reader; two successors would each disappear after the zero restriction, giving3 saved gates."
+  ],
+  "cases": [
+    {
+      "deleted_degree_three_vertex": 0,
+      "remaining_original_to_theta_plus_leaf": {
+        "2": 0,
+        "3": 2,
+        "8": 1,
+        "1": 3,
+        "5": 6,
+        "6": 4,
+        "7": 5,
+        "4": 7
+      },
+      "degree_one_leaf": 4,
+      "leaf_neighbor": 3,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    },
+    {
+      "deleted_degree_three_vertex": 1,
+      "remaining_original_to_theta_plus_leaf": {
+        "3": 0,
+        "5": 1,
+        "8": 2,
+        "0": 4,
+        "2": 5,
+        "4": 3,
+        "7": 6,
+        "6": 7
+      },
+      "degree_one_leaf": 6,
+      "leaf_neighbor": 8,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    },
+    {
+      "deleted_degree_three_vertex": 2,
+      "remaining_original_to_theta_plus_leaf": {
+        "0": 0,
+        "5": 2,
+        "8": 1,
+        "1": 3,
+        "3": 6,
+        "4": 5,
+        "6": 4,
+        "7": 7
+      },
+      "degree_one_leaf": 7,
+      "leaf_neighbor": 5,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    },
+    {
+      "deleted_degree_three_vertex": 3,
+      "remaining_original_to_theta_plus_leaf": {
+        "0": 2,
+        "1": 0,
+        "5": 1,
+        "2": 3,
+        "6": 5,
+        "7": 4,
+        "8": 6,
+        "4": 7
+      },
+      "degree_one_leaf": 4,
+      "leaf_neighbor": 0,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    },
+    {
+      "deleted_degree_three_vertex": 5,
+      "remaining_original_to_theta_plus_leaf": {
+        "1": 0,
+        "2": 2,
+        "3": 1,
+        "0": 3,
+        "4": 4,
+        "6": 5,
+        "8": 6,
+        "7": 7
+      },
+      "degree_one_leaf": 7,
+      "leaf_neighbor": 2,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    },
+    {
+      "deleted_degree_three_vertex": 8,
+      "remaining_original_to_theta_plus_leaf": {
+        "0": 0,
+        "1": 2,
+        "2": 1,
+        "3": 4,
+        "4": 3,
+        "5": 5,
+        "7": 6,
+        "6": 7
+      },
+      "degree_one_leaf": 6,
+      "leaf_neighbor": 1,
+      "eight_input_rows_checked": 256,
+      "seven_input_rows_checked": 128
+    }
+  ]
+}

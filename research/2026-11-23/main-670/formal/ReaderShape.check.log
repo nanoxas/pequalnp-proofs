@@ -1,0 +1,37 @@
+import took 1.4s
+simp took 1.86s
+simp took 1.36s
+'PEqualNP.Research.L670.special_restrict_to_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.special_unique_reader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.special_reader_is_or' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.sole_reader_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.raw_or_obstruction' depends on axioms: [propext]
+'PEqualNP.Research.L670.special_narrow_reader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.exists_narrow_fourteen' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 9.75ms
+	attribute application 0.255ms
+	blocked (unaccounted) 3.68s
+	compilation (IR) 0.124ms
+	compilation (LCNF base) 3.18ms
+	compilation (LCNF impure) 0.597ms
+	compilation (LCNF mono) 1.08ms
+	congr simp thm 2.35ms
+	declTypeLinter 5.98ms
+	elaboration 49.9ms
+	fix level params 0.688ms
+	import 1.4s
+	initialization 26.6ms
+	instantiate metavars 2.31ms
+	interpretation 204ms
+	let-to-have transformation 0.149ms
+	linting 18.3ms
+	module linting 0.0291ms
+	parsing 7.99ms
+	process pre-definitions 9.98ms
+	share common exprs 3.78ms
+	simp 3.23s
+	tactic execution 185ms
+	tacticAnalysis 3.85ms
+	type checking 83.6ms
+	typeclass inference 60.9ms

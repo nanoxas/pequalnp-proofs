@@ -1,0 +1,15 @@
+{
+  "repository": "nanoxas/pequalnp-proofs",
+  "branch": "reduction/l-meta-1031-20261124",
+  "base_commit": "f5238c8b9a5fe0bb379403d109cc933ea1e8302b",
+  "tree": "d404415ec8788b8acb05035793892bb9e0377624",
+  "commit": "49043dba9bca45e818e44fdf2d829a8e3fddb92c",
+  "file": "lean/PEqualNP/Outside/R_meta_1031_1.lean",
+  "source_sha256": "96c7d1b3a5adf9dafc6e17c3d1a126647b7916561a7f7d5641855b9b8e50d083",
+  "pull_request": 3918,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/3918",
+  "files": 1,
+  "commits": 1,
+  "maintainer_can_modify": false,
+  "api_readback_verified": true
+}

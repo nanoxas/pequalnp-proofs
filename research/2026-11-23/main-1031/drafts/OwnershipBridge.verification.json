@@ -1,0 +1,11 @@
+{
+  "status": "STOPPED_UNCOMPILED_DRAFT",
+  "recorded_at": "2026-11-24T05:47:28.965732+00:00",
+  "source": "main-1031/formal/OwnershipBridge.lean",
+  "source_sha256": "4de9e80879e7050918f98fc8659edbd77caf630938df948334b79a438ac40e05",
+  "source_bytes": 8311,
+  "compile_attempted": false,
+  "axiom_audit": "NOT_RUN",
+  "reason": "Parent released task 1031 as reduced after submitting the reduction; target work stopped immediately.",
+  "scope": "General finite-cone versus strict wire-reachability equivalence and exact reduction child2 bridge."
+}

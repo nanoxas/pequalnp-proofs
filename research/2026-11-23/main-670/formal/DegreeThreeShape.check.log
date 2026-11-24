@@ -1,0 +1,43 @@
+import took 1.64s
+simp took 949ms
+simp took 638ms
+simp took 665ms
+simp took 1.12s
+simp took 1.06s
+simp took 1.04s
+'PEqualNP.Research.L670.theta_leaf_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.degree_three_restrict_to_leaf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.degree_three_zero_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.degree_three_reader_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.degree_three_two_readers_or' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.degree_three_and_not_unique_successor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'PEqualNP.Research.L670.degree_three_reader_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 12.1ms
+	attribute application 0.148ms
+	blocked (unaccounted) 5.83s
+	compilation (IR) 0.314ms
+	compilation (LCNF base) 9.85ms
+	compilation (LCNF impure) 1.62ms
+	compilation (LCNF mono) 4.5ms
+	congr simp thm 2.93ms
+	declTypeLinter 4.05ms
+	elaboration 67.5ms
+	fix level params 0.76ms
+	import 1.64s
+	initialization 45ms
+	instantiate metavars 2.69ms
+	interpretation 252ms
+	let-to-have transformation 0.201ms
+	linting 16.4ms
+	module linting 0.0232ms
+	parsing 9.97ms
+	process pre-definitions 15.2ms
+	share common exprs 4.96ms
+	simp 5.49s
+	tactic execution 96.5ms
+	tacticAnalysis 3.42ms
+	type checking 57.9ms
+	typeclass inference 60.1ms

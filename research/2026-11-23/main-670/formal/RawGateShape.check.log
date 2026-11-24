@@ -1,0 +1,35 @@
+import took 4.04s
+tactic execution of Lean.Parser.Tactic.decide took 178ms
+'PEqualNP.Research.L670.pivot_input_facts' depends on axioms: [propext]
+'PEqualNP.Research.L670.raw_binary_second_reader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.raw_or_both_second_readers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.no_repeated_raw_gate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.no_raw_and' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PEqualNP.Research.L670.first_gate_not_and' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	.olean serialization 5.43ms
+	attribute application 0.0926ms
+	blocked (unaccounted) 457ms
+	compilation (IR) 0.22ms
+	compilation (LCNF base) 3.22ms
+	compilation (LCNF impure) 0.952ms
+	compilation (LCNF mono) 1.82ms
+	congr simp thm 0.866ms
+	declTypeLinter 3.72ms
+	elaboration 41.8ms
+	fix level params 0.311ms
+	import 4.04s
+	initialization 53ms
+	instantiate metavars 0.739ms
+	interpretation 220ms
+	let-to-have transformation 0.12ms
+	linting 15ms
+	module linting 0.0214ms
+	parsing 5.77ms
+	process pre-definitions 19.6ms
+	share common exprs 1.67ms
+	simp 22ms
+	tactic execution 222ms
+	tacticAnalysis 2.51ms
+	type checking 114ms
+	typeclass inference 24.7ms

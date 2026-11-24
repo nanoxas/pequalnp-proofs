@@ -1,0 +1,201 @@
+import Mathlib
+import PEqualNP.Defs
+
+/-!
+Compatibility of the finite strict-cone ownership definition with the
+wire-reachability predicate in L-meta-1031. This is a research helper and a
+draft proof of the reduction's second child. No circuit shape or validity
+hypothesis is used: unavailable and forward operands are excluded by the
+strict edge inequality on both sides.
+-/
+
+namespace PEqualNP.Research.OwnershipBridge
+
+open PEqualNP.CircuitLowerBounds PEqualNP.EdgeOwnership
+open PEqualNP.MetaComplexity.NestedCover
+
+def readEdge (n : ℕ) (C : Circuit) (a b : ℕ) : Prop :=
+  a < b ∧ ∃ (k : ℕ) (h : Gate),
+    b = n + k ∧ C.gates[k]? = some h ∧ a ∈ h.inputs
+
+theorem coneStep_length (n : ℕ) (cs : List (List ℕ)) (g : Gate) :
+    (coneStep n cs g).length = cs.length + 1 := by
+  simp [coneStep]
+
+theorem coneFold_length (n : ℕ) (cs : List (List ℕ)) (gs : List Gate) :
+    (gs.foldl (coneStep n) cs).length = cs.length + gs.length := by
+  induction gs generalizing cs with
+  | nil => simp
+  | cons g gs ih =>
+      simp only [List.foldl_cons, ih, coneStep_length, List.length_cons]
+      omega
+
+theorem coneFold_getD (n : ℕ) (cs : List (List ℕ)) (gs : List Gate)
+    (j : ℕ) (hj : j < cs.length) :
+    (gs.foldl (coneStep n) cs).getD j [] = cs.getD j [] := by
+  induction gs generalizing cs with
+  | nil => rfl
+  | cons g gs ih =>
+      change (gs.foldl (coneStep n) (coneStep n cs g)).getD j [] = _
+      rw [ih (coneStep n cs g) (by rw [coneStep_length]; omega)]
+      exact List.getD_append _ _ _ _ hj
+
+theorem coneFold_entry (n : ℕ) (cs : List (List ℕ)) (gs : List Gate)
+    (j : ℕ) (g : Gate) (hget : gs[j]? = some g) :
+    (gs.foldl (coneStep n) cs).getD (cs.length + j) [] =
+      (g.inputs.filter (fun w => decide (n ≤ w ∧ w < n + (cs.length + j)))).flatMap
+        (fun w => (w - n) :: (gs.foldl (coneStep n) cs).getD (w - n) []) := by
+  induction gs generalizing cs j with
+  | nil => simp at hget
+  | cons a gs ih =>
+      cases j with
+      | zero =>
+          simp only [List.getElem?_cons_zero, Option.some.injEq] at hget
+          subst g
+          have hcur : ((a :: gs).foldl (coneStep n) cs).getD cs.length [] =
+              (a.inputs.filter (fun w => decide (n ≤ w ∧ w < n + cs.length))).flatMap
+                (fun w => (w - n) :: cs.getD (w - n) []) := by
+            change (gs.foldl (coneStep n) (coneStep n cs a)).getD cs.length [] = _
+            rw [coneFold_getD n (coneStep n cs a) gs cs.length
+              (by rw [coneStep_length]; omega)]
+            unfold coneStep
+            rw [List.getD_append_right _ _ _ _ (Nat.le_refl _)]
+            simp
+          simp only [Nat.add_zero]
+          rw [hcur]
+          apply List.flatMap_congr
+          intro w hw
+          have hw' := List.mem_filter.mp hw
+          have hh : n ≤ w ∧ w < n + cs.length := of_decide_eq_true hw'.2
+          have hsmall : w - n < cs.length := by omega
+          congr 1
+          exact (coneFold_getD n cs (a :: gs) (w - n) hsmall).symm
+      | succ j =>
+          have hget' : gs[j]? = some g := by simpa using hget
+          have hrec := ih (coneStep n cs a) j hget'
+          simpa only [List.foldl_cons, coneStep_length, Nat.succ_eq_add_one,
+            Nat.add_assoc, Nat.add_left_comm, Nat.add_comm] using hrec
+
+theorem cones_length (n : ℕ) (C : Circuit) :
+    (cones n C).length = C.gates.length := by
+  simp [cones, coneFold_length]
+
+theorem cones_entry (n : ℕ) (C : Circuit) (j : ℕ) (g : Gate)
+    (hget : C.gates[j]? = some g) :
+    (cones n C).getD j [] =
+      (g.inputs.filter (fun w => decide (n ≤ w ∧ w < n + j))).flatMap
+        (fun w => (w - n) :: (cones n C).getD (w - n) []) := by
+  simpa [cones] using coneFold_entry n [] C.gates j g hget
+
+theorem inCone_step (n : ℕ) (C : Circuit) (i j : ℕ) (g : Gate)
+    (hget : C.gates[j]? = some g) :
+    InCone n C i j ↔
+      ∃ k < j, n + k ∈ g.inputs ∧ (i = k ∨ InCone n C i k) := by
+  unfold InCone
+  rw [cones_entry n C j g hget]
+  simp only [List.mem_flatMap, List.mem_filter, decide_eq_true_eq, List.mem_cons]
+  constructor
+  · rintro ⟨w, ⟨hw, hn, hj⟩, hik⟩
+    refine ⟨w - n, by omega, ?_, hik⟩
+    have he : n + (w - n) = w := by omega
+    simpa only [he] using hw
+  · rintro ⟨k, hkj, hread, hik⟩
+    refine ⟨n + k, ⟨hread, by omega, by omega⟩, ?_⟩
+    simpa using hik
+
+theorem inCone_target_lt (n : ℕ) (C : Circuit) (i j : ℕ)
+    (h : InCone n C i j) : j < C.gates.length := by
+  by_contra hj
+  have hlen : (cones n C).length ≤ j := by rw [cones_length]; omega
+  have hempty := List.getD_eq_default (cones n C) ([] : List ℕ) hlen
+  unfold InCone at h
+  rw [hempty] at h
+  simpa using h
+
+theorem path_lt (n : ℕ) (C : Circuit) {a b : ℕ}
+    (h : Relation.TransGen (readEdge n C) a b) : a < b := by
+  induction h with
+  | single h => exact h.1
+  | tail _ h ih => exact Nat.lt_trans ih h.1
+
+theorem inCone_to_path (n : ℕ) (C : Circuit) (i j : ℕ) :
+    InCone n C i j → Relation.TransGen (readEdge n C) (n + i) (n + j) := by
+  induction j using Nat.strong_induction_on with
+  | h j ih =>
+      intro hcone
+      have hj := inCone_target_lt n C i j hcone
+      let g := C.gates[j]'hj
+      have hget : C.gates[j]? = some g := List.getElem?_eq_some_iff.mpr ⟨hj, rfl⟩
+      obtain ⟨k, hkj, hread, hik⟩ := (inCone_step n C i j g hget).mp hcone
+      have hstep : readEdge n C (n + k) (n + j) :=
+        ⟨by omega, j, g, rfl, hget, hread⟩
+      rcases hik with rfl | hik
+      · exact Relation.TransGen.single hstep
+      · exact (ih k hkj hik).tail hstep
+
+theorem path_to_inCone_any (n : ℕ) (C : Circuit) (i b : ℕ)
+    (h : Relation.TransGen (readEdge n C) (n + i) b) :
+    ∃ j, b = n + j ∧ InCone n C i j := by
+  induction h with
+  | @single b hs =>
+      rcases hs with ⟨hlt, j, g, rfl, hget, hread⟩
+      refine ⟨j, rfl, (inCone_step n C i j g hget).mpr ?_⟩
+      exact ⟨i, by omega, hread, Or.inl rfl⟩
+  | @tail b c hab hbc ih =>
+      obtain ⟨j, rfl, hij⟩ := ih
+      rcases hbc with ⟨hlt, k, g, rfl, hget, hread⟩
+      refine ⟨k, rfl, (inCone_step n C i k g hget).mpr ?_⟩
+      exact ⟨j, by omega, hread, Or.inr hij⟩
+
+theorem inCone_iff_path (n : ℕ) (C : Circuit) (i j : ℕ) :
+    InCone n C i j ↔ Relation.TransGen (readEdge n C) (n + i) (n + j) := by
+  constructor
+  · exact inCone_to_path n C i j
+  · intro h
+    obtain ⟨k, hk, hcone⟩ := path_to_inCone_any n C i (n + j) h
+    have : k = j := by omega
+    simpa only [this] using hcone
+
+theorem gateAt_of_get (C : Circuit) (j : ℕ) (g : Gate)
+    (hget : C.gates[j]? = some g) : gateAt C j = g := by
+  simp only [gateAt, List.getD_eq_getElem?_getD, hget, Option.getD_some]
+
+theorem owns_iff_posted :
+    ∀ (n : ℕ) (C : Circuit) (t : ℕ) (g : Gate),
+      C.gates[t]? = some g → g.op = GateOp.and →
+      ∀ u v : Fin n,
+        Owns n C t u v ↔
+          (gateVal n C t (pairInput u v) = true ∧
+          ∀ (t' : ℕ) (g' : Gate),
+            C.gates[t']? = some g' → g'.op = GateOp.and →
+            Relation.TransGen
+              (fun a b : ℕ => a < b ∧
+                ∃ (k : ℕ) (h : Gate),
+                  b = n + k ∧ C.gates[k]? = some h ∧ a ∈ h.inputs)
+              (n + t') (n + t) →
+            gateVal n C t' (pairInput u v) = false) := by
+  intro n C t g hget hop u v
+  have ht : t < C.gates.length := (List.getElem?_eq_some_iff.mp hget).1
+  constructor
+  · rintro ⟨_, _, htrue, hanc⟩
+    refine ⟨htrue, ?_⟩
+    intro i gi hgi hiop hpath
+    have hpath' : Relation.TransGen (readEdge n C) (n + i) (n + t) := hpath
+    have hit : i < t := by have := path_lt n C hpath'; omega
+    apply hanc i hit ((inCone_iff_path n C i t).mpr hpath')
+    simpa only [gateAt_of_get C i gi hgi] using hiop
+  · rintro ⟨htrue, hanc⟩
+    refine ⟨ht, ?_, htrue, ?_⟩
+    · simpa only [gateAt_of_get C t g hget] using hop
+    · intro i hit hcone hiop
+      have hi : i < C.gates.length := Nat.lt_trans hit ht
+      let gi := C.gates[i]'hi
+      have hgi : C.gates[i]? = some gi := List.getElem?_eq_some_iff.mpr ⟨hi, rfl⟩
+      apply hanc i gi hgi
+      · simpa only [gateAt_of_get C i gi hgi] using hiop
+      · exact (inCone_iff_path n C i t).mp hcone
+
+#print axioms inCone_iff_path
+#print axioms owns_iff_posted
+
+end PEqualNP.Research.OwnershipBridge

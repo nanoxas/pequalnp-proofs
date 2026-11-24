@@ -1,0 +1,23 @@
+{
+  "source_sha256": "e211599728de14bdec7ea9e4412500cebb6fd3d12ab5d9b05e8ba283c0973018",
+  "guards": "PASS_GAP_AND_IMPORT_NAMESPACE",
+  "exact_conclusion_text": true,
+  "local_compile_record": "R_meta_909_1.verification.json",
+  "lightweight_preflight": "PASS_ALL_THREE_CANONICAL_READBACKS_STANDARD_AXIOMS",
+  "authoritative_verdict": "NOT_SUBMITTED_YET",
+  "partial_synthesis_status": "UNKNOWN_300_SECONDS",
+  "guard_results": [
+    {
+      "command": "gap",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "imports",
+      "exit_code": 0,
+      "stdout": "imports allowed: PEqualNP.Defs\n",
+      "stderr": ""
+    }
+  ]
+}

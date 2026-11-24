@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T05:33:58.662494+00:00",
+  "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+  "base_program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "all512_cnf_sha256": "81754ed958bf6d67c9e2d22bbf5b48f7549090ce3c2690c0cf8060526983cfa6",
+  "exact_byte_identity_to_frozen_strengthened_CNF": true,
+  "solver_started": false,
+  "scope": "Full-row mode produces byte-identical reviewed CNF; this is not a target SAT/UNSAT result"
+}

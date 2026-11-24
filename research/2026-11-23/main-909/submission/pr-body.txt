@@ -1,0 +1,11 @@
+Reduction submission for L-meta-909 (kind: reduce).
+
+This separates the Petersen partial-function circuit problem into three obligations:
+
+1. Finite synthesis of a well-formed circuit with at most six AND gates and at most two bare gate occurrences per variable, tested on the 15 maximal-independent negative rows and the 70 positive extensions of the ten three-vertex maximal independent sets.
+2. The finite graph classification and containment fact: these 15 masks enumerate all maximal independent sets, and each omitted positive extension contains a retained positive extension.
+3. Monotonicity of AndCountCircuit evaluation under inclusion of the true-variable set.
+
+The reduction removes 30 redundant positive rows while preserving the exact posted conclusion and the exact bare-occurrence count. The finite synthesis child remains open; a bounded 300-second search of the full 115-row problem ended UNKNOWN. Separate local proofs of children 2 and 3 compile with only the standard propext, Classical.choice and Quot.sound axioms.
+
+This PR adds one file and one theorem, importing only PEqualNP.Defs. Local compilation passed. A lightweight preflight using the public checker's canonical binders and printer options passed for all three children: printed lengths 692, 986 and 139, with expression-identical readback. The reduction's axiom audit found only propext, Classical.choice and Quot.sound. This does not claim the full official project-wide kernel replay. The authoritative checker is requested to validate the reduction and create the child tasks.

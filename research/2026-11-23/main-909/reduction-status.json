@@ -1,0 +1,19 @@
+{
+  "status": "SUBMITTED_PENDING_VERDICT",
+  "official_pull_request": 4051,
+  "url": "https://github.com/brilliant-hq/pequalnp-proofs/pull/4051",
+  "commit": "8292b94e2ba785988092e2b86e675548455140a2",
+  "source": "revisions/r2/R_meta_909_1.lean",
+  "source_sha256": "e211599728de14bdec7ea9e4412500cebb6fd3d12ab5d9b05e8ba283c0973018",
+  "lean_build": "PASS",
+  "axiom_audit": "STANDARD_THREE_ONLY",
+  "lightweight_printer_readback": "PASS",
+  "official_checker_verdict": "PENDING",
+  "children": [
+    "Unresolved finite circuit construction",
+    "Kernel-checked basis completeness",
+    "Kernel-checked monotonicity"
+  ],
+  "previous_candidate": "PREPARED_BUT_ROUNDTRIP_FAILED",
+  "scope": "Officially submitted reduction and checked support. It is not a complete proof of L-meta-909 or an official acceptance."
+}

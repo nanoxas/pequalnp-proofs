@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T05:52:36.504807+00:00",
+  "seconds": 0.29162997099774657,
+  "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+  "base_program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "fixed_OR_all": "SAT",
+  "fixed_encoded_bit_mismatch": "UNSAT",
+  "fixed_NOT_false": "SAT",
+  "initial_row_count": 60,
+  "scope": "Synthetic fixed-circuit controls; no target query"
+}

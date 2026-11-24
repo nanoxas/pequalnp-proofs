@@ -1,0 +1,33 @@
+{
+  "status": "READY_HELD_FOR_SINGLE_WORKER_COORDINATION",
+  "utc": "2026-11-24T05:54:46.821255+00:00",
+  "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+  "frozen_base_program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "target_search_started": false,
+  "prior_strengthened_run": "UNKNOWN; natural wall bound; owned child reaped",
+  "source_review": "global14-cegar-root-review.json",
+  "static_controls": "global14-cegar-static-selftest.json",
+  "full_row_identity": "global14-cegar-full-row-identity.json",
+  "fixed_solver_controls": {
+    "status": "PASS",
+    "utc": "2026-11-24T05:52:36.504807+00:00",
+    "seconds": 0.29162997099774657,
+    "program_sha256": "0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0",
+    "base_program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+    "fixed_OR_all": "SAT",
+    "fixed_encoded_bit_mismatch": "UNSAT",
+    "fixed_NOT_false": "SAT",
+    "initial_row_count": 60,
+    "scope": "Synthetic fixed-circuit controls; no target query"
+  },
+  "initial_rows": 60,
+  "initial_variables": 3809,
+  "initial_clauses": 53474,
+  "full512_CNF_sha256": "81754ed958bf6d67c9e2d22bbf5b48f7549090ce3c2690c0cf8060526983cfa6",
+  "planned_total_wall_seconds": 1800,
+  "refinement_batch": 16,
+  "proof_pairing": "Each refinement rebuilds its solver; exact row list, CNF and final trace are retained together in one phase directory.",
+  "full_witness_rule": "Every sampled-row SAT model is evaluated on all512 rows. Only a complete match can be reported as a witness; otherwise violated rows are added.",
+  "coordination": "Target launch is held while root runs the newly assigned smaller query. No parallel SAT worker is authorized.",
+  "scope": "Supporting research implementation and controls; no target SAT/UNSAT result, exhaustion report or official proof submission."
+}

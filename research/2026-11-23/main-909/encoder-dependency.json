@@ -1,0 +1,7 @@
+{
+  "path": "and-count-audit/search.py",
+  "sha256": "cb0155eec72eb5abcfeda8d965b377bbadd0d1794f005ab125b36d499b44ed1a",
+  "scope": "Previously reviewed generic free-OR AND-count encoder; parameterized here with exact909rows.",
+  "original_runtime_sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5",
+  "public_transform": "Only the local ROOT path is made relative. Historical controls retain the original runtime hash."
+}

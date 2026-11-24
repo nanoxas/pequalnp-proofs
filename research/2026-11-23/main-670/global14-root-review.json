@@ -1,0 +1,17 @@
+{
+  "status": "ROOT_SOURCE_REVIEW_PASS",
+  "utc": "2026-11-24T05:11:09.353666+00:00",
+  "program_sha256": "9aa106bf7e24d1c56cc9ab01cd559d1539d0246acfef691fc5220ee5106aca05",
+  "reviewed": [
+    "all 512 row equations for arbitrary AND/OR/NOT",
+    "exactly-one selectors and duplicated ignored NOT port",
+    "actual reader counts for 4,6,7",
+    "raw-other-operand exclusion under the stated leastness reduction",
+    "all-gate liveness and monotone maximum-fanin ordering",
+    "false-sentinel decoding and prescribed-first witness translation",
+    "lease expiry guard and bounded child supervision"
+  ],
+  "scope": "Encoding source review and paper completeness review; no claim of a completed UNSAT proof or official exhaustion.",
+  "fixed_cnf_controls": "Passed separately in global14-selftest.json",
+  "conditional_bridge": "FirstGateReduction.lean checked with the exact accepted L1007 theorem as an explicit premise."
+}

@@ -1,0 +1,104 @@
+L-meta-1031: independent mathematical review of the three-child reduction
+
+Status: PAPER_REVIEWED. This note is an independent semantic review, not a
+Lean-check record and not a proof of the open circuit-normalization child.
+The candidate reviewed is reduction-candidate-prepare.lean.
+
+1. Scope of the three children
+
+The first child asks for an existential minimum monotone circuit computing
+the graph edge function, with every AND gate owning at least one graph edge
+and each such owned-edge family pairwise intersecting. Minimum means total
+gate count among all fan-in-at-most-two monotone circuits computing the same
+function. It does not assert a property of every minimum circuit.
+
+The second child identifies the finite Owns definition from PEqualNP.Defs
+with the exact strict-ancestor predicate in the posted statement. This is a
+reusable semantic interface, independent of the difficult normal form.
+
+The third child is the graph-theoretic fact that a nonempty pairwise-
+intersecting family of edges in a triangle-free simple graph has a common
+endpoint. Its family predicate need not be symmetric.
+
+The assembly uses one circuit throughout. IsMinimalMonoCircuit expands to
+the posted total-size minimality and Monotone2 hypotheses. graphFun G empty
+is exactly the posted edge function. The valid-gate and AND hypotheses of
+the second child supply the extra conjuncts included in Owns. The third
+child is applied to Adj(u,v) and Owns(n,C,t,u,v), retaining nonemptiness.
+
+2. Finite cone computation agrees with strict reachability
+
+In fact, for arbitrary n,C,i,j, without monotonicity, fan-in, or circuit
+well-formedness assumptions, InCone n C i j is equivalent to TransGen of
+the relation in the posted statement, from wire n+i to wire n+j.
+
+Proof invariant after processing m gates: the list of cones has length m;
+entry j<m is the strict ancestor set of gate j; earlier entries do not
+change when the next gate is appended. At gate j, coneStep keeps exactly
+the input wires w satisfying n<=w<n+j. It adds the predecessor k=w-n and
+all members of the already-computed cone of k. Thus membership is exactly
+
+  exists k<j, (n+k is an input of gate j) and
+               (i=k or i belongs to the cone of k).
+
+This is the last-edge decomposition of strict reachability. Every step of
+the posted relation increases the wire index, so any intermediate gate is
+earlier than its successor. Raw inputs cannot appear between a gate-index
+source and the target, and invalid/future reads are excluded on both sides.
+When j is out of range, the finite cone is empty and the reachability
+relation has no final edge into n+j. These observations also handle i>=j.
+
+3. Triangle-free edge-family argument
+
+Choose an edge uv in the nonempty family. If every family edge contains u,
+use u as center. Otherwise choose a family edge missing u. Pairwise
+intersection forces it to contain v, so write its other endpoint as w.
+Simplicity gives w!=v, and the choice gives w!=u.
+
+Suppose a family edge misses v. To intersect uv, it must contain u. To
+intersect vw, it must contain w. Hence it is the edge uw, which together
+with uv and vw forms a triangle. This is impossible. Every family edge
+therefore contains v, which is the required common endpoint.
+
+Neither finiteness nor C4-freeness is used by this graph step. Nonemptiness
+is required to produce a center when the vertex type is empty. The
+nonempty circuit condition also excludes AND gates with no owned edges;
+the existing HasStarProfile definition alone permits those gates.
+
+4. Why a separate productivity lemma is not treated as routine
+
+A monotone AND gate with no owned graph edge can still filter false
+positives introduced by an earlier AND gate. For example, on four inputs
+a,b,c,d the five-gate circuit
+
+  ((a OR b) AND (c OR d)) AND (a OR c)
+
+computes ac OR ad OR bc, the edge function of a four-vertex path. The
+first AND owns all three graph edges and also accepts the nonedge bd.
+The last AND owns no graph edge because the first AND is a true ancestor
+on every positive edge input. Deleting that last filter gives a false
+positive at bd. This particular circuit is not minimum (a four-gate
+circuit exists), so it is not a counterexample to the proposed child.
+It does refute a naive rule that every non-owning AND can simply be
+bypassed. Shared dirty ancestors and several downstream filters are the
+fanout obstruction that a genuine productivity normalization must handle.
+
+Splitting productivity from pairwise-intersection could be useful if an
+explicit size-preserving local exchange is known. A general assertion
+that every defective minimum productive circuit has some globally better
+normal form would mostly restate the remaining existence problem, while
+adding constraints such as preserving every other gate's ownership could
+be unjustifiably strong. No such local exchange is claimed here.
+
+The first child retains both triangle-free and C4-free hypotheses. A
+C4-free-only strengthening may be interesting, but this review supplies
+no proof or independent evidence for it.
+
+5. Mathematical progress represented by the reduction
+
+The reduction isolates an implementation bridge and an elementary graph
+lemma, both independently useful and provably true. The existence of a
+minimum circuit with productive pairwise-intersecting ownership remains
+the principal open mathematical obligation. Passing the reduction's Lean
+check verifies only the assembly from the three children, not that open
+normal-form statement.

@@ -1,0 +1,54 @@
+{
+  "status": "PASS_BUILD_AND_LIGHTWEIGHT_REDUCTION_PREFLIGHT",
+  "theorem": "PEqualNP.Outside.R_meta_909_1",
+  "source": "main-909/revisions/r2/R_meta_909_1.lean",
+  "source_sha256": "e211599728de14bdec7ea9e4412500cebb6fd3d12ab5d9b05e8ba283c0973018",
+  "source_bytes": 2953,
+  "object_sha256": "8d16f0dac502f9e49c7c8b523323127d2f52edfc79ec9a6fae8d60591b4d5aca",
+  "lean_version": "4.36.0",
+  "build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 5.002,
+    "warnings": 0,
+    "source_unchanged": true,
+    "log": "R_meta_909_1.check.log"
+  },
+  "exact_recorded_conclusion": true,
+  "recorded_statement_sha256": "1e231b4c177177857113e67ae068aba9d0eefc6f752cb4feb154017da978f5b4",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lightweight_preflight": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 3.99,
+    "child_printed_lengths": [
+      692,
+      986,
+      139
+    ],
+    "all_parse": true,
+    "all_roundtrip_expression_equal": true,
+    "closed_nondependent_children": true,
+    "public_checker_revision": "f5238c8",
+    "public_checker_source_sha256": "86997b026ef2b80d738df77f4c214166cf5b0b2ea8cc98d4bd3c8b5e420dbdd5",
+    "copied_functions": [
+      "canonBinders",
+      "childPpOptions"
+    ],
+    "source": "ReductionPreflight.lean",
+    "source_sha256": "ce9d22581c3494894e97b32d91a1e4a925c325e2d217012f7646c9f965b655ba",
+    "log": "ReductionPreflight.check.log",
+    "environment": "Loaded Defs-only reduction plus Lean and audit helper declarations; the full pinned-library statement environment was not rebuilt independently.",
+    "scope": "This is a lightweight printer/readback and axiom preflight. It does not replay all project constants through the kernel and is not an official checker verdict."
+  },
+  "previous_revision": "../../formal/history/R909_02e4673294dc/status.json",
+  "changes": [
+    "Removed the Mathlib umbrella import; PEqualNP.Defs remains.",
+    "Gave the child1 reader Finset a typed local binding so the canonical printed statement re-elaborates as Finset instead of Set."
+  ],
+  "verified_utc": "2026-11-24T06:13:16.249730+00:00"
+}

@@ -6,7 +6,7 @@ import resource
 import sys
 import time
 
-ROOT = pathlib.Path('/workspace/scratch/91448c28ebe7')
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'heawood-search/vendor'))
 from pysat.formula import CNF, IDPool
 from pysat.solvers import Solver

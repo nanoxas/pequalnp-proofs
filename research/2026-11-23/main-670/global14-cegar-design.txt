@@ -1,0 +1,34 @@
+Reduced-row CEGAR proposal for the original L-meta-670 range
+Status: DRAFT, NOT LAUNCHED. The current strengthened all-512-row worker continues unchanged.
+
+Program: search_global14_cegar.py
+Program SHA256: 0d71a92affba844b5105620ea0cd3375f00c1e38277245b21cd4260a622a34c0
+Frozen dependency: search_global14_strengthened.py
+Dependency SHA256: d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880
+
+Logical scope
+The structural constraints are exactly those of the reviewed strengthened least-global-14 model. They retain the same explicit accepted L1007/L517 lower-bound premises, checked local structural helpers, and reviewed joint orbit/greedy normalization described in global14-strengthened-public-completeness.txt. No property inferred only from sampled rows is used as a new structural restriction.
+
+Every full target witness satisfies the equations for any chosen subset of its 512 input assignments. Therefore an UNSAT result on a subset excludes a full witness in the same normalized class. A satisfying model for a subset is an intermediate circuit candidate. The program decodes it, checks the actual Boolean circuit on all 512 inputs, and labels it REFINE when any row disagrees. It becomes SAT/FULL_WITNESS only after all 512 rows agree; its literal project circuit and prepended prescribed-first 15-gate circuit are then independently evaluated on all 512 rows too. No monotonicity shortcut is used, since NOT count is unrestricted.
+
+Rows and refinement
+The deterministic initial set contains 60 actual 9-bit assignment masks: all 46 rows of weight at most two; all-ones; all nine rows obtained by clearing one bit of all-ones; and representative pivotal rows. The latter use 16 orbits of the 144 ordered input/fixed-input/fixed-value cases under the graph's 12 automorphisms and add four further distinct rows.
+
+The initial CNF has 3,809 variables and 53,474 clauses, compared with 22,793 variables and 395,638 clauses in the all-512-row formula. Selected masks are dictionary keys throughout the semantic encoding; they are never confused with positions in a compact row list.
+
+Each intermediate satisfying candidate is evaluated on every row. Up to 16 new violated rows are added, deterministically ordered by weight and mask. At least one is added on every refinement, so there are at most 512 refinements. The solver is destroyed and rebuilt after each refinement. This gives each phase a standalone CNF rather than requiring a proof checker to reconstruct incremental clause additions. A refinement may lose useful learned clauses; this is the main performance tradeoff.
+
+Certificate and result handling
+Each phase saves its exact row list, DIMACS CNF and hashes before solving. A final UNSAT binary DRAT trace is retained in that same phase directory when disk reserve permits. The phase record identifies the exact CNF/row/proof pairing. UNSAT remains a solver result until the independent checker validates that pairing; it is not a Lean proof or an automatic exhaustion report. A timeout, inactive lease, interruption or resource limit yields UNKNOWN. An intermediate sampled-row SAT result is recorded as PARTIAL_SAT_REFINED and never as a target witness.
+
+The total wall budget covers all phases, rather than resetting per refinement. The draft retains one supervised child, a 3.5 GiB address-space bound, a 4 GiB trace cap, a 2 GiB free-disk reserve, and parent-owned termination/reaping on ordinary stop paths. It checks the live assignment state before and during work. The default command does not launch: --run is explicit, and an existing result directory is refused.
+
+Completed validation
+- Static direct-CNF controls passed without starting any solver. Explicit semantic assignments satisfy initial, sparse-actual-mask and all-512-row formulas for the synthetic OR-all control; a NOT(false) extension also passes.
+- A mismatch on an encoded row is detected. A mismatch on an initially unencoded row is first labeled REFINE, then detected after that row is added. Full-witness classification requires all 512 rows.
+- An exact source transformation audit confirms that the Encoding class differs from the frozen class only in row allocation/iteration and output-row selection.
+- All-512-row mode emits a byte-identical DIMACS CNF to the frozen strengthened encoder: SHA256 81754ed958bf6d67c9e2d22bbf5b48f7549090ce3c2690c0cf8060526983cfa6.
+- Independent mathematical review by the bounds agent confirmed the subset-UNSAT/full-witness principle. Separate source review is pending.
+
+Records: global14-cegar-static-selftest.json and global14-cegar-full-row-identity.json.
+The three fixed-CNF solver controls have not been run for this draft. No target search, SAT witness, UNSAT result, exhaustion claim or official proof submission is produced by these preparation steps.

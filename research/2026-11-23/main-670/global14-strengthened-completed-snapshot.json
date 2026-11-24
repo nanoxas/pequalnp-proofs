@@ -1,0 +1,39 @@
+{
+  "snapshot_utc": "2026-11-24T05:54:46.821255+00:00",
+  "research_context": "Original assigned L-meta-670 range7; strengthened necessary global14 class",
+  "search_status": "UNKNOWN",
+  "solver_completed": true,
+  "owned_child_reaped": true,
+  "range_exhausted": false,
+  "official_proof_submission": false,
+  "program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "cnf_sha256": "81754ed958bf6d67c9e2d22bbf5b48f7549090ce3c2690c0cf8060526983cfa6",
+  "variables": 22793,
+  "clauses": 395638,
+  "truth_rows": 512,
+  "gate_bound": 14,
+  "NOT_count": "unrestricted",
+  "started_utc": "2026-11-24T05:22:06.743846+00:00",
+  "completed_utc": "2026-11-24T05:52:07.394680+00:00",
+  "elapsed_seconds": 1801.288,
+  "stop_reason": "wall_time",
+  "statistics": {
+    "restarts": 229788,
+    "conflicts": 5798841,
+    "decisions": 13817042,
+    "propagations": 10162091064
+  },
+  "rss_max_kib": 201660,
+  "partial_trace": {
+    "retained": true,
+    "bytes": 579313227,
+    "sha256": "12a1381f141bf20b54d56239c2c229828590fed31d719b5031efe8848e5dae67",
+    "is_UNSAT_certificate": false
+  },
+  "structural_scope_reference": "global14-strengthened-public-completeness.txt",
+  "limitations": [
+    "The time-bound run did not settle the normalized query.",
+    "The SAT encoding/full normalization is not a Lean encoding theorem.",
+    "The accepted L1007/L517 lower bounds remain explicit premises of the checked local structural modules."
+  ]
+}

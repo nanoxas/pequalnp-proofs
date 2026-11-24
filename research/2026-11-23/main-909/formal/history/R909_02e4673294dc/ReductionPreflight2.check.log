@@ -1,0 +1,38 @@
+import took 111s
+CHILD 1 CHARS 614
+CHILD_TEXT 1 have x1 : ℕ → Finset (Fin (10 : ℕ)) := fun (x1 : ℕ) => {x2 : Fin (10 : ℕ) | x1.testBit ↑x2 = Bool.true}; have x2 : List ℕ := [(50 : ℕ), (69 : ℕ), (104 : ℕ), (116 : ℕ), (138 : ℕ), (201 : ℕ), (208 : ℕ), (276 : ℕ), (385 : ℕ), (402 : ℕ), (521 : ℕ), (548 : ℕ), (554 : ℕ), (770 : ℕ), (773 : ℕ)]; ∃ (x3 : PEqualNP.AndCount.AndCountCircuit (10 : ℕ)), x3.WellFormed ∧ x3.size ≤ (6 : ℕ) ∧ (∀ (x4 : Fin (10 : ℕ)), {x5 : Fin x3.size | x4 ∈ x3.leftVars x5 ∨ x4 ∈ x3.rightVars x5}.card ≤ (2 : ℕ)) ∧ ∀ x4 ∈ x2, x3.eval (x1 x4) = Bool.false ∧ ((x1 x4).card = (3 : ℕ) → ∀ x7 ∉ x1 x4, x3.eval (Insert.insert x7 (x1 x4)) = Bool.true)
+READBACK_ERROR 1: <child>:4:467: error(lean.invalidField): Invalid field `card`: The environment does not contain `Set.card`, so it is not possible to project the field `card` from an expression
+  {x5 | x4 ∈ x3.leftVars x5 ∨ x4 ∈ x3.rightVars x5}
+of type `Set (Fin x3.size)`
+CHILD 2 CHARS 986
+CHILD_TEXT 2 ∀ (x1 : SimpleGraph (Fin (10 : ℕ))),   (x1 = SimpleGraph.fromRel fun (x2 x3 : Fin (10 : ℕ)) => (↑x2, ↑x3) ∈ [((0 : ℕ), (1 : ℕ)), ((1 : ℕ), (2 : ℕ)), ((2 : ℕ), (3 : ℕ)), ((3 : ℕ), (4 : ℕ)), ((4 : ℕ), (0 : ℕ)), ((0 : ℕ), (5 : ℕ)), ((1 : ℕ), (6 : ℕ)), ((2 : ℕ), (7 : ℕ)), ((3 : ℕ), (8 : ℕ)), ((4 : ℕ), (9 : ℕ)), ((5 : ℕ), (7 : ℕ)), ((7 : ℕ), (9 : ℕ)), ((9 : ℕ), (6 : ℕ)), ((6 : ℕ), (8 : ℕ)), ((8 : ℕ), (5 : ℕ))]) →     have x3 : ℕ → Finset (Fin (10 : ℕ)) := fun (x3 : ℕ) => {x4 : Fin (10 : ℕ) | x3.testBit ↑x4 = Bool.true};     have x4 : List ℕ := [(50 : ℕ), (69 : ℕ), (104 : ℕ), (116 : ℕ), (138 : ℕ), (201 : ℕ), (208 : ℕ), (276 : ℕ), (385 : ℕ), (402 : ℕ), (521 : ℕ), (548 : ℕ), (554 : ℕ), (770 : ℕ), (773 : ℕ)];     ∀ (x5 : Finset (Fin (10 : ℕ))), (∀ x6 ∈ x5, ∀ x8 ∈ x5, ¬x1.Adj x6 x8) → (∀ x7 ∉ x5, ∃ x9 ∈ x5, x1.Adj x9 x7) → (∃ x8 ∈ x4, x5 = x3 x8) ∧ (x5.card = (3 : ℕ) ∨ ∀ x8 ∉ x5, ∃ x10 ∈ x4, (x3 x10).card = (3 : ℕ) ∧ ∃ x11 ∉ x3 x10, Insert.insert x11 (x3 x10) ⊆ Insert.insert x8 x5)
+ROUNDTRIP 2 PASS
+CHILD 3 CHARS 139
+CHILD_TEXT 3 ∀ (x1 : ℕ) (x2 : PEqualNP.AndCount.AndCountCircuit x1) (x3 x4 : Finset (Fin x1)), x3 ⊆ x4 → x2.eval x3 = Bool.true → x2.eval x4 = Bool.true
+ROUNDTRIP 3 PASS
+<workspace>/main-909/formal/ReductionPreflight.lean:31:0: error: At least one child readback did not elaborate; see diagnostics above
+'PEqualNP.Outside.R_meta_909_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+cumulative profiling times:
+	attribute application 0.0694ms
+	blocked (unaccounted) 366ms
+	compilation (IR) 2.9ms
+	compilation (LCNF base) 67.2ms
+	compilation (LCNF impure) 5.28ms
+	compilation (LCNF mono) 20.9ms
+	declTypeLinter 6.14ms
+	do element elaborator 82.6ms
+	elaboration 62.1ms
+	fix level params 0.065ms
+	import 111s
+	initialization 78.6ms
+	instantiate metavars 0.0374ms
+	interpretation 1.31s
+	let-to-have transformation 0.177ms
+	linting 7.6ms
+	module linting 0.0155ms
+	parsing 5.09ms
+	process pre-definitions 2.76ms
+	share common exprs 0.559ms
+	tacticAnalysis 0.522ms
+	type checking 4.31ms
+	typeclass inference 111ms

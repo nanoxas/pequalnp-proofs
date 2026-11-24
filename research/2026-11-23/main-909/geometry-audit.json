@@ -1,0 +1,3556 @@
+{
+  "status": "EXACT_FINITE_GEOMETRY_AUDIT",
+  "scope": "All 1024 vertex subsets; no circuit search or lower-bound certificate.",
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      9
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      7,
+      9
+    ],
+    [
+      9,
+      6
+    ],
+    [
+      6,
+      8
+    ],
+    [
+      8,
+      5
+    ]
+  ],
+  "kneser_label_for_each_posted_vertex": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ]
+  ],
+  "independent_set_count": 76,
+  "independent_size_histogram": {
+    "0": 1,
+    "1": 10,
+    "2": 30,
+    "3": 30,
+    "4": 5
+  },
+  "maximal_independent_sets": [
+    {
+      "mask": 50,
+      "vertices": [
+        1,
+        4,
+        5
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 69,
+      "vertices": [
+        0,
+        2,
+        6
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 104,
+      "vertices": [
+        3,
+        5,
+        6
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 116,
+      "vertices": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": []
+    },
+    {
+      "mask": 138,
+      "vertices": [
+        1,
+        3,
+        7
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 201,
+      "vertices": [
+        0,
+        3,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": []
+    },
+    {
+      "mask": 208,
+      "vertices": [
+        4,
+        6,
+        7
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 276,
+      "vertices": [
+        2,
+        4,
+        8
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 385,
+      "vertices": [
+        0,
+        7,
+        8
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 402,
+      "vertices": [
+        1,
+        4,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": []
+    },
+    {
+      "mask": 521,
+      "vertices": [
+        0,
+        3,
+        9
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 548,
+      "vertices": [
+        2,
+        5,
+        9
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 554,
+      "vertices": [
+        1,
+        3,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": []
+    },
+    {
+      "mask": 770,
+      "vertices": [
+        1,
+        8,
+        9
+      ],
+      "size": 3,
+      "induced_edges": []
+    },
+    {
+      "mask": 773,
+      "vertices": [
+        0,
+        2,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": []
+    }
+  ],
+  "positive_rows": [
+    {
+      "mask": 51,
+      "vertices": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 54,
+      "vertices": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "mask": 58,
+      "vertices": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 71,
+      "vertices": [
+        0,
+        1,
+        2,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 77,
+      "vertices": [
+        0,
+        2,
+        3,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "mask": 85,
+      "vertices": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 101,
+      "vertices": [
+        0,
+        2,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 105,
+      "vertices": [
+        0,
+        3,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 106,
+      "vertices": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 108,
+      "vertices": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "mask": 114,
+      "vertices": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 117,
+      "vertices": [
+        0,
+        2,
+        4,
+        5,
+        6
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 118,
+      "vertices": [
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 120,
+      "vertices": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 124,
+      "vertices": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 139,
+      "vertices": [
+        0,
+        1,
+        3,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "mask": 142,
+      "vertices": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 154,
+      "vertices": [
+        1,
+        3,
+        4,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 170,
+      "vertices": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 178,
+      "vertices": [
+        1,
+        4,
+        5,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 197,
+      "vertices": [
+        0,
+        2,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 202,
+      "vertices": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 203,
+      "vertices": [
+        0,
+        1,
+        3,
+        6,
+        7
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 205,
+      "vertices": [
+        0,
+        2,
+        3,
+        6,
+        7
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 209,
+      "vertices": [
+        0,
+        4,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 210,
+      "vertices": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          6
+        ]
+      ]
+    },
+    {
+      "mask": 212,
+      "vertices": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 216,
+      "vertices": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 217,
+      "vertices": [
+        0,
+        3,
+        4,
+        6,
+        7
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 232,
+      "vertices": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 233,
+      "vertices": [
+        0,
+        3,
+        5,
+        6,
+        7
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 240,
+      "vertices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 244,
+      "vertices": [
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 277,
+      "vertices": [
+        0,
+        2,
+        4,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 278,
+      "vertices": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "mask": 284,
+      "vertices": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 306,
+      "vertices": [
+        1,
+        4,
+        5,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 308,
+      "vertices": [
+        2,
+        4,
+        5,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 325,
+      "vertices": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 340,
+      "vertices": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 360,
+      "vertices": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 372,
+      "vertices": [
+        2,
+        4,
+        5,
+        6,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 387,
+      "vertices": [
+        0,
+        1,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "mask": 389,
+      "vertices": [
+        0,
+        2,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 393,
+      "vertices": [
+        0,
+        3,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 394,
+      "vertices": [
+        1,
+        3,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 401,
+      "vertices": [
+        0,
+        4,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 403,
+      "vertices": [
+        0,
+        1,
+        4,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "mask": 404,
+      "vertices": [
+        2,
+        4,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 406,
+      "vertices": [
+        1,
+        2,
+        4,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          7
+        ]
+      ]
+    },
+    {
+      "mask": 410,
+      "vertices": [
+        1,
+        3,
+        4,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 417,
+      "vertices": [
+        0,
+        5,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 434,
+      "vertices": [
+        1,
+        4,
+        5,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 449,
+      "vertices": [
+        0,
+        6,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 457,
+      "vertices": [
+        0,
+        3,
+        6,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          3,
+          8
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 464,
+      "vertices": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 466,
+      "vertices": [
+        1,
+        4,
+        6,
+        7,
+        8
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 523,
+      "vertices": [
+        0,
+        1,
+        3,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "mask": 525,
+      "vertices": [
+        0,
+        2,
+        3,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "mask": 537,
+      "vertices": [
+        0,
+        3,
+        4,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 549,
+      "vertices": [
+        0,
+        2,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 550,
+      "vertices": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "mask": 553,
+      "vertices": [
+        0,
+        3,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 555,
+      "vertices": [
+        0,
+        1,
+        3,
+        5,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    {
+      "mask": 556,
+      "vertices": [
+        2,
+        3,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "mask": 558,
+      "vertices": [
+        1,
+        2,
+        3,
+        5,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "mask": 562,
+      "vertices": [
+        1,
+        4,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 564,
+      "vertices": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 570,
+      "vertices": [
+        1,
+        3,
+        4,
+        5,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 581,
+      "vertices": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 585,
+      "vertices": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 612,
+      "vertices": [
+        2,
+        5,
+        6,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 616,
+      "vertices": [
+        3,
+        5,
+        6,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 618,
+      "vertices": [
+        1,
+        3,
+        5,
+        6,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 628,
+      "vertices": [
+        2,
+        4,
+        5,
+        6,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          4,
+          9
+        ],
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 649,
+      "vertices": [
+        0,
+        3,
+        7,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 650,
+      "vertices": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 676,
+      "vertices": [
+        2,
+        5,
+        7,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 682,
+      "vertices": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 713,
+      "vertices": [
+        0,
+        3,
+        6,
+        7,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 720,
+      "vertices": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          4,
+          9
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 771,
+      "vertices": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "mask": 774,
+      "vertices": [
+        1,
+        2,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "mask": 775,
+      "vertices": [
+        0,
+        1,
+        2,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "mask": 777,
+      "vertices": [
+        0,
+        3,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 778,
+      "vertices": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 781,
+      "vertices": [
+        0,
+        2,
+        3,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 786,
+      "vertices": [
+        1,
+        4,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 788,
+      "vertices": [
+        2,
+        4,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 789,
+      "vertices": [
+        0,
+        2,
+        4,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          4
+        ],
+        [
+          4,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 802,
+      "vertices": [
+        1,
+        5,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 804,
+      "vertices": [
+        2,
+        5,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 805,
+      "vertices": [
+        0,
+        2,
+        5,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 810,
+      "vertices": [
+        1,
+        3,
+        5,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "mask": 834,
+      "vertices": [
+        1,
+        6,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 837,
+      "vertices": [
+        0,
+        2,
+        6,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 897,
+      "vertices": [
+        0,
+        7,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 898,
+      "vertices": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "size": 4,
+      "induced_edges": [
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 901,
+      "vertices": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    },
+    {
+      "mask": 914,
+      "vertices": [
+        1,
+        4,
+        7,
+        8,
+        9
+      ],
+      "size": 5,
+      "induced_edges": [
+        [
+          4,
+          9
+        ],
+        [
+          7,
+          9
+        ]
+      ]
+    }
+  ],
+  "positive_size_histogram": {
+    "4": 70,
+    "5": 30
+  },
+  "positive4_induced_edge_count_histogram": {
+    "1": 60,
+    "3": 10
+  },
+  "five_point_redundancy_witnesses": [
+    {
+      "five_point": 117,
+      "four_point_witness": 85,
+      "all_four_point_witnesses": [
+        85,
+        101
+      ]
+    },
+    {
+      "five_point": 118,
+      "four_point_witness": 54,
+      "all_four_point_witnesses": [
+        54,
+        114
+      ]
+    },
+    {
+      "five_point": 124,
+      "four_point_witness": 108,
+      "all_four_point_witnesses": [
+        108,
+        120
+      ]
+    },
+    {
+      "five_point": 203,
+      "four_point_witness": 139,
+      "all_four_point_witnesses": [
+        139,
+        202
+      ]
+    },
+    {
+      "five_point": 205,
+      "four_point_witness": 77,
+      "all_four_point_witnesses": [
+        77,
+        197
+      ]
+    },
+    {
+      "five_point": 217,
+      "four_point_witness": 209,
+      "all_four_point_witnesses": [
+        209,
+        216
+      ]
+    },
+    {
+      "five_point": 233,
+      "four_point_witness": 105,
+      "all_four_point_witnesses": [
+        105,
+        232
+      ]
+    },
+    {
+      "five_point": 244,
+      "four_point_witness": 212,
+      "all_four_point_witnesses": [
+        212,
+        240
+      ]
+    },
+    {
+      "five_point": 372,
+      "four_point_witness": 308,
+      "all_four_point_witnesses": [
+        308,
+        340
+      ]
+    },
+    {
+      "five_point": 403,
+      "four_point_witness": 387,
+      "all_four_point_witnesses": [
+        387,
+        401
+      ]
+    },
+    {
+      "five_point": 406,
+      "four_point_witness": 278,
+      "all_four_point_witnesses": [
+        278,
+        404
+      ]
+    },
+    {
+      "five_point": 410,
+      "four_point_witness": 154,
+      "all_four_point_witnesses": [
+        154,
+        394
+      ]
+    },
+    {
+      "five_point": 434,
+      "four_point_witness": 178,
+      "all_four_point_witnesses": [
+        178,
+        306
+      ]
+    },
+    {
+      "five_point": 457,
+      "four_point_witness": 393,
+      "all_four_point_witnesses": [
+        393,
+        449
+      ]
+    },
+    {
+      "five_point": 466,
+      "four_point_witness": 210,
+      "all_four_point_witnesses": [
+        210,
+        464
+      ]
+    },
+    {
+      "five_point": 555,
+      "four_point_witness": 523,
+      "all_four_point_witnesses": [
+        523,
+        553
+      ]
+    },
+    {
+      "five_point": 558,
+      "four_point_witness": 550,
+      "all_four_point_witnesses": [
+        550,
+        556
+      ]
+    },
+    {
+      "five_point": 570,
+      "four_point_witness": 58,
+      "all_four_point_witnesses": [
+        58,
+        562
+      ]
+    },
+    {
+      "five_point": 618,
+      "four_point_witness": 106,
+      "all_four_point_witnesses": [
+        106,
+        616
+      ]
+    },
+    {
+      "five_point": 628,
+      "four_point_witness": 564,
+      "all_four_point_witnesses": [
+        564,
+        612
+      ]
+    },
+    {
+      "five_point": 682,
+      "four_point_witness": 170,
+      "all_four_point_witnesses": [
+        170,
+        650
+      ]
+    },
+    {
+      "five_point": 713,
+      "four_point_witness": 585,
+      "all_four_point_witnesses": [
+        585,
+        649
+      ]
+    },
+    {
+      "five_point": 775,
+      "four_point_witness": 771,
+      "all_four_point_witnesses": [
+        771,
+        774
+      ]
+    },
+    {
+      "five_point": 781,
+      "four_point_witness": 525,
+      "all_four_point_witnesses": [
+        525,
+        777
+      ]
+    },
+    {
+      "five_point": 789,
+      "four_point_witness": 277,
+      "all_four_point_witnesses": [
+        277,
+        788
+      ]
+    },
+    {
+      "five_point": 805,
+      "four_point_witness": 549,
+      "all_four_point_witnesses": [
+        549,
+        804
+      ]
+    },
+    {
+      "five_point": 810,
+      "four_point_witness": 778,
+      "all_four_point_witnesses": [
+        778,
+        802
+      ]
+    },
+    {
+      "five_point": 837,
+      "four_point_witness": 325,
+      "all_four_point_witnesses": [
+        325,
+        581
+      ]
+    },
+    {
+      "five_point": 901,
+      "four_point_witness": 389,
+      "all_four_point_witnesses": [
+        389,
+        897
+      ]
+    },
+    {
+      "five_point": 914,
+      "four_point_witness": 786,
+      "all_four_point_witnesses": [
+        786,
+        898
+      ]
+    }
+  ],
+  "unique_edge_exposures": [
+    {
+      "edge": [
+        0,
+        1
+      ],
+      "witnesses": [
+        {
+          "mis": 138,
+          "added_vertex": 0,
+          "positive": 139
+        },
+        {
+          "mis": 385,
+          "added_vertex": 1,
+          "positive": 387
+        },
+        {
+          "mis": 521,
+          "added_vertex": 1,
+          "positive": 523
+        },
+        {
+          "mis": 770,
+          "added_vertex": 0,
+          "positive": 771
+        }
+      ]
+    },
+    {
+      "edge": [
+        0,
+        4
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 4,
+          "positive": 85
+        },
+        {
+          "mis": 208,
+          "added_vertex": 0,
+          "positive": 209
+        },
+        {
+          "mis": 276,
+          "added_vertex": 0,
+          "positive": 277
+        },
+        {
+          "mis": 385,
+          "added_vertex": 4,
+          "positive": 401
+        }
+      ]
+    },
+    {
+      "edge": [
+        0,
+        5
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 5,
+          "positive": 101
+        },
+        {
+          "mis": 104,
+          "added_vertex": 0,
+          "positive": 105
+        },
+        {
+          "mis": 521,
+          "added_vertex": 5,
+          "positive": 553
+        },
+        {
+          "mis": 548,
+          "added_vertex": 0,
+          "positive": 549
+        }
+      ]
+    },
+    {
+      "edge": [
+        1,
+        2
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 2,
+          "positive": 54
+        },
+        {
+          "mis": 276,
+          "added_vertex": 1,
+          "positive": 278
+        },
+        {
+          "mis": 548,
+          "added_vertex": 1,
+          "positive": 550
+        },
+        {
+          "mis": 770,
+          "added_vertex": 2,
+          "positive": 774
+        }
+      ]
+    },
+    {
+      "edge": [
+        1,
+        6
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 6,
+          "positive": 114
+        },
+        {
+          "mis": 104,
+          "added_vertex": 1,
+          "positive": 106
+        },
+        {
+          "mis": 138,
+          "added_vertex": 6,
+          "positive": 202
+        },
+        {
+          "mis": 208,
+          "added_vertex": 1,
+          "positive": 210
+        }
+      ]
+    },
+    {
+      "edge": [
+        2,
+        3
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 3,
+          "positive": 77
+        },
+        {
+          "mis": 104,
+          "added_vertex": 2,
+          "positive": 108
+        },
+        {
+          "mis": 521,
+          "added_vertex": 2,
+          "positive": 525
+        },
+        {
+          "mis": 548,
+          "added_vertex": 3,
+          "positive": 556
+        }
+      ]
+    },
+    {
+      "edge": [
+        2,
+        7
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 7,
+          "positive": 197
+        },
+        {
+          "mis": 208,
+          "added_vertex": 2,
+          "positive": 212
+        },
+        {
+          "mis": 276,
+          "added_vertex": 7,
+          "positive": 404
+        },
+        {
+          "mis": 385,
+          "added_vertex": 2,
+          "positive": 389
+        }
+      ]
+    },
+    {
+      "edge": [
+        3,
+        4
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 3,
+          "positive": 58
+        },
+        {
+          "mis": 104,
+          "added_vertex": 4,
+          "positive": 120
+        },
+        {
+          "mis": 138,
+          "added_vertex": 4,
+          "positive": 154
+        },
+        {
+          "mis": 208,
+          "added_vertex": 3,
+          "positive": 216
+        }
+      ]
+    },
+    {
+      "edge": [
+        3,
+        8
+      ],
+      "witnesses": [
+        {
+          "mis": 138,
+          "added_vertex": 8,
+          "positive": 394
+        },
+        {
+          "mis": 385,
+          "added_vertex": 3,
+          "positive": 393
+        },
+        {
+          "mis": 521,
+          "added_vertex": 8,
+          "positive": 777
+        },
+        {
+          "mis": 770,
+          "added_vertex": 3,
+          "positive": 778
+        }
+      ]
+    },
+    {
+      "edge": [
+        4,
+        9
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 9,
+          "positive": 562
+        },
+        {
+          "mis": 276,
+          "added_vertex": 9,
+          "positive": 788
+        },
+        {
+          "mis": 548,
+          "added_vertex": 4,
+          "positive": 564
+        },
+        {
+          "mis": 770,
+          "added_vertex": 4,
+          "positive": 786
+        }
+      ]
+    },
+    {
+      "edge": [
+        5,
+        7
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 7,
+          "positive": 178
+        },
+        {
+          "mis": 104,
+          "added_vertex": 7,
+          "positive": 232
+        },
+        {
+          "mis": 138,
+          "added_vertex": 5,
+          "positive": 170
+        },
+        {
+          "mis": 208,
+          "added_vertex": 5,
+          "positive": 240
+        }
+      ]
+    },
+    {
+      "edge": [
+        5,
+        8
+      ],
+      "witnesses": [
+        {
+          "mis": 50,
+          "added_vertex": 8,
+          "positive": 306
+        },
+        {
+          "mis": 276,
+          "added_vertex": 5,
+          "positive": 308
+        },
+        {
+          "mis": 548,
+          "added_vertex": 8,
+          "positive": 804
+        },
+        {
+          "mis": 770,
+          "added_vertex": 5,
+          "positive": 802
+        }
+      ]
+    },
+    {
+      "edge": [
+        6,
+        8
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 8,
+          "positive": 325
+        },
+        {
+          "mis": 208,
+          "added_vertex": 8,
+          "positive": 464
+        },
+        {
+          "mis": 276,
+          "added_vertex": 6,
+          "positive": 340
+        },
+        {
+          "mis": 385,
+          "added_vertex": 6,
+          "positive": 449
+        }
+      ]
+    },
+    {
+      "edge": [
+        6,
+        9
+      ],
+      "witnesses": [
+        {
+          "mis": 69,
+          "added_vertex": 9,
+          "positive": 581
+        },
+        {
+          "mis": 104,
+          "added_vertex": 9,
+          "positive": 616
+        },
+        {
+          "mis": 521,
+          "added_vertex": 6,
+          "positive": 585
+        },
+        {
+          "mis": 548,
+          "added_vertex": 6,
+          "positive": 612
+        }
+      ]
+    },
+    {
+      "edge": [
+        7,
+        9
+      ],
+      "witnesses": [
+        {
+          "mis": 138,
+          "added_vertex": 9,
+          "positive": 650
+        },
+        {
+          "mis": 385,
+          "added_vertex": 9,
+          "positive": 897
+        },
+        {
+          "mis": 521,
+          "added_vertex": 7,
+          "positive": 649
+        },
+        {
+          "mis": 770,
+          "added_vertex": 7,
+          "positive": 898
+        }
+      ]
+    }
+  ],
+  "minimum_vertex_cover": 6,
+  "maximum_independent_set": 4,
+  "nonempty_ordered_bicliques": [
+    [
+      1,
+      50
+    ],
+    [
+      1,
+      48
+    ],
+    [
+      1,
+      34
+    ],
+    [
+      1,
+      32
+    ],
+    [
+      1,
+      18
+    ],
+    [
+      1,
+      16
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      69
+    ],
+    [
+      2,
+      68
+    ],
+    [
+      2,
+      65
+    ],
+    [
+      2,
+      64
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      4,
+      138
+    ],
+    [
+      4,
+      136
+    ],
+    [
+      4,
+      130
+    ],
+    [
+      4,
+      128
+    ],
+    [
+      4,
+      10
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      2
+    ],
+    [
+      8,
+      276
+    ],
+    [
+      8,
+      272
+    ],
+    [
+      8,
+      260
+    ],
+    [
+      8,
+      256
+    ],
+    [
+      8,
+      20
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      9,
+      16
+    ],
+    [
+      10,
+      4
+    ],
+    [
+      16,
+      521
+    ],
+    [
+      16,
+      520
+    ],
+    [
+      16,
+      513
+    ],
+    [
+      16,
+      512
+    ],
+    [
+      16,
+      9
+    ],
+    [
+      16,
+      8
+    ],
+    [
+      16,
+      1
+    ],
+    [
+      18,
+      1
+    ],
+    [
+      20,
+      8
+    ],
+    [
+      32,
+      385
+    ],
+    [
+      32,
+      384
+    ],
+    [
+      32,
+      257
+    ],
+    [
+      32,
+      256
+    ],
+    [
+      32,
+      129
+    ],
+    [
+      32,
+      128
+    ],
+    [
+      32,
+      1
+    ],
+    [
+      34,
+      1
+    ],
+    [
+      36,
+      128
+    ],
+    [
+      40,
+      256
+    ],
+    [
+      48,
+      1
+    ],
+    [
+      50,
+      1
+    ],
+    [
+      64,
+      770
+    ],
+    [
+      64,
+      768
+    ],
+    [
+      64,
+      514
+    ],
+    [
+      64,
+      512
+    ],
+    [
+      64,
+      258
+    ],
+    [
+      64,
+      256
+    ],
+    [
+      64,
+      2
+    ],
+    [
+      65,
+      2
+    ],
+    [
+      68,
+      2
+    ],
+    [
+      69,
+      2
+    ],
+    [
+      72,
+      256
+    ],
+    [
+      80,
+      512
+    ],
+    [
+      96,
+      256
+    ],
+    [
+      104,
+      256
+    ],
+    [
+      128,
+      548
+    ],
+    [
+      128,
+      544
+    ],
+    [
+      128,
+      516
+    ],
+    [
+      128,
+      512
+    ],
+    [
+      128,
+      36
+    ],
+    [
+      128,
+      32
+    ],
+    [
+      128,
+      4
+    ],
+    [
+      129,
+      32
+    ],
+    [
+      130,
+      4
+    ],
+    [
+      136,
+      4
+    ],
+    [
+      138,
+      4
+    ],
+    [
+      144,
+      512
+    ],
+    [
+      192,
+      512
+    ],
+    [
+      208,
+      512
+    ],
+    [
+      256,
+      104
+    ],
+    [
+      256,
+      96
+    ],
+    [
+      256,
+      72
+    ],
+    [
+      256,
+      64
+    ],
+    [
+      256,
+      40
+    ],
+    [
+      256,
+      32
+    ],
+    [
+      256,
+      8
+    ],
+    [
+      257,
+      32
+    ],
+    [
+      258,
+      64
+    ],
+    [
+      260,
+      8
+    ],
+    [
+      272,
+      8
+    ],
+    [
+      276,
+      8
+    ],
+    [
+      384,
+      32
+    ],
+    [
+      385,
+      32
+    ],
+    [
+      512,
+      208
+    ],
+    [
+      512,
+      192
+    ],
+    [
+      512,
+      144
+    ],
+    [
+      512,
+      128
+    ],
+    [
+      512,
+      80
+    ],
+    [
+      512,
+      64
+    ],
+    [
+      512,
+      16
+    ],
+    [
+      513,
+      16
+    ],
+    [
+      514,
+      64
+    ],
+    [
+      516,
+      128
+    ],
+    [
+      520,
+      16
+    ],
+    [
+      521,
+      16
+    ],
+    [
+      544,
+      128
+    ],
+    [
+      548,
+      128
+    ],
+    [
+      768,
+      64
+    ],
+    [
+      770,
+      64
+    ]
+  ],
+  "nonempty_ordered_biclique_count": 110,
+  "independent_pairs_extend_to_both_mis_types": [
+    {
+      "pair": [
+        0,
+        0
+      ],
+      "triangle_mis": 69,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        0,
+        2
+      ],
+      "triangle_mis": 69,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "triangle_mis": 521,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        0,
+        6
+      ],
+      "triangle_mis": 69,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        0,
+        7
+      ],
+      "triangle_mis": 385,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        0,
+        8
+      ],
+      "triangle_mis": 385,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        0,
+        9
+      ],
+      "triangle_mis": 521,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        1,
+        1
+      ],
+      "triangle_mis": 50,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        1,
+        3
+      ],
+      "triangle_mis": 138,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "triangle_mis": 50,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        1,
+        5
+      ],
+      "triangle_mis": 50,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        1,
+        7
+      ],
+      "triangle_mis": 138,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        1,
+        8
+      ],
+      "triangle_mis": 770,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        1,
+        9
+      ],
+      "triangle_mis": 770,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        2,
+        2
+      ],
+      "triangle_mis": 69,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "triangle_mis": 276,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        2,
+        5
+      ],
+      "triangle_mis": 548,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        2,
+        6
+      ],
+      "triangle_mis": 69,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        2,
+        8
+      ],
+      "triangle_mis": 276,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        2,
+        9
+      ],
+      "triangle_mis": 548,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        3,
+        3
+      ],
+      "triangle_mis": 104,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        3,
+        5
+      ],
+      "triangle_mis": 104,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        3,
+        6
+      ],
+      "triangle_mis": 104,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        3,
+        7
+      ],
+      "triangle_mis": 138,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        3,
+        9
+      ],
+      "triangle_mis": 521,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        4,
+        4
+      ],
+      "triangle_mis": 50,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        4,
+        5
+      ],
+      "triangle_mis": 50,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        4,
+        6
+      ],
+      "triangle_mis": 208,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        4,
+        7
+      ],
+      "triangle_mis": 208,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        4,
+        8
+      ],
+      "triangle_mis": 276,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        5,
+        5
+      ],
+      "triangle_mis": 50,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        5,
+        6
+      ],
+      "triangle_mis": 104,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        5,
+        9
+      ],
+      "triangle_mis": 548,
+      "star_mis": 554
+    },
+    {
+      "pair": [
+        6,
+        6
+      ],
+      "triangle_mis": 69,
+      "star_mis": 116
+    },
+    {
+      "pair": [
+        6,
+        7
+      ],
+      "triangle_mis": 208,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        7,
+        7
+      ],
+      "triangle_mis": 138,
+      "star_mis": 201
+    },
+    {
+      "pair": [
+        7,
+        8
+      ],
+      "triangle_mis": 385,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        8,
+        8
+      ],
+      "triangle_mis": 276,
+      "star_mis": 402
+    },
+    {
+      "pair": [
+        8,
+        9
+      ],
+      "triangle_mis": 770,
+      "star_mis": 773
+    },
+    {
+      "pair": [
+        9,
+        9
+      ],
+      "triangle_mis": 521,
+      "star_mis": 554
+    }
+  ],
+  "canonical_triangle_mis": [
+    0,
+    2,
+    6
+  ],
+  "canonical_star_mis": [
+    0,
+    2,
+    8,
+    9
+  ],
+  "script_sha256": "fe010fd1229809ac2ec15117c90657ec00820ba95539ad07f8452a4e99c78894"
+}

@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "scope": "Local research structural bridge, not the official single-file proof and not a global UNSAT result.",
+  "source": "ReaderShape.lean",
+  "source_sha256": "703e8969fcbaf8f71d729d18062df6159fc1a5fdb187865b2da279730480b42f",
+  "object_sha256": "591164cc8cdc1feeed4804f3c1f03cbd5fb3dd94e2a80b0238cde1456ec4cc24",
+  "check_log": "ReaderShape.check.log",
+  "check_log_sha256": "a01e398345b6c0ae9ad3000afa25f1f5756d703143483aca84616dc924d1225f",
+  "started_utc": "2026-11-24T05:13:21.336088+00:00",
+  "stopped_utc": "2026-11-24T05:13:26.741033+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 5.405,
+  "child_reaped": true,
+  "source_unchanged": true,
+  "warnings": [],
+  "axiom_audits": [
+    {
+      "declaration": "PEqualNP.Research.L670.special_restrict_to_eight",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.special_unique_reader",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.special_reader_is_or",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.sole_reader_agree",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.raw_or_obstruction",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.special_narrow_reader",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.exists_narrow_fourteen",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "dependency": {
+    "source": "FirstGateReduction.lean",
+    "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
+    "object_sha256": "acbce21aebdf3a7a48b53a61b3efcfe917a68135674a24d5b4ce1754c741821d",
+    "verification": "FirstGateReduction.verification.json"
+  },
+  "explicit_premise": "not HasCircuitSize 8 target8 12; exactly the accepted L_meta_1007 statement. Its accepted source has not been locally recompiled or imported.",
+  "claims": [
+    "Deleting each of inputs4,6,7 and relabeling produces exactly target8 at no additional gate cost.",
+    "In any Least clean target9 circuit of size at most14, each special input has exactly one actual reader.",
+    "Each such reader is OR; its other operand is a valid earlier gate wire, not a raw input.",
+    "The finite 24 raw-other-operand obstructions are proved by kernel evaluation.",
+    "Any global target9 circuit of size at most14 yields one Least clean circuit with exactly14 gates and output22 satisfying all three reader conditions simultaneously.",
+    "None of the three special inputs appears in gate0."
+  ],
+  "reproduction": "python3 infra-lean/bounded_check.py main-670/formal/ReaderShape.lean --seconds 180 --label ReaderShape2 --import-workers 1 --object",
+  "prior_attempt": {
+    "label": "ReaderShape1",
+    "status": "ELABORATION_ERROR",
+    "note": "One wire binder was inferred as Fin n; made explicit Nat. No proof claim attaches to that attempt."
+  }
+}

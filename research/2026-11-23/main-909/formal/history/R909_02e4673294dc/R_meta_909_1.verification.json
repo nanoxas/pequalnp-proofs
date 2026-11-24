@@ -1,0 +1,30 @@
+{
+  "status": "LEAN_BUILD_PASS",
+  "recorded_at": "2026-11-24T05:57:38.541378+00:00",
+  "source": "main-909/formal/R_meta_909_1.lean",
+  "source_sha256": "02e4673294dc01f78936e4607415edc94a92df35bef91b34fb764d684f64310f",
+  "source_bytes": 2917,
+  "object_sha256": "11585f84f4271fd6a0740e93e6537c95c01fc47becdb47b45f35c7c351747e99",
+  "compile_exit_code": 0,
+  "elapsed_seconds": 88.828,
+  "child_reaped": true,
+  "source_unchanged": true,
+  "warnings": false,
+  "axiom_audit": "NOT_YET_RUN",
+  "official_reduction_verifier": "NOT_YET_RUN",
+  "child_printed_length_check": "NOT_YET_RUN",
+  "command": [
+    "python3",
+    "infra-lean/bounded_check.py",
+    "main-909/formal/R_meta_909_1.lean",
+    "--seconds",
+    "180",
+    "--label",
+    "R909Reduction1",
+    "--import-workers",
+    "1",
+    "--object"
+  ],
+  "log_sha256": "1ff7aac6e760dabe8c335185c3a5588da2e94ac3fad16490da7d54f6774244fb",
+  "note": "The process completed successfully before a late request to avoid the redundant Mathlib umbrella was processed. Source was not changed and no retry occurred."
+}

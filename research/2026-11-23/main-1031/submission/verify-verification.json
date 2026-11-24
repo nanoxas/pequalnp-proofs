@@ -1,0 +1,29 @@
+{
+  "phase": "verify",
+  "status": "FAIL",
+  "command": [
+    "<workspace>/.pnp-tools/lean-4.36.0-linux/bin/lean",
+    "-j",
+    "1",
+    "--run",
+    "<workspace>/infra-lean/reduction-checker-f5238c8/lean/CheckLemma.lean",
+    "PEqualNP.Outside.R_meta_1031_1",
+    "<workspace>/main-1031/statement.txt",
+    "reduce"
+  ],
+  "started_utc": "2026-11-24T05:42:03.216878+00:00",
+  "source_sha256": "96c7d1b3a5adf9dafc6e17c3d1a126647b7916561a7f7d5641855b9b8e50d083",
+  "statement_sha256": "6796e5fe6aaa73cd25c4b80abbd720570bfbeca1962421ad413577d574728bcb",
+  "checker_sha256": "86997b026ef2b80d738df77f4c214166cf5b0b2ea8cc98d4bd3c8b5e420dbdd5",
+  "checker_upstream_commit": "f5238c8b9a5fe0bb379403d109cc933ea1e8302b",
+  "bound_seconds": 300.0,
+  "authoritative_remote_run": false,
+  "exit_code": -9,
+  "elapsed_seconds": 141.869,
+  "child_reaped": true,
+  "sources_unchanged": true,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "completed_utc": "2026-11-24T05:44:25.085934+00:00",
+  "object_sha256": "ea2c1059075423be4b29027e0ecfb181363c64348c6ee72a123dee2ab8187f04",
+  "children": []
+}

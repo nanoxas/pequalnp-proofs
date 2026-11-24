@@ -171,3 +171,38 @@ deletion inequality, a reviewed OR-normalization argument, and a symbolic
 counterexample to a restricted eligible-pool shortcut. The full theorem
 remains open. This supporting research publication is not an upstream proof
 submission or an accepted theorem.
+
+## Circuit-search and official-reduction checkpoint
+
+Four [L-meta-670 structural helpers](main-670/README.md) are locally checked
+with explicit accepted lower-bound premises. The strengthened all-512-row
+query completed UNKNOWN at its 30-minute bound. A smaller-row CEGAR encoder
+and its fixed controls are preserved; its subsequently started target run is
+outside this frozen result snapshot.
+
+The [L-meta-909 partial-function query](main-909/README.md) covers all 115 exact
+rows and at most 6 AND gates with the stated bare-reader limit. Independent
+model/geometry audits and fixed controls passed; its five-minute target run
+also finished UNKNOWN. Neither finite run is an exhaustion certificate.
+
+A separate [official L-meta-1031 reduction](main-1031/SUBMISSION.md) is recorded
+as upstream PR #3918, with the exact published source and a passing local Lean
+build. Its local full verifier terminated before a verdict; the authoritative
+service then refused the PR before building. An existing accepted reduction
+already occupies the same file path; the parent remained open in the later
+desk snapshot, and PR #3918 remains open. The distinct L-meta-909 reduction is
+submitted as PR #4051 and its
+frozen remote verdict is pending. This research-branch update itself is not a new
+checker submission. Earlier research and all 29 L-meta-997 Lean sources remain
+unchanged.
+
+
+### Additional checked support and labeled drafts
+
+The L-meta-909 r2 reduction is built, standard-axiom audited and
+lightweight-printer/readback checked. It is officially submitted as PR #4051,
+with a pending remote verdict. Two supporting children are separately kernel
+checked; the circuit-construction child remains open. Its older compiled
+candidate is preserved with its real child1 round-trip failure. Three other
+research prototypes are archived with explicit DRAFT_UNCHECKED status and
+.lean.txt filenames; they are excluded from checked-module counts.

@@ -1,0 +1,27 @@
+{
+  "status": "PASS_CONDITIONAL",
+  "utc": "2026-11-24T05:20:55.368269+00:00",
+  "source": "formal/FirstGateReduction.lean",
+  "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
+  "verification_record": "formal/FirstGateReduction.verification.json",
+  "target8_ordered_terms_match_accepted1007": true,
+  "target9_ordered_terms_match_original670": true,
+  "independent_source_review": "PASS",
+  "checked_conclusions": [
+    "No global circuit of at most13 gates, assuming the exact accepted1007 lower bound.",
+    "A prescribed-first AND(4,6) circuit of at most15 gates implies a global circuit of at most14 gates, under the same lower-bound premise."
+  ],
+  "remaining": [
+    "The accepted1007 theorem remains an explicit premise; its local object instantiation has not been checked.",
+    "The four generic structural normalizations and SAT semantic encoding remain independently paper/source audited, rather than assembled into a full Lean encoding theorem.",
+    "No global14 or original-shard search verdict has been established."
+  ],
+  "frozen_program_metadata_note": "The running source was frozen before this conditional helper passed; its conditional_bridge_lean_checked=false field is preserved. This separate record reports the updated conditional proof status without altering that source.",
+  "reader_shape": {
+    "source": "formal/ReaderShape.lean",
+    "source_sha256": "703e8969fcbaf8f71d729d18062df6159fc1a5fdb187865b2da279730480b42f",
+    "verification_record": "formal/ReaderShape.verification.json",
+    "independent_source_review": "PASS",
+    "checked_conclusion": "Assuming the exact accepted L1007 lower bound, a global size-at-most14 witness yields a Least clean length14 witness with output22 and the three sole-OR/internal-other reader conditions."
+  }
+}

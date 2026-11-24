@@ -1,0 +1,1044 @@
+{
+  "status": "ROOT_SOURCE_AND_FINITE_COMPLETENESS_REVIEW_PASS",
+  "utc": "2026-11-24T05:20:45.527908+00:00",
+  "program_sha256": "d0d299f313fe74c38552746a9e3d58a2659b6f6ee762e383a2425ce521b33880",
+  "base_source_sha256": "9aa106bf7e24d1c56cc9ab01cd559d1539d0246acfef691fc5220ee5106aca05",
+  "reviewed_additions": [
+    "raw reader variable is the disjunction of selectors, so a repeated NOT port counts once",
+    "core inputs at most two reader gates; any two reader gates must both be OR",
+    "sorted right operand raw is equivalent to both operands raw",
+    "raw-raw AND excluded; every raw-raw OR endpoint has a distinct second reader",
+    "canonical first gate is NOT0 or OR(0,1), OR(0,2), OR(0,3)",
+    "joint minimization over automorphisms and initially ready gates is compatible with all-gate greedy scheduling"
+  ],
+  "pivotal_cases": 144,
+  "pivotal_witnesses": [
+    {
+      "input": 0,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 16,
+      "positive_mask": 17
+    },
+    {
+      "input": 0,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 20,
+      "positive_mask": 21
+    },
+    {
+      "input": 0,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 10,
+      "positive_mask": 11
+    },
+    {
+      "input": 0,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 16,
+      "positive_mask": 17
+    },
+    {
+      "input": 0,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 32,
+      "positive_mask": 33
+    },
+    {
+      "input": 0,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 80,
+      "positive_mask": 81
+    },
+    {
+      "input": 0,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 130,
+      "positive_mask": 131
+    },
+    {
+      "input": 0,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 3
+    },
+    {
+      "input": 0,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 258,
+      "positive_mask": 259
+    },
+    {
+      "input": 1,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 6
+    },
+    {
+      "input": 1,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 4,
+      "positive_mask": 6
+    },
+    {
+      "input": 1,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 9,
+      "positive_mask": 11
+    },
+    {
+      "input": 1,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 20,
+      "positive_mask": 22
+    },
+    {
+      "input": 1,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 36,
+      "positive_mask": 38
+    },
+    {
+      "input": 1,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 64,
+      "positive_mask": 66
+    },
+    {
+      "input": 1,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 129,
+      "positive_mask": 131
+    },
+    {
+      "input": 1,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 3
+    },
+    {
+      "input": 1,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 257,
+      "positive_mask": 259
+    },
+    {
+      "input": 2,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 9,
+      "positive_mask": 13
+    },
+    {
+      "input": 2,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 12
+    },
+    {
+      "input": 2,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 8,
+      "positive_mask": 12
+    },
+    {
+      "input": 2,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 18,
+      "positive_mask": 22
+    },
+    {
+      "input": 2,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 34,
+      "positive_mask": 38
+    },
+    {
+      "input": 2,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 72,
+      "positive_mask": 76
+    },
+    {
+      "input": 2,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 128,
+      "positive_mask": 132
+    },
+    {
+      "input": 2,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 6
+    },
+    {
+      "input": 2,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 258,
+      "positive_mask": 262
+    },
+    {
+      "input": 3,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 5,
+      "positive_mask": 13
+    },
+    {
+      "input": 3,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 18,
+      "positive_mask": 26
+    },
+    {
+      "input": 3,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 16,
+      "positive_mask": 24
+    },
+    {
+      "input": 3,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 16,
+      "positive_mask": 24
+    },
+    {
+      "input": 3,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 36,
+      "positive_mask": 44
+    },
+    {
+      "input": 3,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 68,
+      "positive_mask": 76
+    },
+    {
+      "input": 3,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 144,
+      "positive_mask": 152
+    },
+    {
+      "input": 3,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 12
+    },
+    {
+      "input": 3,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 256,
+      "positive_mask": 264
+    },
+    {
+      "input": 4,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 24
+    },
+    {
+      "input": 4,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 10,
+      "positive_mask": 26
+    },
+    {
+      "input": 4,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 5,
+      "positive_mask": 21
+    },
+    {
+      "input": 4,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 8,
+      "positive_mask": 24
+    },
+    {
+      "input": 4,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 40,
+      "positive_mask": 56
+    },
+    {
+      "input": 4,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 65,
+      "positive_mask": 81
+    },
+    {
+      "input": 4,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 129,
+      "positive_mask": 145
+    },
+    {
+      "input": 4,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 17
+    },
+    {
+      "input": 4,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 257,
+      "positive_mask": 273
+    },
+    {
+      "input": 5,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 128,
+      "positive_mask": 160
+    },
+    {
+      "input": 5,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 130,
+      "positive_mask": 162
+    },
+    {
+      "input": 5,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 5,
+      "positive_mask": 37
+    },
+    {
+      "input": 5,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 9,
+      "positive_mask": 41
+    },
+    {
+      "input": 5,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 144,
+      "positive_mask": 176
+    },
+    {
+      "input": 5,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 65,
+      "positive_mask": 97
+    },
+    {
+      "input": 5,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 128,
+      "positive_mask": 160
+    },
+    {
+      "input": 5,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 1,
+      "positive_mask": 33
+    },
+    {
+      "input": 5,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 256,
+      "positive_mask": 288
+    },
+    {
+      "input": 6,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 257,
+      "positive_mask": 321
+    },
+    {
+      "input": 6,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 256,
+      "positive_mask": 320
+    },
+    {
+      "input": 6,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 260,
+      "positive_mask": 324
+    },
+    {
+      "input": 6,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 10,
+      "positive_mask": 74
+    },
+    {
+      "input": 6,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 18,
+      "positive_mask": 82
+    },
+    {
+      "input": 6,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 34,
+      "positive_mask": 98
+    },
+    {
+      "input": 6,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 130,
+      "positive_mask": 194
+    },
+    {
+      "input": 6,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 2,
+      "positive_mask": 66
+    },
+    {
+      "input": 6,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 256,
+      "positive_mask": 320
+    },
+    {
+      "input": 7,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 5,
+      "positive_mask": 133
+    },
+    {
+      "input": 7,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 34,
+      "positive_mask": 162
+    },
+    {
+      "input": 7,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 32,
+      "positive_mask": 160
+    },
+    {
+      "input": 7,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 40,
+      "positive_mask": 168
+    },
+    {
+      "input": 7,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 20,
+      "positive_mask": 148
+    },
+    {
+      "input": 7,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 32,
+      "positive_mask": 160
+    },
+    {
+      "input": 7,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 68,
+      "positive_mask": 196
+    },
+    {
+      "input": 7,
+      "fixed_input": 8,
+      "fixed_value": 0,
+      "negative_mask": 4,
+      "positive_mask": 132
+    },
+    {
+      "input": 7,
+      "fixed_input": 8,
+      "fixed_value": 1,
+      "negative_mask": 260,
+      "positive_mask": 388
+    },
+    {
+      "input": 8,
+      "fixed_input": 0,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 0,
+      "fixed_value": 1,
+      "negative_mask": 9,
+      "positive_mask": 265
+    },
+    {
+      "input": 8,
+      "fixed_input": 1,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 1,
+      "fixed_value": 1,
+      "negative_mask": 10,
+      "positive_mask": 266
+    },
+    {
+      "input": 8,
+      "fixed_input": 2,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 2,
+      "fixed_value": 1,
+      "negative_mask": 36,
+      "positive_mask": 292
+    },
+    {
+      "input": 8,
+      "fixed_input": 3,
+      "fixed_value": 0,
+      "negative_mask": 32,
+      "positive_mask": 288
+    },
+    {
+      "input": 8,
+      "fixed_input": 3,
+      "fixed_value": 1,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 4,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 4,
+      "fixed_value": 1,
+      "negative_mask": 48,
+      "positive_mask": 304
+    },
+    {
+      "input": 8,
+      "fixed_input": 5,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 5,
+      "fixed_value": 1,
+      "negative_mask": 32,
+      "positive_mask": 288
+    },
+    {
+      "input": 8,
+      "fixed_input": 6,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 6,
+      "fixed_value": 1,
+      "negative_mask": 64,
+      "positive_mask": 320
+    },
+    {
+      "input": 8,
+      "fixed_input": 7,
+      "fixed_value": 0,
+      "negative_mask": 8,
+      "positive_mask": 264
+    },
+    {
+      "input": 8,
+      "fixed_input": 7,
+      "fixed_value": 1,
+      "negative_mask": 136,
+      "positive_mask": 392
+    }
+  ],
+  "automorphisms_checked": 12,
+  "automorphism_truth_rows_checked": 6144,
+  "group_compositions_checked": 144,
+  "core_pair_orbit_minima": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ]
+  ],
+  "fixed_cnf_controls_status": "PENDING until the original worker stops",
+  "theorem_scope": "Structural counts are checked in three local Lean helpers with exact accepted lower bounds as premises; the raw-gate helper is in progress. Greedy ordering/orbit normalization remains reviewed mathematics. No UNSAT, Lean proof of the full task, or exhaustion claim."
+}

@@ -1,0 +1,65 @@
+import Mathlib
+import PEqualNP.Defs
+
+/-!
+The exact graph-theoretic third child of the L-meta-1031 reduction.
+The family predicate need not be symmetric. Nonemptiness supplies a seed
+edge, so no nonempty-vertex-type assumption is needed.
+-/
+
+namespace PEqualNP.Research.IntersectingEdges
+
+theorem triangle_free_family_has_center :
+    ∀ (n : ℕ) (G : SimpleGraph (Fin n)) (P : Fin n → Fin n → Prop),
+      (∀ a b c : Fin n, G.Adj a b → G.Adj b c → ¬ G.Adj c a) →
+      (∀ u v, P u v → G.Adj u v) →
+      (∃ u v, P u v) →
+      (∀ u v a b, P u v → P a b → u = a ∨ u = b ∨ v = a ∨ v = b) →
+      ∃ c : Fin n, ∀ u v, P u v → u = c ∨ v = c := by
+  classical
+  intro n G P htri hsub hne hpair
+  obtain ⟨u, v, huv⟩ := hne
+  by_cases hcenter : ∀ a b, P a b → a = u ∨ b = u
+  · exact ⟨u, hcenter⟩
+  push_neg at hcenter
+  obtain ⟨a, b, hab, hau, hbu⟩ := hcenter
+  have hv : v = a ∨ v = b := by
+    rcases hpair u v a b huv hab with h | h | h | h
+    · exact (hau h.symm).elim
+    · exact (hbu h.symm).elim
+    · exact Or.inl h
+    · exact Or.inr h
+  have hcross : ∃ w, w ≠ u ∧ G.Adj v w ∧
+      ∀ p q, P p q → p = v ∨ p = w ∨ q = v ∨ q = w := by
+    rcases hv with hva | hvb
+    · refine ⟨b, hbu, ?_, ?_⟩
+      · simpa only [hva] using hsub a b hab
+      · intro p q hpq
+        simpa only [hva] using hpair p q a b hpq hab
+    · refine ⟨a, hau, ?_, ?_⟩
+      · simpa only [hvb] using (hsub a b hab).symm
+      · intro p q hpq
+        have h := hpair p q a b hpq hab
+        have h' : p = b ∨ p = a ∨ q = b ∨ q = a := by tauto
+        simpa only [hvb] using h'
+  obtain ⟨w, hwu, hvw, hcross⟩ := hcross
+  refine ⟨v, ?_⟩
+  intro p q hpq
+  by_contra hmiss
+  have hpv : p ≠ v := fun h => hmiss (Or.inl h)
+  have hqv : q ≠ v := fun h => hmiss (Or.inr h)
+  have hmeet₁ := hpair p q u v hpq huv
+  have hmeet₂ := hcross p q hpq
+  have hpu : p = u ∨ q = u := by tauto
+  have hpw : p = w ∨ q = w := by tauto
+  rcases hpu with hpu | hqu
+  · rcases hpw with hpw | hqw
+    · exact hwu (hpw.symm.trans hpu)
+    · apply htri u v w (hsub u v huv) hvw
+      simpa only [hpu, hqw] using (hsub p q hpq).symm
+  · rcases hpw with hpw | hqw
+    · apply htri u v w (hsub u v huv) hvw
+      simpa only [hpw, hqu] using hsub p q hpq
+    · exact hwu (hqw.symm.trans hqu)
+
+end PEqualNP.Research.IntersectingEdges

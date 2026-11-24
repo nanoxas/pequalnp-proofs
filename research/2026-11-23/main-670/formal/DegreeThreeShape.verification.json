@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "scope": "Local research structural bridge, not an official single-file proof or a global search exhaustion result.",
+  "source": "DegreeThreeShape.lean",
+  "source_sha256": "30fff405b4153dcabf561f47902af5b6deab0d9b8e499ad0e56ed84b406d711e",
+  "object_sha256": "7a1e374a5dbb6a9f64851fdc6b476602b3c065ac7148c9ae1621f1f981ba4d69",
+  "check_log": "DegreeThreeShape.check.log",
+  "check_log_sha256": "d31ef50cd601582b17d9fdc532073e30b32ccda98de9f2b1abb7ed5aca352550",
+  "started_utc": "2026-11-24T05:17:27.952215+00:00",
+  "stopped_utc": "2026-11-24T05:17:35.884224+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 7.931,
+  "child_reaped": true,
+  "source_unchanged": true,
+  "warnings": [],
+  "axiom_audits": [
+    {
+      "declaration": "PEqualNP.Research.L670.theta_leaf_lower_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_restrict_to_leaf",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_zero_lower_bound",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_reader_count",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_two_readers_or",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_and_not_unique_successor",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.degree_three_reader_range",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "FirstGateReduction.lean",
+      "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
+      "object_sha256": "acbce21aebdf3a7a48b53a61b3efcfe917a68135674a24d5b4ce1754c741821d",
+      "verification": "FirstGateReduction.verification.json"
+    },
+    {
+      "source": "ReaderShape.lean",
+      "source_sha256": "703e8969fcbaf8f71d729d18062df6159fc1a5fdb187865b2da279730480b42f",
+      "object_sha256": "591164cc8cdc1feeed4804f3c1f03cbd5fb3dd94e2a80b0238cde1456ec4cc24",
+      "verification": "ReaderShape.verification.json"
+    }
+  ],
+  "explicit_lower_bound_premise": {
+    "statement": "forall s : Nat, HasCircuitSize 7 theta7 s -> 11 <= s",
+    "accepted_source": "PEqualNP/Outside/L_meta_517.lean",
+    "accepted_source_sha256": "bf8c6d77c9816f66f63b56bd3b3dc52b02c0b5134ef62a735f3a593c6174517a",
+    "accepted_theorem": "PEqualNP.Outside.L_meta_517",
+    "local_instantiation_status": "EXPLICIT_PREMISE; accepted source not recompiled or imported",
+    "note": "theta7 retains exactly the accepted function term order. No additional graph lower-bound premise is assumed."
+  },
+  "claims": [
+    "The theta function with an essential leaf needs at least12 gates: setting the leaf false saves an actual reader in a genuine least clean circuit.",
+    "For each raw input0,1,2,3,5,8, its zero restriction relabels exactly to theta-plus-leaf and therefore needs at least12 gates.",
+    "Every such raw input has one or two actual distinct reader gates in a Least clean target9 circuit with at most14 gates.",
+    "If there are two distinct readers, both are OR gates.",
+    "Any AND/NOT reader has exactly one distinct successor gate reading its output. A separate sole-raw-reader hypothesis is unnecessary."
+  ],
+  "counting_convention": "Reader counts are distinct gate identities; duplicated input ports in one gate count once.",
+  "reproduction": "python3 infra-lean/bounded_check.py main-670/formal/DegreeThreeShape.lean --seconds 180 --label DegreeThreeShape2 --import-workers 1 --object",
+  "prior_attempt": {
+    "label": "DegreeThreeShape1",
+    "status": "ELABORATION_ERROR",
+    "note": "An inequality symmetry field projection required explicit Ne.symm. No proof claim attaches to the failed optional successor declaration."
+  }
+}

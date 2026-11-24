@@ -1,0 +1,48 @@
+{
+  "status": "LEAN_AND_AXIOM_AUDIT_PASS",
+  "recorded_at": "2026-11-24T06:05:36.553892+00:00",
+  "source": "main-909/formal/BasisCompleteness.lean",
+  "source_sha256": "2906238febf158fd359c89b568265c61e7b3f7901180c81dc904127ead66366b",
+  "source_bytes": 1288,
+  "object_sha256": "b30d25d154964af4884a42d273db3cace4048ba9ca8e6053343c1d11115f75ba",
+  "compile_exit_code": 0,
+  "elapsed_seconds": 8.232,
+  "source_unchanged": true,
+  "child_reaped": true,
+  "warnings": false,
+  "audited_theorem": "PEqualNP.Research.BasisCompleteness.basis_complete",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "Exact second child of R_meta_909_1: all maximal independent sets occur in the explicit15-mask list, and every one-point extension of a size4 row contains an extension of a size3 row.",
+  "command": [
+    "python3",
+    "infra-lean/bounded_check.py",
+    "main-909/formal/BasisCompleteness.lean",
+    "--seconds",
+    "180",
+    "--label",
+    "R909Basis4",
+    "--import-workers",
+    "1",
+    "--object"
+  ],
+  "log_sha256": "8703a1308695362b38d2b46581926fb0ae910336f9b777f66a0b1b90fce1c9d3",
+  "prior_attempts": [
+    {
+      "label": "R909Basis1",
+      "status": "ELABORATION_FAILED_DECIDABLE_INSTANCE"
+    },
+    {
+      "label": "R909Basis2",
+      "status": "ELABORATION_FAILED_DECIDABLE_INSTANCE"
+    },
+    {
+      "label": "R909Basis3",
+      "status": "ELABORATION_FAILED_DECIDABLE_INSTANCE"
+    }
+  ],
+  "resolution": "Scoped synthInstance.maxSize increased; all checks remain ordinary kernel computation, without native_decide."
+}

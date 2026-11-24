@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "scope": "Local research structural bridge; not the official single-file artifact or an UNSAT certificate.",
+  "source": "RawGateShape.lean",
+  "source_sha256": "075d337ab375a87011c332ff59bff528df5f33e78cf0dfb85e8f0ea964690f51",
+  "object_sha256": "b3b4f666284e5fda63801cda662093234496cb13ec8d60e00924ec26535779e2",
+  "check_log": "RawGateShape.check.log",
+  "check_log_sha256": "31dfd7ec83b84dbad10c4034a51fc86dfee648156869d2673236f5ee614e3008",
+  "started_utc": "2026-11-24T05:21:12.548677+00:00",
+  "stopped_utc": "2026-11-24T05:21:17.524518+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 4.976,
+  "child_reaped": true,
+  "source_unchanged": true,
+  "warnings": [],
+  "axiom_audits": [
+    {
+      "declaration": "PEqualNP.Research.L670.pivot_input_facts",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.raw_binary_second_reader",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.raw_or_both_second_readers",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.no_repeated_raw_gate",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.no_raw_and",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "declaration": "PEqualNP.Research.L670.first_gate_not_and",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "source": "FirstGateReduction.lean",
+      "source_sha256": "738ec584e0f579694d54e0c66e63fcea0e6896b0d07710a046bebb50687e4ae8",
+      "object_sha256": "acbce21aebdf3a7a48b53a61b3efcfe917a68135674a24d5b4ce1754c741821d",
+      "verification": "FirstGateReduction.verification.json"
+    },
+    {
+      "source": "ReaderShape.lean",
+      "source_sha256": "703e8969fcbaf8f71d729d18062df6159fc1a5fdb187865b2da279730480b42f",
+      "object_sha256": "591164cc8cdc1feeed4804f3c1f03cbd5fb3dd94e2a80b0238cde1456ec4cc24",
+      "verification": "ReaderShape.verification.json"
+    },
+    {
+      "source": "DegreeThreeShape.lean",
+      "source_sha256": "30fff405b4153dcabf561f47902af5b6deab0d9b8e499ad0e56ed84b406d711e",
+      "object_sha256": "7a1e374a5dbb6a9f64851fdc6b476602b3c065ac7148c9ae1621f1f981ba4d69",
+      "verification": "DegreeThreeShape.verification.json"
+    }
+  ],
+  "premise_scope": {
+    "pivot_input_facts": "No lower-bound or circuit premise: 144 explicit pivotal rows over all distinct raw pairs and both fixed values.",
+    "raw_binary_second_reader": "Only clean circuit semantics and exact target9 computation; no lower-bound or Least premise.",
+    "raw_or_both_second_readers": "Only clean circuit semantics and exact target9 computation; no lower-bound or Least premise.",
+    "no_repeated_raw_gate": "Genuine Least clean target9 circuit; no size or lower-bound premise.",
+    "no_raw_and": "Genuine Least clean target9 circuit of size at most14; exact accepted L1007 and L517 statements as explicit premises.",
+    "first_gate_not_and": "Same premises as no_raw_and."
+  },
+  "claims": [
+    "Fixing any other raw input j to either0 or1 leaves each distinct input i essential.",
+    "A binary raw-raw AND or OR with distinct operands requires another reader of either operand.",
+    "A least target9 circuit cannot contain a repeated-raw-input AND/OR gate, since it is an alias.",
+    "No least target9 circuit with at most14 gates can contain an AND gate with two raw operands, at any position.",
+    "In particular, the first gate cannot be AND."
+  ],
+  "reproduction": "python3 infra-lean/bounded_check.py main-670/formal/RawGateShape.lean --seconds 180 --label RawGateShape1 --import-workers 1 --object"
+}

@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T05:54:46.821255+00:00",
+  "review_type": "Independent read-only source and mathematical completeness review",
+  "program_sha256": "3f6b5bed89c20af0636dc99a34711d78983c48d87b097dd84c4f25b084281052",
+  "dependency_sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5",
+  "public_AndCount_defs_sha256": "4e9aa467f041254025f1d29d39b5f21dcc4bf31adb64de2e7d3d7fd36bd02530",
+  "trimmed_posted_statement_sha256": "1e231b4c177177857113e67ae068aba9d0eefc6f752cb4feb154017da978f5b4",
+  "posted_goal": "Existence of a WellFormed AndCountCircuit on the specified Petersen graph with at most6 AND gates, at most2 actual bare-reader gates per variable, and exact maximal-independent-set/one-vertex-extension behavior.",
+  "reviewed_points": [
+    "The15 listed graph edges agree with the posted SimpleGraph.fromRel expression; Boolean edge detection is insensitive to the orientation used to list each edge.",
+    "All1024 masks are enumerated to obtain exactly15 maximal independent sets and100 distinct one-vertex extensions. These are exactly the negative and positive inputs quantified by the posted partial specification.",
+    "Each selected gate-side summand is either a raw variable or an earlier gate, matching the explicit WellFormed condition and finite-fuel evaluator. No fan-in bound on a free OR side is added.",
+    "The side OR equivalences, binary AND equivalences and selected-output OR constraints are correct for empty, overlapping and nested sides; empty outputs and unused gates remain allowed.",
+    "Every vertex belongs to a negative maximal independent set, so any output variable would violate a negative row. Omitting output variables is therefore complete for this task.",
+    "Any witness with fewer than6 gates can be padded by false gates with both sides empty, preserving old gate values, outputs, well-formedness and all bare-reader counts.",
+    "The bare_reader hit is equivalent to left-selection OR right-selection, so a variable on both sides of one gate counts once. Cardinality at most2 is imposed across actual gate identities.",
+    "The model imposes no full-edge-function positive requirement. The post-SAT full global-soundness check follows from monotonicity and all maximal-independent negatives; the optional full_edge_function flag is observational.",
+    "No unproved symmetry, nonempty-side, disjoint-side, liveness or minimum-size constraint is added."
+  ],
+  "fixed_controls": {
+    "status": "PASS",
+    "program_sha256": "3f6b5bed89c20af0636dc99a34711d78983c48d87b097dd84c4f25b084281052",
+    "dependency_sha256": "7fd1133bf6123d94420d9478c0297ae0ecbf3784f248160a8dad4aa61ce20ab5",
+    "controls": [
+      {
+        "name": "nested",
+        "result": "SAT_AS_EXPECTED"
+      },
+      {
+        "name": "repeated-port-counted-once",
+        "result": "SAT_AS_EXPECTED"
+      },
+      {
+        "name": "wrong-output-bit",
+        "result": "UNSAT_AS_EXPECTED"
+      },
+      {
+        "name": "three-bare-readers-rejected",
+        "result": "UNSAT_AS_EXPECTED"
+      }
+    ],
+    "utc": "2026-11-24T05:53:36.750297+00:00"
+  },
+  "scope": "Source/model review and fixed-circuit controls only. The target run and any external certificate remain separate; no Lean encoding theorem or target result is asserted."
+}
