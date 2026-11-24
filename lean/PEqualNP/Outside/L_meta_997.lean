@@ -83,6 +83,16 @@ abbrev computesRows {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin n)) (o 
   ∀ (i : Fin m) (x : Fin n → Bool),
     (C.wires (List.ofFn x)).getD (o i) false = decide (∃ p ∈ S i, x p = true)
 
+abbrev rowLinearity {n m : ℕ} (S : Fin m → Finset (Fin n)) : Prop :=
+  ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1
+
+abbrev rowOutputs {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin n)) (o : Fin m → ℕ) : Prop :=
+  ∀ i (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true)
+
+abbrev lightOnSparse {n : ℕ} (C : Circuit) (t k : ℕ) : Prop :=
+  ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < k →
+    value C x (n+t) = true
+
 lemma input_value {n : ℕ} (C : Circuit) (x : Fin n → Bool) (p : Fin n) :
     value C x p = x p := by
   change (run C.gates (List.ofFn x)).getD p false = x p
@@ -468,10 +478,6 @@ theorem card_light {n k : ℕ} (T : Finset (Fin n)) (C : Circuit) (o t : ℕ)
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
-
-end L_meta_997.Light
 
 namespace L_meta_997.Light
 open PEqualNP.CircuitLowerBounds
@@ -487,8 +493,8 @@ noncomputable def refunds {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circui
 /-- Each disjoint row of size at least two contributes its own output wire to the refund. -/
 theorem disjoint_outputs_refunded {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (y : Finset (Fin n)) (D : Finset (Fin m))
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hpair : rowLinearity S)
+    (hout : rowOutputs C S o)
     (hD : ∀ i ∈ D, Disjoint (S i) y ∧ 2 ≤ (S i).card) : D.card ≤ (refunds S C y).card := by
   classical
   have hs (i : Fin m) : support C (o i) = S i := by
@@ -796,10 +802,6 @@ lemma guard_empty_gates {n k : ℕ} (C : Circuit) (t : ℕ) (y : Finset (Fin n))
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
-
-end L_meta_997.Light
 
 namespace L_meta_997_aux.Heavy
 open L_meta_997.Light
@@ -987,8 +989,8 @@ lemma heavy_window {n m : ℕ} (C D : Circuit) (Y : Finset (Fin n))
     (hlen : D.size = C.size)
     (hG : ∀ g ∈ D.gates, (g.op = GateOp.and ∨ g.op = GateOp.or) ∧ g.inputs.length ≤ 2)
     (hagree : ∀ (x : Fin n → Bool), (∀ v ∈ Y, x v = true) → ∀ w, value D x w = value C x w)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (houtput : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true)) :
+    (hlin : rowLinearity S)
+    (houtput : rowOutputs C S o) :
     let H := Finset.univ.filter (fun i => Disjoint Y (S i))
     (∑ i ∈ H, ((S i).card - 1)) ≤ (H.biUnion (fun i => heavyG C Y (S i))).card := by
   classical
@@ -1046,8 +1048,8 @@ lemma heavy_original {n m : ℕ} (C : Circuit) (Y : Finset (Fin n)) (t : ℕ)
     (hg : L_meta_997.Light.hasAllowedGates C)
     (hu : L_meta_997.Light.onlyNegAt C t)
     (hy : value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (houtput : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true)) :
+    (hlin : rowLinearity S)
+    (houtput : rowOutputs C S o) :
     let H := Finset.univ.filter (fun i => Disjoint Y (S i))
     (∑ i ∈ H, ((S i).card - 1)) ≤ (H.biUnion (fun i => heavyG C Y (S i))).card := by
   obtain ⟨D,hlen,hgood,hagree⟩ := heavy_model C Y t hg hu hy
@@ -1058,8 +1060,8 @@ theorem heavy_charge_set {n m : ℕ} (C : Circuit) (Y : Finset (Fin n)) (t : ℕ
     (hg : L_meta_997.Light.hasAllowedGates C)
     (hu : L_meta_997.Light.onlyNegAt C t)
     (hy : value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (houtput : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true)) :
+    (hlin : rowLinearity S)
+    (houtput : rowOutputs C S o) :
     ∃ U : Finset (Fin C.gates.length),
       (∀ g ∈ U, (C.wires (List.ofFn (fun p : Fin n => decide (p ∈ Y)))).getD (n + g.val) false = false) ∧
       (∑ i ∈ Finset.univ.filter (fun i => Disjoint (S i) Y), ((S i).card-1)) ≤ U.card := by
@@ -1088,12 +1090,12 @@ open L_meta_997.Light
 open PEqualNP.CircuitLowerBounds
 
 lemma output_singleton {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit) (o : Fin m → ℕ)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (out : rowOutputs C S o)
     (i : Fin m) (p : Fin n) : value C (fun v => decide (v = p)) (o i) = true ↔ p ∈ S i := by
   rw [out]; simp
 
 lemma output_gate_of_card_two {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit) (o : Fin m → ℕ)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (out : rowOutputs C S o)
     (i : Fin m) (hc : 2 ≤ (S i).card) : n ≤ o i ∧ o i < n + C.gates.length := by
   constructor
   · by_contra! h
@@ -1114,8 +1116,8 @@ lemma output_gate_of_card_two {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Ci
     contradiction
 
 lemma output_ne_of_nontrivial {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit) (o : Fin m → ℕ)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hcross : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (out : rowOutputs C S o)
+    (hcross : rowLinearity S)
     (i j : Fin m) (hc : 2 ≤ (S i).card) (hne : i ≠ j) : o i ≠ o j := by
   intro oe
   have sub : S i ⊆ S i ∩ S j := by
@@ -1214,7 +1216,7 @@ lemma two_window_with_credits {n m : ℕ} (C : Circuit) (y : Finset (Fin n)) (t 
     (hg : L_meta_997.Light.hasAllowedGates C)
     (hu : L_meta_997.Light.onlyNegAt C t)
     (hy : (C.wires (List.ofFn (fun p => decide (p ∈ y)))).getD (n+t) false = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), (C.wires (List.ofFn x)).getD (o i) false = decide (∃ p ∈ S i, x p = true))
     (hroom : (∑ i : Fin m, if Disjoint (S i) y then 0 else min y.card (S i).card - 2) ≤ (refunds S C y).card) :
     (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
@@ -1233,7 +1235,7 @@ lemma two_window_of_card_le_two {n m : ℕ} (C : Circuit) (y : Finset (Fin n)) (
     (hg : L_meta_997.Light.hasAllowedGates C)
     (hu : L_meta_997.Light.onlyNegAt C t)
     (hy : (C.wires (List.ofFn (fun p => decide (p ∈ y)))).getD (n+t) false = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), (C.wires (List.ofFn x)).getD (o i) false = decide (∃ p ∈ S i, x p = true))
     (hsmall : y.card ≤ 2) :
     (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
@@ -1247,7 +1249,7 @@ end L_meta_997_aux
 namespace L_meta_997.Small
 
 lemma line_union {n m : ℕ} (S : Fin m → Finset (Fin n))
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) (I : Finset (Fin m)) :
+    (hlin : L_meta_997.Light.rowLinearity S) (I : Finset (Fin m)) :
     (∑ i ∈ I, (S i).card) ≤ (I.biUnion S).card + I.card.choose 2 := by
   classical
   induction I using Finset.induction_on with
@@ -1345,22 +1347,14 @@ def unionWire {n : ℕ} (C : Circuit) (w : ℕ) : Prop :=
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
 
-end L_meta_997.Light
-
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
-
-end L_meta_997.Light
 
 namespace L_meta_997.Light
 open PEqualNP.CircuitLowerBounds
 
 theorem sum_row_weights {n m : ℕ} (S : Fin m → Finset (Fin n)) (I : Finset (Fin m))
     (C : Circuit) (f : Fin m → ℕ)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hweight : ∀ i ∈ I, f i ≤ (assigned C (S i)).card + 1) : (∑ i ∈ I, f i) ≤ (I.biUnion (fun i => assigned C (S i))).card + I.card := by
   classical
   let G := fun i => assigned C (S i)
@@ -1380,7 +1374,7 @@ theorem sum_row_weights {n m : ℕ} (S : Fin m → Finset (Fin n)) (I : Finset (
 
 private lemma projection_gate_count {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (z : ℕ) (A : Finset ℕ) (hD : 2 ≤ (S d).card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hzrange : z ∈ Finset.Ico n (n+C.size)) (htz : value C (fun _ : Fin n => false) z=true)
     (hzs : ∀ p : Fin n, p ∈ support C z)
     (hAi : A ⊆ Finset.Ico n (n+C.size)) (hAz : z ∉ A) (hAs : ∀ w ∈ A, support (n:=n) C w=∅)
@@ -1455,7 +1449,7 @@ private lemma projection_gate_count {n m : ℕ} (S : Fin m → Finset (Fin n)) (
 
 lemma weighted_exceptional_count {n m k : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ k) (hD : 2 ≤ (S d).card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : L_meta_997.Light.hasAllowedGates C)
     (hu : L_meta_997.Light.onlyNegAt C t)
     (hlight : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < k →
@@ -1488,17 +1482,13 @@ lemma weighted_exceptional_count {n m k : ℕ} (S : Fin m → Finset (Fin n)) (d
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
-
-end L_meta_997.Light
 
 namespace L_meta_997.Small
 
 /-- Counting row pairs at each input bounds the total incidence in a linear family. -/
 lemma weighted_pair_incidence {n m : ℕ} (S : Fin m → Finset (Fin n)) (I : Finset (Fin m))
     (q : ℕ) (V : Finset (Fin n)) (hsub : ∀ i ∈ I, S i ⊆ V)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
+    (hlin : L_meta_997.Light.rowLinearity S) :
     q * (∑ i ∈ I, (S i).card) ≤ V.card * (q+1).choose 2 + I.card.choose 2 := by
   classical
   let N (p : Fin n) := I.filter fun i => p ∈ S i
@@ -1552,22 +1542,15 @@ lemma weighted_pair_incidence {n m : ℕ} (S : Fin m → Finset (Fin n)) (I : Fi
 
 lemma pair_incidence {n m : ℕ} (S : Fin m → Finset (Fin n)) (I : Finset (Fin m))
     (V : Finset (Fin n)) (hsub : ∀ i ∈ I, S i ⊆ V)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
+    (hlin : L_meta_997.Light.rowLinearity S) :
     2 * (∑ i ∈ I, (S i).card) ≤ 3 * V.card + I.card.choose 2 := by
   simpa [Nat.choose,Nat.mul_comm] using weighted_pair_incidence S I 2 V hsub hlin
 
 end L_meta_997.Small
 
-namespace L_meta_997.Small
-
-end L_meta_997.Small
 
 open L_meta_997.Light (hasAllowedGates onlyNegAt switchLight computesRows refunds)
 
-namespace L_meta_997.Small
-open L_meta_997.Light
-
-end L_meta_997.Small
 
 namespace L_meta_997.Light
 
@@ -2013,28 +1996,10 @@ lemma low_sharp_private_or_extra {n k : ℕ} (C : Circuit) (T : Finset (Fin n)) 
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds
 
-end L_meta_997.Light
 
-namespace L_meta_997.Small
 
-end L_meta_997.Small
 
-namespace L_meta_997.Small
-open L_meta_997.Light
-
-end L_meta_997.Small
-
-namespace L_meta_997.Small
-
-end L_meta_997.Small
-
-namespace L_meta_997.Small
-open L_meta_997.Light
-
-end L_meta_997.Small
 
 namespace L_meta_997.Light
 open PEqualNP.CircuitLowerBounds
@@ -2465,7 +2430,7 @@ theorem low_budget_with_qualified_gate_set {n m k : ℕ} (C : Circuit) (Y : Fins
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (_hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     (bonus : Fin m → ℕ)
     (hb : ∀ i, Disjoint (S i) Y → bonus i = 0)
@@ -2621,7 +2586,7 @@ theorem low_budget_with_gate_set {n m k : ℕ} (C : Circuit) (Y : Finset (Fin n)
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (_hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     (bonus : Fin m → ℕ)
     (hb : ∀ i, Disjoint (S i) Y → bonus i = 0)
@@ -2652,7 +2617,7 @@ theorem low_budget_with_ordered_gate_set {n m k : ℕ} (C : Circuit) (Y : Finset
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (_hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     (bonus : Fin m → ℕ)
     (hb : ∀ i, Disjoint (S i) Y → bonus i = 0)
@@ -2682,7 +2647,7 @@ theorem low_budget_with_terminal_bonus {n m k : ℕ} (C : Circuit) (Y : Finset (
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     (bonus : Fin m → ℕ)
     (hb : ∀ i, Disjoint (S i) Y → bonus i = 0)
@@ -2721,7 +2686,7 @@ theorem low_budget_with_terminals {n m k : ℕ} (C : Circuit) (Y : Finset (Fin n
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     (terminal : ∀ i ∈ underDisjoint C S Y, ∃ w, w ∈ Finset.Ico n (n+C.size) ∧ w ≠ n+t ∧
       ¬opAnd C n w ∧ S i ⊆ Light.support C w ∧ Heavy.supp C Y w = S i) :
@@ -2741,7 +2706,7 @@ theorem disjoint_terminal_deficit {n m k : ℕ} (C : Circuit) (Y : Finset (Fin n
     (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p = true)).card < k →
       L_meta_997.Light.value C x (n+t) = true)
     (hy : L_meta_997.Light.value C (fun p => decide (p ∈ Y)) (n+t) = false)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (ho : ∀ (i : Fin m) (x : Fin n → Bool), L_meta_997.Light.value C x (o i) = decide (∃ p ∈ S i, x p = true))
     : (∑ i, if Disjoint (S i) Y then (S i).card else min k (S i).card) + k ≤
       C.size + m + ∑ i ∈ underDisjoint C S Y, ((S i).card-(k+1)) := by
@@ -2762,7 +2727,7 @@ namespace L_meta_997.Small
 lemma quota_geometry {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (Fin m))
     (k : ℕ) (V : Finset (Fin n)) (hk : 3 ≤ k) (hsize : V.card ≤ 6*k+1 ∧ V.card+3 ≤ 7*k)
     (hb : B.Nonempty) (hsub : ∀ i ∈ B, S i ⊆ V) (hbig : ∀ i ∈ B, k+2 ≤ (S i).card)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
+    (hlin : L_meta_997.Light.rowLinearity S) :
     ∃ d ∈ B, (∀ i ∈ B, (S i).card ≤ (S d).card) ∧
       ((∑ i ∈ B, (S i).card) ≤ B.card*(k+1)+(S d).card+(k-1) ∨
        (∑ i ∈ B, (S i).card) ≤ B.card*(k+2)+k) := by
@@ -2844,12 +2809,11 @@ open PEqualNP.CircuitLowerBounds
 
 lemma weak_disjoint_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card) (hD : 2 ≤ (S d).card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hlight : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < y.card →
-      value C x (n+t) = true)
+    (hout : rowOutputs C S o)
+    (hlight : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t) = false)
     (hweak : (assigned C (S d)).card+1 < (S d).card)
     (_hdY : Disjoint (S d) y) :
@@ -2894,12 +2858,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Small
 
 lemma window_terminal_geometry {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hlight : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < y.card →
-      value C x (n+t) = true)
+    (hout : rowOutputs C S o)
+    (hlight : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t) = false)
     (hlarge : 3 ≤ y.card)
     (V : Finset (Fin n))
@@ -2959,12 +2922,11 @@ open PEqualNP.CircuitLowerBounds
 
 lemma window_joint_pool {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hlight : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < y.card →
-      value C x (n+t) = true)
+    (hout : rowOutputs C S o)
+    (hlight : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t) = false)
     (hlarge : 3 ≤ y.card)
     (V : Finset (Fin n))
@@ -2989,7 +2951,7 @@ end L_meta_997.Light
 namespace L_meta_997.Small
 open L_meta_997.Light
 
-theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
 
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy
@@ -3007,74 +2969,6 @@ theorem size_window_joint : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : 
 end L_meta_997.Small
 
 
-namespace L_meta_997.Small
-
-/-- On nineteen outside points the terminal count can miss by at most one
-    gate whenever the distinguished-row count does not already suffice. -/
-lemma quota_geometry_19 {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (Fin m))
-    (V : Finset (Fin n)) (hv : V.card ≤ 19)
-    (hb : B.Nonempty) (hsub : ∀ i ∈ B, S i ⊆ V) (hbig : ∀ i ∈ B, 5 ≤ (S i).card)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
-    ∃ d ∈ B, ((∑ i ∈ B, (S i).card) ≤ B.card*4+(S d).card+2 ∨
-       (∑ i ∈ B, (S i).card) ≤ B.card*5+4) := by
-  classical
-  obtain ⟨d,hd,hm⟩ := B.exists_max_image (fun i => (S i).card) hb
-  refine ⟨d,hd,?_⟩
-  have cap (I : Finset (Fin m)) (hI : I ⊆ B) :=
-    pair_incidence S I V (fun i hi => hsub i (hI hi)) hlin
-  have eight (I : Finset (Fin m)) (hI : I ⊆ B) (hc : I.card = 8) :
-      (∑ i ∈ I, (S i).card) ≤ 42 := by
-    have h := cap I hI
-    rw [hc] at h
-    norm_num [Nat.choose] at h
-    omega
-  by_cases large : 8 ≤ B.card
-  · right
-    let E := B.filter (fun i => 6 ≤ (S i).card)
-    have hEB : E ⊆ B := Finset.filter_subset _ _
-    have addcost (J I : Finset (Fin m)) (hJI : J ⊆ I) (hIB : I ⊆ B)
-        (hJ : ∀ i ∈ J, 6 ≤ (S i).card) :
-        5*I.card + J.card ≤ ∑ i ∈ I, (S i).card := by
-      have hp := Finset.sum_le_sum (s:=I) (f:=fun i => 5+(if i ∈ J then 1 else 0))
-        (g:=fun i => (S i).card) (fun i hi => by
-          by_cases h : i ∈ J
-          · simpa [h] using hJ i h
-          · simpa [h] using hbig i (hIB hi))
-      simpa [Finset.sum_add_distrib,Finset.sum_boole,Finset.inter_eq_right.mpr hJI,
-        Nat.mul_comm] using hp
-    have he : E.card ≤ 2 := by
-      by_contra! h
-      obtain ⟨J,hJE,h3⟩ := Finset.exists_subset_card_eq (s:=E) (n:=3) (by omega)
-      obtain ⟨I,hJI,hIB,h8⟩ := Finset.exists_subsuperset_card_eq (hJE.trans hEB)
-        (n:=8) (by omega) large
-      have lo := addcost J I hJI hIB (fun i hi => (Finset.mem_filter.mp (hJE hi)).2)
-      have up := eight I hIB h8
-      omega
-    obtain ⟨I,hEI,hIB,h8⟩ := Finset.exists_subsuperset_card_eq hEB (n:=8) (by omega) large
-    have hout (i) (hi : i ∈ B \ I) : (S i).card = 5 := by
-      obtain ⟨hb, hn⟩ := Finset.mem_sdiff.mp hi
-      have hlo := hbig i hb
-      have hu : ¬6 ≤ (S i).card := fun h => hn (hEI (Finset.mem_filter.mpr ⟨hb,h⟩))
-      omega
-    have hsum := Finset.sum_congr (s₁:=B \ I) rfl hout
-    rw [Finset.sum_const,smul_eq_mul,Finset.card_sdiff_of_subset hIB,h8] at hsum
-    have hsplit := Finset.sum_sdiff hIB (f:=fun i => (S i).card)
-    have up := eight I hIB h8
-    omega
-  · have hinc := cap B (by rfl)
-    have hmax := Finset.sum_le_sum (s:=B) hm
-    simp only [Finset.sum_const,smul_eq_mul] at hmax
-    have hcap := line_union S hlin B
-    have hU : B.biUnion S ⊆ V := by
-      intro p hp
-      obtain ⟨i,hi,he⟩ := Finset.mem_biUnion.mp hp
-      exact hsub i hi he
-    have hV := Finset.card_le_card hU
-    have hpos := Finset.card_pos.mpr hb
-    generalize hr : B.card = r at *
-    interval_cases r <;> norm_num [Nat.choose] at * <;> omega
-
-end L_meta_997.Small
 
 namespace L_meta_997.Light
 open PEqualNP.CircuitLowerBounds L_meta_997.Small
@@ -3086,41 +2980,13 @@ def threeRowQuota {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit) (y : 
   B.Nonempty → ∃ d ∈ B, (∑ i ∈ B, (S i).card) ≤ B.card*4+(S d).card+2 ∨
     (∑ i ∈ B, (S i).card) ≤ B.card*5+4
 
-lemma threeRowQuota_of_pool {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
-    (y V : Finset (Fin n)) (hk : y.card=3) (hv : V.card ≤ 19)
-    (hcover : ∀ i, Disjoint (S i) y → (assigned C (S i)).card+1 < (S i).card →
-      y.card+2 ≤ (S i).card → S i ⊆ V)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) : threeRowQuota S C y := by
-  intro h
-  apply quota_geometry_19 S _ V hv h
-  · intro i hi
-    obtain ⟨hd,hp,hs⟩ := (Finset.mem_filter.mp hi).2
-    exact hcover i hd hp hs
-  · intro i hi
-    have hs := (Finset.mem_filter.mp hi).2.2.2
-    omega
-  · exact hlin
-
-private lemma small_or_three_quota {n m : ℕ} (S : Fin m → Finset (Fin n))
-    (C : Circuit) (y : Finset (Fin n)) (hn : n ≤ 22)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
-    (y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)) ∨ (y.card=3 ∧ threeRowQuota S C y) := by
-  by_cases hs : y.card ≤ 2 ∨ (n ≤ 7*y.card+1 ∧ n+3 ≤ 8*y.card)
-  · exact Or.inl hs
-  have hk : y.card=3 := by omega
-  refine Or.inr ⟨hk,threeRowQuota_of_pool S C y (Finset.univ \ y) hk ?_ ?_ hlin⟩
-  · rw [Finset.card_sdiff_of_subset (Finset.subset_univ y),Finset.card_univ,Fintype.card_fin]
-    omega
-  · exact fun _ hd _ _ p hp => Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp hd hp⟩
-
 lemma window_quota_credit {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hlight : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p : Fin n => x p = true)).card < y.card →
-      value C x (n+t) = true)
+    (hout : rowOutputs C S o)
+    (hlight : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t) = false)
     (hk3 : y.card = 3)
     (hq : threeRowQuota S C y) (slack : ℕ) (bonus : ℕ)
@@ -3179,7 +3045,7 @@ lemma window_quota_credit {n m : ℕ} (S : Fin m → Finset (Fin n))
 end L_meta_997.Light
 namespace L_meta_997.Small
 open L_meta_997.Light
-theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
+theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (Finset.univ.filter (fun i =>
     Disjoint (S i) y ∧ (assigned C (S i)).card+1 < (S i).card ∧
     y.card+2 ≤ (S i).card)).card < (refunds S C y).card → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
@@ -3198,15 +3064,10 @@ theorem three_window_extra_refund : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
 
 end L_meta_997.Small
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds L_meta_997.Small
-open L_meta_997_refund L_meta_997_aux
-
-end L_meta_997.Light
 
 namespace L_meta_997.Small
 open L_meta_997.Light L_meta_997_aux
-theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
+theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ i, ¬ Disjoint (S i) y ∧
     min y.card (S i).card ≤ ((assigned C (S i)).erase (n+t)).card) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hlight hy hmore
@@ -3249,7 +3110,7 @@ theorem three_window_touching_spare : ∀ (n m : ℕ) (S : Fin m → Finset (Fin
   · simpa only [Finset.sum_filter,PEqualNP.CircuitLowerBounds.Circuit.size] using hterm
 
 
-theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
+theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∃ A : Finset ℕ, y.card ≤ A.card ∧ A ⊆ Finset.Ico n (n+C.size) ∧ n+t ∉ A ∧
     (∀ w ∈ A, ∀ i, w ∈ assigned C (S i) → i ∈ underDisjoint C S y ∧ ¬andAt C n w) ∧
     (∀ w ∈ A, ∀ i ∈ underDisjoint C S y, ¬andAt C n w → S i ⊆ support C w →
       L_meta_997_aux.Heavy.supp C y w ≠ S i)) → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
@@ -3282,7 +3143,7 @@ theorem three_window_gate_set : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (
     omega
 
 
-theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     22 ≤ n ∧ y.card = 3 ∧ ∃ A : Finset ℕ, A.card = 2 ∧ A ⊆ Finset.Ico n (n+t) ∧
       (∀ w ∈ A, support (n:=n) C w = ∅ ∧ value C (fun p => decide (p ∈ y)) w = true) ∧
       ∀ w ∈ Finset.Ico n (n+C.size), w ≠ n+t → w ∉ A →
@@ -3337,7 +3198,7 @@ theorem three_window_rigidity : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (
     · exact af hv hi hsub
 
 
-theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ w ∈ Finset.Ico n (n+t), (support (n:=n) C w).Nonempty →
       ∃ i, w ∈ assigned C (S i) := by
   classical
@@ -3372,7 +3233,7 @@ theorem three_window_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C 
   exact ⟨i,Finset.mem_filter.mpr ⟨hw',hinc,by omega⟩⟩
 
 
-theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t, ((support C w) ∩ S i).card ≤ 1 := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy hbad
@@ -3477,7 +3338,7 @@ theorem three_window_prefix_pairs : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n
       omega
 
 
-theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∀ i ∈ underDisjoint C S y, ∀ w < n+t,
       L_meta_997_aux.Heavy.supp C y w ⊆ S i →
       (L_meta_997_aux.Heavy.supp C y w).card ≤ 1 := by
@@ -3537,7 +3398,7 @@ theorem three_window_high_prefix : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)
       omega
 
 
-theorem three_window_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem three_window_first_pair : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     ∃ w r : ℕ, n+t < r ∧ r < w ∧
       (∃ g ∈ C.gates[w-n]?, g.op = .or ∧
         (g.inputs = [n+t,r] ∨ g.inputs = [r,n+t])) ∧
@@ -3766,7 +3627,7 @@ private lemma before_output_charge {n : ℕ} (C : Circuit) (T : Finset (Fin n)) 
     exact Finset.mem_Ico.mpr ⟨lr.1,by change u<n+gs.length; have hjj : j.val < gs.length := j.isLt; omega⟩
 
 set_option maxHeartbeats 1400000 in
-theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card = 3 ∧ threeRowQuota S C y) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy
   by_contra bad
@@ -3955,51 +3816,6 @@ theorem three_window_bound : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C :
   omega
 
 
-theorem num_inputs_twenty_two : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
-  intro n m S C o t y hn hlin hg hu ho hl hy
-  rcases small_or_three_quota S C y hn hlin with hs | ⟨hk,hq⟩
-  · exact size_window_joint n m S C o t y hs hlin hg hu ho hl hy
-  exact three_window_bound n m S C o t y ⟨hk,hq⟩ hlin hg hu ho hl hy
-
-theorem size_window_seven : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 7*y.card+1) → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
-  intro n m S C o t y hsize
-  by_cases hn : n ≤ 22
-  · exact num_inputs_twenty_two n m S C o t y hn
-  · apply size_window_joint n m S C o t y
-    omega
-
-lemma five_row_surplus {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (Fin m))
-    (r : ℕ) (hr : 5 ≤ r) (hb : r ≤ B.card) (hbig : ∀ i ∈ B, 5 ≤ (S i).card)
-    (cap : ∀ I ⊆ B, I.card=r → (∑ i ∈ I, (S i).card) ≤ 5*r+4) :
-    (∑ i ∈ B, (S i).card) ≤ B.card*5+4 := by
-  classical
-  let E := B.filter (fun i => 6 ≤ (S i).card)
-  have hEB : E ⊆ B := Finset.filter_subset _ _
-  have he : E.card ≤ 4 := by
-    by_contra! h
-    obtain ⟨J,hJE,h5⟩ := Finset.exists_subset_card_eq (s:=E) (n:=5) (by omega)
-    obtain ⟨I,hJI,hIB,hrI⟩ := Finset.exists_subsuperset_card_eq (hJE.trans hEB)
-      (n:=r) (by omega) hb
-    have hp := Finset.sum_le_sum (s:=I) (f:=fun i => 5+(if i ∈ J then 1 else 0))
-      (g:=fun i => (S i).card) (fun i hi => by
-        by_cases h : i ∈ J
-        · simpa [h] using (Finset.mem_filter.mp (hJE h)).2
-        · simpa [h] using hbig i (hIB hi))
-    simp [Finset.sum_add_distrib,Finset.sum_boole,Finset.inter_eq_right.mpr hJI,
-      Nat.mul_comm] at hp
-    have up := cap I hIB hrI
-    omega
-  obtain ⟨I,hEI,hIB,hrI⟩ := Finset.exists_subsuperset_card_eq hEB (n:=r) (by omega) hb
-  have outside (i) (hi : i ∈ B \ I) : (S i).card = 5 := by
-    obtain ⟨hb, hn⟩ := Finset.mem_sdiff.mp hi
-    have lo := hbig i hb
-    have up : ¬6 ≤ (S i).card := fun h => hn (hEI (Finset.mem_filter.mpr ⟨hb,h⟩))
-    omega
-  have rest := Finset.sum_congr (s₁:=B \ I) rfl outside
-  rw [Finset.sum_const,smul_eq_mul,Finset.card_sdiff_of_subset hIB,hrI] at rest
-  have split := Finset.sum_sdiff hIB (f:=fun i => (S i).card)
-  have up := cap I hIB hrI
-  omega
 
 end L_meta_997.Small
 
@@ -4302,11 +4118,11 @@ output refund if the folded gate was among its private gates. -/
 -- Refunds above that count add directly to the distinguished-row quota.
 theorem folded_projection_with_paid_slack {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (hs : (assigned C (S d)).card+1 < (S d).card)
     (slack : ℕ)
@@ -4432,11 +4248,11 @@ theorem folded_projection_with_paid_slack {n m : ℕ} (S : Fin m → Finset (Fin
 
 theorem folded_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (hs : (assigned C (S d)).card+1 < (S d).card)
     (quota : let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
@@ -4455,7 +4271,7 @@ theorem folded_projection {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
 
 private lemma projection_gate_count_tight {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (z : ℕ) (A : Finset ℕ) (hD : 2 ≤ (S d).card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hzrange : z ∈ Finset.Ico n (n+C.size)) (htz : value C (fun _ : Fin n => false) z=true)
     (hzs : ∀ p : Fin n, p ∈ support C z)
     (hAi : A ⊆ Finset.Ico n (n+C.size)) (hAz : z ∉ A) (hAs : ∀ w ∈ A, support (n:=n) C w=∅)
@@ -4561,11 +4377,11 @@ private lemma projection_gate_count_tight {n m : ℕ} (S : Fin m → Finset (Fin
 
 theorem folded_model_tight {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hs : (assigned C (S d)).card+1 < (S d).card)
     (quota : let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
        (assigned C (S i)).card+1 < (S i).card ∧ y.card+2 ≤ (S i).card)
@@ -4877,11 +4693,11 @@ lemma support_of_globally_sound_output {n : ℕ} (C : Circuit) (T : Finset (Fin 
 open Classical in
 theorem folded_three_eight_roles {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (bad : ¬ ((∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.gates.length + (refunds S C y).card + m))
     (D : Circuit) (f : ℕ → ℕ) (v : ℕ) (goodD : good D) (sz : D.size=C.size)
@@ -5061,7 +4877,7 @@ open L_meta_997.Light
 private lemma folded_geometry {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (Fin m))
     (k : ℕ) (V : Finset (Fin n)) (hk : 5 ≤ k) (hsize : V.card ≤ 6*k+2)
     (hb : B.Nonempty) (hsub : ∀ i ∈ B, S i ⊆ V) (hbig : ∀ i ∈ B, k+2 ≤ (S i).card)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1) :
+    (hlin : rowLinearity S) :
     ∃ d ∈ B, (∀ i ∈ B, (S i).card ≤ (S d).card) ∧
       ((∑ i ∈ B, (S i).card) ≤ B.card*(k+1)+(S d).card+k ∨
        (∑ i ∈ B, (S i).card) ≤ B.card*(k+2)+k) := by
@@ -5091,7 +4907,7 @@ private lemma folded_geometry {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Fi
   generalize hr : B.card = r at *
   interval_cases r <;> norm_num [Nat.choose] at * <;> omega
 
-theorem size_window_five_or_more : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), 5 ≤ y.card → n ≤ 7*y.card+2 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+theorem size_window_five_or_more : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), 5 ≤ y.card → n ≤ 7*y.card+2 → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
   classical
   intro n m S C o t y hk hn hlin hg hu ho hl hy
   let k := y.card
@@ -5268,11 +5084,11 @@ def crossingDeficit {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
 open Classical in
 theorem crossing_budget {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false) :
     (∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) + y.card ≤
       C.size + m + ∑ i ∈ Finset.univ.filter (fun i => crossingDeficit S C t y i),
@@ -5404,7 +5220,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997_aux
 
 theorem crossing_gate_in_suffix {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (t : ℕ) (y : Finset (Fin n)) (i j : Fin m) (w : ℕ)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : ∀ j : Fin C.gates.length, (C.gates.get j).op = .not → j.val=t)
     (hzero : value C (fun _ : Fin n => false) (n+t)=true)
@@ -5459,11 +5275,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997_aux
 open Classical in
 theorem three_crossing_rows {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (bad : ¬ ((∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.gates.length+(refunds S C y).card+m)) :
@@ -5480,11 +5296,11 @@ theorem three_crossing_rows {n m : ℕ} (S : Fin m → Finset (Fin n))
 
 theorem three_crossing_gate {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (i : Fin m) (hi : crossingDeficit S C t y i) :
     3 ≤ (S i).card ∧
@@ -5541,8 +5357,8 @@ theorem crossing_paid {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (i : Fin m) (hi : crossingDeficit S C t y i) :
     (S i).card ≤ (assigned C (S i)).card+1 := by
@@ -5584,9 +5400,6 @@ theorem crossing_paid {n m : ℕ} (S : Fin m → Finset (Fin n))
 
 end L_meta_997.Light
 
-namespace L_meta_997.Small
-open L_meta_997.Light L_meta_997_aux
-end L_meta_997.Small
 
 
 namespace L_meta_997.Small
@@ -5776,7 +5589,7 @@ lemma crossing_output_roles {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin
     (i : Fin m) (y : Finset (Fin n)) (t w o : ℕ) (A F : Finset ℕ) (p r : Fin n)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hout : ∀ x : Fin n → Bool, value C x o = decide (∃ q ∈ S i, x q = true))
     (htouch : ¬Disjoint (S i) y) (hthree : (S i).card = 3)
     (hw_before : n+t < w ∧ w < o)
@@ -6007,10 +5820,6 @@ lemma crossing_output_roles {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin
 
 end L_meta_997.Small
 
-namespace L_meta_997.Small
-open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
-
-end L_meta_997.Small
 
 
 namespace L_meta_997.Small
@@ -6022,12 +5831,11 @@ def touchingCredit {n : ℕ} (C : Circuit) (t : ℕ) (y T : Finset (Fin n)) : �
 open Classical in
 theorem combined_ordered_gate_reserve {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -6056,12 +5864,11 @@ theorem combined_ordered_gate_reserve {n m : ℕ} (S : Fin m → Finset (Fin n))
 open Classical in
 theorem combined_ordered_gate_roles {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -6117,12 +5924,11 @@ theorem combined_ordered_gate_roles {n m : ℕ} (S : Fin m → Finset (Fin n)) (
 open Classical in
 theorem combined_gate_roles {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -6145,12 +5951,11 @@ theorem combined_gate_roles {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circ
 open Classical in
 theorem regular_crossing_triples {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -6256,7 +6061,7 @@ namespace L_meta_997.Small
 
 lemma dependent_certificate_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (E : Finset (Fin m))
     (P : Finset (Fin n)) (Y : Fin n → Finset (Fin n)) (b : ℕ) (hY : ∀ p ∈ P, (Y p).card ≤ b) (H : Finset ℕ) (W : Finset ℕ → Finset (Fin n))
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (roles : ∀ i ∈ E,
       (∃ K ∈ H.powersetCard 2, 2 ≤ (W K).card ∧ W K ⊆ S i) ∨
       ∃ p ∈ P, ∃ s ∈ Y p, s ≠ p ∧ p ∈ S i ∧ s ∈ S i) :
@@ -6319,7 +6124,7 @@ lemma dependent_certificate_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (
 lemma dependent_pair_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (E : Finset (Fin m))
     (P : Finset (Fin n)) (Y : Fin n → Finset (Fin n)) (b : ℕ) (hY : ∀ p ∈ P, (Y p).card ≤ b) (H : Finset ℕ) (σ : ℕ → Finset (Fin n))
     (hthree : ∀ i ∈ E, (S i).card = 3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (roles : ∀ i ∈ E,
       (∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
       ∃ p ∈ P, ∃ s ∈ Y p, s ≠ p ∧ p ∈ S i ∧ s ∈ S i) :
@@ -6360,7 +6165,7 @@ lemma singleton_points_card {n : ℕ} (G : Finset ℕ) (σ : ℕ → Finset (Fin
 lemma crossing_exception_packing {n m : ℕ} (S : Fin m → Finset (Fin n))
     (E : Finset (Fin m)) (y : Finset (Fin n)) (H G : Finset ℕ) (σ : ℕ → Finset (Fin n))
     (hthree : ∀ i ∈ E, (S i).card = 3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (hroles : ∀ i ∈ E,
       ∃ u ∈ G, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧
         ((∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
@@ -6409,12 +6214,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem three_window_packing_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card = 3)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (hgap : let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
@@ -6490,135 +6294,7 @@ theorem three_window_packing_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C
 end L_meta_997.Small
 
 
-namespace L_meta_997.Small
 
-lemma twenty_four_row_profiles {n m : ℕ} (S : Fin m → Finset (Fin n))
-    (B : Finset (Fin m)) (V : Finset (Fin n))
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (hsub : ∀ i ∈ B, S i ⊆ V) (hV : V.card ≤ 21)
-    (hbig : ∀ i ∈ B, 5 ≤ (S i).card)
-    (hstd : 5*B.card+5 ≤ ∑ i ∈ B, (S i).card)
-    (hfold : ∀ i ∈ B, 4*B.card+(S i).card+3 < ∑ j ∈ B, (S j).card)
-    (hcut : ¬ ((3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨
-      (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7))) :
-    V.card = 21 ∧ B.biUnion S = V ∧
-      ((B.card = 3 ∧ ∀ i ∈ B, (S i).card = 8) ∨
-       (B.card = 4 ∧ (∀ i ∈ B, 6 ≤ (S i).card ∧ (S i).card ≤ 7) ∧
-          (B.filter (fun i => (S i).card = 6)).card = 1)) := by
-  classical
-  have hcard : B.card ≤ 8 := by
-    by_contra! hmany
-    have hcap (I : Finset (Fin m)) (sub : I ⊆ B) (size : I.card=9) :
-        (∑ i ∈ I, (S i).card) ≤ 5*9+4 := by
-      have hi := pair_incidence S I V (fun i hi => hsub i (sub hi)) hlin
-      rw [size] at hi
-      norm_num [Nat.choose] at hi ⊢
-      omega
-    have hsur := five_row_surplus S B 9 (by decide) hmany hbig hcap
-    omega
-  have nonempty : B.Nonempty := by
-    by_contra h
-    rw [Finset.not_nonempty_iff_eq_empty.mp h] at hstd
-    simp at hstd
-  obtain ⟨d,hd,hmax⟩ := B.exists_max_image (fun i => (S i).card) nonempty
-  have fst := hfold d hd
-  have mx := Finset.sum_le_sum (s:=B) hmax
-  simp only [Finset.sum_const,smul_eq_mul] at mx
-  have hU : B.biUnion S ⊆ V := by
-    intro p hp
-    obtain ⟨i,hi,hep⟩ := Finset.mem_biUnion.mp hp
-    exact hsub i hi hep
-  have hsU := Finset.card_le_card hU
-  have un := line_union S hlin B
-  have pair := pair_incidence S B V hsub hlin
-  have hpos := Finset.card_pos.mpr nonempty
-  have profile : (B.card=3 ∧ (∑ i ∈ B, (S i).card)=24 ∨
-      B.card=4 ∧ (∑ i ∈ B, (S i).card)=27) ∧ (B.biUnion S).card=21 := by
-    generalize heq : B.card = b at *
-    interval_cases b <;> norm_num [Nat.choose] at * <;> omega
-  have Ueq : B.biUnion S = V := Finset.eq_of_subset_of_card_le hU (by omega)
-  refine ⟨Ueq ▸ profile.2,Ueq,?_⟩
-  obtain ⟨cas | cas,_⟩ := profile
-  · obtain ⟨bc,sc⟩ := cas
-    left
-    refine ⟨bc,fun i hi => ?_⟩
-    have sizes (j) (hj : j ∈ B) : (S j).card ≤ 8 := by have h := hfold j hj; omega
-    have er := Finset.card_erase_of_mem hi
-    have s := Finset.sum_le_sum (s:=B.erase i) (g:=fun _ => 8)
-      (fun a ha => sizes a (Finset.mem_of_mem_erase ha))
-    simp only [Finset.sum_const,smul_eq_mul] at s
-    rw [er,bc] at s
-    have cut := Finset.sum_erase_add B (fun j => (S j).card) hi
-    have si := sizes i hi
-    omega
-  · obtain ⟨bc,sc⟩ := cas
-    right
-    have sizes (j) (hj : j ∈ B) : (S j).card ≤ 7 := by have h := hfold j hj; omega
-    have both (i) (hi : i ∈ B) : 6 ≤ (S i).card ∧ (S i).card ≤ 7 := by
-      have er := Finset.card_erase_of_mem hi
-      have s := Finset.sum_le_sum (s:=B.erase i) (g:=fun _ => 7)
-        (fun a ha => sizes a (Finset.mem_of_mem_erase ha))
-      simp only [Finset.sum_const,smul_eq_mul] at s
-      rw [er,bc] at s
-      have cut := Finset.sum_erase_add B (fun j => (S j).card) hi
-      exact ⟨by omega,sizes i hi⟩
-    refine ⟨bc,both,?_⟩
-    have per := Finset.sum_congr (s₁:=B) rfl
-      (g:=fun i => 7) (f:=fun i => (S i).card + if (S i).card=6 then 1 else 0)
-      (fun i hi => by have := both i hi; split <;> omega)
-    rw [Finset.sum_add_distrib,Finset.sum_const,smul_eq_mul,bc,sc] at per
-    rw [←Finset.sum_filter,Finset.sum_const,smul_eq_mul,Nat.mul_one] at per
-    omega
-
-end L_meta_997.Small
-
-namespace L_meta_997.Small
-open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
-
-theorem twenty_four_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
-    let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
-      (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-    n=24 ∧ y.card=3 ∧ B.biUnion S = Finset.univ \ y ∧
-      ((B.card = 3 ∧ ∀ i ∈ B, (S i).card = 8) ∨
-       (B.card = 4 ∧ (∀ i ∈ B, 6 ≤ (S i).card ∧ (S i).card ≤ 7) ∧
-          (B.filter (fun i => (S i).card = 6)).card = 1)) := by
-  classical
-  intro n m S C o t y hn hlin hg hu ho hl hy bad
-  have hk : y.card=3 := by
-    by_contra h
-    exact bad (size_window_seven n m S C o t y (by omega) hlin hg hu ho hl hy)
-  let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
-    (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-  let V := Finset.univ \ y
-  have vc : V.card = n-3 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk]
-  have uc : V.card ≤ 21 := by omega
-  have sub (i) (hi : i ∈ B) : S i ⊆ V := by
-    intro p hp
-    exact Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp (Finset.mem_filter.mp hi).2.1 hp⟩
-  have big (i) (hi : i ∈ B) : 5 ≤ (S i).card := (Finset.mem_filter.mp hi).2.2.2
-  have ordinary : 5*B.card+5 ≤ ∑ i ∈ B, (S i).card := by
-    by_contra! h
-    apply bad (three_window_bound n m S C o t y ⟨hk,?_⟩ hlin hg hu ho hl hy)
-    unfold threeRowQuota
-    rw [hk]
-    change B.Nonempty → _
-    exact fun ⟨d,hd⟩ => ⟨d,hd,Or.inr (by
-      change (∑ i ∈ B, (S i).card) ≤ B.card*5+4
-      omega)⟩
-  have fold (d) (hd : d ∈ B) : 4*B.card+(S d).card+3 < ∑ i ∈ B, (S i).card := by
-    by_contra! h
-    apply bad (folded_projection S d C o t y (by omega) hlin hg hu ho hl hy (Finset.mem_filter.mp hd).2.2.1 ?_)
-    rw [hk]
-    change _ ≤ 4*B.card+(S d).card+3
-    exact h
-  have cut : ¬ ((3 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+6) ∨
-      (6 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7)) := by
-    intro h
-    exact bad (three_window_packing_bound S C o t y hk hlin hg hu ho hl hy h)
-  obtain ⟨outside,cover,profiles⟩ := twenty_four_row_profiles S B V hlin sub uc big ordinary fold cut
-  exact ⟨by omega,hk,cover,profiles⟩
-
-end L_meta_997.Small
 
 
 namespace L_meta_997.Small
@@ -6627,7 +6303,7 @@ lemma crossing_partner_packing {n m : ℕ} (S : Fin m → Finset (Fin n))
     (E : Finset (Fin m)) (y : Finset (Fin n)) (K H G : Finset ℕ) (σ : ℕ → Finset (Fin n))
     (hthree : ∀ i ∈ E, (S i).card = 3)
     (htouch : ∀ i ∈ E, ¬Disjoint (S i) y)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (hroles : ∀ i ∈ E,
       ∃ u ∈ G, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧
         ((∃ a ∈ K, ∃ b ∈ K, a ≠ b ∧ S i = σ a ∩ σ b) ∨
@@ -6665,7 +6341,7 @@ lemma crossing_packing_touching {n m : ℕ} (S : Fin m → Finset (Fin n))
     (E : Finset (Fin m)) (y : Finset (Fin n)) (H G : Finset ℕ) (σ : ℕ → Finset (Fin n))
     (hthree : ∀ i ∈ E, (S i).card = 3)
     (htouch : ∀ i ∈ E, ¬Disjoint (S i) y)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (hroles : ∀ i ∈ E,
       ∃ u ∈ G, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧
         ((∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
@@ -6680,7 +6356,7 @@ lemma crossing_packing_six {n m : ℕ} (S : Fin m → Finset (Fin n))
     (hk : y.card=3) (cap : H.card+G.card≤6)
     (hthree : ∀ i ∈ E, (S i).card = 3)
     (htouch : ∀ i ∈ E, ¬Disjoint (S i) y)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (roles : ∀ i ∈ E,
       ∃ u ∈ G, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧
         ((∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ S i = σ a ∩ σ b) ∨
@@ -6781,7 +6457,7 @@ theorem sound_prefix_small {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin 
     (hz : Heavy.supp C y (n+t) = ∅)
     (hy : value C (fun p => decide (p ∈ y)) (n+t) = false)
     (hyPos : y.Nonempty)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hbefore : ∀ a < v, ¬mixedSignature C y a)
     (hF : ∀ a ∈ F, mixedSignature C y a)
     (hA : ∀ a ∈ A, value C (fun p => decide (p ∈ y)) a = true)
@@ -6910,8 +6586,8 @@ open PEqualNP.CircuitLowerBounds L_meta_997_aux
 
 theorem saturated_refund_is_output {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (y : Finset (Fin n)) (D : Finset (Fin m))
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
-    (hout : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (hpair : rowLinearity S)
+    (hout : rowOutputs C S o)
     (hD : ∀ i ∈ D, Disjoint (S i) y ∧ 2 ≤ (S i).card)
     (sat : (refunds S C y).card ≤ D.card)
     (i : Fin m) (hi : i ∈ D) (w : ℕ) (low : support C w = S i) (high : Heavy.supp C y w = S i) :
@@ -6979,20 +6655,12 @@ theorem saturated_refund_is_output {n m : ℕ} (S : Fin m → Finset (Fin n)) (C
 
 end L_meta_997.Light
 
-namespace L_meta_997.Light
-open PEqualNP.CircuitLowerBounds L_meta_997_aux
-
-end L_meta_997.Light
-namespace L_meta_997_aux
-open PEqualNP.CircuitLowerBounds L_meta_997
-
-end L_meta_997_aux
 
 namespace L_meta_997.Small
 
 lemma role_pair_cover_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (E : Finset (Fin m))
     (P Y : Finset (Fin n)) (H : Finset ℕ) (σ : ℕ → Finset (Fin n))
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (roles : ∀ i ∈ E,
       (∃ a ∈ H, ∃ b ∈ H, a ≠ b ∧ (σ a ∪ σ b).card ≥ 2 ∧ σ a ∪ σ b ⊆ S i) ∨
       ∃ p ∈ P, ∃ s ∈ Y, s ≠ p ∧ p ∈ S i ∧ s ∈ S i) :
@@ -7012,7 +6680,7 @@ lemma role_pair_cover_packing {n m : ℕ} (S : Fin m → Finset (Fin n)) (E : Fi
 lemma crossing_mixed_anchors_saturate {n m : ℕ} (S : Fin m → Finset (Fin n))
     (E : Finset (Fin m)) (y : Finset (Fin n)) (M F : Finset ℕ) (σ : ℕ → Finset (Fin n))
     (hF : F.card ≤ 6) (hM : M ⊆ F) (hy : y.card=3) (hE : 3*F.card ≤ E.card+1)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (hroles : ∀ i ∈ E,
        (∃ u ∈ M, ∃ p : Fin n, σ u = {p} ∧ p ∈ S i ∧ ∃ s ∈ y, s ≠ p ∧ s ∈ S i) ∨
        (∃ u ∈ F \ M, ∃ v ∈ F \ M, u ≠ v ∧ 2 ≤ (σ u ∪ σ v).card ∧ σ u ∪ σ v ⊆ S i)) :
@@ -7043,10 +6711,10 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 theorem crossing_forces_mixed_exceptions {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin n))
     (y : Finset (Fin n)) (t : ℕ) (o : Fin m → ℕ) (A F : Finset ℕ) (E : Finset (Fin m))
     (hycard : y.card=3) (hFcard : F.card ≤ 6) (enough : 3*F.card ≤ E.card+1)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (ho : rowOutputs C S o)
     (hz_cold : value C (fun q => decide (q ∈ y)) (n+t) = false)
     (hz_full : ∀ p : Fin n, p ∈ support C (n+t))
     (hA : ∀ v ∈ A, support (n:=n) C v = ∅ ∧ value C (fun q => decide (q ∈ y)) v = true)
@@ -7112,12 +6780,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem tight_crossing_configuration {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card = 3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (bad : ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -7249,10 +6916,10 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 theorem no_first_mixed_signature {n m : ℕ} (C : Circuit) (S : Fin m → Finset (Fin n))
     (y : Finset (Fin n)) (t : ℕ) (o : Fin m → ℕ) (A F : Finset ℕ) (B : Finset (Fin m))
     (hn : 2 ≤ n) (hyPos : y.Nonempty) (proper : ∀ i, S i ≠ Finset.univ)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
+    (ho : rowOutputs C S o)
     (hy : value C (fun q => decide (q ∈ y)) (n+t) = false)
     (hz_high : Heavy.supp C y (n+t) = ∅) (hz_full : ∀ q : Fin n, q ∈ support C (n+t))
     (hA : ∀ v ∈ A, support (n:=n) C v = ∅ ∧ value C (fun q => decide (q ∈ y)) v = true)
@@ -7476,12 +7143,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem tight_crossing_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card = 3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (profile : let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
@@ -7528,30 +7194,6 @@ theorem tight_crossing_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Cir
   obtain ⟨v,hv⟩ := Fpos
   exact none v (hF v hv).1
 
-theorem twenty_four_sharp_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
-    let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
-      (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-    n=24 ∧ y.card=3 ∧ B.biUnion S = Finset.univ \ y ∧
-      B.card = 3 ∧ ∀ i ∈ B, (S i).card = 8 := by
-  classical
-  intro n m S C o t y hn hlin hg hu ho hl hy bad
-  let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
-    (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-  obtain ⟨n24,hk,cover,three | four⟩ := twenty_four_residual n m S C o t y hn hlin hg hu ho hl hy bad
-  · exact ⟨n24,hk,cover,three⟩
-  · exfalso
-    obtain ⟨bc,sizes,one⟩ : B.card=4 ∧ (∀ i ∈ B, 6 ≤ (S i).card ∧ (S i).card ≤ 7) ∧
-      (B.filter (fun i => (S i).card=6)).card=1 := four
-    have mass : (∑ i ∈ B, (S i).card)=27 := by
-      have per := Finset.sum_congr (s₁:=B) rfl
-        (g:=fun i => 7) (f:=fun i => (S i).card + if (S i).card=6 then 1 else 0)
-        (fun i hi => by have := sizes i hi; split <;> omega)
-      rw [Finset.sum_add_distrib,Finset.sum_const,smul_eq_mul,bc] at per
-      rw [←Finset.sum_filter,Finset.sum_const,smul_eq_mul,Nat.mul_one,one] at per
-      omega
-    exact bad (tight_crossing_bound S C o t y hk hlin hg hu ho hl hy
-      (show (4 ≤ B.card ∧ (∑ i ∈ B, (S i).card) ≤ 5*B.card+7) ∨ _ from
-        Or.inl ⟨by omega,by omega⟩))
 end L_meta_997.Small
 
 namespace L_meta_997.Light
@@ -7639,11 +7281,11 @@ theorem double_folded_small_other_rows {n m : ℕ} (S : Fin m → Finset (Fin n)
     (aReads : n+t ∈ (C.gates.get a).inputs)
     (bReads : n+t ∈ (C.gates.get b).inputs ∨
       (n+a.val ∈ (C.gates.get b).inputs ∧ value C (fun _ : Fin n => false) (n+a.val)=true))
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (hs : (assigned C (S d)).card+1 < (S d).card)
     (large : ∀ i, Disjoint (S i) y → y.card+2 ≤ (S i).card →
@@ -7791,7 +7433,7 @@ namespace L_meta_997.Small
 theorem three_row_outside_bound {n m : ℕ} (S : Fin m → Finset (Fin n))
     (y : Finset (Fin n)) (B : Finset (Fin m)) (size : B.card = 3)
     (cover : B.biUnion S = Finset.univ \ y)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     {i : Fin m} (hi : i ∉ B) :
     (S i \ y).card ≤ 3 := by
   classical
@@ -7814,12 +7456,6 @@ theorem three_row_outside_bound {n m : ℕ} (S : Fin m → Finset (Fin n))
 
 end L_meta_997.Small
 
-namespace L_meta_997.Small
-open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
-
--- In the remaining 24-input profile the three eight-point rows generate
--- all refunds. Any other disjoint row has size at most one.
-end L_meta_997.Small
 namespace L_meta_997.Light
 open PEqualNP.CircuitLowerBounds L_meta_997_aux
 
@@ -8043,7 +7679,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light
 theorem tight_projection_unique_cold_reader {n m : ℕ}
     (S : Fin m → Finset (Fin n)) (d : Fin m) (C : Circuit) (o : Fin m → ℕ)
     (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C) (hu : onlyNegAt C t)
     (ho : computesRows C S o) (hl : switchLight (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
@@ -8195,13 +7831,13 @@ open PEqualNP.CircuitLowerBounds
 theorem folded_and_prefix_lower {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C D : Circuit) (o : Fin m → ℕ) (t : ℕ) (a : Fin C.gates.length)
     (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
     (uni : ∀ i : Fin C.gates.length, t < i.val → n+t ∈ (C.gates.get i).inputs → i=a)
     (av : t < a.val) (ard : n+t ∈ (C.gates.get a).inputs) (aan : (C.gates.get a).op=.and)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (light : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (light : lightOnSparse (n:=n) C t y.card)
     (goodD : good D) (ds : D.size=C.size)
     (agree : ∀ w, w≠n+a.val → support (n:=n) D w = support (n:=n) C w)
     (opsD : ∀ w, n ≤ w → w≠n+a.val → w≠n+t → (andAt D n w ↔ andAt C n w))
@@ -8362,11 +7998,11 @@ open Classical in
 theorem bounded_fold_crossing_lower {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C D : Circuit) (o : Fin m → ℕ) (t v : ℕ) (y : Finset (Fin n)) (B : Finset (Fin m)) (A Q : Finset ℕ)
     (hk : y.card=3) (hs : ∀ i ∈ B, Disjoint (S i) y)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (sz : D.size=C.size) (after : n+t<v) (deadSupport : support (n:=n) D v=∅)
     (readerRole : andAt C n v ∨ ∀ i, v∉assigned C (S i))
@@ -8566,11 +8202,11 @@ theorem three_eight_crossing_upper {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C D : Circuit) (o : Fin m → ℕ) (t v : ℕ) (y : Finset (Fin n)) (B : Finset (Fin m)) (A Q : Finset ℕ)
     (hk : y.card=3) (hf : 6 ≤ (Q.filter (· <v)).card) (qcard : Q.card=7)
     (card : B.card=3) (hs : ∀ i ∈ B, Disjoint (S i) y ∧ (S i).card=8)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (sz : D.size=C.size) (after : n+t<v) (deadSupport : support (n:=n) D v=∅)
     (band : andAt C n v) (vcold : value C (fun p => decide (p ∈ y)) v=false)
@@ -8688,11 +8324,11 @@ theorem three_eight_crossing_cap {n m : ℕ} (S : Fin m → Finset (Fin n))
     (hUnder : B ⊆ underDisjoint C S y)
     (hSmall : ∀ i, i∉B → Disjoint (S i) y → 2 ≤ (S i).card → (S i).card=4)
     (refEq : (refunds S C y).card=3+(Finset.univ.filter (fun i => Disjoint (S i) y ∧ (S i).card=4)).card)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (bad : ¬ ((∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.size + (refunds S C y).card + m))
@@ -8762,7 +8398,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem three_eight_profile {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n))
-    (hk : y.card=3) (hlin : ∀ i j, i≠j → (S i ∩ S j).card≤1)
+    (hk : y.card=3) (hlin : rowLinearity S)
     (hg : hasAllowedGates C) (hu : onlyNegAt C t)
     (ho : computesRows C S o) (hl : switchLight (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
@@ -8894,29 +8530,6 @@ theorem three_eight_profile {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circ
   have hi := three_eight_crossing_cap S C o t y B E hk bc hs under disjFour refEq hlin hg hu ho hl vy bad spec
   omega
 
-theorem num_inputs_twenty_four : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : Circuit)
-    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 →
-    (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) →
-    hasAllowedGates C → onlyNegAt C t → computesRows C S o → switchLight (n:=n) C t y.card →
-    (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n+t) false = false →
-    (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
-      C.gates.length + (refunds S C y).card + m := by
-  intro n m S C o t y hn hlin hg hu ho hl hy
-  by_contra bad
-  let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
-    (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-  obtain ⟨n24,hk,cover,bc,sizes⟩ := twenty_four_sharp_residual n m S C o t y hn hlin hg hu ho hl hy bad
-  apply bad (three_eight_profile S C o t y hk hlin hg hu ho hl hy ⟨bc,sizes,?_⟩)
-  intro i hi dis
-  have cap := three_row_outside_bound S y B bc cover hlin hi
-  rw [Finset.sdiff_eq_self_of_disjoint dis] at cap
-  omega
-
-
-
-theorem num_inputs_twenty_three : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
-  intro n m S C o t y hn
-  exact num_inputs_twenty_four n m S C o t y (by omega)
 
 end L_meta_997.Small
 
@@ -8957,7 +8570,7 @@ lemma row_surplus_of_subsets {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Fin
 
 lemma twenty_five_row_profiles {n m : ℕ} (S : Fin m → Finset (Fin n))
     (B : Finset (Fin m)) (V : Finset (Fin n))
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : L_meta_997.Light.rowLinearity S)
     (hsub : ∀ i ∈ B, S i ⊆ V) (hV : V.card ≤ 22)
     (hbig : ∀ i ∈ B, 5 ≤ (S i).card)
     (hstd : 5*B.card+5 ≤ ∑ i ∈ B, (S i).card)
@@ -9007,25 +8620,23 @@ end L_meta_997.Small
 namespace L_meta_997.Small
 open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 
-theorem twenty_five_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 25 → (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
+theorem twenty_five_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 25 → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → ¬ ((∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m) →
     let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
       (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-    n=25 ∧ y.card=3 ∧
+    y.card=3 ∧
     ((B.card=3 ∧ (∑ i ∈ B, (S i).card)=24) ∨
       ((B.card=3 ∧ (∑ i ∈ B, (S i).card)=25 ∨
         B.card=4 ∧ (∑ i ∈ B, (S i).card)=28) ∧ B.biUnion S = Finset.univ \ y)) := by
   classical
   intro n m S C o t y hn hlin hg hu ho hl hy bad
-  have n25 : n=25 := by
-    by_contra h
-    exact bad (num_inputs_twenty_four n m S C o t y (by omega) hlin hg hu ho hl hy)
   have hk : y.card=3 := by
     by_contra h
-    exact bad (size_window_seven n m S C o t y (by omega) hlin hg hu ho hl hy)
+    exact bad (size_window_joint n m S C o t y (by omega) hlin hg hu ho hl hy)
   let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
     (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
   let V := Finset.univ \ y
-  have uc : V.card ≤ 22 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk,n25]
+  have vc : V.card = n-3 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk]
+  have uc : V.card ≤ 22 := by omega
   have sub (i) (hi : i ∈ B) : S i ⊆ V := by
     intro p hp
     exact Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp (Finset.mem_filter.mp hi).2.1 hp⟩
@@ -9051,7 +8662,7 @@ theorem twenty_five_residual : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C
   have cutLarge (b : 7 ≤ B.card) : 5*B.card+9 ≤ ∑ i ∈ B, (S i).card := by
     by_contra! h
     exact bad (tight_crossing_bound S C o t y hk hlin hg hu ho hl hy (Or.inr ⟨b,show (∑ i ∈ B, (S i).card) ≤ 5*B.card+8 by omega⟩))
-  exact ⟨n25,hk,twenty_five_row_profiles S B V hlin sub uc big ordinary fold cut cutLarge⟩
+  exact ⟨hk,twenty_five_row_profiles S B V hlin sub uc big ordinary fold cut cutLarge⟩
 
 end L_meta_997.Small
 
@@ -9059,7 +8670,7 @@ namespace L_meta_997.Small
 
 lemma three_eight_extra_shape {n m : ℕ} (S : Fin m → Finset (Fin n)) (B : Finset (Fin m))
     (V : Finset (Fin n)) (hV : V.card≤22) (bc : B.card=3) (mass : (∑ i ∈ B, (S i).card)=24)
-    (lin : ∀ i j, i≠j → (S i ∩ S j).card ≤ 1)
+    (lin : L_meta_997.Light.rowLinearity S)
     (sub : ∀ i∈B, S i ⊆ V) (top : ∀ i∈B, (S i).card≤8) :
     (∀ i∈B, (S i).card=8) ∧ (∀ i, i∉B → S i ⊆ V → (S i).card≤4) := by
   classical
@@ -9103,7 +8714,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 
 theorem twenty_five_mass_residual {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hn : n ≤ 25)
-    (hlin : ∀ i j, i≠j → (S i ∩ S j).card≤1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C) (hu : onlyNegAt C t)
     (ho : computesRows C S o) (hl : switchLight (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
@@ -9117,11 +8728,12 @@ theorem twenty_five_mass_residual {n m : ℕ} (S : Fin m → Finset (Fin n)) (C 
   classical
   let B := Finset.univ.filter (fun i => Disjoint (S i) y ∧
     (assigned C (S i)).card+1 < (S i).card ∧ 5 ≤ (S i).card)
-  obtain ⟨n25,hk,hsmall|⟨cases,cover⟩⟩ := twenty_five_residual n m S C o t y hn hlin hg hu ho hl hy bad
+  obtain ⟨hk,hsmall|⟨cases,cover⟩⟩ := twenty_five_residual n m S C o t y hn hlin hg hu ho hl hy bad
   · exfalso
     obtain ⟨bc,mass⟩ : B.card=3 ∧ (∑ i ∈ B, (S i).card)=24 := hsmall
     let V : Finset (Fin n) := Finset.univ \ y
-    have vc : V.card ≤ 22 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk,n25]
+    have count : V.card = n-3 := by simp [V,Finset.card_sdiff_of_subset (Finset.subset_univ y),hk]
+    have vc : V.card ≤ 22 := by omega
     have ins (i) (di : Disjoint (S i) y) : S i ⊆ V := fun p hp =>
       Finset.mem_sdiff.mpr ⟨Finset.mem_univ _,Finset.disjoint_left.mp di hp⟩
     have top (i) (hi : i ∈ B) : (S i).card ≤ 8 := by
@@ -9135,7 +8747,14 @@ theorem twenty_five_mass_residual {n m : ℕ} (S : Fin m → Finset (Fin n)) (C 
       (fun i hi => ins i (Finset.mem_filter.mp hi).2.1) top
     exact bad (three_eight_profile S C o t y hk hlin hg hu ho hl hy
       ⟨bc,all8,fun i hi dis => rest i hi (ins i dis)⟩)
-  · exact ⟨n25,hk,cover,cases⟩
+  · have outside : (Finset.univ \ y).card = n-3 := by
+      simp [Finset.card_sdiff_of_subset (Finset.subset_univ y),hk]
+    have lo := line_union S hlin B
+    rw [cover,outside] at lo
+    have n25 : n=25 := by
+      rcases cases with ⟨bc,mass⟩|⟨bc,mass⟩ <;>
+        rw [bc,mass] at lo <;> norm_num [Nat.choose] at lo <;> omega
+    exact ⟨n25,hk,cover,cases⟩
 
 end L_meta_997.Small
 namespace L_meta_997.Light
@@ -9215,11 +8834,11 @@ open PEqualNP.CircuitLowerBounds
 open Classical in
 theorem folded_three_mass25_roles {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (bad : ¬ ((∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
       C.gates.length + (refunds S C y).card + m))
     (D : Circuit) (f : ℕ → ℕ) (v : ℕ) (goodD : good D) (sz : D.size=C.size)
@@ -9406,13 +9025,13 @@ open PEqualNP.CircuitLowerBounds
 theorem folded_mass25_prefix_overlap {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C D : Circuit) (o : Fin m → ℕ) (t : ℕ) (a : Fin C.gates.length)
     (y : Finset (Fin n)) (hk : y.card=3)
-    (hpair : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
     (uni : ∀ i : Fin C.gates.length, t < i.val → n+t ∈ (C.gates.get i).inputs → i=a)
     (av : t < a.val) (ard : n+t ∈ (C.gates.get a).inputs) (aan : (C.gates.get a).op=.and)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (light : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (light : lightOnSparse (n:=n) C t y.card)
     (goodD : good D) (ds : D.size=C.size)
     (agree : ∀ w, w≠n+a.val → support (n:=n) D w = support (n:=n) C w)
     (opsD : ∀ w, n ≤ w → w≠n+a.val → w≠n+t → (andAt D n w ↔ andAt C n w))
@@ -9644,11 +9263,11 @@ theorem mass_twenty_five_crossing_upper {n m : ℕ} (S : Fin m → Finset (Fin n
       (Q.filter (fun w => w<v ∧ ∀ i∈B, i≠d → (support (n:=n) D w ∩ S i).card≤1)).card≤3)
     (card : B.card=3) (hs : ∀ i ∈ B, Disjoint (S i) y ∧ 5≤(S i).card)
     (mass : (∑ i∈B, (S i).card)=25)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : ∀ g ∈ C.gates, (g.op = .and ∨ g.op = .or ∨ g.op = .not) ∧ g.inputs.length ≤ 2)
     (hu : ∀ i : Fin C.gates.length, (C.gates.get i).op = .not → i.val=t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
     (sz : D.size=C.size) (after : n+t<v) (deadSupport : support (n:=n) D v=∅)
     (band : andAt C n v) (vcold : value C (fun p => decide (p ∈ y)) v=false)
@@ -9749,7 +9368,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem three_mass25_full_cover_bound {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (d : Fin m) (hk : y.card=3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C) (hu : onlyNegAt C t)
     (ho : computesRows C S o) (hl : switchLight (n:=n) C t y.card)
     (hy : value C (fun p => decide (p ∈ y)) (n+t)=false)
@@ -9998,7 +9617,7 @@ theorem card_inter_biUnion_linear {α β : Type*} [DecidableEq β]
 
 theorem outside_coverage_bound {n m : ℕ} (S : Fin m → Finset (Fin n))
     (y : Finset (Fin n)) (B : Finset (Fin m))
-    (linear : ∀ i j, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (linear : L_meta_997.Light.rowLinearity S)
     {i : Fin m} (out : i ∉ B) :
     (S i \ y).card ≤ B.card + ((Finset.univ \ y) \ B.biUnion S).card := by
   classical
@@ -10022,7 +9641,7 @@ open PEqualNP.CircuitLowerBounds
 
 theorem projection_gate_count_one_slack {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (z : ℕ) (A : Finset ℕ) (hD : 2 ≤ (S d).card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hzrange : z ∈ Finset.Ico n (n+C.size)) (htz : value C (fun _ : Fin n => false) z=true)
     (hzs : ∀ p : Fin n, p ∈ support C z)
     (hAi : A ⊆ Finset.Ico n (n+C.size)) (hAz : z ∉ A) (hAs : ∀ w ∈ A, support (n:=n) C w=∅)
@@ -10146,11 +9765,11 @@ open PEqualNP.CircuitLowerBounds
 
 theorem folded_model_one_slack {n m : ℕ} (S : Fin m → Finset (Fin n)) (d : Fin m)
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : 2 ≤ y.card)
-    (hpair : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hpair : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (out : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i)=decide (∃ p ∈ S i, x p=true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun p => x p=true)).card<y.card → value C x (n+t)=true)
+    (out : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hs : (assigned C (S d)).card+1 < (S d).card)
     (large : ∀ i, Disjoint (S i) y → y.card+2≤(S i).card →
        (assigned C (S i)).card+1<(S i).card)
@@ -10327,12 +9946,11 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem crossing_cap_under_eight_slack {n m : ℕ} (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (hk : y.card = 3)
-    (hlin : ∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C)
     (hu : onlyNegAt C t)
-    (ho : ∀ (i : Fin m) (x : Fin n → Bool), value C x (o i) = decide (∃ p ∈ S i, x p = true))
-    (hl : ∀ x : Fin n → Bool, (Finset.univ.filter (fun v : Fin n => x v = true)).card < y.card →
-      value C x (n+t) = true)
+    (ho : rowOutputs C S o)
+    (hl : lightOnSparse (n:=n) C t y.card)
     (hy : value C (fun v => decide (v ∈ y)) (n+t) = false)
     (E : Finset (Fin m))
     (bad : ¬ ((∑ i, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
@@ -10405,7 +10023,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 open Classical in
 theorem four_rows_top_bound {n m : ℕ} (S : Fin m → Finset (Fin n))
     (C : Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)) (d : Fin m) (hk : y.card=3)
-    (hlin : ∀ i j, i ≠ j → (S i ∩ S j).card≤1)
+    (hlin : rowLinearity S)
     (hg : hasAllowedGates C) (hu : onlyNegAt C t) (ho : computesRows C S o)
     (hl : switchLight (n:=n) C t y.card)
     (hy : value C (fun p => decide (p∈y)) (n+t)=false)
@@ -10645,7 +10263,7 @@ open PEqualNP.CircuitLowerBounds L_meta_997.Light L_meta_997_aux
 
 theorem num_inputs_twenty_five : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : Circuit)
     (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 25 →
-    (∀ i j : Fin m, i ≠ j → (S i ∩ S j).card ≤ 1) →
+    (rowLinearity S) →
     hasAllowedGates C → onlyNegAt C t → computesRows C S o → switchLight (n:=n) C t y.card →
     value C (fun p => decide (p ∈ y)) (n+t) = false →
     (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
@@ -10682,6 +10300,33 @@ theorem num_inputs_twenty_five : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) 
     have range : (S d).card=7 ∨ (S d).card=8 := by have := top d hd; omega
     exact bad (four_rows_top_bound S C o t y d hk hlin hg hu ho hl hy
       ⟨bc,mass,cover,hd,range⟩)
+
+
+theorem num_inputs_twenty_four : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : Circuit)
+    (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 24 →
+    (rowLinearity S) →
+    hasAllowedGates C → onlyNegAt C t → computesRows C S o → switchLight (n:=n) C t y.card →
+    (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n+t) false = false →
+    (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤
+      C.gates.length + (refunds S C y).card + m := by
+  intro n m S C o t y hn
+  exact num_inputs_twenty_five n m S C o t y (by omega)
+
+theorem num_inputs_twenty_three : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 23 → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+  intro n m S C o t y hn
+  exact num_inputs_twenty_five n m S C o t y (by omega)
+
+
+theorem num_inputs_twenty_two : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), n ≤ 22 → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+  intro n m S C o t y hn
+  exact num_inputs_twenty_five n m S C o t y (by omega)
+
+theorem size_window_seven : ∀ (n m : ℕ) (S : Fin m → Finset (Fin n)) (C : PEqualNP.CircuitLowerBounds.Circuit) (o : Fin m → ℕ) (t : ℕ) (y : Finset (Fin n)), (y.card ≤ 2 ∨ n ≤ 7*y.card+1) → (rowLinearity S) → (hasAllowedGates C) → (onlyNegAt C t) → (computesRows C S o) → (switchLight (n:=n) C t y.card) → (C.wires (List.ofFn (fun v : Fin n => decide (v ∈ y)))).getD (n + t) false = false → (∑ i : Fin m, if Disjoint (S i) y then (S i).card else min y.card (S i).card) ≤ C.gates.length + (refunds S C y).card + m := by
+  intro n m S C o t y hsize
+  by_cases hn : n ≤ 22
+  · exact num_inputs_twenty_two n m S C o t y hn
+  · apply size_window_joint n m S C o t y
+    omega
 
 end L_meta_997.Small
 
